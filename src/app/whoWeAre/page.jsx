@@ -1,0 +1,238 @@
+// "use client";
+
+// import { motion } from "framer-motion";
+// import { ArrowRight } from "lucide-react";
+// import Link from "next/link";
+
+// export default function WhoWeArePage() {
+
+//   /* ---------------------------------------------------
+//      ✅ HERO (inline component)
+//   --------------------------------------------------- */
+//   const Hero = ({ title }) => (
+//     <section className="relative w-full h-[55vh] flex items-center justify-center bg-gradient-to-br from-[#1E2A47] to-[#0A0F1F]">
+//       <motion.h1
+//         initial={{ opacity: 0, y: 30 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         transition={{ duration: 0.8 }}
+//         className="text-6xl md:text-8xl font-bold tracking-tight text-center text-white"
+//       >
+//         {title}
+//       </motion.h1>
+//     </section>
+//   );
+
+//   /* ---------------------------------------------------
+//      ✅ SECTION INTRO (inline component)
+//   --------------------------------------------------- */
+//   const SectionIntro = ({ title, text }) => (
+//     <motion.div
+//       initial={{ opacity: 0, y: 40 }}
+//       animate={{ opacity: 1, y: 0 }}
+//       transition={{ duration: 0.7 }}
+//       className="mb-16"
+//     >
+//       <h2 className="text-3xl font-semibold mb-4 text-white">{title}</h2>
+//       <p className="text-gray-300 leading-relaxed text-lg">{text}</p>
+//     </motion.div>
+//   );
+
+//   /* ---------------------------------------------------
+//      ✅ INFO CARD (inline component)
+//   --------------------------------------------------- */
+//   const InfoCard = ({ title, text, href }) => (
+//     <motion.div
+//       initial={{ opacity: 0, y: 50 }}
+//       whileInView={{ opacity: 1, y: 0 }}
+//       transition={{ duration: 0.6 }}
+//       className="bg-[#11182A] rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:scale-[1.03] transition-all border border-[#1F2A44]"
+//     >
+//       <h3 className="text-2xl font-semibold mb-4 text-white">{title}</h3>
+//       <p className="text-gray-400 mb-6">{text}</p>
+
+//       <Link
+//         href={href}
+//         className="inline-flex items-center text-[#4CA0FF] font-medium hover:underline"
+//       >
+//         Read More <ArrowRight size={18} className="ml-1" />
+//       </Link>
+//     </motion.div>
+//   );
+
+//   /* ---------------------------------------------------
+//      ✅ PAGE RETURN
+//   --------------------------------------------------- */
+//   return (
+//     <div className="min-h-screen bg-[#0A0F1F] text-white">
+
+//       {/* ✅ HERO */}
+//       <Hero title="Who We Are" />
+
+//       <div className="max-w-6xl mx-auto px-6 py-16">
+
+//         {/* ✅ INTRO */}
+//         <SectionIntro
+//           title="Our Identity"
+//           text="At Paves Technologies, we blend innovation, vision, and leadership to create a 
+//           future-ready technology ecosystem. Our journey is powered by experienced professionals, 
+//           a strong advisory board, and a forward-thinking technology council that drives research, strategy,
+//           and transformation."
+//         />
+
+//         {/* ✅ CARDS SECTION */}
+//         <div className="grid md:grid-cols-3 gap-10">
+//           <InfoCard
+//             title="About Us"
+//             text="Learn the story of who we are, what we stand for, and how we aim to reshape the digital future with innovation-driven engineering excellence."
+//             href="/about"
+//           />
+
+//           <InfoCard
+//             title="Management & Advisory Board"
+//             text="A team of industry leaders offering strategic guidance and direction, ensuring Paves aligns with long-term global standards."
+//             href="/management-advisory-board"
+//           />
+
+//           <InfoCard
+//             title="Technology Council"
+//             text="A visionary group of technologists who drive research, evaluate emerging trends, and help Paves stay ahead in innovation."
+//             href="/technology-council"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+export default function WhoWeArePage() {
+  /* ✅ HERO */
+  const Hero = ({ title }) => (
+    <section className="relative w-full h-[55vh] flex items-center justify-center bg-gradient-to-br from-[#E8EEF9] to-[#F7FAFF]">
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-5xl md:text-7xl font-extrabold tracking-tight text-center text-[#1A2A47]"
+      >
+        {title}
+      </motion.h1>
+    </section>
+  );
+
+  /* ✅ SECTION INTRO */
+  const SectionIntro = ({ title, text }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      className="mb-16"
+    >
+      <h2 className="text-3xl font-semibold mb-4 text-[#1A2A47]">{title}</h2>
+      <p className="text-gray-700 leading-relaxed text-lg">{text}</p>
+    </motion.div>
+  );
+
+  /* ✅ INFO CARD */
+  const InfoCard = ({ title, text, href }) => (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white rounded-2xl p-10 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all border border-gray-200"
+    >
+      <h3 className="text-2xl font-semibold mb-4 text-[#1A2A47]">{title}</h3>
+      <p className="text-gray-600 mb-6">{text}</p>
+
+      <Link
+        href={href}
+        className="inline-flex items-center text-[#3173F6] font-medium hover:underline"
+      >
+        Read More <ArrowRight size={18} className="ml-1" />
+      </Link>
+    </motion.div>
+  );
+
+  /* ✅ CTA SECTION */
+  const CTASection = () => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.7 }}
+      className="mt-24 text-center"
+    >
+      <h2 className="text-3xl font-bold text-[#1A2A47] mb-4">
+        Join Us in Building the Future
+      </h2>
+
+      <p className="text-gray-600 mb-8">
+        Explore our vision, leadership, and technological direction.
+      </p>
+
+      <Link href="/careers">
+        <button className="px-8 py-3 bg-[#3173F6] hover:bg-[#2559C9] transition-all rounded-xl text-white text-lg font-semibold flex items-center gap-2 mx-auto shadow-lg">
+          Explore Careers <ArrowRight size={20} />
+        </button>
+      </Link>
+    </motion.div>
+  );
+
+  /* ✅ FINAL PAGE JSX */
+  return (
+    <div className="min-h-screen bg-[#F7FAFF] text-[#1A2A47]">
+
+      <Hero title="Who We Are" />
+
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <SectionIntro
+          title="Our Identity"
+          text="At Paves Technologies, we blend innovation, vision, and leadership to create a 
+          future-ready technology ecosystem. Our journey is powered by experienced professionals, 
+          a strong advisory board, and a forward-thinking technology council that drives research, strategy,
+          and transformation."
+        />
+
+        <div className="grid md:grid-cols-3 gap-10">
+          <InfoCard
+            title="About Us"
+            text="Learn our story, mission, and how we aim to reshape the digital future through engineering excellence and innovation."
+            href="/about/"
+          />
+
+          <InfoCard
+            title="Management & Advisory Board"
+            text="A team of experienced leaders offering strategic direction to drive Paves' long-term growth and global vision."
+            href="/management-advisory-board/"
+          />
+
+          <InfoCard
+            title="Technology Council"
+            text="A visionary group of experts guiding research, assessing emerging trends, and shaping Paves’ innovation roadmap."
+            href="/technology-council/"
+          />
+        </div>
+
+        <CTASection />
+      </div>
+    </div>
+  );
+}
