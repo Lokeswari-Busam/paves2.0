@@ -1,93 +1,119 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import Link from "next/link";
-import gsap from "gsap";
+import { useRef, useState, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function HeroSection() {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function HeroSection() {
   const heroRef = useRef(null);
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const btnsRef = useRef(null);
-  const imageRef = useRef(null);
-
-  
+  const shape1Ref = useRef(null);
+  const shape2Ref = useRef(null);
+  const [isClient, setIsClient] = useState(false);
+  const svgRef = useRef(null);
+  const heroHeadingRef = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
+    setIsClient(true);
+  }, []);
 
-      tl.from(heroRef.current, { opacity: 0 })
-        .from(titleRef.current, { y: 40, opacity: 0 }, "-=0.6")
-        .from(subtitleRef.current, { y: 30, opacity: 0 }, "-=0.4")
-        .from(btnsRef.current, { y: 20, opacity: 0 }, "-=0.3")
-        .from(imageRef.current, { x: 50, opacity: 0, scale: 0.95 }, "-=0.5");
+  useEffect(() => {
+    if (!isClient) return;
+
+    let cleanup;
+
+    import("../animations/heroAnimation").then(({ initHeroAnimation }) => {
+      cleanup = initHeroAnimation(heroRef, shape1Ref, shape2Ref, svgRef, heroHeadingRef);
     });
 
-    return () => ctx.revert();
-  }, []);
+    return () => cleanup && cleanup();
+  }, [isClient]);
 
   return (
     <section
       ref={heroRef}
-      className="relative overflow-hidden bg-linear-to-b from-white to-gray-50 pt-32 pb-24"
+      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16"
     >
-      {/* Subtle Background Accent */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[800px] h-[800px] bg-[#000080]/5 rounded-full blur-3xl" />
-      </div>
+      {/* Background */}
+      <div className="absolute inset-0 bg-linear-to-br from-white via-blue-50 to-white" />
+      <svg
+        ref={svgRef}
+        className="absolute inset-0 w-[200%] h-full opacity-40"
+        viewBox="0 0 2400 600"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#d23369" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#3a4aac" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
-        {/* Left: Text */}
-        <div className="flex-1 text-center md:text-left">
+        <g ref={svgRef}>
+          <path
+            d="M0,300 Q300,250 600,300 T1200,300 L1200,600 L0,600 Z"
+            fill="url(#waveGradient)"
+          />
+          <path
+            d="M1200,300 Q1500,250 1800,300 T2400,300 L2400,600 L1200,600 Z"
+            fill="url(#waveGradient)"
+          />
+        </g>
+      </svg>{" "}
+      ``
+      {/* Shapes */}
+      <div
+        ref={shape1Ref}
+        className="absolute top-20 right-30 w-30 h-30 rounded-full  z-10 bg-primary shadow-primary shadow-2xl"
+        // style={{
+        //   background:
+        //     "radial-gradient(circle, rgba(210, 51, 105, 0.5), transparent)",
+        // }}
+      />
+      <div
+        ref={shape2Ref}
+        className="absolute bottom-20 left-30 w-40 h-40 rounded-full bg-primary shadow-primary shadow-2xl z-10"
+        // style={{
+        //   background:
+        //     "radial-gradient(circle, rgba(134, 22, 60, 0.5), transparent)",
+        // }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <>
           <h1
-            ref={titleRef}
-            className="text-4xl md:text-5xl font-extrabold text-primary leading-tight"
+          ref={heroHeadingRef}
+            className="text-7xl font-bold mb-6 leading-tight text-secondary"
+            // style={{
+            //   backgroundImage:
+            //     "linear-gradient(to right, #d23369, #212d74, #3a4aac)",
+            // }}
           >
-            Paving the way to a smarter, more connected future.
+            Empowering Innovation 
+            Through Technology.
           </h1>
-
-          <p
-            ref={subtitleRef}
-            className="mt-5 text-lg text-gray-600 max-w-xl mx-auto md:mx-0"
-          >
-            We transform global businesses through AI, cloud, data, and enterprise
-            automation — delivering measurable impact across banking, payments,
-            and digital innovation.
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Transforming ideas into scalable solutions
           </p>
+        </>
 
-          <div
-            ref={btnsRef}
-            className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <button
+            className="px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+            style={{
+              background: "linear-gradient(to right, #364ac0, #212d74)",
+            }}
           >
-            <Link
-              href="/what-we-do"
-              className="px-6 py-3 rounded-full bg-[#000080] text-white font-semibold hover:bg-[#0000a8] transition"
-            >
-              Explore Our Solutions
-            </Link>
-            <Link
-              href="/contact"
-              className="px-6 py-3 rounded-full border border-[#000080] text-[#000080] font-semibold hover:bg-[#000080] hover:text-white transition"
-            >
-              Talk to an Expert
-            </Link>
-          </div>
-        </div>
-
-        {/* Right: Image */}
-        <div
-          ref={imageRef}
-          className="flex-1 flex justify-center md:justify-end relative"
-        >
-          <div className="relative w-[350px] h-[350px]">
-            <div className="absolute inset-0 bg-linear-to-tr from-[#000080] to-blue-400 rounded-full blur-2xl opacity-30 animate-pulse" />
-            <img
-              src="/assets/what_we_do_hero.jpeg"
-              alt="Technology illustration"
-              className="relative z-10 w-full h-full object-contain drop-shadow-xl"
-            />
-          </div>
+            Explore Services
+          </button>
+          <button
+            className="px-8 py-4 rounded-full border-2 text-[#364ac0] font-semibold hover:bg-[#364ac0]/5 transition-all duration-300"
+            style={{ borderColor: "#364ac0" }}
+          >
+            Discover More
+          </button>
         </div>
       </div>
     </section>
