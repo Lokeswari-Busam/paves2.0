@@ -1,10 +1,13 @@
-
-import {HeroSection} from "./components/HeroSection";
+import HeroSection from "./components/HeroSection";
+import { WhyPavesSection } from "./components/WhyPaves";
+import { ServicesSection } from "./components/ServicesSection";
 
 export default function Home() {
   return (
     <>
-    <HeroSection />
+      <HeroSection />
+      <WhyPavesSection />
+      <ServicesSection />
     </>
   );
 }

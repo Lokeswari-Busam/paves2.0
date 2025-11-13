@@ -84,18 +84,32 @@ export function Navigation() {
 
   const handleMouseEnter = (menu) => {
     if (hideTimeout.current) clearTimeout(hideTimeout.current);
+
+    // Close all other open dropdowns
+    Object.entries(dropdownRefs.current).forEach(([key, ref]) => {
+      if (key !== menu && ref) {
+        gsap.killTweensOf(ref);
+        gsap.to(ref, {
+          opacity: 0,
+          y: 5,
+          duration: 0.2,
+          ease: "power2.inOut",
+          onComplete: () => (ref.style.display = "none"),
+        });
+      }
+    });
+
     setActiveDropdown(menu);
     showDropdown(dropdownRefs.current[menu]);
   };
 
   const handleMouseLeave = (menu) => {
-    hideTimeout.current = setTimeout(() => {
-      hideDropdown(dropdownRefs.current[menu]);
-      setActiveDropdown(null);
-      setActiveSubmenu(null);
-      setActiveSubSubmenu(null);
-    }, 200);
-  };
+  hideTimeout.current = setTimeout(() => {
+    hideDropdown(dropdownRefs.current[menu]);
+    if (activeDropdown === menu) setActiveDropdown(null);
+  }, 200);
+};
+
 
   const handleSubmenuEnter = (submenu) => {
     setActiveSubmenu(submenu);
@@ -253,7 +267,7 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={` top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
@@ -281,7 +295,7 @@ export function Navigation() {
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
               >
-                <div className="flex items-center gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
+                <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
                   {link.title.toUpperCase()}
                   {link.submenu && <ChevronDown size={16} />}
                 </div>
@@ -290,7 +304,7 @@ export function Navigation() {
                 {link.submenu && (
                   <div
                     ref={(el) => (dropdownRefs.current[link.title] = el)}
-                    className="absolute top-full left-0 mt-3 bg-white shadow-xl rounded-lg p-3 w-64 space-y-1 z-50 hidden"
+                    className="absolute top-full left-0 mt-0 bg-white shadow-xl rounded-lg p-3 w-64 space-y-1 z-50 hidden"
                   >
                     {link.submenu.map((sub) => (
                       <div
@@ -306,9 +320,7 @@ export function Navigation() {
 
                         {sub.subitems && (
                           <div
-                            ref={(el) =>
-                              (submenuRefs.current[sub.title] = el)
-                            }
+                            ref={(el) => (submenuRefs.current[sub.title] = el)}
                             className="absolute top-0 left-full bg-white shadow-lg rounded-lg p-3 w-72 ml-[1px] space-y-1 z-50 hidden"
                           >
                             {sub.subitems.map((item) => (
@@ -324,9 +336,7 @@ export function Navigation() {
                               >
                                 <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
                                   {item.title}
-                                  {item.subitems && (
-                                    <ChevronRight size={14} />
-                                  )}
+                                  {item.subitems && <ChevronRight size={14} />}
                                 </div>
 
                                 {item.subitems && (
