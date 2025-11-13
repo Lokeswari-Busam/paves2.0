@@ -123,20 +123,61 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function WhoWeArePage() {
+    // ✅ Animation Variants
+const zoomIn = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1 },
+};
   /* ✅ HERO */
   const Hero = ({ title }) => (
-    <section className="relative w-full h-[55vh] flex items-center justify-center bg-gradient-to-br from-[#E8EEF9] to-[#F7FAFF]">
-      <motion.h1
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-5xl md:text-7xl font-extrabold tracking-tight text-center text-[#1A2A47]"
-      >
-        {title}
-      </motion.h1>
-    </section>
+    <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
+            <Image
+              src="/assets/what_we_do_hero.jpeg"
+              alt="Who We Are"
+              fill
+              className="object-cover scale-105"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
+    
+            <motion.div
+              initial="hidden"
+              animate="visible"
+                variants={zoomIn}
+              transition={{ duration: 0.9 }}
+              className="relative z-10 max-w-4xl px-6 text-white"
+            >
+              <motion.h1
+                className="text-7xl md:text-6xl font-bold mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                Who We Are
+              </motion.h1>
+              <motion.p
+                className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                
+              </motion.p>
+              <motion.p
+                className="text-md md:text-lg text-gray-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                At <span className="font-semibold">Paves Technologies</span>, our mission is
+                to simplify digital transformation with clarity, precision, and innovation.
+              </motion.p>
+            </motion.div>
+          </section>
+    
   );
 
   /* ✅ SECTION INTRO */
@@ -147,7 +188,7 @@ export default function WhoWeArePage() {
       transition={{ duration: 0.7 }}
       className="mb-16"
     >
-      <h2 className="text-3xl font-semibold mb-4 text-[#1A2A47]">{title}</h2>
+      <h2 className="text-5xl font-semibold mb-4 text-[#28519e]">{title}</h2>
       <p className="text-gray-700 leading-relaxed text-lg">{text}</p>
     </motion.div>
   );
@@ -160,7 +201,7 @@ export default function WhoWeArePage() {
       transition={{ duration: 0.6 }}
       className="bg-white rounded-2xl p-10 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all border border-gray-200"
     >
-      <h3 className="text-2xl font-semibold mb-4 text-[#1A2A47]">{title}</h3>
+      <h3 className="text-2xl font-semibold mb-4 text-[#284d93]">{title}</h3>
       <p className="text-gray-600 mb-6">{text}</p>
 
       <Link
@@ -180,7 +221,7 @@ export default function WhoWeArePage() {
       transition={{ duration: 0.7 }}
       className="mt-24 text-center"
     >
-      <h2 className="text-3xl font-bold text-[#1A2A47] mb-4">
+      <h2 className="text-3xl font-bold text-[#204c9f] mb-4">
         Join Us in Building the Future
       </h2>
 
@@ -198,11 +239,11 @@ export default function WhoWeArePage() {
 
   /* ✅ FINAL PAGE JSX */
   return (
-    <div className="min-h-screen bg-[#F7FAFF] text-[#1A2A47]">
+    <div className="min-h-screen bg-[#F7FAFF] text-[#2256b8]">
 
       <Hero title="Who We Are" />
 
-      <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="max-w-6xl mx-auto px-10 py-14">
         <SectionIntro
           title="Our Identity"
           text="At Paves Technologies, we blend innovation, vision, and leadership to create a 
@@ -211,7 +252,7 @@ export default function WhoWeArePage() {
           and transformation."
         />
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-3 gap-14">
           <InfoCard
             title="About Us"
             text="Learn our story, mission, and how we aim to reshape the digital future through engineering excellence and innovation."
@@ -230,7 +271,6 @@ export default function WhoWeArePage() {
             href="/technology-council/"
           />
         </div>
-
         <CTASection />
       </div>
     </div>
