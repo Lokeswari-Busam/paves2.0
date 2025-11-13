@@ -107,7 +107,7 @@ export function Navigation() {
   hideTimeout.current = setTimeout(() => {
     hideDropdown(dropdownRefs.current[menu]);
     if (activeDropdown === menu) setActiveDropdown(null);
-  }, 150);
+  }, 200);
 };
 
 
@@ -295,7 +295,7 @@ export function Navigation() {
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
               >
-                <div className="flex items-center gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
+                <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
                   {link.title.toUpperCase()}
                   {link.submenu && <ChevronDown size={16} />}
                 </div>
@@ -304,7 +304,7 @@ export function Navigation() {
                 {link.submenu && (
                   <div
                     ref={(el) => (dropdownRefs.current[link.title] = el)}
-                    className="absolute top-full left-0 mt-3 bg-white shadow-xl rounded-lg p-3 w-64 space-y-1 z-50 hidden"
+                    className="absolute top-full left-0 mt-0 bg-white shadow-xl rounded-lg p-3 w-64 space-y-1 z-50 hidden"
                   >
                     {link.submenu.map((sub) => (
                       <div
