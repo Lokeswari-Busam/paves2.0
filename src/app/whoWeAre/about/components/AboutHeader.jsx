@@ -13,12 +13,12 @@ export default function AboutHeader() {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h1 className="text-lg font-bold text-indigo-700 mb-3 tracking-wide">
+        <h2 className="text-6xl md:text-6xl font-semibold text-indigo-900 leading-snug mb-4">
           ABOUT
-        </h1>
-        <h2 className="text-4xl md:text-5xl font-semibold text-indigo-900 leading-snug">
-          Paves Technologies → About
         </h2>
+        <h1 className="text-2xl font-bold text-pink-700 mb-3 tracking-wide">
+          Paves Technologies → About
+        </h1>
       </motion.div>
 
       {/* --- Right Side (Image  */}
