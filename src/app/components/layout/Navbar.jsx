@@ -84,18 +84,32 @@ export function Navigation() {
 
   const handleMouseEnter = (menu) => {
     if (hideTimeout.current) clearTimeout(hideTimeout.current);
+
+    // Close all other open dropdowns
+    Object.entries(dropdownRefs.current).forEach(([key, ref]) => {
+      if (key !== menu && ref) {
+        gsap.killTweensOf(ref);
+        gsap.to(ref, {
+          opacity: 0,
+          y: 5,
+          duration: 0.2,
+          ease: "power2.inOut",
+          onComplete: () => (ref.style.display = "none"),
+        });
+      }
+    });
+
     setActiveDropdown(menu);
     showDropdown(dropdownRefs.current[menu]);
   };
 
   const handleMouseLeave = (menu) => {
-    hideTimeout.current = setTimeout(() => {
-      hideDropdown(dropdownRefs.current[menu]);
-      setActiveDropdown(null);
-      setActiveSubmenu(null);
-      setActiveSubSubmenu(null);
-    }, 200);
-  };
+  hideTimeout.current = setTimeout(() => {
+    hideDropdown(dropdownRefs.current[menu]);
+    if (activeDropdown === menu) setActiveDropdown(null);
+  }, 150);
+};
+
 
   const handleSubmenuEnter = (submenu) => {
     setActiveSubmenu(submenu);
@@ -306,9 +320,7 @@ export function Navigation() {
 
                         {sub.subitems && (
                           <div
-                            ref={(el) =>
-                              (submenuRefs.current[sub.title] = el)
-                            }
+                            ref={(el) => (submenuRefs.current[sub.title] = el)}
                             className="absolute top-0 left-full bg-white shadow-lg rounded-lg p-3 w-72 ml-[1px] space-y-1 z-50 hidden"
                           >
                             {sub.subitems.map((item) => (
@@ -324,9 +336,7 @@ export function Navigation() {
                               >
                                 <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
                                   {item.title}
-                                  {item.subitems && (
-                                    <ChevronRight size={14} />
-                                  )}
+                                  {item.subitems && <ChevronRight size={14} />}
                                 </div>
 
                                 {item.subitems && (
