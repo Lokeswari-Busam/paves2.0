@@ -37,3 +37,24 @@ body {
 .hide-scrollbar {
   scrollbar-width: none;
 }
+/* Add this in globals.css or tailwind.config.css */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+/* ====== Custom Shapes for Industry Verticals Hero ====== */
+.clip-diagonal {
+  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+}
+
+.clip-hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+  

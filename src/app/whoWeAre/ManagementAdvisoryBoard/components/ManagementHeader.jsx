@@ -13,12 +13,12 @@ export default function AboutHeader() {
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h1 className="text-lg font-bold text-indigo-700 mb-3 tracking-wide">
-            MANAGEMENT & ADVISORY BOARD
-        </h1>
-        <h2 className="text-4xl md:text-5xl font-semibold text-indigo-900 leading-snug">
-          Paves Technologies → Management & Advisory Board
+       <h2 className="text-6xl md:text-6xl font-semibold text-indigo-900 leading-snug mb-4">
+          Management & Advisory Board
         </h2>
+        <h1 className="text-2xl font-bold text-pink-700 mb-3 tracking-wide">
+          Paves Technologies → Management & Advisory Board
+        </h1>
     
       </motion.div>
 
