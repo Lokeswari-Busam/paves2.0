@@ -57,7 +57,7 @@ export default function HeroSection() {
           <button className="px-8 py-3 text-lg font-semibold border border-white rounded-full hover:bg-white hover:text-black transition-all">
             Discover More
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
