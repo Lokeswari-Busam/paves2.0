@@ -138,12 +138,12 @@ export function WhyPavesSection() {
               <div
                 key={index}
                 data-index={index}
-                className={`p-8 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-700/20 dark:to-slate-600/20 border border-gray-200 dark:border-slate-600/30 transition-all duration-700 ${
+                className={`p-8 rounded-2xl bg-linear-to-br from-gray-50 to-gray-100 dark:from-slate-700/20 dark:to-slate-600/20 border border-gray-200 dark:border-slate-600/30 transition-all duration-700 ${
                   isVisible ? "animate-slide-up" : "opacity-0 translate-y-8"
                 }`}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div
                       className="flex items-center justify-center h-12 w-12 rounded-lg text-white"
                       style={{

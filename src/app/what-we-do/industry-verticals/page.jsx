@@ -115,7 +115,7 @@ export default function IndustryVerticals() {
                     className="object-cover object-center scale-105 hover:scale-110 transition-transform duration-700"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-l from-[#000080]/20 via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-linear-to-l from-[#000080]/20 via-transparent to-transparent"></div>
                 </div>
               </div>
             </motion.div>
@@ -235,7 +235,7 @@ export default function IndustryVerticals() {
           variants={itemVariants}
           className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition"
         >
-          <div className="flex-shrink-0 w-14 h-14 rounded-lg bg-[#eef2ff] flex items-center justify-center">
+          <div className="shrink-0 w-14 h-14 rounded-lg bg-[#eef2ff] flex items-center justify-center">
             {v.icon}
           </div>
 
@@ -244,7 +244,7 @@ export default function IndustryVerticals() {
             <p className="text-gray-600 text-sm leading-relaxed">{v.desc}</p>
           </div>
 
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link
               href={v.href}
               className="w-9 h-9 rounded-full bg-[#dbe1ff] inline-flex items-center justify-center hover:bg-[#c9d4ff] transition"

@@ -45,7 +45,7 @@ export default function WhatWeDo() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-b from-white via-gray-50 to-gray-100">
       {/* Hero Section */}
       <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
@@ -55,7 +55,7 @@ export default function WhatWeDo() {
           className="object-cover scale-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-transparent" />
 
         <motion.div
           initial="hidden"
@@ -118,7 +118,7 @@ export default function WhatWeDo() {
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
               <h3 className="absolute bottom-6 left-6 text-2xl font-semibold text-white drop-shadow-lg">
                 {section.title}
               </h3>
@@ -144,7 +144,7 @@ export default function WhatWeDo() {
                   style={{ background: "#000080" }}
                 >
                   <span className="relative z-10">Know More</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute inset-0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.button>
               </Link>
             </motion.div>
