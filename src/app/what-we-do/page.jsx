@@ -138,9 +138,7 @@ export default function WhatWeDo() {
                   style={{ background: "#2a3990" }}
                 >
                   <span className="relative z-10">Know More</span>
-
-                  {/* UPDATED COLOR HERE */}
-                  <span className="absolute inset-0 bg-linear-to-r from-[#2a3990] to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute inset-0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.button>
               </Link>
             </motion.div>

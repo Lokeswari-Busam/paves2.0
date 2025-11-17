@@ -6,12 +6,12 @@ export default function BusinessAndTechnologyPage() {
     <main className="bg-white min-h-screen">
 
       {/* 🌊 HERO SECTION */}
-      <section className="relative w-full h-[400px] md:h-[320px] bg-white overflow-hidden">
+      <section className="relative w-full h-[600px] md:h-[400px] bg-white overflow-hidden">
 
         {/* LEFT CONTENT */}
         <div className="absolute left-0 top-0 h-full flex items-center px-6 md:px-20 z-20">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0F1E63]">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#2a3990]">
               Business & Technology Advisory
             </h1>
             <p className="mt-4 text-gray-600 uppercase tracking-wide text-sm">
@@ -56,7 +56,7 @@ export default function BusinessAndTechnologyPage() {
       </section>
 
       {/* 💼 BUSINESS ADVISORY CONTENT SECTION */}
-      <section className="py-20 bg-blue-50">
+      <section className="py-20 bg-[#2a3990] text-white">
         <div className="container mx-auto px-6 flex flex-col md:flex-row items-stretch gap-0">
 
           {/* LEFT SECTION — FULL IMAGE */}

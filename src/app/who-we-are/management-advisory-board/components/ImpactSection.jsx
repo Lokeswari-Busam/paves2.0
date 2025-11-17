@@ -30,7 +30,7 @@ export default function ImpactSection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-semibold text-indigo-900 mb-6 text-center">
+        <h2 className="text-3xl font-semibold text-[#2a3990] mb-6 text-center">
           How Our Advisory Board Impacts Paves Technologies
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -39,7 +39,7 @@ export default function ImpactSection() {
               key={i}
               className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
             >
-              <h3 className="text-xl font-semibold text-indigo-800 mb-2">{title}</h3>
+              <h3 className="text-xl font-semibold text-[#2a3990] mb-2">{title}</h3>
               <p className="text-gray-700">{desc}</p>
             </div>
           ))}
