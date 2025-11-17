@@ -135,6 +135,7 @@ export function Navigation() {
     { title: "Home", href: "/" },
     {
       title: "What We Do",
+      href: "/what-we-do",
       submenu: [
         {
           title: "Industry Verticals",
@@ -277,10 +278,10 @@ export function Navigation() {
           <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/favicon.ico"
+                src="/assets/logo.png"
                 alt="Paves Technologies Logo"
-                width={20}
-                height={20}
+                width={130}
+                height={45}
                 className="object-contain cursor-pointer"
               />
             </Link>
