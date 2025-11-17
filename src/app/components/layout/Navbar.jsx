@@ -135,6 +135,7 @@ export function Navigation() {
     { title: "Home", href: "/" },
     {
       title: "What We Do",
+      href: "/what-we-do",
       submenu: [
         {
           title: "Industry Verticals",
