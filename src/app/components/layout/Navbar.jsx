@@ -250,7 +250,7 @@ export function Navigation() {
       ],
     },
     {
-      title: "Who We Are",
+      title: "Who We Are", href: "/who-we-are",
       submenu: [
         { title: "About Paves", href: "/who-we-are/about" },
         {
