@@ -1,6 +1,6 @@
 "use client";
 
-import HeroSection from "./components/HeroSection";
+import HeroSection from "../../services/businessAndTechnology/componets/HeroSection";
 import WhyChoose from "./components/WhyChoose";
 import EnterpriseStartup from "./components/EnterpriseStartup";
 import FeatureGridWrapper from "./components/FeatureGridWrapper";
