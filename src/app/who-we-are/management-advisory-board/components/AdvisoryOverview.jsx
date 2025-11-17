@@ -20,11 +20,11 @@ export default function AdvisoryOverview() {
         viewport={{ once: true }}
         className="text-center max-w-3xl mx-auto mb-16"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-indigo-900 mb-5">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#2a3990] mb-5">
           Our Advisory Board
         </h2>
         <p className="text-gray-700 text-lg leading-relaxed">
-            <h4 className="text-indigo-700 text-lg  font-bold leading-relaxed mb-3">Experience, Expertise, and Strategic Vision – Driving Value for Our Customers.</h4>
+            <h4 className="text-[#2a3990] text-lg  font-bold leading-relaxed mb-3">Experience, Expertise, and Strategic Vision – Driving Value for Our Customers.</h4>
              At Paves Technologies, we are guided by an accomplished Advisory Board comprised
              of industry leaders, domain experts, and visionary thinkers. Their deep expertise
              and strategic insights ensure we stay at the forefront of innovation while

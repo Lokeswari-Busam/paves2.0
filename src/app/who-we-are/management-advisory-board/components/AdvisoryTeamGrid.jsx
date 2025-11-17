@@ -23,15 +23,50 @@ const groupedMembers = members.reduce((acc, member) => {
 
 export default function AdvisoryTeamGrid() {
   return (
-    <section className="py-20 px-6 md:px-16 bg-gradient-to-br from-indigo-50 to-pink-50">
+    <section className="relative py-20 px-6 md:px-16 overflow-hidden bg-[#2a3990]">
+
+      {/* ===== SVG BACKGROUND ===== */}
+     <svg
+  className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1440 800"
+  preserveAspectRatio="none"
+>
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0e1b3f" />
+      <stop offset="100%" stopColor="#1b2c5e" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1440" height="800" fill="url(#grad1)" />
+
+  <path
+    d="M200 0 L600 800 L1000 0"
+    stroke="#3b5998"
+    strokeWidth="80"
+    opacity="0.15"
+    fill="none"
+  />
+  <path
+    d="M0 400 L1440 600"
+    stroke="#4c6edb"
+    strokeWidth="120"
+    opacity="0.1"
+    fill="none"
+  />
+</svg>
+
+
+      {/* ===== CONTENT ===== */}
       <motion.div
-        className="max-w-6xl mx-auto text-center"
+        className="relative max-w-6xl mx-auto text-center"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl font-semibold text-indigo-900 mb-12">
+        <h2 className="text-5xl font-bold text-white mb-12">
           Our Management & Advisory Board
         </h2>
 
@@ -48,6 +83,9 @@ export default function AdvisoryTeamGrid() {
   );
 }
 
+/* ============================
+      REGION SECTION
+============================= */
 function RegionSection({ region, members, showDivider }) {
   const scrollRef = useRef(null);
 
@@ -62,14 +100,12 @@ function RegionSection({ region, members, showDivider }) {
 
   return (
     <div className="mb-20 last:mb-0">
-      {/* Region Title */}
       <div className="flex items-center justify-center gap-4 mb-10">
         <div className="h-[2px] w-12 bg-pink-600 rounded-full"></div>
-        <h3 className="text-2xl font-bold text-indigo-800">{region}</h3>
+        <h3 className="text-4xl font-bold text-pink-400">{region}</h3>
         <div className="h-[2px] w-12 bg-pink-600 rounded-full"></div>
       </div>
 
-      {/* Single Card Centered OR Scrollable Cards */}
       {members.length === 1 ? (
         <div className="flex justify-center">
           <MemberCard {...members[0]} />
@@ -104,18 +140,22 @@ function RegionSection({ region, members, showDivider }) {
         </div>
       )}
 
-      {/* Divider */}
       {showDivider && (
-        <div className="mt-20 border-t border-indigo-200 w-full mx-auto"></div>
+        <div className="mt-20 border-t border-indigo-300/40 w-full mx-auto"></div>
       )}
     </div>
   );
 }
 
+/* ============================
+      MEMBER CARD
+============================= */
 function MemberCard({ name, title }) {
   return (
     <motion.div
-      className="bg-white w-[350px] h-[400px] p-8 rounded-2xl shadow-md border border-indigo-100 hover:shadow-xl transition-transform hover:-translate-y-2 flex flex-col items-center justify-center shrink-0"
+      className="bg-white/90 backdrop-blur w-[350px] h-[400px] p-8 rounded-2xl shadow-md 
+                 border border-indigo-100 hover:shadow-xl transition-transform 
+                 hover:-translate-y-2 flex flex-col items-center justify-center shrink-0"
       whileHover={{ scale: 1.05 }}
     >
       <div className="relative w-32 h-32 mb-5">
@@ -131,5 +171,3 @@ function MemberCard({ name, title }) {
     </motion.div>
   );
 }
-
-

@@ -45,7 +45,7 @@ export default function WhatWeDo() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white via-gray-50 to-gray-100">
+    <div className="min-h-screen bg-linear-to-b from-white via-gray-50 to-gray-100">
       {/* Hero Section */}
       <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
@@ -55,7 +55,7 @@ export default function WhatWeDo() {
           className="object-cover scale-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-transparent" />
 
         <motion.div
           initial="hidden"
@@ -72,14 +72,7 @@ export default function WhatWeDo() {
           >
             What We Do
           </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            
-          </motion.p>
+
           <motion.p
             className="text-md md:text-lg text-gray-300"
             initial={{ opacity: 0, y: 20 }}
@@ -118,7 +111,7 @@ export default function WhatWeDo() {
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
               <h3 className="absolute bottom-6 left-6 text-2xl font-semibold text-white drop-shadow-lg">
                 {section.title}
               </h3>
@@ -130,21 +123,22 @@ export default function WhatWeDo() {
               transition={{ duration: 0.9, delay: 0.2 }}
               className="md:w-1/2 space-y-5"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-[#000080]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2a3990]">
                 {section.title}
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
                 {section.desc}
               </p>
+
               <Link href={section.link}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="relative px-8 py-2.5 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 shadow-md"
-                  style={{ background: "#000080" }}
+                  style={{ background: "#2a3990" }}
                 >
                   <span className="relative z-10">Know More</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute inset-0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.button>
               </Link>
             </motion.div>

@@ -21,7 +21,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="relative w-full bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900">
+    <footer className="relative w-full bg-linear-to-r from-slate-900 via-slate-800 to-slate-900">
       {/* Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-7xl mx-auto">

@@ -104,12 +104,11 @@ export function Navigation() {
   };
 
   const handleMouseLeave = (menu) => {
-  hideTimeout.current = setTimeout(() => {
-    hideDropdown(dropdownRefs.current[menu]);
-    if (activeDropdown === menu) setActiveDropdown(null);
-  }, 200);
-};
-
+    hideTimeout.current = setTimeout(() => {
+      hideDropdown(dropdownRefs.current[menu]);
+      if (activeDropdown === menu) setActiveDropdown(null);
+    }, 200);
+  };
 
   const handleSubmenuEnter = (submenu) => {
     setActiveSubmenu(submenu);
@@ -139,78 +138,85 @@ export function Navigation() {
       submenu: [
         {
           title: "Industry Verticals",
+          href: "/what-we-do/industry-verticals",
           subitems: [
             {
               title: "Payments",
+              href: "/what-we-do/industry-verticals/payments",
               subitems: [
                 {
                   title: "Card Issuers",
-                  href: "/industry-verticals/payments/card-issuers",
+                  href: "/what-we-do/industry-verticals/payments/card-issuers",
                 },
                 {
                   title: "Merchant Acquirers",
-                  href: "/industry-verticals/payments/merchant-acquirers",
+                  href: "/what-we-do/industry-verticals/payments/merchant-acquirers",
                 },
                 {
                   title: "E-Commerce",
-                  href: "/industry-verticals/payments/e-commerce",
+                  href: "/what-we-do/industry-verticals/payments/e-commerce",
                 },
                 {
                   title: "Embedded Finance",
-                  href: "/industry-verticals/payments/embedded-finance",
+                  href: "/what-we-do/industry-verticals/payments/embedded-finance",
                 },
                 {
                   title: "Payment Gateways",
-                  href: "/industry-verticals/payments/payment-gateways",
+                  href: "/what-we-do/industry-verticals/payments/payment-gateways",
                 },
                 {
                   title: "Real Time Payments",
-                  href: "/industry-verticals/payments/real-time-payments",
+                  href: "/what-we-do/industry-verticals/payments/real-time-payments",
                 },
               ],
             },
             {
               title: "Banking",
+              href: "/what-we-do/industry-verticals/banking",
               subitems: [
                 {
                   title: "Retail Banking",
-                  href: "/industry-verticals/banking/retail-banking",
+                  href: "/what-we-do/industry-verticals/banking/retail-banking",
                 },
                 {
                   title: "Corporate And Commercial Banking",
-                  href: "/industry-verticals/banking/corporate-commercial-banking",
+                  href: "/what-we-do/industry-verticals/banking/corporate-commercial-banking",
                 },
                 {
                   title: "Consumer Lending",
-                  href: "/industry-verticals/banking/consumer-lending",
+                  href: "/what-we-do/industry-verticals/banking/consumer-lending",
                 },
                 {
                   title: "Digital Banking",
-                  href: "/industry-verticals/banking/digital-banking",
+                  href: "/what-we-do/industry-verticals/banking/digital-banking",
                 },
                 {
                   title: "Open Banking",
-                  href: "/industry-verticals/banking/open-banking",
+                  href: "/what-we-do/industry-verticals/banking/open-banking",
                 },
               ],
             },
             {
               title: "Payments Fraud & AML",
-              href: "/industry-verticals/payments-fraud-aml",
+              href: "/what-we-do/industry-verticals/payments-fraud-aml",
             },
             {
               title: "Governance Risk & Compliance",
-              href: "/industry-verticals/governance-risk-compliance",
+              href: "/what-we-do/industry-verticals/governance-risk-compliance",
             },
-            { title: "Insurance", href: "/industry-verticals/insurance" },
+            {
+              title: "Insurance",
+              href: "/what-we-do/industry-verticals/insurance",
+            },
             {
               title: "Capital Markets",
-              href: "/industry-verticals/capital-markets",
+              href: "/what-we-do/industry-verticals/capital-markets",
             },
           ],
         },
         {
           title: "Services",
+          href: "/services",
           subitems: [
             {
               title: "Business & Technology Advisory Consulting",
@@ -251,7 +257,8 @@ export function Navigation() {
       ],
     },
     {
-      title: "Who We Are", href: "/who-we-are",
+      title: "Who We Are",
+      href: "/who-we-are",
       submenu: [
         { title: "About Paves", href: "/who-we-are/about" },
         {
@@ -275,7 +282,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <Link href="/">
               <Image
                 src="/assets/logo.png"
@@ -295,7 +302,10 @@ export function Navigation() {
                 className="relative"
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
-                onClick={()=>(window.location.href = link.href || "#")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (link.href) window.location.href = link.href;
+                }}
               >
                 <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
                   {link.title.toUpperCase()}
@@ -314,7 +324,10 @@ export function Navigation() {
                         className="submenu-item relative group"
                         onMouseEnter={() => handleSubmenuEnter(sub.title)}
                         onMouseLeave={() => handleSubmenuLeave(sub.title)}
-                        onClick={()=>(window.location.href = sub.href || "#")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (sub.href) window.location.href = sub.href;
+                        }}
                       >
                         <div className="flex justify-between items-center px-3 py-1.5 rounded-md text-gray-800 font-medium hover:bg-gray-100 cursor-pointer">
                           {sub.title}
@@ -324,7 +337,7 @@ export function Navigation() {
                         {sub.subitems && (
                           <div
                             ref={(el) => (submenuRefs.current[sub.title] = el)}
-                            className="absolute top-0 left-full bg-white shadow-lg rounded-lg p-3 w-72 ml-[1px] space-y-1 z-50 hidden"
+                            className="absolute top-0 left-full bg-white shadow-lg rounded-lg p-3 w-72 ml-px space-y-1 z-50 hidden"
                           >
                             {sub.subitems.map((item) => (
                               <div
@@ -336,7 +349,11 @@ export function Navigation() {
                                 onMouseLeave={() =>
                                   handleSubSubmenuLeave(item.title)
                                 }
-                                onClick={()=>(window.location.href = item.href || "#")}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (item.href)
+                                    window.location.href = item.href;
+                                }}
                               >
                                 <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
                                   {item.title}
@@ -348,7 +365,7 @@ export function Navigation() {
                                     ref={(el) =>
                                       (subSubmenuRefs.current[item.title] = el)
                                     }
-                                    className="absolute top-0 left-full bg-white shadow-md rounded-lg p-3 w-64 ml-[1px] space-y-1 z-50 hidden"
+                                    className="absolute top-0 left-full bg-white shadow-md rounded-lg p-3 w-64 ml-px space-y-1 z-50 hidden"
                                   >
                                     {item.subitems.map((child) =>
                                       child.href ? (
@@ -356,6 +373,7 @@ export function Navigation() {
                                           key={child.title}
                                           href={child.href}
                                           className="block px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100"
+                                          onClick={(e) => e.stopPropagation()}
                                         >
                                           {child.title}
                                         </Link>
