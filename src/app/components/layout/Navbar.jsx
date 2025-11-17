@@ -216,41 +216,47 @@ export function Navigation() {
         },
         {
           title: "Services",
-          href: "/services",
+          href: "/what-we-do/services",
           subitems: [
             {
               title: "Business & Technology Advisory Consulting",
-              href: "/services/business-technology-advisory-consulting",
+              href: "/what-we-do/services/business-and-technology",
             },
             {
               title: "Artificial Intelligence",
-              href: "/services/artificial-intelligence",
+              href: "/what-we-do/services/artificial-intelligence",
             },
             {
               title: "Cloud Engineering And DevOps",
-              href: "/services/cloud-engineering-devops",
+              href: "/what-we-do/services/cloud-and-devops",
             },
-            { title: "Data And Analytics", href: "/services/data-analytics" },
+            {
+              title: "Data And Analytics",
+              href: "/what-we-do/services/data-and-analytics",
+            },
             {
               title: "Product Management & Engineering",
-              href: "/services/product-management-engineering",
+              href: "/what-we-do/services/product-management",
             },
             {
               title: "Enterprise Automation",
-              href: "/services/enterprise-automation",
+              href: "/what-we-do/services/enterprise-automation",
             },
             {
               title: "Legacy Support & Modernization",
-              href: "/services/legacy-support-modernization",
+              href: "/what-we-do/services/legacy-support",
             },
-            { title: "Cyber Security", href: "/services/cyber-security" },
+            {
+              title: "Cyber Security",
+              href: "/what-we-do/services/cyber-security",
+            },
             {
               title: "Identity And Access Management",
-              href: "/services/identity-access-management",
+              href: "/what-we-do/services/identity-and-access-management",
             },
             {
               title: "Next Gen Technologies",
-              href: "/services/next-gen-technologies",
+              href: "/what-we-do/services/next-gen-technologies",
             },
           ],
         },
