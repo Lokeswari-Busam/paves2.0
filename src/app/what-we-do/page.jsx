@@ -72,14 +72,7 @@ export default function WhatWeDo() {
           >
             What We Do
           </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            
-          </motion.p>
+
           <motion.p
             className="text-md md:text-lg text-gray-300"
             initial={{ opacity: 0, y: 20 }}
@@ -130,18 +123,19 @@ export default function WhatWeDo() {
               transition={{ duration: 0.9, delay: 0.2 }}
               className="md:w-1/2 space-y-5"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-[#000080]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2a3990]">
                 {section.title}
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
                 {section.desc}
               </p>
+
               <Link href={section.link}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="relative px-8 py-2.5 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 shadow-md"
-                  style={{ background: "#000080" }}
+                  style={{ background: "#2a3990" }}
                 >
                   <span className="relative z-10">Know More</span>
                   <span className="absolute inset-0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

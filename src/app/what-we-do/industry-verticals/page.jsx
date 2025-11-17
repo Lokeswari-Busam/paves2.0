@@ -13,44 +13,46 @@ import {
 } from "lucide-react";
 
 export default function IndustryVerticals() {
-  const verticals = [
-    {
-      title: "Payments",
-      desc: "Implementing secure, efficient solutions for seamless global fund transfers and embedded finance systems.",
-      icon: <CreditCard className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/payments",
-    },
-    {
-      title: "Banking",
-      desc: "Reimagining banking through digital transformation, cloud-first architectures, and open banking APIs.",
-      icon: <Banknote className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/banking",
-    },
-    {
-      title: "Payments Fraud & AML",
-      desc: "Utilizing AI and advanced analytics to prevent fraud and ensure Anti-Money Laundering compliance.",
-      icon: <ShieldCheck className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/payments-fraud-aml",
-    },
-    {
-      title: "Governance, Risk & Compliance",
-      desc: "Aligning governance, risk management, and regulatory frameworks to ensure transparency and accountability.",
-      icon: <ClipboardCheck className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/governance-risk-compliance",
-    },
-    {
-      title: "Insurance",
-      desc: "Optimizing underwriting, claims, and policy administration with automation and data intelligence.",
-      icon: <Briefcase className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/insurance",
-    },
-    {
-      title: "Capital Markets",
-      desc: "Delivering next-gen trading, investment, and compliance solutions to accelerate transparency and growth.",
-      icon: <BarChart className="w-6 h-6 text-[#000080]" />,
-      href: "/industry-verticals/capital-markets",
-    },
-  ];
+ const verticals = [
+  {
+    title: "Payments",
+    desc: "Implementing secure, efficient solutions for seamless global fund transfers and embedded finance systems.",
+    icon: <CreditCard size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/payments",
+  },
+  {
+    title: "Banking",
+    desc: "Reimagining banking through digital transformation, cloud-first architectures, and open banking APIs.",
+    icon: <Banknote size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/banking",
+  },
+  {
+    title: "Payments Fraud & AML",
+    desc: "Utilizing AI and advanced analytics to prevent fraud and ensure Anti-Money Laundering compliance.",
+    icon: <ShieldCheck size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/payments-fraud-aml",
+  },
+  {
+    title: "Governance, Risk & Compliance",
+    desc: "Aligning governance, risk management, and regulatory frameworks to ensure transparency and accountability.",
+    icon: <ClipboardCheck size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/governance-risk-compliance",
+  },
+  {
+    title: "Insurance",
+    desc: "Optimizing underwriting, claims, and policy administration with automation and data intelligence.",
+    icon: <Briefcase size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/insurance",
+  },
+  {
+    title: "Capital Markets",
+    desc: "Delivering next-gen trading, investment, and compliance solutions to accelerate transparency and growth.",
+    icon: <BarChart size={28} color="white" strokeWidth={1.8} />,
+    href: "/industry-verticals/capital-markets",
+  },
+];
+
+
 
   const listVariants = {
     hidden: {},
@@ -64,68 +66,58 @@ export default function IndustryVerticals() {
 
   return (
     <main className="min-h-screen bg-white text-gray-800">
-      {/* HERO SECTION */}
-      <header className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/assets/what_we_do_hero.jpeg"
-            alt="Industry Hero"
-            fill
-            className="object-cover opacity-30"
-            priority
-          />
-        </div>
+   {/* HERO SECTION */}
+<header className="relative overflow-hidden h-[70vh] bg-gray-100">
 
-        <div className="relative max-w-7xl mx-auto px-6 py-20">
-          <div className="grid grid-cols-12 gap-6 items-center">
-            {/* Left Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              className="col-span-12 lg:col-span-7"
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-                Industry Verticals
-              </h1>
-              <p className="mt-4 text-gray-600 max-w-2xl">
-                Our deep domain expertise spans across financial services — enabling global institutions
-                to modernize, innovate, and lead through technology.
-              </p>
-              <div className="mt-6 text-sm text-gray-500 font-medium">
-                <span className="text-[#000080] font-semibold">PAVES TECHNOLOGIES</span>
-                <span className="mx-2">›</span>
-                <span>Industry Verticals</span>
-              </div>
-            </motion.div>
+  {/* HERO IMAGE — Full width → moves to the right side */}
+  <motion.div
+    initial={{ width: "100%" }}
+    animate={{ width: "50%" }}
+    transition={{
+      duration: 1.3,
+      ease: "easeInOut",
+    }}
+    className="absolute right-0 top-7 bottom-0 h-90 overflow-hidden"
+  >
+    <Image
+      src="/assets/what_we_do_hero.jpeg"
+      alt="Industry Hero"
+      fill
+      className="object-cover"
+      priority
+    />
+  </motion.div>
 
-           {/* Right-Side Angled Image (Diagonal Cut) */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:block col-span-5"
-            >
-              <div className="relative h-60 w-full">
-                <div className="absolute inset-0 clip-diagonal overflow-hidden shadow-lg">
-                  <Image
-                    src="/assets/industry-bg.jpg"
-                    alt="Industry Illustration"
-                    fill
-                    className="object-cover object-center scale-105 hover:scale-110 transition-transform duration-700"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-linear-to-l from-[#000080]/20 via-transparent to-transparent"></div>
-                </div>
-              </div>
-            </motion.div>
+  {/* LEFT TEXT — appears after image moves */}
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 1.1, duration: 0.8 }}
+    className="relative z-20 h-full flex items-center px-8 lg:px-6"
+  >
+    <div className="max-w-2xl">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-#2a3990 leading-tight">
+        Industry Verticals
+      </h1>
 
-          </div>
-        </div>
-      </header>
+      <p className="mt-4 text-gray-600 text-lg max-w-xl">
+        Our deep domain expertise spans across financial services — enabling global institutions
+        to modernize, innovate, and lead through technology.
+      </p>
+
+      <div className="mt-4 text-sm text-gray-500 font-medium">
+        <span className="text-[#2a3990] font-semibold">PAVES TECHNOLOGIES</span>
+        <span className="mx-2">›</span>
+        <span>Industry Verticals</span>
+      </div>
+    </div>
+  </motion.div>
+
+</header>
+
 
      {/* BLUE SECTION (Reversed Layout) */}
-<section className="bg-[#000080] text-white overflow-hidden">
+<section className="bg-[#2a3990] text-white overflow-hidden">
   <div className="max-w-7xl mx-auto px-10 py-16 lg:py-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
     
     {/* Left Content (Text + Stats) */}
@@ -235,9 +227,13 @@ export default function IndustryVerticals() {
           variants={itemVariants}
           className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition"
         >
-          <div className="shrink-0 w-14 h-14 rounded-lg bg-[#eef2ff] flex items-center justify-center">
-            {v.icon}
-          </div>
+       <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#d23369] flex items-center justify-center">
+  {v.icon}
+</div>
+
+
+
+
 
           <div className="flex-1">
             <h4 className="text-lg font-semibold text-gray-900 mb-1">{v.title}</h4>
@@ -250,7 +246,7 @@ export default function IndustryVerticals() {
               className="w-9 h-9 rounded-full bg-[#dbe1ff] inline-flex items-center justify-center hover:bg-[#c9d4ff] transition"
             >
               <svg
-                className="w-4 h-4 text-[#000080]"
+                className="w-4 h-4 text-[#2a3990]"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.8"
