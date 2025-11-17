@@ -8,8 +8,8 @@ export default function HeroSection() {
   useEffect(() => {
     const timers = [
       setTimeout(() => setStage("collapse"), 2000), // Collapse after 2s
-      setTimeout(() => setStage("hold"), 3000),     // Hold P & T for 0.5s
-      setTimeout(() => setStage("expand"), 3000),   // Expand after 3.5s
+      setTimeout(() => setStage("hold"), 3000), // Hold P & T for 0.5s
+      setTimeout(() => setStage("expand"), 3000), // Expand after 3.5s
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
@@ -25,124 +25,82 @@ export default function HeroSection() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/55"></div>
+      {/* Background */}
+      <div className="absolute inset-0 bg-[url('/assets/Gemini_Generated_Image_brn12tbrn12tbrn1.png')] bg-cover bg-center " />
+      {/* <svg
+        ref={svgRef}
+        className="absolute inset-0 w-[200%] h-full opacity-40"
+        viewBox="0 0 2400 600"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#d23369" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#3a4aac" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
 
-      {/* Main Content */}
-      <div className="relative z-10 px-16 max-w-4xl">
-        <AnimatePresence mode="wait">
-          {/* 🟩 INITIAL STAGE */}
-          {stage === "initial" && (
-            <motion.div
-              key="initial"
-              className="text-left"
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <h1 className="text-7xl font-bold leading-tight">Paves</h1>
-              <h1 className="text-7xl font-bold leading-tight">Technologies</h1>
-            </motion.div>
-          )}
+        <g ref={svgRef}>
+          <path
+            d="M0,300 Q300,250 600,300 T1200,300 L1200,600 L0,600 Z"
+            fill="url(#waveGradient)"
+          />
+          <path
+            d="M1200,300 Q1500,250 1800,300 T2400,300 L2400,600 L1200,600 Z"
+            fill="url(#waveGradient)"
+          />
+        </g>
+      </svg>{" "}
+      `` */}
+      {/* Shapes */}
+      {/* <div
+        ref={shape1Ref}
+        className="absolute top-20 right-30 w-30 h-30 rounded-full  z-10 bg-primary shadow-primary shadow-2xl"
+        // style={{
+        //   background:
+        //     "radial-gradient(circle, rgba(210, 51, 105, 0.5), transparent)",
+        // }}
+      /> */}
+      {/* <div
+        ref={shape2Ref}
+        className="absolute bottom-20 left-30 w-40 h-40 rounded-full bg-primary shadow-primary shadow-2xl z-10"
+        // style={{
+        //   background:
+        //     "radial-gradient(circle, rgba(134, 22, 60, 0.5), transparent)",
+        // }}
+      /> */}
 
-          {/* 🟦 COLLAPSE STAGE */}
-          {stage === "collapse" && (
-            <motion.div key="collapse" className="text-left">
-              {/* “Paves” collapses right-to-left */}
-              <motion.h1
-                className="text-7xl font-bold leading-tight overflow-hidden"
-                initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                animate={{ clipPath: "inset(0% 85% 0% 0%)" }}
-                transition={{ duration: 1, ease: "easeInOut" }}
-              >
-                Paves
-              </motion.h1>
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <>
+          <h1
+            ref={heroHeadingRef}
+            className="text-7xl font-bold mb-6 leading-tight text-white"
+            // style={{
+            //   backgroundImage:
+            //     "linear-gradient(to right, #d23369, #212d74, #3a4aac)",
+            // }}
+          >
+            Empowering Innovation Through Technology.
+          </h1>
+          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Transforming ideas into scalable solutions
+          </p>
+        </>
 
-              {/* “Technologies” collapses right-to-left */}
-              <motion.h1
-                className="text-7xl font-bold leading-tight overflow-hidden"
-                initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
-                animate={{ clipPath: "inset(0% 85% 0% 0%)" }}
-                transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
-              >
-                Technologies
-              </motion.h1>
-            </motion.div>
-          )}
-
-          {/* 🟫 HOLD STAGE */}
-          {stage === "hold" && (
-            <motion.div
-              key="hold"
-              className="text-left"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h1 className="text-7xl font-bold leading-tight">P</h1>
-              <h1 className="text-7xl font-bold leading-tight">T</h1>
-            </motion.div>
-          )}
-
-          {/* 🟨 EXPAND STAGE */}
-          {stage === "expand" && (
-            <motion.div
-              key="expand"
-              className="text-left"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
-              {/* P → Paving the Bridge Between */}
-              <motion.h1
-                className="text-6xl font-bold leading-tight overflow-hidden whitespace-nowrap"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              >
-                Paving the Bridge Between
-              </motion.h1>
-
-              {/* T → Tech & Trust */}
-              <motion.h1
-                className="text-6xl font-bold leading-tight overflow-hidden whitespace-nowrap"
-                initial={{ x: -50, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-              >
-                Tech & Trust
-              </motion.h1>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Tagline (only visible after expand) */}
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{
-            opacity: stage === "expand" ? 1 : 0,
-            y: stage === "expand" ? 0 : 10,
-          }}
-          transition={{ duration: 0.8 }}
-          className="mt-6 text-lg text-gray-300"
-        >
-          Transforming ideas into scalable solutions
-        </motion.p>
-
-        {/* Buttons (always visible) */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-          className="flex gap-4 mt-8"
-        >
-          <button className="px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-all">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <button
+            className="px-8 py-4 rounded-full text-white font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
+            style={{
+              background: "linear-gradient(to right, #364ac0, #212d74)",
+            }}
+          >
             Explore Services
           </button>
           <button className="px-8 py-3 text-lg font-semibold border border-white rounded-full hover:bg-white hover:text-black transition-all">
             Discover More
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

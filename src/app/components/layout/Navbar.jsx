@@ -135,6 +135,7 @@ export function Navigation() {
     { title: "Home", href: "/" },
     {
       title: "What We Do",
+      href: "/what-we-do",
       submenu: [
         {
           title: "Industry Verticals",
@@ -250,7 +251,7 @@ export function Navigation() {
       ],
     },
     {
-      title: "Who We Are",
+      title: "Who We Are", href: "/who-we-are",
       submenu: [
         { title: "About Paves", href: "/who-we-are/about" },
         {
@@ -294,6 +295,7 @@ export function Navigation() {
                 className="relative"
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
+                onClick={()=>(window.location.href = link.href || "#")}
               >
                 <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
                   {link.title.toUpperCase()}
@@ -312,6 +314,7 @@ export function Navigation() {
                         className="submenu-item relative group"
                         onMouseEnter={() => handleSubmenuEnter(sub.title)}
                         onMouseLeave={() => handleSubmenuLeave(sub.title)}
+                        onClick={()=>(window.location.href = sub.href || "#")}
                       >
                         <div className="flex justify-between items-center px-3 py-1.5 rounded-md text-gray-800 font-medium hover:bg-gray-100 cursor-pointer">
                           {sub.title}
@@ -333,6 +336,7 @@ export function Navigation() {
                                 onMouseLeave={() =>
                                   handleSubSubmenuLeave(item.title)
                                 }
+                                onClick={()=>(window.location.href = item.href || "#")}
                               >
                                 <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
                                   {item.title}
