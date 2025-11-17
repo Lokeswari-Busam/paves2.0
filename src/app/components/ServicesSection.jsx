@@ -74,7 +74,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="relative w-full py-20 md:py-32 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900"
+      className="relative w-full py-20 md:py-32 bg-linear-to-b from-slate-900 via-slate-800 to-slate-900"
     >
       {/* Animated SVG Wave Background */}
       <svg
