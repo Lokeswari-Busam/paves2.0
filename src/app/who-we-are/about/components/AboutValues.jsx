@@ -38,7 +38,7 @@ export default function AboutValues() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="text-5xl md:text-5xl font-semibold mb-12  text-indigo-900 "
+        className="text-5xl md:text-5xl font-semibold mb-12  text-[#2a3990] "
       >
         Our Core Values
       </motion.h2>
@@ -54,11 +54,11 @@ export default function AboutValues() {
             className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300"
           >
             {/* <Icon size={40} className="text-pink-700  mb-3" /> */}
-            <div className="w-12 h-12 bg-pink-700 rounded-full flex items-center justify-center mb-2">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-2">
             <Icon size={30} className="text-white" />
             </div>
 
-            <h3 className="text-lg font-semibold text-indigo-900 mb-2">{title}</h3>
+            <h3 className="text-lg font-semibold text-[#2a3990] mb-2">{title}</h3>
             <p className="text-gray-600 text-sm">{desc}</p>
           </motion.div>
         ))}

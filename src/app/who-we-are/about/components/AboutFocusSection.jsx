@@ -27,7 +27,7 @@ const focusList = [
 
 export default function AboutFocusSection() {
   return (
-    <section className="py-20 px-6 md:px-16 bg-[#f9fafb] flex flex-col md:flex-row items-start gap-12">
+    <section className="py-20 px-6 md:px-16 bg-[#2a3990] flex flex-col md:flex-row items-start gap-12">
       {/* Left: Empowering content */}
       <motion.div
         className="md:w-1/2"
@@ -36,10 +36,10 @@ export default function AboutFocusSection() {
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-3xl md:text-4xl font-semibold mb-6  text-indigo-900 ">
+        <h2 className="text-3xl md:text-5xl font-bold mb-6  text-white ">
           Empowering Tomorrow with AI-Driven Solutions
         </h2>
-        <p className="text-gray-700 text-lg leading-relaxed">
+        <p className="text-white text-lg leading-relaxed">
           At Paves Technologies, we harness the transformative power of Artificial Intelligence,
           Generative AI, and Agentic AI to deliver innovative technology solutions and outsourcing
           services. From automation to augmentation, we pave the way for businesses to achieve
@@ -60,11 +60,11 @@ export default function AboutFocusSection() {
             key={i}
             className="flex items-start gap-4 p-4 bg-white rounded-2xl shadow-sm hover:shadow-lg transition duration-300"
           >
-            <div className="w-12 h-12 bg-pink-700 rounded-full flex items-center justify-center mb-2">
+            <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-2">
             <Icon size={30} className="text-white" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-indigo-900 mb-1">{title}</h3>
+              <h3 className="text-xl font-semibold text-[#2a3990] mb-1">{title}</h3>
               <p className="text-gray-600">{desc}</p>
             </div>
           </li>

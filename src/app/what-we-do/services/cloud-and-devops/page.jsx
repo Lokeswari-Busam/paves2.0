@@ -9,7 +9,7 @@ export default function CloudAndDevopsPage() {
         {/* LEFT CONTENT */}
         <div className="absolute left-0 top-0 h-full flex items-center px-6 md:px-20 z-20">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-[#0F1E63]">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#2a3990]">
               Cloud & DevOps
             </h1>
             <p className="mt-4 text-gray-600 uppercase tracking-wide text-sm">
@@ -57,7 +57,7 @@ export default function CloudAndDevopsPage() {
           seamlessly, optimize costs, and drive operational excellence.
         </p>
 
-        <h2 className="text-3xl font-bold text-indigo-900 mb-8">
+        <h2 className="text-3xl font-bold text-[#2a3990] mb-8">
           Cloud Engineering & DevOps: Smarter, Faster, More Secure.
         </h2>
 
@@ -75,7 +75,7 @@ export default function CloudAndDevopsPage() {
             "Cloud Cost Optimization & AI-Powered Monitoring",
           ].map((item, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <div className="flex items-center justify-center w-8 h-8 bg-indigo-900 text-white font-semibold rounded-full shadow">
+              <div className="flex items-center justify-center w-8 h-8 bg-primary text-white font-semibold rounded-full shadow">
                 {`0${index + 1}`}
               </div>
               <p className="text-lg text-gray-800 leading-relaxed">{item}</p>
@@ -87,25 +87,25 @@ export default function CloudAndDevopsPage() {
         <div className="grid md:grid-cols-2 gap-10 items-center mt-16">
           {/* LEFT SIDE — TEXT LIST */}
           <div>
-            <h2 className="text-3xl font-bold text-pink-700 mb-10">
+            <h2 className="text-3xl font-bold text-[#2a3990] mb-10">
               Why Choose Paves Technologies for Cloud & DevOps?
             </h2>
 
             <ul className="space-y-5 text-lg text-gray-700 leading-relaxed">
               <li className="flex items-start">
-                <span className="text-pink-700 mr-4 text-3xl font-bold">›</span>
+                <span className="text-primary mr-4 text-3xl font-bold">›</span>
                 Cloud-Native Transformation & Infrastructure Modernization
               </li>
               <li className="flex items-start">
-                <span className="text-pink-700 mr-4 text-3xl font-bold">›</span>
+                <span className="text-primary mr-4 text-3xl font-bold">›</span>
                 End-to-End DevOps Automation
               </li>
               <li className="flex items-start">
-                <span className="text-pink-700 mr-4 text-3xl font-bold">›</span>
+                <span className="text-primary mr-4 text-3xl font-bold">›</span>
                 Cloud Security & Regulatory Compliance
               </li>
               <li className="flex items-start">
-                <span className="text-pink-700 mr-4 text-3xl font-bold">›</span>
+                <span className="text-primary mr-4 text-3xl font-bold">›</span>
                 Cloud Cost Optimization & AI-Powered Monitoring
               </li>
             </ul>
@@ -124,22 +124,6 @@ export default function CloudAndDevopsPage() {
         </div>
       </div>
 
-      {/* ===== EMAIL SECTION ===== */}
-      <div className="bg-[#0F1E63] text-white text-center py-20 px-6 mt-16">
-        <h2 className="text-3xl font-bold mb-6">Let’s Build Your Cloud Future</h2>
-        <p className="text-lg max-w-3xl mx-auto mb-8">
-          Partner with Paves Technologies to modernize your infrastructure,
-          accelerate your software delivery, and secure your cloud environments.
-          Together, we’ll create scalable, reliable, and agile systems that power
-          your business for the future.
-        </p>
-        <a
-          href="mailto:info@pavestechnologies.com"
-          className="inline-block bg-white text-[#0F1E63] font-semibold py-3 px-8 rounded-full shadow-md hover:bg-blue-100 transition"
-        >
-          Send Us an Email
-        </a>
-      </div>
     </div>
   );
 }

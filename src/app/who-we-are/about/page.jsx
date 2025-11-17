@@ -1,29 +1,8 @@
-// import AboutHeader from "../../whoWeAre/components/AboutHeader";
-// import AboutValues from "../../whoWeAre/components/AboutValues";
-// import ContactSection from "../../whoWeAre/components/ContactSection";
-// import ShapeDivider from "../../whoWeAre/components/ShapeDivider";
-// import AboutFocusSection from "../../whoWeAre/components/AboutFocusSection";
-
-
-// export default function AboutPage() {
-//   return (
-//     <main className="min-h-screen bg-white">
-//       <AboutHeader />
-//       <ShapeDivider direction="right" fill="#f9fafb" />
-//       <AboutFocusSection />
-//       <AboutValues />
-//       <ContactSection />
-//     </main>
-//   );
-// }
-
-
 
 import AboutHeader from "./components/AboutHeader";
 import AboutFocusSection from "./components/AboutFocusSection";
 import AboutValues from "./components/AboutValues";
-import ContactSection from "./components/ContactSection";
-import ShapeDivider from "./components/ShapeDivider";
+import ShapeDivider from "../../components/ShapeDivider";
 
 export default function AboutPage() {
   return (
@@ -46,11 +25,7 @@ export default function AboutPage() {
         <ShapeDivider direction="right" fill="#e0e7ff" shape="tilt" />
       </section>
 
-      {/* --- Section 4: Contact --- */}
-      <section className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white relative">
-        <ContactSection />
-    
-      </section>
+      
     </main>
   );
 }

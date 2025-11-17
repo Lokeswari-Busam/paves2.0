@@ -130,7 +130,7 @@ export default function WhatWeDo() {
               transition={{ duration: 0.9, delay: 0.2 }}
               className="md:w-1/2 space-y-5"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-[#000080]">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#2a3990]">
                 {section.title}
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
