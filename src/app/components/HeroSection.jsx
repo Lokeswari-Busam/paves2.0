@@ -36,8 +36,8 @@ export default function HeroSection() {
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16"
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-white via-blue-50 to-white" />
-      <svg
+      <div className="absolute inset-0 bg-[url('/assets/Gemini_Generated_Image_brn12tbrn12tbrn1.png')] bg-cover bg-center " />
+      {/* <svg
         ref={svgRef}
         className="absolute inset-0 w-[200%] h-full opacity-40"
         viewBox="0 0 2400 600"
@@ -61,31 +61,31 @@ export default function HeroSection() {
           />
         </g>
       </svg>{" "}
-      ``
+      `` */}
       {/* Shapes */}
-      <div
+      {/* <div
         ref={shape1Ref}
         className="absolute top-20 right-30 w-30 h-30 rounded-full  z-10 bg-primary shadow-primary shadow-2xl"
         // style={{
         //   background:
         //     "radial-gradient(circle, rgba(210, 51, 105, 0.5), transparent)",
         // }}
-      />
-      <div
+      /> */}
+      {/* <div
         ref={shape2Ref}
         className="absolute bottom-20 left-30 w-40 h-40 rounded-full bg-primary shadow-primary shadow-2xl z-10"
         // style={{
         //   background:
         //     "radial-gradient(circle, rgba(134, 22, 60, 0.5), transparent)",
         // }}
-      />
+      /> */}
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <>
           <h1
           ref={heroHeadingRef}
-            className="text-7xl font-bold mb-6 leading-tight text-secondary"
+            className="text-7xl font-bold mb-6 leading-tight text-white"
             // style={{
             //   backgroundImage:
             //     "linear-gradient(to right, #d23369, #212d74, #3a4aac)",
@@ -94,7 +94,7 @@ export default function HeroSection() {
             Empowering Innovation 
             Through Technology.
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
             Transforming ideas into scalable solutions
           </p>
         </>

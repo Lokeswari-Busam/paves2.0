@@ -8,25 +8,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 
-export const initHeroAnimation = (
+export const initHeroAnimation = ({
   heroRef,
   shape1Ref,
   shape2Ref,
   svgRef,
-  heroHeadingRef
-) => {
+  heroHeadingRef,
+}) => {
   const split = new SplitText(heroHeadingRef.current, { type: "words,chars" });
   // gsap.set(split.chars, { opacity: 0, y: 20 });
 
-  gsap.from(
-    split.chars,
-    {
-      opacity: 0,
-      y: 20,
-      ease: "power3.out",
-      stagger: 0.05,
-    }
-  );
+  gsap.from(split.chars, {
+    opacity: 0,
+    y: 20,
+    ease: "power3.out",
+    stagger: 0.05,
+  });
 
   const ctx = gsap.context(() => {
     // Shape 1
