@@ -1,39 +1,29 @@
 "use client";
-
-import { useRef, useState, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
-  const heroRef = useRef(null);
-  const shape1Ref = useRef(null);
-  const shape2Ref = useRef(null);
-  const [isClient, setIsClient] = useState(false);
-  const svgRef = useRef(null);
-  const heroHeadingRef = useRef(null);
+  const [stage, setStage] = useState("initial");
 
   useEffect(() => {
-    setIsClient(true);
+    const timers = [
+      setTimeout(() => setStage("collapse"), 2000), // Collapse after 2s
+      setTimeout(() => setStage("hold"), 3000), // Hold P & T for 0.5s
+      setTimeout(() => setStage("expand"), 3000), // Expand after 3.5s
+    ];
+    return () => timers.forEach(clearTimeout);
   }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    let cleanup;
-
-    import("../animations/heroAnimation").then(({ initHeroAnimation }) => {
-      cleanup = initHeroAnimation(heroRef, shape1Ref, shape2Ref, svgRef, heroHeadingRef);
-    });
-
-    return () => cleanup && cleanup();
-  }, [isClient]);
 
   return (
     <section
-      ref={heroRef}
-      className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-16"
+      className="relative flex flex-col justify-center h-screen text-white overflow-hidden"
+      style={{
+        backgroundImage:
+          "url('/assets/businessman-working-futuristic-office.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
     >
       {/* Background */}
       <div className="absolute inset-0 bg-[url('/assets/Gemini_Generated_Image_brn12tbrn12tbrn1.png')] bg-cover bg-center " />
@@ -84,15 +74,14 @@ export default function HeroSection() {
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <>
           <h1
-          ref={heroHeadingRef}
+            ref={heroHeadingRef}
             className="text-7xl font-bold mb-6 leading-tight text-white"
             // style={{
             //   backgroundImage:
             //     "linear-gradient(to right, #d23369, #212d74, #3a4aac)",
             // }}
           >
-            Empowering Innovation 
-            Through Technology.
+            Empowering Innovation Through Technology.
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
             Transforming ideas into scalable solutions
@@ -108,10 +97,7 @@ export default function HeroSection() {
           >
             Explore Services
           </button>
-          <button
-            className="px-8 py-4 rounded-full border-2 text-[#364ac0] font-semibold hover:bg-[#364ac0]/5 transition-all duration-300"
-            style={{ borderColor: "#364ac0" }}
-          >
+          <button className="px-8 py-3 text-lg font-semibold border border-white rounded-full hover:bg-white hover:text-black transition-all">
             Discover More
           </button>
         </div>
