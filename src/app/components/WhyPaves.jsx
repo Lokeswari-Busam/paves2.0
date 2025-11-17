@@ -1,184 +1,111 @@
 "use client";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
-import { useEffect, useRef, useState } from "react";
-import { Lightbulb, Compass, Handshake, Rocket } from "lucide-react";
-
-const subsections = [
-  {
-    icon: Lightbulb,
-    title: "Born from Innovation",
-    description:
-      "Founded by technologists with a passion for solving complex challenges, Paves Technologies emerged from a vision to create intelligent solutions that drive business transformation.",
-  },
-  {
-    icon: Compass,
-    title: "Our Mission",
-    description:
-      "Driving technology adoption through smart engineering, strategic consulting, and scalable cloud solutions that empower businesses to thrive in the digital age.",
-  },
-  {
-    icon: Handshake,
-    title: "Our Promise",
-    description:
-      "Reliable delivery, creative problem-solving, and transparent communication. We partner with you at every step, ensuring your success is our success.",
-  },
-  {
-    icon: Rocket,
-    title: "Our Vision",
-    description:
-      "To become a trusted global IT partner for the next generation, enabling organizations to innovate fearlessly and scale sustainably.",
-  },
-];
-
-export function WhyPavesSection() {
-  const [visibleItems, setVisibleItems] = useState([]);
-  const whyPavesSectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const subTitleRef = useRef(null);
-  const sectionRef = useRef(null);
-
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-
-    let cleanup;
-
-    import("../animations/whyPavesAnimation").then(
-      ({ initWhyPavesAnimation }) => {
-        cleanup = initWhyPavesAnimation({
-          whyPavesSectionRef,
-          titleRef,
-          subTitleRef,
-        });
-      }
-    );
-
-    return () => cleanup && cleanup();
-  }, [isClient]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const element = entry.target;
-            const index = Number.parseInt(element.dataset.index || "0");
-            setVisibleItems((prev) => [...new Set([...prev, index])]);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const items = sectionRef.current?.querySelectorAll("[data-index]");
-    items?.forEach((item) => observer.observe(item));
-
-    return () => observer.disconnect();
-  }, []);
+export default function WhyPavesSection() {
+  const items = [
+    {
+      title: "Born from Innovation",
+      desc: "Founded by technologists with a passion for solving complex challenges, Paves Technologies emerged from a vision to create intelligent solutions that drive business transformation.",
+      image: "/assets/CapMarkets.png",
+    },
+    {
+      title: "Our Mission",
+      desc: "Driving technology adoption through smart engineering, strategic consulting, and scalable cloud solutions that empower businesses to thrive in the digital age.",
+      image: "/assets/cyber-ai-threat.png",
+    },
+    {
+      title: "Our Promise",
+      desc: "Reliable delivery, creative problem-solving, and transparent communication. We partner with you at every step, ensuring your success is our success.",
+      image: "/assets/digital-banking.png",
+    },
+    {
+      title: "Our Vision",
+      desc: "To become a trusted global IT partner for the next generation, enabling organizations to innovate fearlessly and scale sustainably.",
+      image: "/assets/iam-hero.png",
+    },
+  ];
 
   return (
-    <section
-      ref={whyPavesSectionRef}
-      id="about"
-      className="relative w-full py-20 bg-background-dark"
-    >
-      {/* SVG Divider Top */}
-      <svg
-        className="absolute -top-1 left-0 w-full h-24 text-background-dark"
-        viewBox="0 0 1200 100"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,50 Q300,10 600,50 T1200,50 L1200,100 L0,100 Z"
-          fill="currentColor"
-        />
-      </svg>
+    <section className="w-full py-24 bg-[#E3F4FF]">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="overflow-hidden">
-            <h2
-              ref={titleRef}
-              className="text-7xl font-bold mb-4 text-white"
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl font-extrabold text-center text-[#0A2A43]"
+        >
+          Why <span className="text-[#C83267]">Paves</span>
+        </motion.h2>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-lg text-center mt-4 text-[#24516B]"
+        >
+          Hover to explore our values that drive excellence and innovation.
+        </motion.p>
+
+        {/* Cards */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8">
+          {items.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              whileHover={{ scale: 1.07 }}
+              className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg
+                         cursor-pointer group transition-all duration-500"
             >
-              Why{" "}
-              <span
-                className="bg-clip-text text-transparent"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, #d23369, #86163c)",
-                }}
-              >
-                Paves
-              </span>
-            </h2>
-          </div>
-          <div className="overflow-hidden">
-            <p
-              ref={subTitleRef}
-              className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
-            >
-              Six months young, but backed by decades of industry expertise. We
-              combine innovation with proven methodologies.
-            </p>
-          </div>
-        </div>
+              {/* Background Image */}
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className="object-cover opacity-100 group-hover:opacity-10
+                           transition-all duration-700 ease-out"
+              />
 
-        <div ref={sectionRef} className="grid grid-cols-2 gap-8 ">
-          {subsections.map((subsection, index) => {
-            const Icon = subsection.icon;
-            const isVisible = visibleItems.includes(index);
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-700"></div>
 
-            return (
-              <div
-                key={index}
-                data-index={index}
-                className={`p-8 rounded-2xl bg-linear-to-br from-gray-50 to-gray-100 dark:from-slate-700/20 dark:to-slate-600/20 border border-gray-200 dark:border-slate-600/30 transition-all duration-700 ${
-                  isVisible ? "animate-slide-up" : "opacity-0 translate-y-8"
-                }`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="shrink-0">
-                    <div
-                      className="flex items-center justify-center h-12 w-12 rounded-lg text-white"
-                      style={{
-                        background: "linear-gradient(135deg, #d23369, #86163c)",
-                      }}
-                    >
-                      <Icon size={24} />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                      {subsection.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {subsection.description}
-                    </p>
-                  </div>
-                </div>
+              {/* Content Center */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
+
+                {/* Title */}
+                <h3
+                  className="text-2xl font-extrabold text-[#0A2A43]
+                             group-hover:scale-[1.10] group-hover:text-[#C83267]
+                             transition-all duration-500 drop-shadow"
+                >
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="text-[#24516B] mt-3 text-sm leading-relaxed
+                             opacity-50 group-hover:opacity-100
+                             transition-all duration-500"
+                >
+                  {item.desc}
+                </p>
               </div>
-            );
-          })}
+
+              {/* Glow Effect */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
+                           transition duration-700 pointer-events-none
+                           shadow-[0_0_35px_5px_rgba(200,50,103,0.35)]"
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      {/* SVG Divider Bottom */}
-      <svg
-        className="absolute -bottom-1 left-0 w-full h-24 text-slate-900 dark:text-slate-800"
-        viewBox="0 0 1200 100"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0,50 Q300,90 600,50 T1200,50 L1200,0 L0,0 Z"
-          fill="currentColor"
-        />
-      </svg>
     </section>
   );
 }
