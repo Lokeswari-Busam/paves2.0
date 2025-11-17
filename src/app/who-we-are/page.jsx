@@ -68,7 +68,7 @@ const zoomIn = {
       transition={{ duration: 0.7 }}
       className="mb-16"
     >
-      <h2 className="text-5xl font-semibold mb-4 text-[#28519e]">{title}</h2>
+      <h2 className="text-5xl font-semibold mb-4 text-[#2a3990]">{title}</h2>
       <p className="text-gray-700 leading-relaxed text-lg">{text}</p>
     </motion.div>
   );
@@ -81,12 +81,12 @@ const zoomIn = {
       transition={{ duration: 0.6 }}
       className="bg-white rounded-2xl p-10 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all border border-gray-200"
     >
-      <h3 className="text-2xl font-semibold mb-4 text-[#284d93]">{title}</h3>
+      <h3 className="text-2xl font-semibold mb-4 text-[#2a3990]">{title}</h3>
       <p className="text-gray-600 mb-6">{text}</p>
 
       <Link
         href={href}
-        className="inline-flex items-center text-[#3173F6] font-medium hover:underline"
+        className="inline-flex items-center text-[#2a3990] font-medium hover:underline"
       >
         Read More <ArrowRight size={18} className="ml-1" />
       </Link>
@@ -101,7 +101,7 @@ const zoomIn = {
       transition={{ duration: 0.7 }}
       className="mt-24 text-center"
     >
-      <h2 className="text-3xl font-bold text-[#204c9f] mb-4">
+      <h2 className="text-3xl font-bold text-[#2a3990] mb-4">
         Join Us in Building the Future
       </h2>
 
@@ -110,7 +110,7 @@ const zoomIn = {
       </p>
 
       <Link href="/careers">
-        <button className="px-8 py-3 bg-[#3173F6] hover:bg-[#2559C9] transition-all rounded-xl text-white text-lg font-semibold flex items-center gap-2 mx-auto shadow-lg">
+        <button className="px-8 py-3 bg-indigo-900 hover:bg-[#2a3990] transition-all rounded-xl text-white text-lg font-semibold flex items-center gap-2 mx-auto shadow-lg">
           Explore Careers <ArrowRight size={20} />
         </button>
       </Link>
@@ -119,11 +119,11 @@ const zoomIn = {
 
   /* ✅ FINAL PAGE JSX */
   return (
-    <div className="min-h-screen bg-[#F7FAFF] text-[#2256b8]">
+    <div className="min-h-screen bg-[#F7FAFF] text-[#2a3990]">
 
       <Hero title="Who We Are" />
 
-      <div className="max-w-6xl mx-auto px-10 py-14">
+      <div className="max-w-6xl mx-auto px-10 py-14 text-[#2a3990]">
         <SectionIntro
           title="Our Identity"
           text="At Paves Technologies, we blend innovation, vision, and leadership to create a 
@@ -151,7 +151,7 @@ const zoomIn = {
             href="/technology-council/"
           />
         </div>
-        <CTASection />
+        
       </div>
     </div>
   );
