@@ -1,13 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Award, Target, Lightbulb } from "lucide-react";
 
 export default function AdvisoryOverview() {
   const items = [
-    { title: "Industry Leaders", color: "bg-pink-700" },
-    { title: "Domain Experts", color: "bg-indigo-900" },
-    { title: "Visionary Thinkers", color: "bg-pink-700" },
-    { title: "Strategic Innovators", color: "bg-indigo-900" },
+    { title: "Industry Leaders", color: "bg-primary" , icon: Award },
+    { title: "Domain Experts", color: "bg-[#2a3990]" , icon: Target },
+    { title: "Visionary Thinkers", color: "bg-primary" , icon: Lightbulb },
+    // { title: "Strategic Innovators", color: "bg-indigo-900" },
   ];
 
   return (
@@ -49,16 +50,17 @@ export default function AdvisoryOverview() {
           />
         </div>
             {/* --- right: Stacked Boxes --- */}
-        <div className="relative w-full max-w-[500px] flex flex-col items-start mx-auto ">
-        {items.map(({ title, color }, i) => (
+        <div className="relative w-full max-w-[450px] flex flex-col items-start mx-auto ">
+        {items.map(({ icon: Icon, title, color }, i) => (
             <div
             key={i}
-            className={`${color} text-white font-semibold text-center text-base md:text-lg flex items-center justify-center h-30 w-40 md:w-72 rounded-xl shadow-md hover:scale-105 transition-transform duration-300`}
+            className={`${color} text-white font-semibold text-center text-base md:text-lg flex items-center justify-center h-30 w-30 md:w-72 rounded-xl shadow-md hover:scale-105 transition-transform duration-300`}
             style={{
-          marginLeft: `calc(10% - 160px + ${i * 30}%)`,
-          marginTop: i !== 0 ? "-1px" : "0px",
+          marginLeft: `calc(10% - 120px + ${i * 30}%)`,
+          marginTop: i !== 0 ? "14px" : "8px",
         }}
             >
+            {Icon && <Icon className="w-10 h-10 text-white mr-3 rounded-full  "/>}
             {title}
             </div>
         ))}

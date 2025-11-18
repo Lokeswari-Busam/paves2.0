@@ -104,12 +104,11 @@ export function Navigation() {
   };
 
   const handleMouseLeave = (menu) => {
-  hideTimeout.current = setTimeout(() => {
-    hideDropdown(dropdownRefs.current[menu]);
-    if (activeDropdown === menu) setActiveDropdown(null);
-  }, 200);
-};
-
+    hideTimeout.current = setTimeout(() => {
+      hideDropdown(dropdownRefs.current[menu]);
+      if (activeDropdown === menu) setActiveDropdown(null);
+    }, 200);
+  };
 
   const handleSubmenuEnter = (submenu) => {
     setActiveSubmenu(submenu);
@@ -181,7 +180,7 @@ export function Navigation() {
                 },
                 {
                   title: "Corporate And Commercial Banking",
-                  href: "/what-we-do/industry-verticals/banking/corporate-commercial-banking",
+                  href: "/what-we-do/industry-verticals/banking/corporate-and-commercial-banking",
                 },
                 {
                   title: "Consumer Lending",
@@ -199,13 +198,16 @@ export function Navigation() {
             },
             {
               title: "Payments Fraud & AML",
-              href: "/what-we-do/industry-verticals/payments-fraud-aml",
+              href: "/what-we-do/industry-verticals/payments-fraud-and-aml",
             },
             {
               title: "Governance Risk & Compliance",
               href: "/what-we-do/industry-verticals/governance-risk-compliance",
             },
-            { title: "Insurance", href: "/what-we-do/industry-verticals/insurance" },
+            {
+              title: "Insurance",
+              href: "/what-we-do/industry-verticals/insurance",
+            },
             {
               title: "Capital Markets",
               href: "/what-we-do/industry-verticals/capital-markets",
@@ -214,48 +216,55 @@ export function Navigation() {
         },
         {
           title: "Services",
-          href: "/services",
+          href: "/what-we-do/services",
           subitems: [
             {
               title: "Business & Technology Advisory Consulting",
-              href: "/services/business-technology-advisory-consulting",
+              href: "/what-we-do/services/business-and-technology",
             },
             {
               title: "Artificial Intelligence",
-              href: "/services/artificial-intelligence",
+              href: "/what-we-do/services/artificial-intelligence",
             },
             {
               title: "Cloud Engineering And DevOps",
-              href: "/services/cloud-engineering-devops",
+              href: "/what-we-do/services/cloud-and-devops",
             },
-            { title: "Data And Analytics", href: "/services/data-analytics" },
+            {
+              title: "Data And Analytics",
+              href: "/what-we-do/services/data-and-analytics",
+            },
             {
               title: "Product Management & Engineering",
-              href: "/services/product-management-engineering",
+              href: "/what-we-do/services/product-management",
             },
             {
               title: "Enterprise Automation",
-              href: "/services/enterprise-automation",
+              href: "/what-we-do/services/enterprise-automation",
             },
             {
               title: "Legacy Support & Modernization",
-              href: "/services/legacy-support-modernization",
+              href: "/what-we-do/services/legacy-support",
             },
-            { title: "Cyber Security", href: "/services/cyber-security" },
+            {
+              title: "Cyber Security",
+              href: "/what-we-do/services/cyber-security",
+            },
             {
               title: "Identity And Access Management",
-              href: "/services/identity-access-management",
+              href: "/what-we-do/services/identity-and-access-management",
             },
             {
               title: "Next Gen Technologies",
-              href: "/services/next-gen-technologies",
+              href: "/what-we-do/services/next-gen-technologies",
             },
           ],
         },
       ],
     },
     {
-      title: "Who We Are", href: "/who-we-are",
+      title: "Who We Are",
+      href: "/who-we-are",
       submenu: [
         { title: "About Paves", href: "/who-we-are/about" },
         {
@@ -299,7 +308,10 @@ export function Navigation() {
                 className="relative"
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
-                onClick={()=>(window.location.href = link.href || "#")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (link.href) window.location.href = link.href;
+                }}
               >
                 <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
                   {link.title.toUpperCase()}
@@ -318,7 +330,10 @@ export function Navigation() {
                         className="submenu-item relative group"
                         onMouseEnter={() => handleSubmenuEnter(sub.title)}
                         onMouseLeave={() => handleSubmenuLeave(sub.title)}
-                        onClick={()=>(window.location.href = sub.href || "#")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (sub.href) window.location.href = sub.href;
+                        }}
                       >
                         <div className="flex justify-between items-center px-3 py-1.5 rounded-md text-gray-800 font-medium hover:bg-gray-100 cursor-pointer">
                           {sub.title}
@@ -340,7 +355,11 @@ export function Navigation() {
                                 onMouseLeave={() =>
                                   handleSubSubmenuLeave(item.title)
                                 }
-                                onClick={()=>(window.location.href = item.href || "#")}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (item.href)
+                                    window.location.href = item.href;
+                                }}
                               >
                                 <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
                                   {item.title}
@@ -360,6 +379,7 @@ export function Navigation() {
                                           key={child.title}
                                           href={child.href}
                                           className="block px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100"
+                                          onClick={(e) => e.stopPropagation()}
                                         >
                                           {child.title}
                                         </Link>

@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-// SVG icon components
+// SVG icon components (now white for pink circle)
 const icons = {
   card: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -24,12 +25,12 @@ const icons = {
 
   merchant: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -41,12 +42,12 @@ const icons = {
 
   ecommerce: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -58,12 +59,12 @@ const icons = {
 
   gateway: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -76,12 +77,12 @@ const icons = {
 
   realtime: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -92,12 +93,12 @@ const icons = {
 
   embedded: (
     <svg
-      width="48"
-      height="48"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#0F1E63"
-      strokeWidth="1.5"
+      stroke="white"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -108,35 +109,45 @@ const icons = {
   ),
 };
 
-// FEATURES LIST
+// FEATURES + ROUTES
 const features = [
-  { title: "Card Issuers", icon: icons.card },
-  { title: "Merchant Acquirers", icon: icons.merchant },
-  { title: "E-commerce", icon: icons.ecommerce },
-  { title: "Payment Gateways", icon: icons.gateway },
-  { title: "Real-time payments", icon: icons.realtime },
-  { title: "Embedded Finance", icon: icons.embedded },
+  { title: "Card Issuers", icon: icons.card, slug: "card-issuers" },
+  { title: "Merchant Acquirers", icon: icons.merchant, slug: "merchant-acquirers" },
+  { title: "E-commerce", icon: icons.ecommerce, slug: "e-commerce" },
+  { title: "Payment Gateways", icon: icons.gateway, slug: "payment-gateways" },
+  { title: "Real-time payments", icon: icons.realtime, slug: "real-time-payments" },
+  { title: "Embedded Finance", icon: icons.embedded, slug: "embedded-finance" },
 ];
 
 export default function FeatureGrid() {
   return (
     <div className="grid md:grid-cols-2 gap-8">
       {features.map((item, i) => (
-        <motion.div
+        <Link
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: i * 0.1 }}
-          className="p-8 bg-white shadow-md rounded-xl border border-gray-200 flex items-center justify-between hover:shadow-lg transition"
+          href={`/what-we-do/industry-verticals/payments/${item.slug}`}
+          className="group block"
         >
-          <div className="flex items-center gap-4">
-            {item.icon}
-            <h3 className="text-xl font-semibold">{item.title}</h3>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="p-8 bg-white shadow-md rounded-xl border border-gray-200 flex items-center justify-between hover:shadow-lg hover:-translate-y-1 transition"
+          >
+            <div className="flex items-center gap-4">
+              
+              {/* Pink Circle Icon */}
+              <div className="w-14 h-14 rounded-full bg-[#d23369] flex items-center justify-center group-hover:scale-110 transition-transform">
+                {item.icon}
+              </div>
 
-          <ArrowUpRight className="w-6 h-6 text-[#0F1E63]" />
-        </motion.div>
+              <h3 className="text-xl font-semibold">{item.title}</h3>
+            </div>
+
+            <ArrowUpRight className="w-6 h-6 text-[#0F1E63] group-hover:translate-x-1 transition" />
+          </motion.div>
+        </Link>
       ))}
     </div>
   );

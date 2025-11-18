@@ -5,13 +5,15 @@ import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const members = [
-  { name: "Sambi R Eada", title: "Founder and CEO", region: "Management" },
-  { name: "Oliver Chang", title: "Advisory Board", region: "Americas" },
-  { name: "Vikram Ramani", title: "Advisory Board", region: "Americas" },
-  { name: "Satyavan Panda", title: "Advisory Board", region: "Americas" },
-  { name: "Uday Shetgeri", title: "Advisory Board", region: "Americas" },
-  { name: "Puneet Chandra", title: "Advisory Board", region: "Americas" },
-  { name: "Kamal Kant", title: "Advisory Board", region: "Middle East & Africa" },
+  { name: "Sambi R Eada", title: "Founder and CEO", region: "Management", image: "/assets/CEO-removebg-preview.png" },
+
+  { name: "Oliver Chang", title: "Advisory Board", region: "Americas", image: "/assets/oliver chang.png" },
+  { name: "Vikram Ramani", title: "Advisory Board", region: "Americas", image: "/assets/vikram ramani.png" },
+  { name: "Satyavan Panda", title: "Advisory Board", region: "Americas", image: "/assets/satyavan panda.png" },
+  { name: "Uday Shetgeri", title: "Advisory Board", region: "Americas", image: "/assets/uday shetgeri.png" },
+  { name: "Puneet Chandra", title: "Advisory Board", region: "Americas", image: "/assets/puneet chandra.png" },
+
+  { name: "Kamal Kant", title: "Advisory Board", region: "Middle East & Africa", image: "/assets/kamal kant.png" },
 ];
 
 // Group by region
@@ -26,37 +28,37 @@ export default function AdvisoryTeamGrid() {
     <section className="relative py-20 px-6 md:px-16 overflow-hidden bg-[#2a3990]">
 
       {/* ===== SVG BACKGROUND ===== */}
-     <svg
-  className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1440 800"
-  preserveAspectRatio="none"
->
-  <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#0e1b3f" />
-      <stop offset="100%" stopColor="#1b2c5e" />
-    </linearGradient>
-  </defs>
+      <svg
+        className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 800"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0e1b3f" />
+            <stop offset="100%" stopColor="#1b2c5e" />
+          </linearGradient>
+        </defs>
 
-  <rect width="1440" height="800" fill="url(#grad1)" />
+        <rect width="1440" height="800" fill="url(#grad1)" />
 
-  <path
-    d="M200 0 L600 800 L1000 0"
-    stroke="#3b5998"
-    strokeWidth="80"
-    opacity="0.15"
-    fill="none"
-  />
-  <path
-    d="M0 400 L1440 600"
-    stroke="#4c6edb"
-    strokeWidth="120"
-    opacity="0.1"
-    fill="none"
-  />
-</svg>
+        <path
+          d="M200 0 L600 800 L1000 0"
+          stroke="#3b5998"
+          strokeWidth="80"
+          opacity="0.15"
+          fill="none"
+        />
 
+        <path
+          d="M0 400 L1440 600"
+          stroke="#4c6edb"
+          strokeWidth="120"
+          opacity="0.1"
+          fill="none"
+        />
+      </svg>
 
       {/* ===== CONTENT ===== */}
       <motion.div
@@ -112,6 +114,7 @@ function RegionSection({ region, members, showDivider }) {
         </div>
       ) : (
         <div className="relative">
+
           {/* Left Arrow */}
           <button
             onClick={() => scroll("left")}
@@ -150,7 +153,7 @@ function RegionSection({ region, members, showDivider }) {
 /* ============================
       MEMBER CARD
 ============================= */
-function MemberCard({ name, title }) {
+function MemberCard({ name, title, image }) {
   return (
     <motion.div
       className="bg-white/90 backdrop-blur w-[350px] h-[400px] p-8 rounded-2xl shadow-md 
@@ -158,14 +161,15 @@ function MemberCard({ name, title }) {
                  hover:-translate-y-2 flex flex-col items-center justify-center shrink-0"
       whileHover={{ scale: 1.05 }}
     >
-      <div className="relative w-32 h-32 mb-5">
+      <div className="relative w-80 h-80 mb-5">
         <Image
-          src="/assets/profile-placeholder.png"
+          src={image || "/assets/default-user.png"}
           alt={name}
           fill
           className="object-cover rounded-full"
         />
       </div>
+
       <h4 className="text-xl font-semibold text-indigo-900 mb-1">{name}</h4>
       <p className="text-gray-600 text-base">{title}</p>
     </motion.div>
