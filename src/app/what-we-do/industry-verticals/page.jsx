@@ -21,37 +21,37 @@ export default function IndustryVerticals() {
       title: "Payments",
       desc: "Implementing secure, efficient solutions for seamless global fund transfers and embedded finance systems.",
       icon: <CreditCard size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/payments",
+      href: "/what-we-do/industry-verticals/payments",
     },
     {
       title: "Banking",
       desc: "Reimagining banking through digital transformation, cloud-first architectures, and open banking APIs.",
       icon: <Banknote size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/banking",
+      href: "/what-we-do/industry-verticals/banking",
     },
     {
       title: "Payments Fraud & AML",
       desc: "Utilizing AI and advanced analytics to prevent fraud and ensure Anti-Money Laundering compliance.",
       icon: <ShieldCheck size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/payments-fraud-aml",
+      href: "/what-we-do/industry-verticals/payments-fraud-and-aml",
     },
     {
       title: "Governance, Risk & Compliance",
       desc: "Aligning governance, risk management, and regulatory frameworks to ensure transparency and accountability.",
       icon: <ClipboardCheck size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/governance-risk-compliance",
+      href: "/what-we-do/industry-verticals/governance-risk-compliance",
     },
     {
       title: "Insurance",
       desc: "Optimizing underwriting, claims, and policy administration with automation and data intelligence.",
       icon: <Briefcase size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/insurance",
+      href: "/what-we-do/industry-verticals/insurance",
     },
     {
       title: "Capital Markets",
       desc: "Delivering next-gen trading, investment, and compliance solutions to accelerate transparency and growth.",
       icon: <BarChart size={28} color="white" strokeWidth={1.8} />,
-      href: "/industry-verticals/capital-markets",
+      href: "/what-we-do/industry-verticals/capital-markets",
     },
   ];
 
@@ -69,21 +69,25 @@ export default function IndustryVerticals() {
     <main className="min-h-screen bg-white text-gray-800">
 
       {/* 🔥 REUSABLE HERO */}
-     <Hero
+    <Hero
   title="Industry Verticals"
   description="Our deep domain expertise spans the global financial ecosystem."
   image="/assets/what_we_do_hero.jpeg"
   breadcrumb={[
     {
       label: "Paves Technologies",
-      className: "text-[#2a3990] font-semibold text-sm"
+      href: "/",                    
     },
     {
-      label: "Industry Verticals",
-      className: "text-gray-600 text-sm"
+      label: "What We Do",
+      href: "/what-we-do",           
+    },
+    {
+      label: "Industry Verticals"    
     }
   ]}
 />
+
 
 
 
@@ -160,51 +164,53 @@ export default function IndustryVerticals() {
           </h3>
 
           <motion.div
-            variants={listVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid gap-8 md:grid-cols-2"
-          >
-            {verticals.map((v) => (
-              <motion.article
-                key={v.title}
-                variants={itemVariants}
-                className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg transition"
-              >
-                <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#d23369] flex items-center justify-center">
-                  {v.icon}
-                </div>
+  variants={listVariants}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="grid gap-8 md:grid-cols-2"
+>
+  {verticals.map((v) => (
+    <Link key={v.title} href={v.href} className="block group">
+      <motion.article
+        variants={itemVariants}
+        className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all cursor-pointer"
+      >
+        {/* Icon */}
+        <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#d23369] flex items-center justify-center group-hover:scale-110 transition-transform">
+          {v.icon}
+        </div>
 
-                <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                    {v.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {v.desc}
-                  </p>
-                </div>
+        {/* Text */}
+        <div className="flex-1">
+          <h4 className="text-lg font-semibold text-gray-900 mb-1">
+            {v.title}
+          </h4>
+          <p className="text-gray-600 text-sm leading-relaxed">
+            {v.desc}
+          </p>
+        </div>
 
-                <div className="flex-shrink-0">
-                  <Link
-                    href={v.href}
-                    className="w-9 h-9 rounded-full bg-[#dbe1ff] inline-flex items-center justify-center hover:bg-[#c9d4ff] transition"
-                  >
-                    <svg
-                      className="w-4 h-4 text-[#2a3990]"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      viewBox="0 0 24 24"
-                      aria-hidden
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
+        {/* Arrow */}
+        <div className="flex-shrink-0">
+          <div className="w-9 h-9 rounded-full bg-[#dbe1ff] inline-flex items-center justify-center group-hover:bg-[#c9d4ff] transition">
+            <svg
+              className="w-4 h-4 text-[#2a3990]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </motion.article>
+    </Link>
+  ))}
+</motion.div>
+
         </div>
       </section>
 

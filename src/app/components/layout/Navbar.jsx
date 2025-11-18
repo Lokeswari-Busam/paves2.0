@@ -180,7 +180,7 @@ export function Navigation() {
                 },
                 {
                   title: "Corporate And Commercial Banking",
-                  href: "/what-we-do/industry-verticals/banking/corporate-commercial-banking",
+                  href: "/what-we-do/industry-verticals/banking/corporate-and-commercial-banking",
                 },
                 {
                   title: "Consumer Lending",
@@ -198,7 +198,7 @@ export function Navigation() {
             },
             {
               title: "Payments Fraud & AML",
-              href: "/what-we-do/industry-verticals/payments-fraud-aml",
+              href: "/what-we-do/industry-verticals/payments-fraud-and-aml",
             },
             {
               title: "Governance Risk & Compliance",

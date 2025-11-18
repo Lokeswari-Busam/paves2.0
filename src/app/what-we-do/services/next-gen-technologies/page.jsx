@@ -172,7 +172,7 @@ export default function NextGenTechnologies() {
         <div className="grid md:grid-cols-3 gap-8">
           
           <Image
-            src="/assets/blockchain-img.webp"
+            src="/assets/next-gen-blockchain.jpg"
             width={500}
             height={350}
             alt="Blockchain"
@@ -180,7 +180,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/5g-img.webp"
+            src="/assets/next-gen-5g.jpg"
             width={500}
             height={350}
             alt="5G Illustration"
@@ -188,7 +188,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/metaverse-img.webp"
+            src="/assets/next-gen-metaverse.jpg"
             width={500}
             height={350}
             alt="Metaverse"

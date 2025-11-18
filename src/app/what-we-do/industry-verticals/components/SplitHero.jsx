@@ -2,13 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function SplitHero({ title, description, breadcrumb, image }) {
+export default function SplitHero({ title, description, breadcrumb = [], image }) {
   return (
     <header className="relative w-full bg-white py-7">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center px-6">
 
-        {/* Left Text */}
+        {/* LEFT TEXT */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
@@ -20,10 +21,32 @@ export default function SplitHero({ title, description, breadcrumb, image }) {
 
           <p className="mt-4 text-gray-600 text-lg">{description}</p>
 
-          <p className="mt-4 text-sm font-medium text-gray-500">{breadcrumb}</p>
+          {/* BREADCRUMB NAVIGATION */}
+          <p className="mt-4 text-sm font-medium flex gap-2 flex-wrap text-gray-600">
+            {breadcrumb.map((item, index) => (
+              <span key={index} className="flex items-center gap-2">
+
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="text-[#2a3990] hover:text-[#000080] hover:underline transition font-semibold"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="text-gray-500 font-semibold">{item.label}</span>
+                )}
+
+                {/* Separator */}
+                {index < breadcrumb.length - 1 && (
+                  <span className="text-gray-400">/</span>
+                )}
+              </span>
+            ))}
+          </p>
         </motion.div>
 
-        {/* Right Tilt Image */}
+        {/* RIGHT IMAGE */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}

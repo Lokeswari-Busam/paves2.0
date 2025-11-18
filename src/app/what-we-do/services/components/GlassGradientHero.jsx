@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function GlassGradientHero({ title, description, breadcrumb, image }) {
+export default function GlassGradientHero({ title, description, breadcrumb = [], image }) {
   return (
     <header className="relative h-[75vh] flex items-center justify-center bg-gradient-to-br from-[#1a1f3b] to-[#0d1230] overflow-hidden">
 
@@ -30,7 +31,26 @@ export default function GlassGradientHero({ title, description, breadcrumb, imag
 
         <p className="mt-4 text-gray-200 text-lg">{description}</p>
 
-        <p className="mt-4 text-sm text-gray-300">{breadcrumb}</p>
+        {/* Breadcrumb Navigation */}
+         <p className="mt-4 text-sm text-gray-300 flex justify-center gap-2 flex-wrap">
+          {breadcrumb.map((item, index) => (
+            <span key={index} className="flex items-center gap-2">
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className="text-pink-300 hover:text-white hover:underline transition font-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-gray-300">{item.label}</span>
+              )}
+
+              {/* Add "/" separator except last item */}
+              {index < breadcrumb.length - 1 && <span>/</span>}
+            </span>
+          ))}
+        </p>
       </motion.div>
     </header>
   );

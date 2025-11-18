@@ -9,13 +9,7 @@ export default function PaymentsPage() {
   return (
     <main className="w-full overflow-hidden">
       
-     {/* HERO SECTION */}
-      <SplitHero
-        title="Payments"
-        description="Secure, scalable, and modern payment solutions empowering global financial innovation."
-        breadcrumb="Paves Technologies › Industry Verticals › Payments"
-        image="/assets/what_we_do_hero.jpeg"
-      />
+   
 
       {/* WHY CHOOSE */}
       <WhyChoose />
