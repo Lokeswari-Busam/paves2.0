@@ -13,7 +13,7 @@ import {
   Briefcase,
 } from "lucide-react";
 
-import IndustryHero from "./components/IndustryHero";
+import Hero from "../components/Hero";
 
 export default function IndustryVerticals() {
   const verticals = [
@@ -69,7 +69,7 @@ export default function IndustryVerticals() {
     <main className="min-h-screen bg-white text-gray-800">
 
       {/* 🔥 REUSABLE HERO */}
-     <IndustryHero
+     <Hero
   title="Industry Verticals"
   description="Our deep domain expertise spans the global financial ecosystem."
   image="/assets/what_we_do_hero.jpeg"

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function IndustryHero({ title, breadcrumb, image, description }) {
+export default function Hero({ title, breadcrumb, image, description }) {
   return (
     <header className="relative overflow-hidden h-[70vh] bg-gray-100">
 

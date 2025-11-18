@@ -5,31 +5,7 @@ export default function CybersecurityRedesign() {
   return (
     <div className="w-full bg-white">
 
-      {/* ======================= HERO ======================= */}
-      <section className="relative w-full py-20 px-6 md:px-20 overflow-hidden">
-
-        {/* Background shapes */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1E63] via-[#13297A] to-[#0F1E63] opacity-90"></div>
-        <div className="absolute top-0 right-0 w-[650px] h-[650px] bg-pink-500/20 rounded-full blur-[130px]"></div>
-        <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-blue-400/30 rounded-full blur-[110px]"></div>
-
-        <div className="relative z-20 max-w-5xl">
-          <p className="text-sm text-blue-200 uppercase tracking-wider font-semibold">
-            Cybersecurity Solutions
-          </p>
-
-          <h1 className="mt-4 text-4xl md:text-6xl font-bold text-white leading-snug">
-            Re(AI)magining Cybersecurity<br />for the Digital Era
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-blue-100 text-lg leading-relaxed">
-            Paves Technologies delivers next-gen cybersecurity powered by 
-            <span className="font-semibold text-white"> AI, automation,</span> and 
-            <span className="font-semibold text-white"> predictive analytics</span>, 
-            helping enterprises stay ahead of evolving threats.
-          </p>
-        </div>
-      </section>
+    
 
       {/* ======================= SECTION 1 ======================= */}
       <section className="py-10 px-6 md:px-20 bg-[#F7F9FF] grid md:grid-cols-2 gap-16 items-center">

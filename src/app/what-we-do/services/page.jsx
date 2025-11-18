@@ -17,6 +17,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import Hero from "../components/Hero";
+
 export default function ServicesPage() {
   const services = [
     {
@@ -83,54 +85,17 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-white text-gray-900">
-     {/* HERO SECTION */}
-<section className="relative bg-[#F2F3F7] overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 items-center gap-10">
-    
-    {/* LEFT CONTENT */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      className="col-span-12 lg:col-span-7"
-    >
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
-        Services
-      </h1>
-      <p className="mt-4 text-gray-600 max-w-2xl">
-        We deliver end-to-end technology solutions across industries — enabling smarter operations,
-        better customer experiences, and sustainable innovation.
-      </p>
-      <div className="mt-6 text-sm text-gray-500 font-medium">
-        <span className="text-[#000080] font-semibold">PAVES TECHNOLOGIES</span>
-        <span className="mx-2">›</span>
-        <span>Services</span>
-      </div>
-    </motion.div>
 
-    {/* RIGHT-SIDE DIAGONAL IMAGE */}
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.8, delay: 0.3 }}
-      className="hidden lg:block col-span-5"
-    >
-      <div className="relative h-60 w-full">
-        <div className="absolute inset-0 clip-diagonal overflow-hidden shadow-lg">
-          <Image
-            src="/assets/industry-bg.jpg" // <-- use your own image here
-            alt="Services Illustration"
-            fill
-            className="object-cover object-center scale-105 hover:scale-110 transition-transform duration-700"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-l from-[#000080]/25 via-transparent to-transparent"></div>
-        </div>
-      </div>
-    </motion.div>
-  </div>
-</section>
-
+      {/* ⭐ REUSABLE INDUSTRY HERO */}
+      <Hero
+        title="Services"
+        description="We deliver end-to-end technology solutions across industries — enabling smarter operations, better customer experiences, and sustainable innovation."
+        breadcrumb={[
+          { label: "Paves Technologies", className: "text-[#2a3990] font-semibold text-sm" },
+          { label: "Services", className: "text-gray-600 text-sm" },
+        ]}
+        image="/assets/what_we_do_hero.jpeg"
+      />
 
       {/* SERVICES GRID */}
       <section className="bg-[#F2F3F7] py-12">
@@ -168,21 +133,19 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                {/* Learn More Link */}
                 <Link
                   href={service.href}
                   className="mt-6 inline-flex items-center text-[#000080] font-semibold group transition-all"
                 >
                   Learn More
-                  <ArrowRight
-                    className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  />
+                  <ArrowRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
     </main>
   );
 }
