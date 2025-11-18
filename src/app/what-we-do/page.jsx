@@ -12,7 +12,7 @@ export default function WhatWeDo() {
       Our domain experts and engineers collaborate to build secure, compliant, and scalable solutions that help businesses stay ahead in fast-changing markets. 
       Whether it’s streamlining core systems, improving data visibility, or enabling digital payments — we bring innovation that matters.`,
       img: "/assets/industry-verticals.jpeg",
-      link: "/industry-verticals",
+      link: "/what-we-do/industry-verticals",
     },
     {
       title: "Services",
@@ -20,7 +20,7 @@ export default function WhatWeDo() {
       We build future-ready solutions that not only solve current challenges but also set the foundation for innovation and growth. 
       With deep technical expertise and a delivery mindset, we enable clients to scale faster, respond smarter, and operate securely in the digital era.`,
       img: "/assets/services.jpeg",
-      link: "/services",
+      link: "/what-we-do/services",
     },
   ];
 
@@ -46,7 +46,8 @@ export default function WhatWeDo() {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-white via-gray-50 to-gray-100">
-      {/* Hero Section */}
+      
+      {/* HERO SECTION */}
       <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
           src="/assets/what_we_do_hero.jpeg"
@@ -85,7 +86,7 @@ export default function WhatWeDo() {
         </motion.div>
       </section>
 
-      {/* Content Sections */}
+      {/* MAIN CONTENT SECTIONS */}
       <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 space-y-28">
         {sections.map((section, idx) => (
           <motion.div
@@ -99,25 +100,30 @@ export default function WhatWeDo() {
               idx % 2 !== 0 ? "md:flex-row-reverse" : ""
             }`}
           >
-            {/* Image */}
-            <motion.div
-              variants={zoomIn}
-              transition={{ duration: 0.7 }}
-              className="relative w-full md:w-1/2 h-[400px] rounded-3xl overflow-hidden shadow-xl group"
+            {/* IMAGE — CLICKABLE */}
+            <Link
+              href={section.link}
+              className="relative w-full md:w-1/2 h-[400px] rounded-3xl overflow-hidden shadow-xl group block"
             >
-              <Image
-                src={section.img}
-                alt={section.title}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
-              <h3 className="absolute bottom-6 left-6 text-2xl font-semibold text-white drop-shadow-lg">
-                {section.title}
-              </h3>
-            </motion.div>
+              <motion.div
+                variants={zoomIn}
+                transition={{ duration: 0.7 }}
+                className="w-full h-full relative"
+              >
+                <Image
+                  src={section.img}
+                  alt={section.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />
+                <h3 className="absolute bottom-6 left-6 text-2xl font-semibold text-white drop-shadow-lg">
+                  {section.title}
+                </h3>
+              </motion.div>
+            </Link>
 
-            {/* Text */}
+            {/* TEXT — NOT CLICKABLE */}
             <motion.div
               variants={fadeUp}
               transition={{ duration: 0.9, delay: 0.2 }}
@@ -126,10 +132,12 @@ export default function WhatWeDo() {
               <h2 className="text-3xl md:text-4xl font-bold text-[#2a3990]">
                 {section.title}
               </h2>
+
               <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
                 {section.desc}
               </p>
 
+              {/* BUTTON — CLICKABLE */}
               <Link href={section.link}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -142,6 +150,7 @@ export default function WhatWeDo() {
                 </motion.button>
               </Link>
             </motion.div>
+
           </motion.div>
         ))}
       </section>

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function Hero({ title, breadcrumb, image, description }) {
+export default function Hero({ title, breadcrumb = [], image, description }) {
   return (
     <header className="relative overflow-hidden h-[70vh] bg-gray-100">
 
@@ -34,26 +35,40 @@ export default function Hero({ title, breadcrumb, image, description }) {
         className="relative z-20 h-full flex items-center px-8 lg:px-6"
       >
         <div className="max-w-2xl">
-          
+
           {/* TITLE */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#2a3990] leading-tight">
             {title}
           </h1>
 
-          {/* ✔ NEW DESCRIPTION */}
+          {/* DESCRIPTION */}
           {description && (
             <p className="mt-4 text-gray-700 text-lg leading-relaxed max-w-xl">
               {description}
             </p>
           )}
 
-          {/* ⭐ DYNAMIC BREADCRUMB WITH STYLING */}
+          {/* ⭐ CLICKABLE BREADCRUMB */}
           <div className="mt-4 flex items-center gap-2 flex-wrap">
-            {breadcrumb?.map((item, index) => (
-              <span key={index} className={item.className}>
-                {item.label}
+            {breadcrumb.map((item, index) => (
+              <span key={index} className="flex items-center gap-2">
+
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    className="text-[#2a3990] hover:text-[#000080] hover:underline transition font-semibold"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <span className="text-gray-600 font-semibold">
+                    {item.label}
+                  </span>
+                )}
+
+                {/* Separator */}
                 {index < breadcrumb.length - 1 && (
-                  <span className="mx-2 text-gray-400">›</span>
+                  <span className="text-gray-400">›</span>
                 )}
               </span>
             ))}
