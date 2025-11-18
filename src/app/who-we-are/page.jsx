@@ -13,9 +13,9 @@ const zoomIn = {
 };
   /* ✅ HERO */
   const Hero = ({ title }) => (
-    <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
+    <section className="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
             <Image
-              src="/assets/what_we_do_hero.jpeg"
+              src="/assets/business-team-meeting-modern-office-with-city-view.jpg"
               alt="Who We Are"
               fill
               className="object-cover scale-105"
@@ -136,19 +136,19 @@ const zoomIn = {
           <InfoCard
             title="About Us"
             text="Learn our story, mission, and how we aim to reshape the digital future through engineering excellence and innovation."
-            href="/about/"
+            href="/who-we-are/about/"
           />
 
           <InfoCard
             title="Management & Advisory Board"
             text="A team of experienced leaders offering strategic direction to drive Paves' long-term growth and global vision."
-            href="/management-advisory-board/"
+            href="/who-we-are/management-advisory-board/"
           />
 
           <InfoCard
             title="Technology Council"
             text="A visionary group of experts guiding research, assessing emerging trends, and shaping Paves’ innovation roadmap."
-            href="/technology-council/"
+            href="/who-we-are/technology-council/"
           />
         </div>
         
