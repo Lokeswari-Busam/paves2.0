@@ -1,7 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import {
   FaUniversity,
   FaCreditCard,
@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 
 export default function IndustryVerticals() {
-  const [selected, setSelected] = useState(2);
+  const [selected, setSelected] = useState(0);
 
   const verticals = [
     {
@@ -46,86 +46,93 @@ export default function IndustryVerticals() {
     },
   ];
 
+  /** AUTO ROTATE EVERY 2 SECONDS **/
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSelected((prev) => (prev + 1) % verticals.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="w-full bg-[#f4f7ff] py-24 px-6 md:px-20 rounded-t-2xl mt-16">
-      {/* Heading */}
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-extrabold text-center text-indigo-700 mb-16"
-      >
-        Industry Verticals
-      </motion.h1>
+    <section
+      className="relative w-full py-28 px-6 md:px-20"
+      style={{
+        backgroundImage: "url('/assets/modern-equipped-computer-lab.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
 
-      <div className="grid md:grid-cols-2 gap-16 items-start">
+      <div className="relative max-w-7xl mx-auto">
+        {/* Heading */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-white drop-shadow-xl">
+          Industry Verticals
+        </h1>
 
-        {/* LEFT SIDE – Description */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h2 className="text-4xl font-extrabold text-gray-900 leading-snug mb-6">
-            Where Experience<br />
-            Meets Execution
-          </h2>
+        <p className="text-center text-gray-200 text-lg max-w-2xl mx-auto mt-4">
+          Expertise across every layer of the financial world — engineered with precision.
+        </p>
 
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Our expertise covers the entire financial ecosystem. Each sector is led
-            by seasoned industry experts. We deliver practical solutions backed by
-            real-world experience.
-          </p>
+        {/* Layout */}
+        <div className="grid md:grid-cols-2 gap-16 mt-20">
 
-          {/* Large Selected Card */}
+          {/* LEFT: Auto changing highlight */}
           <motion.div
             key={selected}
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mt-10 p-7 rounded-xl shadow-lg border border-indigo-100 bg-white"
+            transition={{ duration: 0.5 }}
+            className="p-8 rounded-2xl bg-white/20 backdrop-blur-xl shadow-2xl border border-white/30"
           >
-            <div className="flex items-center gap-3 mb-3 text-indigo-700 font-semibold text-xl">
-              {verticals[selected].icon}
+            <div className="flex items-center gap-4 mb-4 text-white font-semibold text-3xl drop-shadow">
+              <span className="p-3 rounded-xl bg-white/20 backdrop-blur-md shadow-lg">
+                {verticals[selected].icon}
+              </span>
               {verticals[selected].title}
             </div>
 
-            <p className="text-gray-700">{verticals[selected].desc}</p>
+            <p className="text-gray-100 text-lg leading-relaxed">
+              {verticals[selected].desc}
+            </p>
           </motion.div>
-        </motion.div>
 
-
-        {/* RIGHT SIDE – Scrollable List */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          className="h-[400px] overflow-y-auto pr-3 scrollbar-thin scrollbar-thumb-indigo-300 scrollbar-track-gray-200"
-        >
-          <div className="flex flex-col gap-4">
+          {/* RIGHT: Clickable grid */}
+          <div className="grid grid-cols-2 gap-6">
             {verticals.map((item, index) => (
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setSelected(index)}
-                className={`p-5 rounded-xl cursor-pointer shadow-md border 
-                ${selected === index
-                    ? "bg-white border-indigo-400 shadow-xl"
-                    : "bg-[#e9f0ff] hover:bg-gray-100 border-gray-300"
+                className={`
+                  p-5 rounded-xl cursor-pointer transition border text-white
+                  ${
+                    selected === index
+                      ? "bg-white/30 border-white/70 shadow-xl"
+                      : "bg-white/10 border-white/20 hover:bg-white/20"
                   }
                 `}
               >
-                <div className="flex items-center gap-3 font-semibold text-gray-800">
-                  {item.icon}
+                <div className="flex items-center gap-3 font-semibold text-lg">
+                  <span
+                    className={`p-2 rounded-lg ${
+                      selected === index ? "bg-white/30" : "bg-white/10"
+                    }`}
+                  >
+                    {item.icon}
+                  </span>
                   {item.title}
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
 
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
