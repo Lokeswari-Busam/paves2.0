@@ -72,8 +72,8 @@ export default function PavesAILabs() {
         ref={(el) => (sectionsRef.current[0] = el)}
         className="py-24 px-6 max-w-6xl mx-auto"
       >
-        <h2 className="text-4xl font-bold text-center mb-10 text-gray-900">
-          What is Paves AI Labs?
+        <h2 className="text-5xl font-bold text-center mb-10 text-[#2a3990]">
+          What is Paves AI Labs? 
         </h2>
 
         <p className="text-gray-700 text-center max-w-3xl mx-auto text-lg leading-relaxed">
@@ -90,7 +90,7 @@ export default function PavesAILabs() {
         ref={(el) => (sectionsRef.current[1] = el)}
         className="bg-[#f8f9ff] py-24 px-6"
       >
-        <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+        <h2 className="text-5xl font-bold text-center mb-10 text-[#2a3990]">
           Our Key Focus Areas
         </h2>
 
