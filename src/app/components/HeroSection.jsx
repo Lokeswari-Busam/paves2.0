@@ -40,8 +40,8 @@ export default function HeroSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
             >
-              <h1 className="text-7xl font-bold leading-tight">Paves</h1>
-              <h1 className="text-7xl font-bold leading-tight">Technologies</h1>
+              <h1 className="text-7xl font-semibold leading-tight">Paves</h1>
+              <h1 className="text-7xl font-semibold leading-tight">Technologies</h1>
             </motion.div>
           )}
 
@@ -77,7 +77,7 @@ export default function HeroSection() {
               className="text-left"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.7 }}
             >
               <h1 className="text-7xl font-bold leading-tight">P</h1>
               <h1 className="text-7xl font-bold leading-tight">T</h1>
@@ -136,11 +136,11 @@ export default function HeroSection() {
           transition={{ duration: 1.2 }}
           className="flex gap-4 mt-8"
         >
-          <button className="px-8 py-3 text-lg font-semibold text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-all">
+          <button className="px-8 py-3 text-lg  text-white bg-blue-400 rounded-full hover:bg-blue-700 transition-all">
             Explore Services
           </button>
-          <button className="px-8 py-3 text-lg font-semibold border border-white rounded-full hover:bg-white hover:text-black transition-all">
-            Discover More
+          <button className="px-8 py-3 text-lg  border border-white rounded-full hover:bg-white hover:text-black transition-all">
+            Get in Touch
           </button>
         </motion.div>
       </div>
