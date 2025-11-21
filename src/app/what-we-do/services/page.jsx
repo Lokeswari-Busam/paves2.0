@@ -107,63 +107,89 @@ export default function ServicesPage() {
 />
 
 
-      {/* SERVICES GRID */}
-      <section className="bg-[#F2F3F7] py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-14">
+          {/* SERVICES GRID — MATCHING INDUSTRY VERTICALS STYLE */}
+      <section className="relative bg-gray-50 overflow-hidden py-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-gray-900 mb-10 text-center">
             Services We Provide
-          </h2>
+          </h3>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.08 } },
+            }}
+            className="grid gap-8 md:grid-cols-2"
+          >
             {services.map((service, idx) => (
               <Link
                 key={idx}
                 href={`/what-we-do${service.href}`}
                 className="block group"
               >
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  whileHover={{
-                    y: -5,
-                    boxShadow: "0 10px 25px rgba(0,0,128,0.15)",
-                    borderColor: "#000080",
+                <motion.article
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.5, ease: "easeOut" },
+                    },
                   }}
-                  className="flex flex-col justify-between p-8 bg-white rounded-xl border border-gray-200 transition-all duration-300 cursor-pointer"
+                  className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm 
+                             border border-gray-100 hover:shadow-lg hover:-translate-y-1 
+                             transition-all cursor-pointer"
                 >
-                  {/* ICON + TEXT */}
-                  <div className="flex items-start gap-5">
-                    
-                    {/* Icon with same styling as Industry Verticals */}
-                    <div className="flex items-center justify-center bg-[#d23369] rounded-full p-4 shrink-0 group-hover:scale-110 transition-transform">
-                      {React.cloneElement(service.icon, {
-                        className: "w-8 h-8 text-white",
-                      })}
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-[#111827] mb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {service.desc}
-                      </p>
-                    </div>
+                  {/* ICON */}
+                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#d23369] 
+                                  flex items-center justify-center group-hover:scale-110 
+                                  transition-transform">
+                    {React.cloneElement(service.icon, {
+                      className: "w-7 h-7 text-white",
+                      strokeWidth: 1.8,
+                    })}
                   </div>
 
-                  {/* LEARN MORE */}
-                  <div className="mt-6 inline-flex items-center text-[#000080] font-semibold group-hover:underline">
-                    Learn More
-                    <ArrowRight className="ml-1 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  {/* TEXT */}
+                  <div className="flex-1">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-1">
+                      {service.title}
+                    </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
                   </div>
-                </motion.div>
+
+                  {/* ARROW CIRCLE (same as Industry Verticals) */}
+                  <div className="flex-shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-[#dbe1ff] 
+                                    inline-flex items-center justify-center 
+                                    group-hover:bg-[#c9d4ff] transition">
+                      <svg
+                        className="w-4 h-4 text-[#2a3990]"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 12h14M12 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </motion.article>
               </Link>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
+
 
     </main>
   );
