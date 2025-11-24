@@ -406,23 +406,15 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Right: Contact Button */}
-          <div className="hidden md:flex items-center gap-4">
-            <button
-              className="px-6 py-2 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
-              style={{ background: "#000080" }}
-            >
-              Contact Us
-            </button>
-          </div>
-
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700"
+          <Link
+            href="/contact"
+            className="px-6 py-2 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
+            style={{ background: "#000080" }}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            Contact Us
+          </Link>
+
         </div>
       </div>
     </nav>
