@@ -1,61 +1,70 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function JoinUs() {
+  const wrapperRef = useRef(null);
+
+  // Track scroll movement
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start end", "end start"],
+  });
+
+  // IMAGE moves to the RIGHT on scroll
+  const imageX = useTransform(scrollYProgress, [0, 1], ["-20%", "70%"]);
+
+  // TEXT fades + moves upward a bit
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.6], [60, 0]);
+
   return (
-    <section
-      className="relative bg-cover bg-center bg-no-repeat py-24 px-6"
-      style={{
-        backgroundImage:
-          "url('/assets/business-data-analysis-strategy-marketing-graph-concept.jpg')",
-      }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* LEFT CONTENT */}
+    <section className="relative w-full bg-[#2a3990] text-white py-16 px-6 overflow-hidden">
+      <div
+        ref={wrapperRef}
+        className="relative max-w-7xl mx-auto h-[600px] flex items-center"
+      >
+        {/* FULL-WIDTH IMAGE that slides RIGHT */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-white"
+          style={{ x: imageX }}
+          className="absolute top-0 left-0 w-full h-full"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-            JOIN US
-          </h2>
-
-          <p className="text-lg leading-relaxed mb-4 max-w-xl">
-            At Paves Technologies, we’re not just building software —
-            we’re building the future of AI-driven innovation, one idea at a time.
-          </p>
-
-          <p className="text-lg leading-relaxed mb-8 max-w-xl">
-            We’re a team of passionate technologists, thinkers, and
-            problem-solvers who thrive on challenges and believe in the
-            power of collaboration.
-          </p>
-
-          <div className="flex gap-4">
-            <a
-              href="#"
-              className="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition"
-            >
-              Explore Jobs
-            </a>
-
-            <a
-              href="#"
-              className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow hover:bg-indigo-700 transition"
-            >
-              Search and Apply
-            </a>
-          </div>
+          <img
+            src="/assets/professional-businesswoman-holding-plan.jpg"
+            alt="Team"
+            className="w-full h-full object-cover rounded-xl shadow-xl"
+          />
         </motion.div>
 
-        <div className="hidden md:block"></div>
+        {/* RIGHT SIDE TEXT — Revealed on scroll */}
+        <motion.div
+          style={{ opacity: textOpacity, y: textY }}
+          className="relative z-20 w-full max-w-md text-left pr-4"
+        >
+          <p className="text-blue-200 font-semibold tracking-wide mb-3">
+            Build the Future With Us
+          </p>
+
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+            Join Our Team and Shape What’s Next
+          </h1>
+
+          <p className="text-blue-100 text-lg mb-6">
+            Be part of a culture that values innovation, growth,
+            creativity, and meaningful impact.
+          </p>
+
+          <div className="mt-8 flex justify-start gap-4">
+            <a
+              href="#jobs"
+              className="bg-white text-blue-900 px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90"
+            >
+              Join Us
+            </a>
+           
+          </div>
+        </motion.div>
       </div>
     </section>
   );
