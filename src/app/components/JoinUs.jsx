@@ -19,7 +19,7 @@ export default function JoinUs() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           className="text-white"
         >
@@ -41,16 +41,16 @@ export default function JoinUs() {
           <div className="flex gap-4">
             <a
               href="#"
-              className="bg-white text-indigo-700 font-semibold px-6 py-3 rounded-xl shadow hover:bg-gray-100 transition"
+              className="bg-white text-indigo-400 font-semibold px-6 py-3 rounded-3xl shadow hover:bg-gray-200 transition"
             >
               Explore Jobs
             </a>
 
             <a
               href="#"
-              className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl shadow hover:bg-indigo-700 transition"
+              className="bg-indigo-400 text-white font-semibold px-6 py-3 rounded-3xl shadow hover:bg-indigo-700 transition"
             >
-              Search and Apply
+              Contact Us
             </a>
           </div>
         </motion.div>

@@ -90,140 +90,121 @@ export default function HeroUltimate() {
       {/* subtle dim overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
 
-      {/* light streak beams (diagonal subtle) */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none" aria-hidden>
-        <defs>
-          <linearGradient id="beamGrad" x1="0" x2="1">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.06" />
-            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.06" />
-          </linearGradient>
-        </defs>
-        <rect x="10%" y="0" width="40%" height="100%" transform="skewX(-15)" fill="url(#beamGrad)" className="opacity-40 animate-beam" />
-        <rect x="55%" y="0" width="28%" height="100%" transform="skewX(-12)" fill="url(#beamGrad)" className="opacity-30 animate-beam delay-1" />
-      </svg>
-
-      {/* AI circuit lines - subtle animated strokes */}
-      <svg className="absolute left-0 top-0 w-full h-full pointer-events-none" aria-hidden>
-        <g stroke="#06b6d4" strokeWidth="1" strokeOpacity="0.12" fill="none">
-          <path d="M120 260 L360 240 L680 300" className="circuit" />
-          <path d="M420 140 L760 160 L1120 120" className="circuit delay-1" />
-          <path d="M980 420 L1300 380 L1680 420" className="circuit delay-2" />
-        </g>
-        {/* small node circles */}
-        <g fill="#3b82f6" fillOpacity="0.9">
-          <circle cx="120" cy="260" r="3" className="nodePulse" />
-          <circle cx="680" cy="300" r="3" className="nodePulse delay-1" />
-          <circle cx="1120" cy="120" r="3" className="nodePulse delay-2" />
-        </g>
-      </svg>
-
-      {/* wave layers (soft moving shapes) */}
-      <svg className="absolute left-0 bottom-0 w-full h-48 pointer-events-none" preserveAspectRatio="none" aria-hidden>
-        <path className="wave wave-1" d="M0 120 C 300 0 600 180 1000 120 L 100% 200 L 0 200 Z" fill="rgba(14,165,233,0.04)"></path>
-        <path className="wave wave-2" d="M0 140 C 350 40 700 200 1000 140 L 100% 200 L 0 200 Z" fill="rgba(59,130,246,0.03)"></path>
-      </svg>
-
-      {/* spotlight radial that follows mouse */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(360px circle at ${mouse.x}px ${mouse.y}px, rgba(59,130,246,0.12), transparent 30%)`,
-          mixBlendMode: "screen",
-        }}
-        aria-hidden
-      />
-
-      {/* particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((p, i) => (
-          <motion.span
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              left: `${p.l}%`,
-              top: `${p.t}%`,
-              width: p.s,
-              height: p.s,
-              background: "linear-gradient(90deg,#3b82f6,#06b6d4)",
-              filter: "blur(6px)",
-              opacity: 0.95,
-            }}
-            animate={{ y: [0, -14, 0], x: [0, (i % 2 ? 8 : -8), 0] }}
-            transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
-          />
-        ))}
-      </div>
-
-      {/* bottom gradient overlay */}
-      <div className="absolute left-0 right-0 bottom-0 h-48 pointer-events-none bg-gradient-to-t from-black/28 to-transparent" />
-
-      {/* top-right dark toggle */}
-      <div className="absolute top-6 right-6 z-30">
-        <button
-          onClick={() => setIsDark((v) => !v)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200 dark:border-slate-700 text-sm shadow-sm hover:scale-105 transition"
-        >
-          {isDark ? "🌙 Dark" : "☀️ Light"}
-        </button>
-      </div>
-
-      {/* CONTENT: left glass card */}
-      <div className="relative z-30 h-full flex items-center px-8">
-        <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98, y: 8 }}
-            animate={cardControls}
-            style={{
-              background: isDark ? "rgba(6,8,23,0.56)" : "rgba(255,255,255,0.72)",
-              backdropFilter: "blur(10px)",
-              border: isDark ? "1px solid rgba(255,255,255,0.04)" : "1px solid rgba(2,6,23,0.06)",
-              boxShadow: isDark ? "0 12px 40px rgba(2,6,23,0.55)" : "0 8px 30px rgba(2,6,23,0.06)",
-            }}
-            className="rounded-2xl p-6 md:p-8"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-md flex items-center justify-center font-semibold bg-blue-50 text-blue-700">
-                PT
-              </div>
-              <div className={`text-sm ${isDark ? "text-slate-300" : "text-slate-700"}`}>Paves Technologies</div>
-            </div>
-
-            <motion.h1
-              initial={{ y: 0 }}
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className={`mt-4 text-3xl md:text-4xl font-extrabold leading-tight ${isDark ? "text-white" : "text-slate-900"}`}
+      {/* Main Content */}
+      <div className="relative z-10 px-16 max-w-4xl">
+        <AnimatePresence mode="wait">
+          {/* 🟩 INITIAL STAGE */}
+          {stage === "initial" && (
+            <motion.div
+              key="initial"
+              className="text-left"
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
             >
-              The Future of <br />
-              Financial Services is{" "}
-              <span className="aiFirst inline-block bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                AI-First
-              </span>
-            </motion.h1>
+              <h1 className="text-7xl font-semibold leading-tight">Paves</h1>
+              <h1 className="text-7xl font-semibold leading-tight">Technologies</h1>
+            </motion.div>
+          )}
 
-            <p className={`mt-4 max-w-lg ${isDark ? "text-slate-300" : "text-slate-700"}`}>
-              Delivering enterprise-grade AI solutions, secure cloud platforms, and automation that transforms financial services.
-            </p>
-
-            <div className="mt-6 flex gap-3">
-              <motion.a
-                whileHover={{ scale: 1.03, boxShadow: "0 12px 30px rgba(59,130,246,0.2)" }}
-                href="/ai-labs"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-400 text-white font-medium"
+          {/* 🟦 COLLAPSE STAGE */}
+          {stage === "collapse" && (
+            <motion.div key="collapse" className="text-left">
+              {/* “Paves” collapses right-to-left */}
+              <motion.h1
+                className="text-7xl font-bold leading-tight overflow-hidden"
+                initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                animate={{ clipPath: "inset(0% 85% 0% 0%)" }}
+                transition={{ duration: 1, ease: "easeInOut" }}
               >
-                Go to AI Labs
-              </motion.a>
+                Paves
+              </motion.h1>
 
-              <motion.a whileHover={{ scale: 1.03 }} href="/insights" className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 text-sm text-slate-700 bg-transparent">
-                Insights
-              </motion.a>
-            </div>
-          </motion.div>
+              {/* “Technologies” collapses right-to-left */}
+              <motion.h1
+                className="text-7xl font-bold leading-tight overflow-hidden"
+                initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
+                animate={{ clipPath: "inset(0% 85% 0% 0%)" }}
+                transition={{ duration: 1, ease: "easeInOut", delay: 0.1 }}
+              >
+                Technologies
+              </motion.h1>
+            </motion.div>
+          )}
 
-          <div className={`mt-4 text-sm ${isDark ? "text-slate-300/90" : "text-slate-700/90"}`}>
-            <strong>Enterprise • Secure • Scalable</strong> — modern AI-first solutions for finance.
-          </div>
-        </div>
+          {/* 🟫 HOLD STAGE */}
+          {stage === "hold" && (
+            <motion.div
+              key="hold"
+              className="text-left"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7 }}
+            >
+              <h1 className="text-7xl font-bold leading-tight">P</h1>
+              <h1 className="text-7xl font-bold leading-tight">T</h1>
+            </motion.div>
+          )}
+
+          {/* 🟨 EXPAND STAGE */}
+          {stage === "expand" && (
+            <motion.div
+              key="expand"
+              className="text-left"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
+              {/* P → Paving the Bridge Between */}
+              <motion.h1
+                className="text-6xl font-bold leading-tight overflow-hidden whitespace-nowrap"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              >
+                Paving the Bridge Between
+              </motion.h1>
+
+              {/* T → Tech & Trust */}
+              <motion.h1
+                className="text-6xl font-bold leading-tight overflow-hidden whitespace-nowrap"
+                initial={{ x: -50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+              >
+                Tech & Trust
+              </motion.h1>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Tagline (only visible after expand) */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{
+            opacity: stage === "expand" ? 1 : 0,
+            y: stage === "expand" ? 0 : 10,
+          }}
+          transition={{ duration: 0.8 }}
+          className="mt-6 text-lg text-gray-300"
+        >
+          Transforming ideas into scalable solutions
+        </motion.p>
+
+        {/* Buttons (always visible) */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="flex gap-4 mt-8"
+        >
+          <button className="px-8 py-3 text-lg  text-white bg-blue-400 rounded-full hover:bg-blue-700 transition-all">
+            Explore Services
+          </button>
+          <button className="px-8 py-3 text-lg  border border-white rounded-full hover:bg-white hover:text-black transition-all">
+            Get in Touch
+          </button>
+        </motion.div>
       </div>
 
       {/* scoped styles */}
