@@ -1,138 +1,138 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  FaUniversity,
-  FaCreditCard,
-  FaShieldAlt,
-  FaChartLine,
-  FaMoneyCheckAlt,
-} from "react-icons/fa";
+import { useState } from "react";
 
 export default function IndustryVerticals() {
-  const [selected, setSelected] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const verticals = [
+  const items = [
     {
       title: "Payments",
-      icon: <FaCreditCard size={22} />,
-      desc: "Advanced solutions for seamless and secure digital payments.",
+      description:
+        "Payment services comprise a variety of solutions that facilitate secure and efficient financial transactions. The aim is to provide fast, reliable, and scalable options for both individuals and businesses.",
+      image: "/assets/payments.jpg",
     },
     {
       title: "Banking",
-      icon: <FaUniversity size={22} />,
-      desc: "AI-driven banking solutions enabling smarter financial experiences.",
+      description:
+        "Banking encompasses a broad spectrum of financial services including personal and business accounts, loans, deposit services, fund transfers, and e-banking.",
+      image: "/assets/banking.png",
     },
     {
       title: "Payments Fraud & AML",
-      icon: <FaShieldAlt size={22} />,
-      desc: "AI-powered tools to detect fraud and ensure compliance with AML regulations.",
-    },
-    {
-      title: "Insurance",
-      icon: <FaMoneyCheckAlt size={22} />,
-      desc: "Intelligent automation for insurance workflows and customer experience.",
+      description:
+        "Payments Fraud & Anti-Money Laundering (AML) services implement rigorous mechanisms to detect and prevent financial crime.",
+      image: "/assets/pay-fraud.jpg",
     },
     {
       title: "Governance Risk & Compliance",
-      icon: <FaChartLine size={22} />,
-      desc: "Enterprise-level GRC solutions to manage risk with confidence.",
+      description:
+        "Governance Risk & Compliance (GRC) refers to frameworks and solutions that help organizations meet regulatory requirements, manage risks, and ensure ethical practices.",
+      image: "/assets/grc.jpg",
     },
     {
-      title: "Capital Markets & Wealth Management",
-      icon: <FaMoneyCheckAlt size={22} />,
-      desc: "Data-powered insights to optimize investment and portfolio decisions.",
+      title: "Insurance",
+      description:
+        "Insurance services provide financial protection against various risks such as accidents, health issues, property loss, and business liability.",
+      image: "/assets/insurence.jpg",
+    },
+    {
+      title: "Capital Markets",
+      description:
+        "Capital Markets consist of platforms and products that enable investment, trading, and the allocation of equity and debt.",
+      image: "/assets/capital market.jpg",
     },
   ];
 
-  /** AUTO ROTATE EVERY 2 SECONDS **/
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSelected((prev) => (prev + 1) % verticals.length);
-    }, 2000);
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
+  };
 
-    return () => clearInterval(interval);
-  }, []);
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section
-      className="relative w-full py-28 px-6 md:px-20"
-      style={{
-        backgroundImage: "url('/assets/modern-equipped-computer-lab.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
+    <section className="relative w-full py-20 md:py-28 bg-blue-50 flex flex-col items-center overflow-hidden">
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* Heading */}
-        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-white drop-shadow-xl">
-          Industry Verticals
-        </h1>
+      {/* ==== SVG Background ==== */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-20"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <circle cx="20%" cy="30%" r="250" fill="#d7e3ff" />
+        <circle cx="80%" cy="60%" r="300" fill="#bccaff" />
+        <circle cx="50%" cy="90%" r="200" fill="#e4e9ff" />
+      </svg>
 
-        <p className="text-center text-gray-200 text-lg max-w-2xl mx-auto mt-4">
-          Expertise across every layer of the financial world — engineered with precision.
-        </p>
+      {/* Title */}
+      <h2 className="text-4xl md:text-5xl font-bold text-[#2a338b] text-center mb-12 md:mb-16 z-10">
+        Our Services
+      </h2>
 
-        {/* Layout */}
-        <div className="grid md:grid-cols-2 gap-16 mt-20">
+      {/* Content Container */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-6 px-6 z-10">
 
-          {/* LEFT: Auto changing highlight */}
-          <motion.div
-            key={selected}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="p-8 rounded-2xl bg-white/20 backdrop-blur-xl shadow-2xl border border-white/30"
-          >
-            <div className="flex items-center gap-4 mb-4 text-white font-semibold text-3xl drop-shadow">
-              <span className="p-3 rounded-xl bg-white/20 backdrop-blur-md shadow-lg">
-                {verticals[selected].icon}
-              </span>
-              {verticals[selected].title}
-            </div>
+        {/* Image */}
+        <motion.div
+          key={`img-${currentIndex}`}
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-1/2 h-[280px] sm:h-[350px] md:h-[450px] flex justify-center"
+        >
+          <img
+            src={items[currentIndex].image}
+            alt={items[currentIndex].title}
+            className="w-full h-full rounded-xl object-cover shadow-xl"
+          />
+        </motion.div>
 
-            <p className="text-gray-100 text-lg leading-relaxed">
-              {verticals[selected].desc}
-            </p>
-          </motion.div>
+        {/* Text */}
+        <motion.div
+          key={`text-${currentIndex}`}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-1/2 text-[#2a338b] px-2 md:px-6"
+        >
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
+            {items[currentIndex].title}
+          </h3>
 
-          {/* RIGHT: Clickable grid */}
-          <div className="grid grid-cols-2 gap-6">
-            {verticals.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-                onClick={() => setSelected(index)}
-                className={`
-                  p-5 rounded-xl cursor-pointer transition border text-white
-                  ${
-                    selected === index
-                      ? "bg-white/30 border-white/70 shadow-xl"
-                      : "bg-white/10 border-white/20 hover:bg-white/20"
-                  }
-                `}
-              >
-                <div className="flex items-center gap-3 font-semibold text-lg">
-                  <span
-                    className={`p-2 rounded-lg ${
-                      selected === index ? "bg-white/30" : "bg-white/10"
-                    }`}
-                  >
-                    {item.icon}
-                  </span>
-                  {item.title}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <p className="text-base md:text-lg leading-relaxed mb-6">
+            {items[currentIndex].description}
+          </p>
 
-        </div>
+          <button className="font-semibold text-[#2a338b] hover:text-[#2a338b]/80 inline-flex items-center hover:underline transition">
+            Read more <span className="ml-2 text-xl">➔</span>
+          </button>
+        </motion.div>
       </div>
+
+      {/* Controls */}
+      <div className="mt-10 md:mt-14 flex items-center gap-6 z-20">
+        <button
+          onClick={handlePrev}
+          className="w-10 h-10 md:w-12 md:h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
+        >
+          <span className="text-xl md:text-2xl text-white">&#8592;</span>
+        </button>
+
+        <span className="text-[#2a338b] text-lg md:text-xl font-bold">
+          {currentIndex + 1}/{items.length}
+        </span>
+
+        <button
+          onClick={handleNext}
+          className="w-10 h-10 md:w-12 md:h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
+        >
+          <span className="text-xl md:text-2xl text-white">&#8594;</span>
+        </button>
+      </div>
+
     </section>
   );
 }

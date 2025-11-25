@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Breadcrumb from "../components/Breadcrumb";
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -36,9 +37,12 @@ export default function AboutPage() {
             ABOUT
           </h2>
 
-          <h1 className="text-2xl font-bold text-primary mb-3 tracking-wide">
-            Paves Technologies &gt; About
-          </h1>
+          <Breadcrumb
+          items={[
+            { label: "Paves Technologies", href: "/" },
+            { label: "About" }
+          ]}
+        />
         </motion.div>
 
         {/* RIGHT SIDE IMAGE */}
@@ -63,7 +67,7 @@ export default function AboutPage() {
       {/* SECTION 2: FOCUS AREAS */}
       {/* ---------------------------------------------------- */}
 
-      <section className="bg-gradient-to-r from-gray-50 via-gray-100 to-gray-200 relative py-20 px-6 md:px-16 flex flex-col md:flex-row items-start gap-12">
+      <section className="bg-[#2a3990] relative py-20 px-6 md:px-16 flex flex-col md:flex-row items-start gap-12">
 
         {/* LEFT CONTENT */}
         <motion.div
@@ -73,14 +77,19 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[#2a3990]">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
             Empowering Tomorrow with AI-Driven Solutions
           </h2>
-          <p className="text-gray-700 text-lg leading-relaxed">
-            At Paves Technologies, we harness the transformative power of AI,
-            Generative AI, and Agentic AI to deliver innovations that enable
-            automated, intelligent, and scalable business growth.
-          </p>
+          <p className="text-white text-lg leading-relaxed">
+            At Paves Technologies, we harness the transformative power of Artificial
+             Intelligence (AI), Generative AI, and Agentic AI to help organizations 
+             evolve into intelligent, future-ready enterprises.</p>
+             <br></br>
+             <p className="text-white text-lg leading-relaxed">Our AI-driven solutions 
+             go beyond simple automation—enabling businesses and operate with greater precision and efficiency. 
+             Through Generative AI, we empower companies to create new ideas, content, and insights 
+             at scale, through more human-like digital experiences.</p> 
+          
         </motion.div>
 
         {/* RIGHT LIST */}
@@ -166,8 +175,6 @@ export default function AboutPage() {
     </main>
   );
 }
-
-
 
 /* ----------------------------------------------------
    SHAPE DIVIDER COMPONENT

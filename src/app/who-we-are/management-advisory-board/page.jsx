@@ -8,13 +8,6 @@ import ShapeDivider from "@/app/components/ShapeDivider";
 
 export default function ManagementPage() {
   return (
-    // <main className="flex flex-col w-full overflow-hidden">
-    //   <ManagementHeader />
-    //   <AdvisoryOverview />
-    //   <WhyBoardMatters />
-    //  <AdvisoryTeamGrid />
-      
-    // </main>
     <main className="min-h-screen">
           {/* --- Section 1: Header --- */}
           <section className="bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-100 relative">

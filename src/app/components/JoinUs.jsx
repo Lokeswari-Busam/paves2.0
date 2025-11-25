@@ -1,61 +1,98 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function JoinUs() {
+  const wrapperRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageX = useTransform(scrollYProgress, [0, 1], ["-20%", "70%"]);
+  const textOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
+  const textY = useTransform(scrollYProgress, [0.2, 0.6], [60, 0]);
+
   return (
-    <section
-      className="relative bg-cover bg-center bg-no-repeat py-24 px-6"
-      style={{
-        backgroundImage:
-          "url('/assets/business-data-analysis-strategy-marketing-graph-concept.jpg')",
-      }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60"></div>
-
-      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* LEFT CONTENT */}
+    <section className="relative w-full bg-[#2a3990] text-white py-12 md:py-16 px-4 md:px-6 overflow-hidden">
+      <div
+        ref={wrapperRef}
+        className="
+          relative 
+          max-w-7xl mx-auto 
+          h-[450px] sm:h-[500px] md:h-[600px] 
+          flex items-center
+        "
+      >
+        {/* IMAGE – scrolls right */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-white"
+          style={{ x: imageX }}
+          className="
+            absolute top-0 left-0 
+            w-full h-full
+            rounded-xl overflow-hidden
+          "
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight">
-            JOIN US
-          </h2>
+          <img
+            src="/assets/professional-businesswoman-holding-plan.jpg"
+            alt="Team"
+            className="w-full h-full object-cover rounded-xl shadow-xl"
+          />
+        </motion.div>
 
-          <p className="text-lg leading-relaxed mb-4 max-w-xl">
-            At Paves Technologies, we’re not just building software —
-            we’re building the future of AI-driven innovation, one idea at a time.
+        {/* TEXT CONTENT */}
+        <motion.div
+          style={{ opacity: textOpacity, y: textY }}
+          className="
+            relative z-20
+            w-full 
+            max-w-md 
+            text-left
+            mt-6 sm:mt-0
+            pr-0 sm:pr-4
+            px-2 sm:px-0
+          "
+        >
+          <p className="text-blue-200 font-semibold tracking-wide mb-2 sm:mb-3 text-sm sm:text-base">
+            Build the Future With Us
           </p>
 
-          <p className="text-lg leading-relaxed mb-8 max-w-xl">
-            We’re a team of passionate technologists, thinkers, and
-            problem-solvers who thrive on challenges and believe in the
-            power of collaboration.
+          <h1 className="
+            text-3xl sm:text-4xl md:text-5xl 
+            font-bold leading-tight 
+            mb-3 sm:mb-4
+          ">
+            Join Our Team and Shape What’s Next
+          </h1>
+
+          <p className="
+            text-blue-100 
+            text-base sm:text-lg 
+            mb-4 sm:mb-6
+          ">
+            Be part of a culture that values innovation, growth,
+            creativity, and meaningful impact.
           </p>
 
-          <div className="flex gap-4">
+          <div className="mt-6 sm:mt-8 flex justify-start gap-4">
             <a
-              href="#"
-              className="bg-white text-indigo-400 font-semibold px-6 py-3 rounded-3xl shadow hover:bg-gray-200 transition"
+              href="#jobs"
+              className="
+                bg-white text-blue-900 
+                px-5 sm:px-6 py-2.5 sm:py-3 
+                rounded-xl 
+                font-semibold 
+                shadow 
+                hover:opacity-90
+                text-sm sm:text-base
+              "
             >
-              Explore Jobs
-            </a>
-
-            <a
-              href="#"
-              className="bg-indigo-400 text-white font-semibold px-6 py-3 rounded-3xl shadow hover:bg-indigo-700 transition"
-            >
-              Contact Us
+              Join Us
             </a>
           </div>
         </motion.div>
-
-        <div className="hidden md:block"></div>
       </div>
     </section>
   );
