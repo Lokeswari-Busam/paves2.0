@@ -1,15 +1,6 @@
 "use client";
 
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-
-const icon = new L.Icon({
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
+import MapSection from "./MapSection";
 
 export default function ContactPage() {
   const offices = [
@@ -64,10 +55,10 @@ export default function ContactPage() {
         Re(<span className="text-primary">AI</span>)magine your world with us
       </h1>
 
-      {/* GRID: LEFT CARDS | RIGHT FORM */}
+      {/* 2-COLUMN GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-        {/* LEFT: 4 OFFICE CARDS IN 2x2 GRID */}
+        {/* LEFT OFFICE CARDS */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {offices.map((o, i) => (
             <div
@@ -78,8 +69,8 @@ export default function ContactPage() {
               <h4 className="font-bold mt-1">{o.company}</h4>
 
               <p className="text-sm mt-2 leading-relaxed">
-                {o.address.map((line, i) => (
-                  <span key={i} className="block">{line}</span>
+                {o.address.map((line, idx) => (
+                  <span key={idx} className="block">{line}</span>
                 ))}
               </p>
 
@@ -89,7 +80,7 @@ export default function ContactPage() {
           ))}
         </section>
 
-        {/* RIGHT: CONTACT FORM */}
+        {/* RIGHT CONTACT FORM */}
         <section className="bg-card border border-border rounded-xl p-8 shadow-sm h-fit">
           <form className="grid grid-cols-1 gap-5">
 
@@ -124,26 +115,9 @@ export default function ContactPage() {
 
       </div>
 
-      {/* MAP BELOW BOTH */}
-      <section className="max-w-7xl mx-auto mt-16 h-[500px] rounded-xl border border-border overflow-hidden">
-        <MapContainer
-          center={[20.0, 0.0]}
-          zoom={2}
-          scrollWheelZoom={false}
-          className="h-full w-full"
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      {/* MAP BELOW */}
+      <MapSection offices={offices} />
 
-          {offices.map((o, i) => (
-            <Marker key={i} position={o.coords} icon={icon}>
-              <Popup>
-                <strong>{o.country}</strong><br />
-                {o.company}
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </section>
     </div>
   );
 }
