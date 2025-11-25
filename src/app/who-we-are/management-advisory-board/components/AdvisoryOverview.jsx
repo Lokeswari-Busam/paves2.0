@@ -24,14 +24,20 @@ export default function AdvisoryOverview() {
         <h2 className="text-4xl md:text-5xl font-bold text-[#2a3990] mb-5">
           Our Advisory Board
         </h2>
-        <p className="text-gray-700 text-lg leading-relaxed">
-            <h4 className="text-[#2a3990] text-lg  font-bold leading-relaxed mb-3">Experience, Expertise, and Strategic Vision – Driving Value for Our Customers.</h4>
-             At Paves Technologies, we are guided by an accomplished Advisory Board comprised
-             of industry leaders, domain experts, and visionary thinkers. Their deep expertise
-             and strategic insights ensure we stay at the forefront of innovation while
-             aligning with the unique needs of our customers.
-           </p>
+           <p className="text-gray-700 text-lg leading-relaxed">
+            <span className="text-[#2a3990] text-lg font-bold mb-3 block">
+              Experience, Expertise, and Strategic Vision – Driving Value for Our Customers.
+            </span>
+
+            At Paves Technologies, we are guided by an accomplished Advisory Board comprised
+                      of industry leaders, domain experts, and visionary thinkers. Their deep expertise
+                      and strategic insights ensure we stay at the forefront of innovation while
+                      aligning with the unique needs of our customers.
+          </p>
+
       </motion.div>
+
+    
 
       {/* --- Main Content (Boxes + Image) --- */}
       <motion.div
