@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Breadcrumb from "../../components/Breadcrumb";
 
 export default function AboutHeader() {
   return (
@@ -16,9 +17,12 @@ export default function AboutHeader() {
        <h2 className="text-6xl md:text-6xl font-semibold text-[#2a3990] leading-snug mb-4">
           Management & Advisory Board
         </h2>
-        <h1 className="text-2xl font-bold text-primary mb-3 tracking-wide">
-          Paves Technologies &gt; Management & Advisory Board
-        </h1>
+        <Breadcrumb
+  items={[
+    { label: "Paves Technologies", href: "/" },
+    { label: "management-advisory-board" }
+  ]}
+/>
     
       </motion.div>
 
