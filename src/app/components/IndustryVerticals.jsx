@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-export default function InfoCarousel() {
+export default function IndustryVerticals() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const items = [
@@ -45,19 +45,18 @@ export default function InfoCarousel() {
     },
   ];
 
-
   const handlePrev = () => {
-    setCurrentIndex(currentIndex === 0 ? items.length - 1 : currentIndex - 1);
+    setCurrentIndex((prev) => (prev === 0 ? items.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex(currentIndex === items.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex((prev) => (prev === items.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <section className="relative w-full py-28 bg-blue-50 min-h-[600px] flex flex-col items-center overflow-hidden">
+    <section className="relative w-full py-20 md:py-28 bg-blue-50 flex flex-col items-center overflow-hidden">
 
-      {/* ==== SVG Background (Light Blue Abstract) ==== */}
+      {/* ==== SVG Background ==== */}
       <svg
         className="absolute inset-0 w-full h-full opacity-20"
         xmlns="http://www.w3.org/2000/svg"
@@ -68,44 +67,42 @@ export default function InfoCarousel() {
         <circle cx="50%" cy="90%" r="200" fill="#e4e9ff" />
       </svg>
 
-      {/* Section Heading */}
-      <h2 className="text-5xl font-bold text-[#2a338b] text-center mb-16 z-10">
+      {/* Title */}
+      <h2 className="text-4xl md:text-5xl font-bold text-[#2a338b] text-center mb-12 md:mb-16 z-10">
         Our Services
       </h2>
 
-      <div className="w-full max-w-6xl flex items-center justify-center z-10">
-        
-        {/* Left Image */}
+      {/* Content Container */}
+      <div className="w-full max-w-6xl flex flex-col md:flex-row items-center md:items-start justify-center gap-10 md:gap-6 px-6 z-10">
+
+        {/* Image */}
         <motion.div
-          key={currentIndex + "-img"}
-          initial={{ opacity: 0, x: -50 }}
+          key={`img-${currentIndex}`}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-1/2 h-[470px] relative flex items-center justify-end pr-10"
+          className="w-full md:w-1/2 h-[280px] sm:h-[350px] md:h-[450px] flex justify-center"
         >
           <img
             src={items[currentIndex].image}
             alt={items[currentIndex].title}
-            className="w-full h-full object-cover rounded-xl shadow-xl"
+            className="w-full h-full rounded-xl object-cover shadow-xl"
           />
         </motion.div>
 
-        {/* Spacer */}
-        <div className="w-4" />
-
-        {/* Right Text */}
+        {/* Text */}
         <motion.div
-          key={currentIndex + "-text"}
-          initial={{ opacity: 0, x: 50 }}
+          key={`text-${currentIndex}`}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-1/2 h-[470px] px-12 flex flex-col justify-center text-[#2a338b]"
+          className="w-full md:w-1/2 text-[#2a338b] px-2 md:px-6"
         >
-          <h3 className="text-4xl font-bold mb-6">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4">
             {items[currentIndex].title}
           </h3>
 
-          <p className="text-lg leading-relaxed mb-8">
+          <p className="text-base md:text-lg leading-relaxed mb-6">
             {items[currentIndex].description}
           </p>
 
@@ -113,34 +110,29 @@ export default function InfoCarousel() {
             Read more <span className="ml-2 text-xl">➔</span>
           </button>
         </motion.div>
-
       </div>
 
-      {/* Bottom Controls */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
+      {/* Controls */}
+      <div className="mt-10 md:mt-14 flex items-center gap-6 z-20">
         <button
-          aria-label="Previous"
           onClick={handlePrev}
-          className="w-12 h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
+          className="w-10 h-10 md:w-12 md:h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
         >
-          <span className="text-2xl text-white">&#8592;</span>
+          <span className="text-xl md:text-2xl text-white">&#8592;</span>
         </button>
 
-        <span className="text-[#2a338b] text-xl font-bold">
+        <span className="text-[#2a338b] text-lg md:text-xl font-bold">
           {currentIndex + 1}/{items.length}
         </span>
 
         <button
-          aria-label="Next"
           onClick={handleNext}
-          className="w-12 h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
+          className="w-10 h-10 md:w-12 md:h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
         >
-          <span className="text-2xl text-white">&#8594;</span>
+          <span className="text-xl md:text-2xl text-white">&#8594;</span>
         </button>
       </div>
 
     </section>
   );
 }
-
-

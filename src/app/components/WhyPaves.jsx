@@ -24,7 +24,7 @@ export default function WhyPavesSection() {
       image: "/assets/people-office-analyzing-checking-finance-graphs.jpg",
     },
     {
-      heading: "Human Centric AI",
+      heading: "Human-Driven Intelligence",
       title: "Meaningful Impact",
       desc: "At the heart of AI-driven innovation is human intelligence. Paves Technologies believes in AI that augments human decision-making, enhances customer experiences, and builds lasting relationships.",
       image: "/assets/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg",
@@ -33,8 +33,8 @@ export default function WhyPavesSection() {
 
   return (
     <section className="w-full py-20 relative bg-[#E3F4FF]">
-      
-      {/* SVG Background */}
+
+      {/* Background Shapes */}
       <svg
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
         xmlns="http://www.w3.org/2000/svg"
@@ -42,14 +42,13 @@ export default function WhyPavesSection() {
         preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient id="" x1="10%" y1="10%" x2="0%" y2="0%">
+          <linearGradient id="shape-grad" x1="10%" y1="10%" x2="0%" y2="0%">
             <stop offset="0%" stopColor="#a1204c" />
             <stop offset="100%" stopColor="#501128" />
           </linearGradient>
         </defs>
 
-        <rect width="1440" height="800" fill="url(#)" />
-      
+        <rect width="1440" height="800" fill="url(#shape-grad)" opacity="0" />
 
         <circle cx="1200" cy="180" r="260" fill="#8b2c5f" opacity="0.18" />
         <circle cx="300" cy="650" r="220" fill="#7a234f" opacity="0.15" />
@@ -69,10 +68,11 @@ export default function WhyPavesSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-extrabold text-center text-[#2a3990]"
+          className="text-4xl md:text-5xl font-extrabold text-center text-[#2a3990]"
         >
           Why <span className="text-primary">Paves</span>
         </motion.h2>
+
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -82,38 +82,42 @@ export default function WhyPavesSection() {
           Explore our values and solutions that drive innovation and impact.
         </motion.p>
 
-        {/* Cards with Headings */}
-        <div className="mt-16 flex flex-wrap lg:flex-nowrap justify-center gap-10">
+        {/* Cards Wrapper */}
+        <div className="
+          mt-16 
+          grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-4 
+          gap-6 
+          place-items-center
+        ">
           {items.map((item, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center"
-              style={{ width: '100%', maxWidth: '450px', margin: '0 auto', height: '450px' }}
-            >
+            <div key={index} className="flex flex-col items-center w-full">
+              
               {/* Card Heading */}
-              <div className="mb-4 text-center "> 
-                <h3 className="text-xl md:text-2xl font-bold text-[#2a3990]">
-                  {item.heading}
-                </h3>
-              </div>
+              <h3 className="text-xl md:text-2xl font-bold text-[#2a3990] mb-4 text-center">
+                {item.heading}
+              </h3>
 
               {/* Flip Card */}
               <FlipCard title={item.title} desc={item.desc} image={item.image} />
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
 }
 
-// FlipCard Component
+// Flip Card Component
 function FlipCard({ image, title, desc }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
     <div
-      className="w-80 h-80 perspective cursor-pointer"
+      className="w-64 h-64 md:w-68 md:h-68 perspective cursor-pointer"
       style={{ perspective: "1000px" }}
       onClick={() => setFlipped(!flipped)}
     >
@@ -124,21 +128,21 @@ function FlipCard({ image, title, desc }) {
         style={{ transformStyle: "preserve-3d" }}
         whileHover={{ rotateY: 180 }}
       >
-        {/* Front Side */}
+        {/* Front */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center bg-white"
+          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg bg-white"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <Image src={image} alt={title} fill className="object-cover w-full h-full" />
+          <Image src={image} alt={title} fill className="object-cover" />
         </div>
 
-        {/* Back Side */}
+        {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center bg-[#1e40af] p-5"
+          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg bg-[#1e40af] p-5 flex flex-col items-center justify-center text-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <h3 className="text-3xl font-bold text-white mb-2">{title}</h3>
-          <p className="text-white text-1xl">{desc}</p>
+          <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
+          <p className="text-white text-sm md:text-base">{desc}</p>
         </div>
       </motion.div>
     </div>

@@ -12,8 +12,8 @@ export default function ServicesSection() {
     offset: ["start start", "end end"],
   });
 
-  // Cards move only inside this section
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-400%"]);
+  // Increase scroll travel so ALL cards appear
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-900%"]);
 
   const services = [
     {
@@ -71,18 +71,20 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[250vh] w-full bg-fixed bg-cover bg-center"
-        style={{
-        backgroundImage:
-          "url('/assets/services_bg.jpg')",
-      }}
+      className="
+        relative 
+        h-[200vh]               /* Increased scroll height */
+        w-full 
+        bg-fixed bg-cover bg-center
+      "
+      style={{ backgroundImage: "url('/assets/services_bg.jpg')" }}
     >
-      {/* Sticky content container */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40">
-        <div className="max-w-7xl mx-auto h-full px-6 md:px-12 flex md:flex-row flex-col gap-12">
+        <div className="max-w-7xl mx-auto h-full px-6 md:px-12 
+          flex md:flex-row flex-col gap-18">
 
           {/* LEFT TEXT */}
-          <div className="text-white flex flex-col justify-center">
+          <div className="text-white flex flex-col justify-center max-w-lg">
             <p className="text-blue-200 tracking-wide mb-3 text-lg">
               Our Core Services
             </p>
@@ -92,22 +94,21 @@ export default function ServicesSection() {
             </h1>
 
             <p className="text-blue-100 text-lg max-w-md">
-              Discover our powerful range of services designed to accelerate
-              digital transformation and enable future-ready businesses.
+              Discover our powerful range of services designed to accelerate digital transformation and enable future-ready businesses.
             </p>
           </div>
 
           {/* RIGHT — SCROLLING CARDS */}
           <motion.div
             style={{ y: cardsY }}
-            className="space-y-8 pt-20"  // <— this ensures first card starts inside the section
+            className="space-y-8 pt-20 w-full md:w-[480px]"
           >
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-white/90 backdrop-blur-md rounded-lg overflow-hidden shadow-xl"
+                className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden"
               >
-                <div className="w-full h-50 overflow-hidden mb-4">
+                <div className="w-full h-48 md:h-56 overflow-hidden mb-4">
                   <Image
                     src={service.image}
                     width={800}
@@ -116,14 +117,13 @@ export default function ServicesSection() {
                     alt={service.title}
                   />
                 </div>
-              <div className="p-6 pt-0">
 
-                <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-700 text-sm">{service.desc}</p>
-              </div>
+                <div className="px-6 pb-6">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-700 text-sm">{service.desc}</p>
+                </div>
               </div>
             ))}
           </motion.div>
