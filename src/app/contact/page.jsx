@@ -1,8 +1,42 @@
 "use client";
 
+<<<<<<< HEAD
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import "leaflet/dist/leaflet.css";
+
+// Dynamically import (Leaflet cannot run on server)
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((m) => m.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((m) => m.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((m) => m.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(
+  () => import("react-leaflet").then((m) => m.Popup),
+  { ssr: false }
+);
+
+import L from "leaflet";
+
+const icon = new L.Icon({
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+});
+=======
 import MapSection from "./MapSection";
+>>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
 
 export default function ContactPage() {
+  // Offices Data
   const offices = [
     {
       country: "India",
@@ -47,18 +81,86 @@ export default function ContactPage() {
     },
   ];
 
+  // ------------------------------------
+  // FORM STATE
+  // ------------------------------------
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    jobTitle: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
+
+  // Handle change
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  // Submit Form → Backend API
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setStatus(null);
+
+  try {
+    const res = await fetch("http://localhost:8080/api/contact/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (!res.ok) throw new Error("API Error");
+
+    setStatus("success");
+
+    // Auto-hide success message after 3 seconds
+    setTimeout(() => {
+      setStatus(null);
+    }, 3000);
+
+    setForm({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      jobTitle: "",
+      subject: "New Project",
+      message: "",
+    });
+
+  } catch (err) {
+    setStatus("error");
+
+    // Auto-hide error message after 3 seconds
+    setTimeout(() => {
+      setStatus(null);
+    }, 3000);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="min-h-screen bg-background text-foreground px-6 py-16">
-
       {/* HEADING */}
       <h1 className="text-center text-4xl font-bold mb-12">
         Re(<span className="text-primary">AI</span>)magine your world with us
       </h1>
 
+<<<<<<< HEAD
+      {/* GRID */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+        {/* LEFT - Office Cards */}
+=======
       {/* 2-COLUMN GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
 
         {/* LEFT OFFICE CARDS */}
+>>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {offices.map((o, i) => (
             <div
@@ -69,8 +171,15 @@ export default function ContactPage() {
               <h4 className="font-bold mt-1">{o.company}</h4>
 
               <p className="text-sm mt-2 leading-relaxed">
+<<<<<<< HEAD
+                {o.address.map((line, j) => (
+                  <span key={j} className="block">
+                    {line}
+                  </span>
+=======
                 {o.address.map((line, idx) => (
                   <span key={idx} className="block">{line}</span>
+>>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
                 ))}
               </p>
 
@@ -80,44 +189,126 @@ export default function ContactPage() {
           ))}
         </section>
 
+<<<<<<< HEAD
+        {/* RIGHT - CONTACT FORM */}
+=======
         {/* RIGHT CONTACT FORM */}
+>>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
         <section className="bg-card border border-border rounded-xl p-8 shadow-sm h-fit">
-          <form className="grid grid-cols-1 gap-5">
-
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input className="bg-input border border-border p-3 rounded-lg" placeholder="First Name*" />
-              <input className="bg-input border border-border p-3 rounded-lg" placeholder="Last Name*" />
+              <input
+                name="firstName"
+                value={form.firstName}
+                onChange={handleChange}
+                className="bg-input border border-border p-3 rounded-lg"
+                placeholder="First Name*"
+                required
+              />
+              <input
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                className="bg-input border border-border p-3 rounded-lg"
+                placeholder="Last Name*"
+                required
+              />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input className="bg-input border border-border p-3 rounded-lg" placeholder="Email*" />
-              <input className="bg-input border border-border p-3 rounded-lg" placeholder="Phone*" />
+              <input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                type="email"
+                className="bg-input border border-border p-3 rounded-lg"
+                placeholder="Email*"
+                required
+              />
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                className="bg-input border border-border p-3 rounded-lg"
+                placeholder="Phone*"
+                required
+              />
             </div>
 
-            <input className="bg-input border border-border p-3 rounded-lg" placeholder="Job Title*" />
+            <input
+              name="jobTitle"
+              value={form.jobTitle}
+              onChange={handleChange}
+              className="bg-input border border-border p-3 rounded-lg"
+              placeholder="Job Title*"
+              required
+            />
 
-            <select className="bg-input border border-border p-3 rounded-lg">
+            <select
+              name="subject"
+              value={form.subject}
+              onChange={handleChange}
+              className="bg-input border border-border p-3 rounded-lg"
+            >
               <option>New Project</option>
               <option>Partnership</option>
               <option>Career</option>
             </select>
 
             <textarea
-              placeholder="How can we help?"
+              name="message"
+              value={form.message}
+              onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg h-32"
+              placeholder="How can we help?"
             />
 
-            <button className="bg-primary text-primary-foreground py-3 rounded-lg font-medium">
-              SEND MESSAGE
+            {/* BUTTON */}
+            <button
+              disabled={loading}
+              className="bg-primary text-primary-foreground py-3 rounded-lg font-medium hover:opacity-90"
+            >
+              {loading ? "Sending..." : "SEND MESSAGE"}
             </button>
+
+            {/* STATUS MESSAGES */}
+            {status === "success" && (
+              <p className="text-green-500 mt-2">Message sent successfully!</p>
+            )}
+            {status === "error" && (
+              <p className="text-red-500 mt-2">Something went wrong.</p>
+            )}
           </form>
         </section>
-
       </div>
 
+<<<<<<< HEAD
+      {/* MAP */}
+      <section className="max-w-7xl mx-auto mt-16 h-[500px] rounded-xl border border-border overflow-hidden">
+        <MapContainer
+          center={[20.0, 0.0]}
+          zoom={2}
+          scrollWheelZoom={false}
+          className="h-full w-full"
+        >
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+
+          {offices.map((o, i) => (
+            <Marker key={i} position={o.coords} icon={icon}>
+              <Popup>
+                <strong>{o.country}</strong>
+                <br />
+                {o.company}
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </section>
+=======
       {/* MAP BELOW */}
       <MapSection offices={offices} />
 
+>>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
     </div>
   );
 }
