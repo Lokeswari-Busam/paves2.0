@@ -11,7 +11,7 @@ export default function JoinUs() {
     offset: ["start end", "end start"],
   });
 
-  const imageX = useTransform(scrollYProgress, [0, 1], ["-20%", "70%"]);
+  const imageX = useTransform(scrollYProgress, [0, 1], ["10%", "70%"]);
   const textOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.2, 0.6], [60, 0]);
 
@@ -21,7 +21,7 @@ export default function JoinUs() {
         ref={wrapperRef}
         className="
           relative 
-          max-w-7xl mx-auto 
+          max-w-6xl mx-auto 
           h-[450px] sm:h-[500px] md:h-[600px] 
           flex items-center
         "

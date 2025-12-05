@@ -1,9 +1,9 @@
 "use client";
 
-<<<<<<< HEAD
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
+import MapSection from "./MapSection";
 
 // Dynamically import (Leaflet cannot run on server)
 const MapContainer = dynamic(
@@ -31,9 +31,6 @@ const icon = new L.Icon({
   iconSize: [25, 41],
   iconAnchor: [12, 41],
 });
-=======
-import MapSection from "./MapSection";
->>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
 
 export default function ContactPage() {
   // Offices Data
@@ -151,16 +148,10 @@ export default function ContactPage() {
         Re(<span className="text-primary">AI</span>)magine your world with us
       </h1>
 
-<<<<<<< HEAD
-      {/* GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* LEFT - Office Cards */}
-=======
       {/* 2-COLUMN GRID */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
 
         {/* LEFT OFFICE CARDS */}
->>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {offices.map((o, i) => (
             <div
@@ -171,15 +162,8 @@ export default function ContactPage() {
               <h4 className="font-bold mt-1">{o.company}</h4>
 
               <p className="text-sm mt-2 leading-relaxed">
-<<<<<<< HEAD
-                {o.address.map((line, j) => (
-                  <span key={j} className="block">
-                    {line}
-                  </span>
-=======
                 {o.address.map((line, idx) => (
                   <span key={idx} className="block">{line}</span>
->>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
                 ))}
               </p>
 
@@ -189,11 +173,7 @@ export default function ContactPage() {
           ))}
         </section>
 
-<<<<<<< HEAD
-        {/* RIGHT - CONTACT FORM */}
-=======
         {/* RIGHT CONTACT FORM */}
->>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
         <section className="bg-card border border-border rounded-xl p-8 shadow-sm h-fit">
           <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -282,33 +262,9 @@ export default function ContactPage() {
         </section>
       </div>
 
-<<<<<<< HEAD
-      {/* MAP */}
-      <section className="max-w-7xl mx-auto mt-16 h-[500px] rounded-xl border border-border overflow-hidden">
-        <MapContainer
-          center={[20.0, 0.0]}
-          zoom={2}
-          scrollWheelZoom={false}
-          className="h-full w-full"
-        >
-          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
-          {offices.map((o, i) => (
-            <Marker key={i} position={o.coords} icon={icon}>
-              <Popup>
-                <strong>{o.country}</strong>
-                <br />
-                {o.company}
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      </section>
-=======
       {/* MAP BELOW */}
       <MapSection offices={offices} />
 
->>>>>>> 3ad990de8eaf5d83e0299e35d1d555ad4162c34f
     </div>
   );
 }
