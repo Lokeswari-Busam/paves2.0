@@ -51,9 +51,6 @@ export default function IndustryVerticals() {
   },
 ];
 
-
-  
-
   const loopItems = [...items, ...items]; // 1–6–1–6 infinite loop
   const [index, setIndex] = useState(0);
 
@@ -144,23 +141,23 @@ export default function IndustryVerticals() {
 
         {/* Bottom Controls: fully below slider */}
         <div className="mt-8 flex justify-center items-center gap-6">
-          <button
+          {/* <button
             onClick={handlePrev}
             className="bg-blue-900 p-3 shadow text-white  hover:bg-blue-100 transition"
           >
             &#8592;
-          </button>
+          </button> */}
 
           <span className="font-semibold text-[#2a338b]">
             {index % items.length + 1} / {items.length}
           </span>
 
-          <button
+          {/* <button
             onClick={handleNext}
             className="bg-blue-900 p-3 shadow text-white  hover:bg-blue-100 transition"
           >
              &#8594;
-          </button>
+          </button> */}
         </div>
 
       </div>
