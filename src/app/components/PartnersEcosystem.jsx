@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+
 
 // ------------------------
 // Flip Card Component
@@ -84,19 +85,41 @@ export default function ServicesSection() {
     }
   ];
 
+  const [shapes, setShapes] = useState([]);
   // Generate geometric shapes
-  const shapes = [...Array(16)].map((_, i) => {
+
+  useEffect(() => {
+  const generatedShapes = Array.from({ length: 16 }, (_, i) => {
     const x = Math.random() * 400;
     const y = Math.random() * 300;
     const size = 40 + Math.random() * 50;
     const opacity = 0.05 + Math.random() * 0.15;
 
     return Math.random() > 0.5 ? (
-      <circle key={i} cx={x} cy={y} r={size / 2} fill="#4e5d94" opacity={opacity} />
+      <circle
+        key={i}
+        cx={x}
+        cy={y}
+        r={size / 2}
+        fill="#4e5d94"
+        opacity={opacity}
+      />
     ) : (
-      <rect key={i} x={x} y={y} width={size} height={size} fill="#4e5d94" opacity={opacity} />
+      <rect
+        key={i}
+        x={x}
+        y={y}
+        width={size}
+        height={size}
+        fill="#4e5d94"
+        opacity={opacity}
+      />
     );
   });
+
+  setShapes(generatedShapes);
+}, []);
+
 
   // -------- Flip Logic -----------
   const [activeIndex, setActiveIndex] = useState(null);
