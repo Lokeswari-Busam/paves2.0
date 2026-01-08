@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
@@ -23,16 +23,9 @@ const Popup = dynamic(
   { ssr: false }
 );
 
-import L from "leaflet";
-
-const icon = new L.Icon({
-  iconUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-});
-
 export default function ContactPage() {
+
+  const [icon, setIcon] = useState(null);
   // Offices Data
   const offices = [
     {
@@ -97,6 +90,22 @@ export default function ContactPage() {
   // Handle change
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
+
+  useEffect(() => {
+    // Leaflet runs ONLY in browser
+    const L = require("leaflet");
+
+    const leafletIcon = new L.Icon({
+      iconUrl:
+        "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+    });
+
+    setIcon(leafletIcon);
+  }, []);
+
+  if (!icon) return null; // avoid hydration issues
 
   // Submit Form → Backend API
   const handleSubmit = async (e) => {
