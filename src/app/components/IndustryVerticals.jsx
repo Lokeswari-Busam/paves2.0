@@ -70,7 +70,7 @@ export default function InfoCarousel() {
 
       {/* Section Heading */}
       <h2 className="text-5xl font-bold text-[#2a338b] text-center mb-16 z-10">
-        Our Services
+        Industry Verticals
       </h2>
 
       <div className="w-full max-w-6xl flex items-center justify-center z-10">

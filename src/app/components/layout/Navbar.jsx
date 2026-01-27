@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 
+
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

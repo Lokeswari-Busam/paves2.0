@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 export default function JoinUs() {
   const wrapperRef = useRef(null);
@@ -55,15 +56,14 @@ export default function JoinUs() {
             creativity, and meaningful impact.
           </p>
 
-          <div className="mt-8 flex justify-start gap-4">
-            <a
-              href="#jobs"
-              className="bg-white text-blue-900 px-6 py-3 rounded-xl font-semibold shadow hover:opacity-90"
-            >
-              Join Us
-            </a>
-           
-          </div>
+          <Link
+            href="/careers"
+            className="px-6 py-2 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
+            style={{ background: "#000080" }}
+          >
+            Join Us
+          </Link>
+
         </motion.div>
       </div>
     </section>
