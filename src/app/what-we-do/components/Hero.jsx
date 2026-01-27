@@ -139,7 +139,7 @@ export default function Hero({ title, breadcrumb = [], image, description }) {
           px-4 sm:px-6 lg:px-10
         "
       >
-        <div className="max-w-2xl">
+        <div className="max-w-2xl bg-white/80 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-0 p-3 sm:p-0 rounded-xl">
 
           {/* TITLE */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#2a3990] leading-tight">

@@ -91,84 +91,63 @@ export default function ServicesSection() {
       style={{ backgroundImage: "url('/assets/services_bg.jpg')" }}
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40">
-        <div className="max-w-7xl mx-auto h-full px-6 md:px-12 
-          flex md:flex-row flex-col gap-18">
+        <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 md:px-12 lg:px-16
+          flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 py-20 lg:py-0">
 
           {/* LEFT TEXT */}
-          <div className="text-white flex flex-col justify-center max-w-lg">
-            <p className="text-blue-200 tracking-wide mb-3 text-lg">
+          <div className="text-white flex flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl">
+            <p className="text-blue-200 tracking-wide mb-2 sm:mb-3 text-sm sm:text-base md:text-lg">
               Our Core Services
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-5 md:mb-6">
               Empowering Businesses Through Technology & Innovation
             </h1>
 
-            <p className="text-blue-100 text-lg max-w-md">
+            <p className="text-blue-100 text-sm sm:text-base md:text-lg max-w-full lg:max-w-md">
               Discover our powerful range of services designed to accelerate digital transformation and enable future-ready businesses.
             </p>
           </div>
 
           {/* RIGHT — SCROLLING CARDS */}
           <motion.div
-  style={{ y: cardsY }}
-  className="space-y-8 pt-20 w-full md:w-[480px]"
->
-  {services.map((service, index) => (
-    <Link
-      key={index}
-      href={`/${service.link}`}
-      className="block"   // makes whole card clickable
-    >
-      <div className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform">
-        <div className="w-full h-48 md:h-56 overflow-hidden mb-4">
-          <Image
-            src={service.image}
-            width={800}
-            height={580}
-            className="w-full h-full object-cover"
-            alt={service.title}
-          />
-        </div>
-
-        <div className="px-6 pb-6">
-          <h3 className="text-xl font-semibold text-blue-900 mb-2">
-            {service.title}
-          </h3>
-          <p className="text-gray-700 text-sm">{service.desc}</p>
-        </div>
-      </div>
-    </Link>
-  ))}
-</motion.div>
-          {/* <motion.div
             style={{ y: cardsY }}
-            className="space-y-8 pt-20 w-full md:w-[480px]"
+            className="space-y-4 sm:space-y-6 md:space-y-8 pt-8 sm:pt-12 md:pt-16 lg:pt-20 w-full lg:w-[480px] xl:w-[520px]"
           >
             {services.map((service, index) => (
-              <div
+              <Link
                 key={index}
-                className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden"
+                href={`/${service.link}`}
+                className="block"
               >
-                <div className="w-full h-48 md:h-56 overflow-hidden mb-4">
-                  <Image
-                    src={service.image}
-                    width={800}
-                    height={580}
-                    className="w-full h-full object-cover"
-                    alt={service.title}
-                  />
-                </div>
+                <motion.div 
+                  className="bg-white/90 backdrop-blur-md rounded-lg sm:rounded-xl shadow-xl overflow-hidden hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-full h-40 sm:h-48 md:h-56 overflow-hidden">
+                    <Image
+                      src={service.image}
+                      width={800}
+                      height={580}
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                      alt={service.title}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 480px"
+                    />
+                  </div>
 
-                <div className="px-6 pb-6">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-700 text-sm">{service.desc}</p>
-                </div>
-              </div>
+                  <div className="px-4 sm:px-5 md:px-6 pb-4 sm:pb-5 md:pb-6 pt-3 sm:pt-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-blue-900 mb-1.5 sm:mb-2 leading-tight">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
-          </motion.div> */}
+          </motion.div>
 
         </div>
       </div>

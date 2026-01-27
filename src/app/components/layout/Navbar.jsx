@@ -1,21 +1,27 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 
-
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [activeSubmenu, setActiveSubmenu] = useState(null);
   const [activeSubSubmenu, setActiveSubSubmenu] = useState(null);
+  
+  // Mobile accordion states
+  const [mobileOpenMenus, setMobileOpenMenus] = useState({});
+  const [mobileOpenSubmenus, setMobileOpenSubmenus] = useState({});
+  const [mobileOpenSubSubmenus, setMobileOpenSubSubmenus] = useState({});
+  
   const dropdownRefs = useRef({});
   const submenuRefs = useRef({});
   const subSubmenuRefs = useRef({});
+  const mobileMenuRefs = useRef({});
   const hideTimeout = useRef(null);
 
   useEffect(() => {
@@ -40,6 +46,7 @@ export function Navigation() {
         onStart: () => (ref.style.display = "block"),
       }
     );
+
     const items = ref.querySelectorAll(".submenu-item");
     gsap.fromTo(
       items,
@@ -129,6 +136,28 @@ export function Navigation() {
   const handleSubSubmenuLeave = (subSubmenu) => {
     hideDropdown(subSubmenuRefs.current[subSubmenu]);
     setActiveSubSubmenu(null);
+  };
+
+  // Mobile accordion toggle functions
+  const toggleMobileMenu = (key) => {
+    setMobileOpenMenus(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const toggleMobileSubmenu = (key) => {
+    setMobileOpenSubmenus(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const toggleMobileSubSubmenu = (key) => {
+    setMobileOpenSubSubmenus(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
   };
 
   const navLinks = [
@@ -272,7 +301,10 @@ export function Navigation() {
           title: "Management and Advisory Board",
           href: "/who-we-are/management-advisory-board",
         },
-        { title: "Technology Council", href: "/who-we-are/technology-council" },
+        {
+          title: "Technology Council",
+          href: "/who-we-are/technology-council",
+        },
       ],
     },
     { title: "Paves AI Labs", href: "/paves-ai-labs" },
@@ -282,31 +314,31 @@ export function Navigation() {
 
   return (
     <nav
-      className={` top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-lg py-2" : "bg-white py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="shrink-0">
+          <div className="flex-shrink-0">
             <Link href="/">
               <Image
-                src="/assets/logo.png"
+                src="/assets/logo.png" // Update this path to your actual logo
                 alt="Paves Technologies Logo"
-                width={130}
-                height={45}
-                className="object-contain cursor-pointer"
+                width={120}
+                height={40}
+                className="h-8 w-auto sm:h-10"
               />
             </Link>
           </div>
 
-          {/* Center Nav Links */}
-          <div className="hidden md:flex items-center gap-8 flex-1 justify-center">
+          {/* Desktop Nav Links - Hidden on mobile and tablet */}
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navLinks.map((link) => (
               <div
                 key={link.title}
-                className="relative"
+                className="relative group"
                 onMouseEnter={() => handleMouseEnter(link.title)}
                 onMouseLeave={() => handleMouseLeave(link.title)}
                 onClick={(e) => {
@@ -314,12 +346,12 @@ export function Navigation() {
                   if (link.href) window.location.href = link.href;
                 }}
               >
-                <div className="flex items-center my-4 gap-1 cursor-pointer text-sm font-semibold tracking-wide text-gray-900 hover:text-[#000080] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-[#000080] after:transition-all after:duration-300 hover:after:w-full">
+                <button className="flex items-center gap-1 px-3 py-2 text-xs xl:text-sm font-medium text-gray-900 hover:text-[#000080] transition-colors duration-200 whitespace-nowrap">
                   {link.title.toUpperCase()}
-                  {link.submenu && <ChevronDown size={16} />}
-                </div>
+                  {link.submenu && <ChevronDown className="w-3 h-3 xl:w-4 xl:h-4" />}
+                </button>
 
-                {/* Dropdown */}
+                {/* Desktop Dropdown */}
                 {link.submenu && (
                   <div
                     ref={(el) => (dropdownRefs.current[link.title] = el)}
@@ -328,7 +360,7 @@ export function Navigation() {
                     {link.submenu.map((sub) => (
                       <div
                         key={sub.title}
-                        className="submenu-item relative group"
+                        className="relative submenu-item"
                         onMouseEnter={() => handleSubmenuEnter(sub.title)}
                         onMouseLeave={() => handleSubmenuLeave(sub.title)}
                         onClick={(e) => {
@@ -336,9 +368,9 @@ export function Navigation() {
                           if (sub.href) window.location.href = sub.href;
                         }}
                       >
-                        <div className="flex justify-between items-center px-3 py-1.5 rounded-md text-gray-800 font-medium hover:bg-gray-100 cursor-pointer">
+                        <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#000080] rounded-md transition-colors duration-200 cursor-pointer">
                           {sub.title}
-                          {sub.subitems && <ChevronRight size={16} />}
+                          {sub.subitems && <ChevronRight className="w-4 h-4" />}
                         </div>
 
                         {sub.subitems && (
@@ -349,7 +381,7 @@ export function Navigation() {
                             {sub.subitems.map((item) => (
                               <div
                                 key={item.title}
-                                className="submenu-item relative group"
+                                className="relative submenu-item"
                                 onMouseEnter={() =>
                                   handleSubSubmenuEnter(item.title)
                                 }
@@ -358,13 +390,14 @@ export function Navigation() {
                                 }
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  if (item.href)
-                                    window.location.href = item.href;
+                                  if (item.href) window.location.href = item.href;
                                 }}
                               >
-                                <div className="flex justify-between items-center px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-pointer">
+                                <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#000080] rounded-md transition-colors duration-200 cursor-pointer">
                                   {item.title}
-                                  {item.subitems && <ChevronRight size={14} />}
+                                  {item.subitems && (
+                                    <ChevronRight className="w-4 h-4" />
+                                  )}
                                 </div>
 
                                 {item.subitems && (
@@ -379,7 +412,7 @@ export function Navigation() {
                                         <Link
                                           key={child.title}
                                           href={child.href}
-                                          className="block px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100"
+                                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#000080] rounded-md transition-colors duration-200"
                                           onClick={(e) => e.stopPropagation()}
                                         >
                                           {child.title}
@@ -387,7 +420,7 @@ export function Navigation() {
                                       ) : (
                                         <div
                                           key={child.title}
-                                          className="block px-3 py-1.5 text-gray-700 rounded-md hover:bg-gray-100 cursor-default"
+                                          className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#000080] rounded-md transition-colors duration-200 cursor-pointer"
                                         >
                                           {child.title}
                                         </div>
@@ -407,17 +440,172 @@ export function Navigation() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <Link
-            href="/contact"
-            className="px-6 py-2 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
-            style={{ background: "#000080" }}
-          >
-            Contact Us
-          </Link>
+          {/* Desktop Contact Button */}
+          <div className="hidden lg:block">
+            <Link
+              href="/contact"
+              className="bg-[#000080] text-white px-4 xl:px-6 py-2 rounded-md text-xs xl:text-sm font-medium hover:bg-blue-900 transition-colors duration-200 whitespace-nowrap"
+            >
+              Contact Us
+            </Link>
+          </div>
 
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 rounded-md text-gray-900 hover:text-[#000080] focus:outline-none"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu - Accordion Style */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto">
+          <div className="px-4 py-2 space-y-1">
+            {navLinks.map((link) => (
+              <div key={link.title} className="border-b border-gray-100 last:border-b-0">
+                {/* Top Level Link */}
+                <div className="flex items-center justify-between">
+                  {link.href && !link.submenu ? (
+                    <Link
+                      href={link.href}
+                      className="flex-1 py-3 text-base font-medium text-gray-900 hover:text-[#000080] transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.title}
+                    </Link>
+                  ) : (
+                    <>
+                      <Link
+                        href={link.href || "#"}
+                        className="flex-1 py-3 text-base font-medium text-gray-900 hover:text-[#000080] transition-colors"
+                        onClick={(e) => {
+                          if (!link.submenu) {
+                            setIsMobileMenuOpen(false);
+                          }
+                        }}
+                      >
+                        {link.title}
+                      </Link>
+                      {link.submenu && (
+                        <button
+                          onClick={() => toggleMobileMenu(link.title)}
+                          className="p-3 text-gray-600 hover:text-[#000080] transition-colors"
+                        >
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform duration-200 ${
+                              mobileOpenMenus[link.title] ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      )}
+                    </>
+                  )}
+                </div>
+
+                {/* Submenu Level 1 */}
+                {link.submenu && mobileOpenMenus[link.title] && (
+                  <div className="pl-4 pb-2 space-y-1">
+                    {link.submenu.map((sub) => (
+                      <div key={sub.title} className="border-l-2 border-gray-200 pl-3">
+                        <div className="flex items-center justify-between">
+                          <Link
+                            href={sub.href || "#"}
+                            className="flex-1 py-2 text-sm font-medium text-gray-700 hover:text-[#000080] transition-colors"
+                            onClick={(e) => {
+                              if (!sub.subitems) {
+                                setIsMobileMenuOpen(false);
+                              }
+                            }}
+                          >
+                            {sub.title}
+                          </Link>
+                          {sub.subitems && (
+                            <button
+                              onClick={() => toggleMobileSubmenu(sub.title)}
+                              className="p-2 text-gray-600 hover:text-[#000080] transition-colors"
+                            >
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform duration-200 ${
+                                  mobileOpenSubmenus[sub.title] ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Submenu Level 2 */}
+                        {sub.subitems && mobileOpenSubmenus[sub.title] && (
+                          <div className="pl-3 pb-1 space-y-1">
+                            {sub.subitems.map((item) => (
+                              <div key={item.title} className="border-l-2 border-gray-200 pl-3">
+                                <div className="flex items-center justify-between">
+                                  <Link
+                                    href={item.href || "#"}
+                                    className="flex-1 py-2 text-sm text-gray-600 hover:text-[#000080] transition-colors"
+                                    onClick={(e) => {
+                                      if (!item.subitems) {
+                                        setIsMobileMenuOpen(false);
+                                      }
+                                    }}
+                                  >
+                                    {item.title}
+                                  </Link>
+                                  {item.subitems && (
+                                    <button
+                                      onClick={() => toggleMobileSubSubmenu(item.title)}
+                                      className="p-2 text-gray-600 hover:text-[#000080] transition-colors"
+                                    >
+                                      <ChevronDown
+                                        className={`w-4 h-4 transition-transform duration-200 ${
+                                          mobileOpenSubSubmenus[item.title] ? "rotate-180" : ""
+                                        }`}
+                                      />
+                                    </button>
+                                  )}
+                                </div>
+
+                                {/* Submenu Level 3 */}
+                                {item.subitems && mobileOpenSubSubmenus[item.title] && (
+                                  <div className="pl-3 pb-1 space-y-1">
+                                    {item.subitems.map((child) => (
+                                      <Link
+                                        key={child.title}
+                                        href={child.href || "#"}
+                                        className="block py-2 text-sm text-gray-600 hover:text-[#000080] transition-colors border-l-2 border-gray-200 pl-3"
+                                        onClick={() => setIsMobileMenuOpen(false)}
+                                      >
+                                        {child.title}
+                                      </Link>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Mobile Contact Button */}
+            <div className="pt-4 pb-2">
+              <Link
+                href="/contact"
+                className="block w-full bg-[#000080] text-white px-6 py-3 rounded-md text-base font-medium hover:bg-blue-900 transition-colors duration-200 text-center"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
