@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Breadcrumb from "../components/Breadcrumb";
 
 // ---------------------------------------------------
 // PAGE ANIMATION VARIANT
@@ -28,10 +29,13 @@ function TechCouncilHeader() {
         <h2 className="text-5xl md:text-5xl font-semibold text-[#2a3990] leading-snug mb-4">
           Technology Council
         </h2>
-        <h1 className="text-2xl font-bold text-primary mb-3 tracking-wide">
-          Paves Technologies &gt; Technology Council
-        </h1>
-      </div>
+        <Breadcrumb
+        items={[
+          { label: "Paves Technologies", href: "/" },
+          { label: "technology-council" }
+        ]}
+      />
+        </div>
 
       {/* Right side Image */}
       <div className="relative md:w-1/2 h-[500px] md:h-auto">

@@ -1,149 +1,161 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { ArrowUp, Mail, Linkedin, Twitter } from "lucide-react"
+import Image from "next/image";
+import {
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+  FaFacebook,
+  FaInstagram,
+} from "react-icons/fa";
 
-export function Footer() {
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
-  const [showScrollTop, setShowScrollTop] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
-
+export default function Footer() {
   return (
-    <footer className="relative w-full bg-linear-to-r from-slate-900 via-slate-800 to-slate-900">
-      {/* Content */}
-      <div className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-7xl mx-auto">
-          {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            {/* Company Info */}
-            <div>
-              <div
-                className="text-2xl font-bold bg-clip-text text-transparent mb-4"
-                style={{ backgroundImage: "linear-gradient(to right, #d23369, #86163c)" }}
-              >
-                Paves
+    <>
+      {/* CONNECT BAR */}
+      <section className="bg-[#1a1d24] py-8 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
+          <div className="inline-flex items-center gap-8">
+            <h3 className="text-base font-semibold text-white tracking-wide">
+              Connect
+            </h3>
+
+            <div className="flex flex-wrap gap-6 text-gray-300 text-sm">
+              <div className="link flex items-center gap-1">
+                <FaFacebook /> <span>Facebook</span>
               </div>
-              <p className="text-gray-300 text-sm mb-4">
-                Empowering businesses through innovative technology solutions and strategic partnerships.
-              </p>
-              {/* Social Links */}
-              <div className="flex gap-4">
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-slate-700/30 border border-slate-600/50 text-gray-300 hover:text-[#d23369] hover:border-[#d23369]/50 transition-all"
-                >
-                  <Mail size={18} />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-slate-700/30 border border-slate-600/50 text-gray-300 hover:text-[#d23369] hover:border-[#d23369]/50 transition-all"
-                >
-                  <Linkedin size={18} />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-slate-700/30 border border-slate-600/50 text-gray-300 hover:text-[#d23369] hover:border-[#d23369]/50 transition-all"
-                >
-                  <Twitter size={18} />
-                </a>
+              <div className="link flex items-center gap-1">
+                <FaTwitter /> <span>Twitter</span>
               </div>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-white font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                {["Home", "About", "Services", "Careers"].map((link) => (
-                  <li key={link}>
-                    <a
-                      href={`#${link.toLowerCase()}`}
-                      className="text-gray-300 hover:text-[#d23369] transition-colors text-sm"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h3 className="text-white font-bold mb-4">Services</h3>
-              <ul className="space-y-2">
-                {["Software Dev", "Cloud Solutions", "IT Consulting", "DevOps"].map((service) => (
-                  <li key={service}>
-                    <a href="#services" className="text-gray-300 hover:text-[#d23369] transition-colors text-sm">
-                      {service}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-white font-bold mb-4">Contact</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>
-                  <a href="mailto:hello@pavestechnologies.com" className="hover:text-[#d23369] transition-colors">
-                    hello@pavestechnologies.com
-                  </a>
-                </li>
-                <li>
-                  <a href="tel:+15551234567" className="hover:text-[#d23369] transition-colors">
-                    +1 (555) 123-4567
-                  </a>
-                </li>
-                <li className="text-gray-400">San Francisco, CA</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-[#3a4aac]/30 mb-6" />
-
-          {/* Bottom Bar */}
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} Paves Technologies. All rights reserved.
-            </p>
-            <div className="flex gap-4 md:gap-8">
-              <a href="#" className="text-gray-400 hover:text-[#d23369] text-sm transition-colors">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-[#d23369] text-sm transition-colors">
-                Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-[#d23369] text-sm transition-colors">
-                Cookie Policy
-              </a>
+              <div className="link flex items-center gap-1">
+                <FaInstagram /> <span>Instagram</span>
+              </div>
+              <div className="link flex items-center gap-1">
+                <FaLinkedin /> <span>LinkedIn</span>
+              </div>
+              <div className="link flex items-center gap-1">
+                <FaYoutube /> <span>YouTube</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Scroll to Top Button */}
-      <button
-        onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 h-12 w-12 rounded-full text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 z-40 ${
-          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12 pointer-events-none"
-        }`}
-        style={{ background: "linear-gradient(135deg, #d23369, #86163c)" }}
-      >
-        <ArrowUp size={20} />
-      </button>
-    </footer>
-  )
+      {/* MAIN FOOTER */}
+      <footer className="bg-[#0d0f16] text-gray-300 pt-10 pb-10">
+        {/* 5 Columns */}
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+
+          {/* COMPANY DESCRIPTION */}
+          <div>
+            <Image
+              src="/assets/logo.png"
+              width={130}
+              height={55}
+              alt="Paves Technologies"
+              className="mb-3"
+            />
+
+            <p className="text-xs text-gray-400 leading-5 mb-5 pr-4">
+              Paves Technologies delivers AI-driven solutions across financial
+              services, governance, compliance, cloud modernization, and
+              next-generation digital engineering transformation.
+            </p>
+          </div>
+
+          {/* COMPANY LINKS */}
+          <div>
+            <h4 className="footer-heading-small">Company</h4>
+            <ul className="footer-links-small">
+              <li>About Paves</li>
+              <li>Management & Advisory Board</li>
+              <li>Technology Council</li>
+            </ul>
+          </div>
+
+          {/* EXPLORE */}
+          <div>
+            <h4 className="footer-heading-small">Explore</h4>
+            <ul className="footer-links-small">
+              <li>Paves AI Labs</li>
+              <li>Insights</li>
+              <li>Careers</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+
+          {/* INDUSTRY VERTICALS */}
+          <div>
+            <h4 className="footer-heading-small">Industry Verticals</h4>
+            <ul className="footer-links-small">
+              <li>Payments</li>
+              <li>Banking</li>
+              <li>Insurance</li>
+              <li>Capital Markets</li>
+              <li>Gov, Risk & Compliance</li>
+            </ul>
+          </div>
+
+          {/* SERVICES */}
+          <div>
+            <h4 className="footer-heading-small">Services</h4>
+            <ul className="footer-links-small">
+              <li>Artificial Intelligence</li>
+              <li>Cloud Engineering & DevOps</li>
+              <li>Data & Analytics</li>
+              <li>Cyber Security</li>
+              <li>Enterprise Automation</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-10 border-t border-gray-800 pt-5 flex flex-col md:flex-row justify-between text-xs text-gray-500">
+          <p>© 2025 Paves Technologies. All Rights Reserved.</p>
+
+          <div className="flex gap-5 mt-3 md:mt-0">
+            <p className="hover-link">Privacy Policy</p>
+            <p className="hover-link">Terms of Use</p>
+            <p className="hover-link">Legal</p>
+          </div>
+        </div>
+
+        {/* Animations + Smaller Typography */}
+        <style jsx>{`
+          .footer-heading-small {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+
+          .footer-links-small li {
+            color: #aab0bc;
+            margin-bottom: 0.35rem;
+            cursor: pointer;
+            font-size: 0.78rem;
+            transition: 0.2s ease;
+          }
+
+          .footer-links-small li:hover {
+            color: #fff;
+            transform: translateX(3px);
+          }
+
+          .link {
+            cursor: pointer;
+            transition: 0.25s ease;
+            font-size: 0.85rem;
+          }
+
+          .link:hover {
+            color: white;
+            transform: translateY(-2px);
+          }
+        `}</style>
+      </footer>
+    </>
+  );
 }

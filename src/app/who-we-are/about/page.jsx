@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Breadcrumb from "../components/Breadcrumb";
 import { motion } from "framer-motion";
 import {
   Cpu,
@@ -36,9 +37,12 @@ export default function AboutPage() {
             ABOUT
           </h2>
 
-          <h1 className="text-2xl font-bold text-primary mb-3 tracking-wide">
-            Paves Technologies &gt; About
-          </h1>
+          <Breadcrumb
+          items={[
+            { label: "Paves Technologies", href: "/" },
+            { label: "About" }
+          ]}
+        />
         </motion.div>
 
         {/* RIGHT SIDE IMAGE */}
