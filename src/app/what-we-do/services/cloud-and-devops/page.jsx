@@ -32,7 +32,7 @@ export default function CloudAndDevopsPage() {
             "Cloud Cost Optimization & AI-Powered Monitoring",
           ].map((item, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary text-white font-semibold rounded-full shadow">
+              <div className="flex items-center justify-center min-w-8 w-8 h-8 bg-primary text-white font-semibold rounded-full shadow">
                 {`0${index + 1}`}
               </div>
               <p className="text-lg text-gray-800 leading-relaxed">{item}</p>

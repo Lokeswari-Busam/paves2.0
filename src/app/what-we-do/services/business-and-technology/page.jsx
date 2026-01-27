@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function BusinessAndTechnologyPage() {
   return (
-    <main className="bg-white min-h-screen">
+    <main className="bg-white">
 
           
 

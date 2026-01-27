@@ -85,112 +85,128 @@ export default function ServicesPage() {
 
   return (
     <main className="bg-white text-gray-900">
+  {/* HERO */}
+  <Hero
+    title="Services"
+    description="We deliver technology solutions that help organizations innovate, scale, and stay future-ready."
+    image="/assets/what_we_do_hero.jpeg"
+    breadcrumb={[
+      { label: "Paves Technologies", href: "/" },
+      { label: "What We Do", href: "/what-we-do" },
+      { label: "Services" },
+    ]}
+  />
 
-      {/* HERO */}
-     <Hero
-  title="Services"
-  description="We deliver technology solutions that help organizations innovate, scale, and stay future-ready."
-  image="/assets/what_we_do_hero.jpeg"
-  breadcrumb={[
-    {
-      label: "Paves Technologies",
-      href: "/",                    
-    },
-    {
-      label: "What We Do",
-      href: "/what-we-do",          
-    },
-    {
-      label: "Services"              
-    }
-  ]}
-/>
+  {/* SERVICES GRID */}
+  <section className="relative bg-gray-50 overflow-hidden py-12 sm:py-16 lg:py-20">
+    <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 sm:mb-10 text-center">
+        Services We Provide
+      </h3>
 
-
-          {/* SERVICES GRID — MATCHING INDUSTRY VERTICALS STYLE */}
-      <section className="relative bg-gray-50 overflow-hidden py-16">
-        <div className="relative z-10 max-w-7xl mx-auto px-6">
-          <h3 className="text-3xl font-bold text-gray-900 mb-10 text-center">
-            Services We Provide
-          </h3>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.08 } },
-            }}
-            className="grid gap-8 md:grid-cols-2"
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.08 } },
+        }}
+        className="grid gap-6 sm:gap-8 md:grid-cols-2"
+      >
+        {services.map((service, idx) => (
+          <Link
+            key={idx}
+            href={`/what-we-do${service.href}`}
+            className="block group"
           >
-            {services.map((service, idx) => (
-              <Link
-                key={idx}
-                href={`/what-we-do${service.href}`}
-                className="block group"
+            <motion.article
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.5, ease: "easeOut" },
+                },
+              }}
+              className="
+                relative
+                flex flex-col sm:flex-row
+                sm:items-center
+                gap-4 sm:gap-6
+                bg-white
+                rounded-xl
+                p-5 sm:p-6
+                shadow-sm
+                border border-gray-100
+                hover:shadow-lg hover:-translate-y-1
+                transition-all
+                cursor-pointer
+              "
+            >
+              {/* ICON */}
+              <div
+                className="
+                  shrink-0
+                  w-12 h-12 sm:w-14 sm:h-14 sm:self-center
+                  rounded-full
+                  bg-[#d23369]
+                  flex items-center justify-center
+                  group-hover:scale-110
+                  transition-transform
+                "
               >
-                <motion.article
-                  variants={{
-                    hidden: { opacity: 0, y: 20 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.5, ease: "easeOut" },
-                    },
-                  }}
-                  className="relative flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm 
-                             border border-gray-100 hover:shadow-lg hover:-translate-y-1 
-                             transition-all cursor-pointer"
+                {React.cloneElement(service.icon, {
+                  className: "w-6 h-6 sm:w-7 sm:h-7 text-white",
+                  strokeWidth: 1.8,
+                })}
+              </div>
+
+              {/* TEXT */}
+              <div className="flex-1">
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-1">
+                  {service.title}
+                </h4>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {service.desc}
+                </p>
+              </div>
+
+              {/* ARROW */}
+              <div className="self-end sm:self-auto shrink-0">
+                <div
+                  className="
+                    w-10 h-10 sm:w-9 sm:h-9
+                    rounded-full
+                    bg-[#dbe1ff]
+                    inline-flex items-center justify-center
+                    group-hover:bg-[#c9d4ff]
+                    transition
+                  "
                 >
-                  {/* ICON */}
-                  <div className="flex-shrink-0 w-14 h-14 rounded-full bg-[#d23369] 
-                                  flex items-center justify-center group-hover:scale-110 
-                                  transition-transform">
-                    {React.cloneElement(service.icon, {
-                      className: "w-7 h-7 text-white",
-                      strokeWidth: 1.8,
-                    })}
-                  </div>
+                  <svg
+                    className="w-4 h-4 text-[#2a3990]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14M12 5l7 7-7 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </motion.article>
+          </Link>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+</main>
 
-                  {/* TEXT */}
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                      {service.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-
-                  {/* ARROW CIRCLE (same as Industry Verticals) */}
-                  <div className="flex-shrink-0">
-                    <div className="w-9 h-9 rounded-full bg-[#dbe1ff] 
-                                    inline-flex items-center justify-center 
-                                    group-hover:bg-[#c9d4ff] transition">
-                      <svg
-                        className="w-4 h-4 text-[#2a3990]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 12h14M12 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </motion.article>
-              </Link>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-
-    </main>
   );
 }
+

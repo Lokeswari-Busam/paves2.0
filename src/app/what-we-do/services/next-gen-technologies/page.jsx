@@ -47,7 +47,7 @@ export default function NextGenTechnologies() {
             {/* -------- 1 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   01
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -65,7 +65,7 @@ export default function NextGenTechnologies() {
             {/* -------- 2 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   02
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -83,7 +83,7 @@ export default function NextGenTechnologies() {
             {/* -------- 3 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   03
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -101,7 +101,7 @@ export default function NextGenTechnologies() {
             {/* -------- 4 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   04
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -119,7 +119,7 @@ export default function NextGenTechnologies() {
             {/* -------- 5 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   05
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
