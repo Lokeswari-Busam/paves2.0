@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function PaymentsHero({ title, description, breadcrumb = [] }) {
   return (
-    <header className="relative w-full py-20 bg-[#2a3990] overflow-hidden text-white">
+    <header className="relative w-full py-12 sm:py-16 md:py-20 bg-[#2a3990] overflow-hidden text-white">
 
       {/* Decorative SVG Pattern */}
       <svg
@@ -33,20 +33,20 @@ export default function PaymentsHero({ title, description, breadcrumb = [] }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="relative z-10 max-w-5xl mx-auto px-6"
+        className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6"
       >
-        <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-2 sm:mb-3">
           {title}
         </h1>
 
         {description && (
-          <p className="text-white/90 text-lg max-w-2xl leading-relaxed">
+          <p className="text-white/90 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed">
             {description}
           </p>
         )}
 
         {/* Breadcrumb */}
-        <div className="mt-4 flex items-center gap-2 flex-wrap text-sm">
+        <div className="mt-3 sm:mt-4 flex items-center gap-1 sm:gap-2 flex-wrap text-xs sm:text-sm">
           {breadcrumb.map((item, idx) => (
             <span key={idx} className="flex items-center gap-2">
               {item.href ? (
@@ -59,7 +59,9 @@ export default function PaymentsHero({ title, description, breadcrumb = [] }) {
               ) : (
                 <span className="text-white/60">{item.label}</span>
               )}
-              {idx < breadcrumb.length - 1 && <span className="text-white/40">›</span>}
+              {idx < breadcrumb.length - 1 && (
+                <span className="text-white/40">›</span>
+              )}
             </span>
           ))}
         </div>

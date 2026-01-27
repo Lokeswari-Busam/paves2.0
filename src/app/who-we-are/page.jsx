@@ -1,138 +1,87 @@
-"use client"
+"use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 export default function WhoWeArePage() {
-    // ✅ Animation Variants
-const zoomIn = {
-  hidden: { opacity: 0, scale: 0.85 },
-  visible: { opacity: 1, scale: 1 },
-};
-  /* ✅ HERO */
-  const Hero = ({ title }) => (
-    <section className="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
-            <Image
-              src="/assets/business-team-meeting-modern-office-with-city-view.jpg"
-              alt="Who We Are"
-              fill
-              className="object-cover scale-105"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
-    
-            <motion.div
-              initial="hidden"
-              animate="visible"
-                variants={zoomIn}
-              transition={{ duration: 0.9 }}
-              className="relative z-10 max-w-4xl px-6 text-white"
-            >
-              <motion.h1
-                className="text-7xl md:text-6xl font-bold mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                Who We Are
-              </motion.h1>
-              <motion.p
-                className="text-lg md:text-xl text-gray-200 leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-              >
-                
-              </motion.p>
-              <motion.p
-                className="text-md md:text-lg text-gray-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                At <span className="font-semibold">Paves Technologies</span>, our mission is
-                to simplify digital transformation with clarity, precision, and innovation.
-              </motion.p>
-            </motion.div>
-          </section>
-    
+  const zoomIn = {
+    hidden: { opacity: 0, scale: 0.85 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  const Hero = () => (
+    <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center overflow-hidden">
+      <Image
+        src="/assets/business-team-meeting-modern-office-with-city-view.jpg"
+        alt="Who We Are"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent" />
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={zoomIn}
+        transition={{ duration: 0.9 }}
+        className="relative z-10 max-w-4xl px-4 sm:px-6 text-white"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+          Who We Are
+        </h1>
+
+        <p className="text-sm sm:text-base md:text-lg text-gray-300">
+          At <span className="font-semibold">Paves Technologies</span>, our mission
+          is to simplify digital transformation with clarity, precision, and
+          innovation.
+        </p>
+      </motion.div>
+    </section>
   );
 
-  /* ✅ SECTION INTRO */
-  const SectionIntro = ({ title, text }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7 }}
-      className="mb-16"
-    >
-      <h2 className="text-5xl font-semibold mb-4 text-[#2a3990]">{title}</h2>
-      <p className="text-gray-700 leading-relaxed text-lg">{text}</p>
-    </motion.div>
-  );
-
-  /* ✅ INFO CARD */
   const InfoCard = ({ title, text, href }) => (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 40 }}
       transition={{ duration: 0.6 }}
-      className="bg-white rounded-2xl p-10 shadow-md hover:shadow-xl hover:scale-[1.03] transition-all border border-gray-200"
+      viewport={{ once: true }}
+      className="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition border"
     >
-      <h3 className="text-2xl font-semibold mb-4 text-[#2a3990]">{title}</h3>
+      <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-[#2a3990]">
+        {title}
+      </h3>
       <p className="text-gray-600 mb-6">{text}</p>
 
-      <Link
-        href={href}
-        className="inline-flex items-center text-[#2a3990] font-medium hover:underline"
-      >
+      <Link href={href} className="inline-flex items-center text-[#2a3990] font-medium hover:underline">
         Read More <ArrowRight size={18} className="ml-1" />
       </Link>
     </motion.div>
   );
 
-  /* ✅ CTA SECTION */
-  const CTASection = () => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.7 }}
-      className="mt-24 text-center"
-    >
-      <h2 className="text-3xl font-bold text-[#2a3990] mb-4">
-        Join Us in Building the Future
-      </h2>
-
-      <p className="text-gray-600 mb-8">
-        Explore our vision, leadership, and technological direction.
-      </p>
-
-      <Link href="/careers">
-        <button className="px-8 py-3 bg-indigo-900 hover:bg-[#2a3990] transition-all rounded-xl text-white text-lg font-semibold flex items-center gap-2 mx-auto shadow-lg">
-          Explore Careers <ArrowRight size={20} />
-        </button>
-      </Link>
-    </motion.div>
-  );
-
-  /* ✅ FINAL PAGE JSX */
   return (
-    <div className="min-h-screen bg-[#F7FAFF] text-[#2a3990]">
+    <div className="bg-[#F7FAFF]">
+      <Hero />
 
-      <Hero title="Who We Are" />
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-6 text-[#2a3990]">
+          Our Identity
+        </h2>
 
-      <div className="max-w-6xl mx-auto px-10 py-14 text-[#2a3990]">
-        <SectionIntro
-          title="Our Identity"
-          text="At Paves Technologies, we blend innovation, vision, and leadership to create a 
-          future-ready technology ecosystem. Our journey is powered by experienced professionals, 
-          a strong advisory board, and a forward-thinking technology council that drives research, strategy,
-          and transformation."
-        />
+        <p className="text-gray-700 text-base sm:text-lg mb-12 leading-relaxed">
+          At Paves Technologies, we blend innovation, vision, and leadership to
+          create a future-ready technology ecosystem. Our journey is powered by
+          experienced professionals, a strong advisory board, and a
+          forward-thinking technology council that drives research, strategy, and
+          transformation.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <InfoCard
             title="About Us"
             text="Learn our story, mission, and how we aim to reshape the digital future through engineering excellence and innovation."
@@ -151,8 +100,7 @@ const zoomIn = {
             href="/who-we-are/technology-council/"
           />
         </div>
-        
-      </div>
+      </section>
     </div>
   );
 }
