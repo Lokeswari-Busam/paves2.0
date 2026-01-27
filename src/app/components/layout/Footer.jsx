@@ -13,28 +13,33 @@ export default function Footer() {
   return (
     <>
       {/* CONNECT BAR */}
-      <section className="bg-[#1a1d24] py-8 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
-          <div className="inline-flex items-center gap-8">
-            <h3 className="text-base font-semibold text-white tracking-wide">
+      <section className="bg-[#1a1d24] py-6 sm:py-8 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+            <h3 className="text-sm sm:text-base font-semibold text-white tracking-wide">
               Connect
             </h3>
 
-            <div className="flex flex-wrap gap-6 text-gray-300 text-sm">
-              <div className="link flex items-center gap-1">
-                <FaFacebook /> <span>Facebook</span>
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-gray-300 text-xs sm:text-sm">
+              <div className="link flex items-center gap-1.5 sm:gap-2">
+                <FaFacebook className="text-base sm:text-lg" /> 
+                <span>Facebook</span>
               </div>
-              <div className="link flex items-center gap-1">
-                <FaTwitter /> <span>Twitter</span>
+              <div className="link flex items-center gap-1.5 sm:gap-2">
+                <FaTwitter className="text-base sm:text-lg" /> 
+                <span>Twitter</span>
               </div>
-              <div className="link flex items-center gap-1">
-                <FaInstagram /> <span>Instagram</span>
+              <div className="link flex items-center gap-1.5 sm:gap-2">
+                <FaInstagram className="text-base sm:text-lg" /> 
+                <span>Instagram</span>
               </div>
-              <div className="link flex items-center gap-1">
-                <FaLinkedin /> <span>LinkedIn</span>
+              <div className="link flex items-center gap-1.5 sm:gap-2">
+                <FaLinkedin className="text-base sm:text-lg" /> 
+                <span>LinkedIn</span>
               </div>
-              <div className="link flex items-center gap-1">
-                <FaYoutube /> <span>YouTube</span>
+              <div className="link flex items-center gap-1.5 sm:gap-2">
+                <FaYoutube className="text-base sm:text-lg" /> 
+                <span>YouTube</span>
               </div>
             </div>
           </div>
@@ -42,21 +47,21 @@ export default function Footer() {
       </section>
 
       {/* MAIN FOOTER */}
-      <footer className="bg-[#0d0f16] text-gray-300 pt-10 pb-10">
+      <footer className="bg-[#0d0f16] text-gray-300 pt-8 sm:pt-10 pb-6 sm:pb-10">
         {/* 5 Columns */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10">
 
           {/* COMPANY DESCRIPTION */}
-          <div>
+          <div className="xs:col-span-2 sm:col-span-3 lg:col-span-1">
             <Image
               src="/assets/logo.png"
               width={130}
               height={55}
               alt="Paves Technologies"
-              className="mb-3"
+              className="mb-3 w-28 sm:w-32 h-auto"
             />
 
-            <p className="text-xs text-gray-400 leading-5 mb-5 pr-4">
+            <p className="text-xs sm:text-sm text-gray-400 leading-5 sm:leading-6 mb-5 pr-0 sm:pr-4 max-w-xs lg:max-w-none">
               Paves Technologies delivers AI-driven solutions across financial
               services, governance, compliance, cloud modernization, and
               next-generation digital engineering transformation.
@@ -110,10 +115,12 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-10 border-t border-gray-800 pt-5 flex flex-col md:flex-row justify-between text-xs text-gray-500">
-          <p>© 2025 Paves Technologies. All Rights Reserved.</p>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-8 sm:mt-10 border-t border-gray-800 pt-4 sm:pt-5 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 text-xs sm:text-sm text-gray-500">
+          <p className="text-center sm:text-left">
+            © 2025 Paves Technologies. All Rights Reserved.
+          </p>
 
-          <div className="flex gap-5 mt-3 md:mt-0">
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-5">
             <p className="hover-link">Privacy Policy</p>
             <p className="hover-link">Terms of Use</p>
             <p className="hover-link">Legal</p>
@@ -126,17 +133,29 @@ export default function Footer() {
             color: white;
             font-weight: 600;
             margin-bottom: 0.7rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+          }
+
+          @media (min-width: 640px) {
+            .footer-heading-small {
+              font-size: 0.8rem;
+            }
           }
 
           .footer-links-small li {
             color: #aab0bc;
             margin-bottom: 0.35rem;
             cursor: pointer;
-            font-size: 0.78rem;
+            font-size: 0.7rem;
             transition: 0.2s ease;
+          }
+
+          @media (min-width: 640px) {
+            .footer-links-small li {
+              font-size: 0.78rem;
+            }
           }
 
           .footer-links-small li:hover {
@@ -147,12 +166,27 @@ export default function Footer() {
           .link {
             cursor: pointer;
             transition: 0.25s ease;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+          }
+
+          @media (min-width: 640px) {
+            .link {
+              font-size: 0.85rem;
+            }
           }
 
           .link:hover {
             color: white;
             transform: translateY(-2px);
+          }
+
+          .hover-link {
+            cursor: pointer;
+            transition: 0.2s ease;
+          }
+
+          .hover-link:hover {
+            color: white;
           }
         `}</style>
       </footer>

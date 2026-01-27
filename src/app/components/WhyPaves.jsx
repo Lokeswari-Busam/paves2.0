@@ -14,13 +14,13 @@ export default function WhyPavesSection() {
     {
       heading: "A Culture Built to Innovate",
       title: "Trusted Innovation",
-      desc: "The financial world thrives on trust and innovation. At Paves Technologies, we’ve built a culture that embraces both, ensuring that every solution.",
+      desc: "The financial world thrives on trust and innovation. At Paves Technologies, we've built a culture that embraces both, ensuring that every solution.",
       image: "/assets/creative-designers-team-working-project.jpg",
     },
     {
       heading: "Transformative Solutions",
       title: "Impactful Results",
-      desc: "Whether it’s enabling instant payments, embedding financial services into everyday ecosystems, or creating AI-driven capital market strategies.",
+      desc: "Whether it's enabling instant payments, embedding financial services into everyday ecosystems, or creating AI-driven capital market strategies.",
       image: "/assets/people-office-analyzing-checking-finance-graphs.jpg",
     },
     {
@@ -31,27 +31,25 @@ export default function WhyPavesSection() {
     },
   ];
 
-const [activeCard, setActiveCard] = useState(null);
-const [timer, setTimer] = useState(null);
+  const [activeCard, setActiveCard] = useState(null);
+  const [timer, setTimer] = useState(null);
 
   const handleCardClick = (index) => {
     if (activeCard === index) {
       setActiveCard(null);
       return;
-  };
-  setActiveCard(index);
+    }
+    setActiveCard(index);
 
-  clearTimeout(timer);
-  const newTimer = setTimeout(() => {
-    setActiveCard(null);
-  }, 3000);
-  setTimer(newTimer);
-};
-  
+    clearTimeout(timer);
+    const newTimer = setTimeout(() => {
+      setActiveCard(null);
+    }, 3000);
+    setTimer(newTimer);
+  };
 
   return (
-    <section className="w-full py-20 relative bg-[#E3F4FF]">
-
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 relative bg-[#E3F4FF] overflow-hidden">
       {/* Background Shapes */}
       <svg
         className="absolute top-0 left-0 w-full h-full pointer-events-none"
@@ -75,18 +73,22 @@ const [timer, setTimer] = useState(null);
         <circle cx="1300" cy="600" r="200" fill="#a53c70" opacity="0.05" />
 
         <polygon points="400,0 500,300 600,0" fill="#b34a7a" opacity="0.05" />
-        <polygon points="1000,500 1100,800 1200,500" fill="#c2528b" opacity="0.05" />
+        <polygon
+          points="1000,500 1100,800 1200,500"
+          fill="#c2528b"
+          opacity="0.05"
+        />
         <polygon points="600,600 700,800 800,600" fill="#d76ea1" opacity="0.06" />
       </svg>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
         {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-extrabold text-center text-[#2a3990]"
+          viewport={{ once: true }}
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center text-[#2a3990]"
         >
           Why <span className="text-primary">Paves</span>
         </motion.h2>
@@ -95,81 +97,95 @@ const [timer, setTimer] = useState(null);
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg text-center mt-4 text-[#2a3990]"
+          viewport={{ once: true }}
+          className="text-base sm:text-lg md:text-xl text-center mt-3 sm:mt-4 text-[#2a3990] max-w-3xl mx-auto px-4"
         >
           Explore our values and solutions that drive innovation and impact.
         </motion.p>
 
         {/* Cards Wrapper */}
-        <div className="
-          mt-16 
+        <div
+          className="
+          mt-10 sm:mt-12 md:mt-16 lg:mt-20
           grid 
           grid-cols-1 
           sm:grid-cols-2 
           lg:grid-cols-4 
-          gap-6 
+          gap-8 sm:gap-6 md:gap-8
           place-items-center
-        ">
+        "
+        >
           {items.map((item, index) => (
-            <div key={index} className="flex flex-col items-center w-full">
-              
+            <motion.div
+              key={index}
+              className="flex flex-col items-center w-full max-w-sm sm:max-w-none"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
               {/* Card Heading */}
-              <h3 className="text-xl md:text-2xl font-bold text-[#2a3990] mb-4 text-center">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2a3990] mb-3 sm:mb-4 text-center px-2">
                 {item.heading}
               </h3>
 
               {/* Flip Card */}
-              <FlipCard 
-              title={item.title} 
-              desc={item.desc} 
-              image={item.image}
-               flipped={activeCard === index}
+              <FlipCard
+                title={item.title}
+                desc={item.desc}
+                image={item.image}
+                flipped={activeCard === index}
                 onClick={() => handleCardClick(index)}
-               />
-            </div>
+              />
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
 
-
-
 // Flip Card Component
-function FlipCard({ image, title, desc, flipped , onClick}) {
-  //  const [flipped, setFlipped] = useState(false);
-  
+function FlipCard({ image, title, desc, flipped, onClick }) {
   return (
     <div
-      className="w-64 h-64 md:w-68 md:h-68 perspective cursor-pointer"
+      className="w-full max-w-[280px] sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 perspective cursor-pointer"
       style={{ perspective: "1000px" }}
-      // onClick={() => setFlipped(!flipped)}
       onClick={onClick}
     >
       <motion.div
         className="relative w-full h-full"
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
         style={{ transformStyle: "preserve-3d" }}
-        // whileHover={{ rotateY: 180 }}
       >
         {/* Front */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg bg-white"
+          className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white"
           style={{ backfaceVisibility: "hidden" }}
         >
-          <Image src={image} alt={title} fill className="object-cover" />
+          <div className="relative w-full h-full">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 280px, (max-width: 768px) 256px, (max-width: 1024px) 288px, 256px"
+            />
+          </div>
         </div>
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg bg-[#2a3990] p-5 flex flex-col items-center justify-center text-center"
+          className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#2a3990] to-[#1e2870] p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center text-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-          <p className="text-white text-sm md:text-base">{desc}</p>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+            {title}
+          </h3>
+          <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed">
+            {desc}
+          </p>
         </div>
       </motion.div>
     </div>
