@@ -4,6 +4,9 @@ import { useState , useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
+import ReCAPTCHA from "react-google-recaptcha";
+// import axios from "axios";
+import { useRef } from "react";
 
 // Dynamically import (Leaflet cannot run on server)
 const MapContainer = dynamic(
@@ -24,6 +27,8 @@ const Popup = dynamic(
 );
 
 export default function ContactPage() {
+
+  const recaptchaRef = useRef(null);
 
   const [icon, setIcon] = useState(null);
   // Offices Data
@@ -108,26 +113,31 @@ export default function ContactPage() {
   if (!icon) return null; // avoid hydration issues
 
   // Submit Form → Backend API
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setStatus(null);
 
   try {
+    const token = recaptchaRef.current.getValue();
+
+    if (!token) {
+      setStatus("Please verify CAPTCHA");
+      return; // ❌ removed extra setLoading(false)
+    }
+
+    // ✅ Removed dead `verifyRes` block — backend handles CAPTCHA verification
+
     const res = await fetch("http://localhost:8080/api/contact/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, captchaToken: token }),
     });
 
     if (!res.ok) throw new Error("API Error");
 
     setStatus("success");
-
-    // Auto-hide success message after 3 seconds
-    setTimeout(() => {
-      setStatus(null);
-    }, 3000);
+    setTimeout(() => setStatus(null), 3000);
 
     setForm({
       firstName: "",
@@ -139,13 +149,11 @@ export default function ContactPage() {
       message: "",
     });
 
+    recaptchaRef.current.reset();
+
   } catch (err) {
     setStatus("error");
-
-    // Auto-hide error message after 3 seconds
-    setTimeout(() => {
-      setStatus(null);
-    }, 3000);
+    setTimeout(() => setStatus(null), 3000);
   } finally {
     setLoading(false);
   }
@@ -251,6 +259,13 @@ export default function ContactPage() {
               className="bg-input border border-border p-3 rounded-lg h-32"
               placeholder="How can we help?"
             />
+
+            <div className="flex justify-center mt-2">
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                ref={recaptchaRef}
+              />
+            </div>
 
             {/* BUTTON */}
             <button
