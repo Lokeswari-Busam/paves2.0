@@ -1,12 +1,10 @@
 "use client";
 
-import { useState , useEffect } from "react";
 import dynamic from "next/dynamic";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
+import { useState, useEffect, useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-// import axios from "axios";
-import { useRef } from "react";
 
 // Dynamically import (Leaflet cannot run on server)
 const MapContainer = dynamic(
@@ -85,7 +83,7 @@ export default function ContactPage() {
     email: "",
     phone: "",
     jobTitle: "",
-    subject: "",
+    subject: "New Project",
     message: "",
   });
 
@@ -119,16 +117,18 @@ const handleSubmit = async (e) => {
   setStatus(null);
 
   try {
+    // Replace the captcha check block in handleSubmit:
     const token = recaptchaRef.current.getValue();
 
     if (!token) {
-      setStatus("Please verify CAPTCHA");
-      return; // ❌ removed extra setLoading(false)
+      setStatus("captcha");      // was "Please verify CAPTCHA" — now matches the JSX key
+      setLoading(false);
+      return;
     }
 
     // ✅ Removed dead `verifyRes` block — backend handles CAPTCHA verification
 
-    const res = await fetch("http://localhost:8080/api/contact/submit", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, captchaToken: token }),
@@ -247,9 +247,9 @@ const handleSubmit = async (e) => {
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg"
             >
-              <option>New Project</option>
-              <option>Partnership</option>
-              <option>Career</option>
+              <option value="New Project">New Project</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Career">Career</option>
             </select>
 
             <textarea
@@ -275,12 +275,15 @@ const handleSubmit = async (e) => {
               {loading ? "Sending..." : "SEND MESSAGE"}
             </button>
 
-            {/* STATUS MESSAGES */}
+            {/* STATUS MESSAGES — find this block and replace it */}
+            {status === "captcha" && (
+              <p className="text-yellow-500 mt-2">Please complete the CAPTCHA first.</p>
+            )}
             {status === "success" && (
               <p className="text-green-500 mt-2">Message sent successfully!</p>
             )}
             {status === "error" && (
-              <p className="text-red-500 mt-2">Something went wrong.</p>
+              <p className="text-red-500 mt-2">Something went wrong. Please try again.</p>
             )}
           </form>
         </section>
