@@ -56,21 +56,30 @@ export default function InfoCarousel() {
   return (
     <section className="relative w-full py-16 sm:py-20 lg:py-28 bg-blue-50 flex flex-col items-center overflow-hidden">
 
-      {/* SVG Background */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-20"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
-        <circle cx="20%" cy="30%" r="250" fill="#d7e3ff" />
-        <circle cx="80%" cy="60%" r="300" fill="#bccaff" />
-        <circle cx="50%" cy="90%" r="200" fill="#e4e9ff" />
-      </svg>
+      {/* Grid Background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(42,57,144,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(42,57,144,0.06) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
 
-      {/* Heading */}
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2a338b] text-center mb-12 sm:mb-16 z-10">
-        Industry Verticals
-      </h2>
+      {/* Section Header */}
+      <div className="text-center mb-12 sm:mb-16 z-10 relative px-4">
+        <div className="inline-block px-6 py-2 border-2 border-[#2a338b] text-[#2a338b] uppercase tracking-widest text-[11px] font-bold mb-5">
+          Markets We Serve
+        </div>
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="w-3 h-3 rounded-sm bg-[#2a338b] rotate-45 flex-shrink-0" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2a338b]">
+            Industry Verticals
+          </h2>
+          <div className="w-3 h-3 rounded-sm bg-[#2a338b] rotate-45 flex-shrink-0" />
+        </div>
+        <div className="h-0.5 w-16 bg-blue-500 rounded-full mx-auto mt-3" />
+      </div>
 
       <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center justify-center z-10 px-4 sm:px-6">
 
@@ -97,9 +106,10 @@ export default function InfoCarousel() {
           transition={{ duration: 0.6 }}
           className="w-full lg:w-1/2 h-auto lg:h-[470px] px-4 sm:px-6 lg:px-12 flex flex-col justify-center text-[#2a338b]"
         >
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3">
             {items[currentIndex].title}
           </h3>
+          <div className="h-0.5 w-12 bg-blue-500 rounded-full mb-4 sm:mb-6 opacity-80" />
 
           <p className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8">
             {items[currentIndex].description}

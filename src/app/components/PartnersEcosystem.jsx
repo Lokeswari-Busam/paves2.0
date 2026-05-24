@@ -169,10 +169,18 @@ export default function ServicesSection() {
         {/* HEADING */}
         <div className="absolute inset-0 flex items-center justify-center text-white text-center max-w-4xl mx-auto px-4">
           <div>
-            <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 leading-snug">
-              Your Vision, Our Commitment &ndash; A Partnership Built for the Future
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg opacity-90">
+            <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4">
+              Our Partnership Promise
+            </div>
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
+              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-snug">
+                Your Vision, Our Commitment &ndash; A Partnership Built for the Future
+              </h1>
+              <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
+            </div>
+            <div className="h-0.5 w-14 bg-blue-400 rounded-full mx-auto mb-4 opacity-70" />
+            <p className="text-sm sm:text-base md:text-lg opacity-90 max-w-2xl mx-auto">
               At Paves Technologies, we create long-term strategic partnerships
               to ensure our solutions deliver sustainable long-term value.
             </p>

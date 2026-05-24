@@ -91,13 +91,18 @@ export default function ServicesSection() {
 
           {/* LEFT TEXT */}
           <div className="text-white flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl hidden lg:flex">
-            <p className="text-blue-200 tracking-wide mb-2 sm:mb-3 text-sm sm:text-base md:text-lg">
+            <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4 self-start">
               Our Core Services
-            </p>
+            </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-5 md:mb-6">
-              Empowering Businesses Through Technology & Innovation
-            </h1>
+            <div className="flex items-start gap-3 mb-4">
+              <div className="w-3 h-3 rounded-sm bg-blue-400 rotate-45 flex-shrink-0 mt-2" />
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                Empowering Businesses Through Technology & Innovation
+              </h1>
+            </div>
+
+            <div className="h-0.5 w-12 bg-blue-400 rounded-full mb-4 opacity-70" />
 
             <p className="text-blue-100 text-sm sm:text-base md:text-lg max-w-full lg:max-w-md">
               Discover our powerful range of services designed to accelerate digital transformation and enable future-ready businesses.

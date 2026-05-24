@@ -14,24 +14,23 @@ export const metadata = {
 };
 
 import HeroSection from "./components/HeroSection";
-import  IndustryVerticals from "./components/IndustryVerticals";
-import PartnersEcosystem from "./components/PartnersEcosystem";
-import JoinUs from "./components/JoinUs";
+import StatsRow from "./components/StatsRow";
 import WhyPaves from "./components/WhyPaves";
 import ServicesSection from "./components/ServicesSection";
-
-
+import IndustryVerticals from "./components/IndustryVerticals";
+import PartnersEcosystem from "./components/PartnersEcosystem";
+import JoinUs from "./components/JoinUs";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <WhyPaves/>
+      <StatsRow />
+      <WhyPaves />
       <ServicesSection />
       <IndustryVerticals />
       <PartnersEcosystem />
       <JoinUs />
-    
     </>
   );
 }
