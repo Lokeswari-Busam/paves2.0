@@ -149,7 +149,7 @@ export default function WhyPavesSection() {
 function FlipCard({ image, title, desc, flipped, onClick }) {
   return (
     <div
-      className="w-full max-w-[280px] sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 perspective cursor-pointer"
+      className="w-full max-w-[240px] xs:max-w-[260px] h-[240px] xs:h-[260px] sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 perspective cursor-pointer"
       style={{ perspective: "1000px" }}
       onClick={onClick}
     >
@@ -180,10 +180,10 @@ function FlipCard({ image, title, desc, flipped, onClick }) {
           className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#2a3990] to-[#1e2870] p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center text-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 leading-tight">
             {title}
           </h3>
-          <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed">
             {desc}
           </p>
         </div>

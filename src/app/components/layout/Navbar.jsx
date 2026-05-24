@@ -462,7 +462,7 @@ export function Navigation() {
 
       {/* Mobile Menu - Accordion Style */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[calc(100vh-80px)] overflow-y-auto">
+        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg max-h-[calc(100vh-64px)] overflow-y-auto">
           <div className="px-4 py-2 space-y-1">
             {navLinks.map((link) => (
               <div key={link.title} className="border-b border-gray-100 last:border-b-0">

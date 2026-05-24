@@ -54,7 +54,7 @@ export default function InfoCarousel() {
   };
 
   return (
-    <section className="relative w-full py-20 sm:py-24 lg:py-28 bg-blue-50 min-h-[600px] flex flex-col items-center overflow-hidden">
+    <section className="relative w-full py-16 sm:py-20 lg:py-28 bg-blue-50 flex flex-col items-center overflow-hidden">
 
       {/* SVG Background */}
       <svg
@@ -80,7 +80,7 @@ export default function InfoCarousel() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[470px] relative flex items-center justify-center lg:justify-end lg:pr-10 mb-10 lg:mb-0"
+          className="w-full lg:w-1/2 h-[220px] sm:h-[300px] md:h-[360px] lg:h-[470px] relative flex items-center justify-center lg:justify-end lg:pr-10 mb-8 lg:mb-0"
         >
           <img
             src={items[currentIndex].image}
@@ -95,7 +95,7 @@ export default function InfoCarousel() {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full lg:w-1/2 h-auto lg:h-[470px] px-4 sm:px-8 lg:px-12 flex flex-col justify-center text-[#2a338b]"
+          className="w-full lg:w-1/2 h-auto lg:h-[470px] px-4 sm:px-6 lg:px-12 flex flex-col justify-center text-[#2a338b]"
         >
           <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">
             {items[currentIndex].title}

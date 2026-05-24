@@ -96,13 +96,11 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block">
                     Paves
                   </span>
-                </h1>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mt-2">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block mt-2">
                     Technologies
                   </span>
                 </h1>
@@ -112,35 +110,36 @@ export default function HeroSection() {
             {/* COLLAPSE */}
             {stage === "collapse" && (
               <motion.div key="collapse" className="text-left">
-                <motion.h1
-                  className="text-7xl md:text-9xl font-bold bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
-                  animate={{
-                    scale: 1.1,
-                    textShadow: [
-                      "0 0 20px rgba(59,130,246,0.5)",
-                      "0 0 30px rgba(59,130,246,0.7)",
-                      "0 0 20px rgba(59,130,246,0.5)",
-                    ],
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  P
-                </motion.h1>
-
-                <motion.h1
-                  className="text-7xl md:text-9xl font-bold -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
-                  animate={{
-                    scale: 1.1,
-                    textShadow: [
-                      "0 0 20px rgba(59,130,246,0.5)",
-                      "0 0 30px rgba(59,130,246,0.7)",
-                      "0 0 20px rgba(59,130,246,0.5)",
-                    ],
-                  }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  T
-                </motion.h1>
+                <h1 className="text-6xl sm:text-7xl md:text-9xl font-bold">
+                  <motion.span
+                    className="block bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
+                    animate={{
+                      scale: 1.1,
+                      textShadow: [
+                        "0 0 20px rgba(59,130,246,0.5)",
+                        "0 0 30px rgba(59,130,246,0.7)",
+                        "0 0 20px rgba(59,130,246,0.5)",
+                      ],
+                    }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    P
+                  </motion.span>
+                  <motion.span
+                    className="block -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
+                    animate={{
+                      scale: 1.1,
+                      textShadow: [
+                        "0 0 20px rgba(59,130,246,0.5)",
+                        "0 0 30px rgba(59,130,246,0.7)",
+                        "0 0 20px rgba(59,130,246,0.5)",
+                      ],
+                    }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    T
+                  </motion.span>
+                </h1>
               </motion.div>
             )}
 
@@ -201,7 +200,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: stage === "expand" ? 1 : 0 }}
             transition={{ delay: 0.7 }}
-            className="flex gap-4 mt-6"
+            className="flex flex-wrap gap-4 mt-6"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}

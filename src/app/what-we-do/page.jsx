@@ -87,7 +87,7 @@ export default function WhatWeDo() {
       </section>
 
       {/* MAIN CONTENT SECTIONS */}
-        <section className="py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-16 sm:space-y-20 md:space-y-28">
+        <section className="py-10 sm:py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-10 sm:space-y-16 md:space-y-24">
         {sections.map((section, idx) => (
           <motion.div
             key={idx}

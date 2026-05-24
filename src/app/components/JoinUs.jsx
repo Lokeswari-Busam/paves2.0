@@ -12,7 +12,7 @@ export default function JoinUs() {
     offset: ["start end", "end start"],
   });
 
-  const imageX = useTransform(scrollYProgress, [0, 1], ["10%", "70%"]);
+  const imageX = useTransform(scrollYProgress, [0, 1], ["0%", "55%"]);
   const textOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.2, 0.6], [60, 0]);
 
@@ -23,7 +23,7 @@ export default function JoinUs() {
         className="
           relative
           max-w-6xl mx-auto
-          h-[380px] sm:h-[450px] md:h-[550px] lg:h-[600px]
+          min-h-[320px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[560px]
           flex items-center
         "
       >
@@ -49,7 +49,7 @@ export default function JoinUs() {
           className="
             relative z-20
             w-full
-            max-w-sm sm:max-w-md
+            max-w-xs sm:max-w-sm md:max-w-md
             text-left
             px-3 sm:px-0
             mt-6 sm:mt-0

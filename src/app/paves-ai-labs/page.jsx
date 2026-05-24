@@ -36,7 +36,7 @@ export default function PavesAILabs() {
 
       {/* ================= HERO ================= */}
       <section
-        className="relative h-[85vh] flex items-center justify-center text-center"
+        className="relative h-[60vh] sm:h-[70vh] md:h-[85vh] flex items-center justify-center text-center"
         style={{
           backgroundImage:
             "url('https://assets.everspringpartners.com/dims4/default/4370b69/2147483647/strip/true/crop/1027x360+0+0/resize/1600x560!/format/webp/quality/90/?url=http%3A%2F%2Feverspring-brightspot.s3.us-east-1.amazonaws.com%2Fdf%2Fee%2F106592af4d508f76b29662e456db%2Fadvanced-ai.jpg')",
@@ -52,11 +52,11 @@ export default function PavesAILabs() {
           transition={{ duration: 1.1 }}
           className="relative z-10 max-w-3xl px-6"
         >
-          <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight drop-shadow-md">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-md">
             Paves AI Labs
           </h1>
 
-          <p className="text-gray-200 mt-6 text-lg md:text-xl leading-relaxed">
+          <p className="text-gray-200 mt-4 sm:mt-6 text-base sm:text-lg md:text-xl leading-relaxed">
             Innovating with AI to empower employees, customers, and partners —
             driving intelligent transformation for modern enterprises.
           </p>
@@ -70,13 +70,13 @@ export default function PavesAILabs() {
       {/* ================= WHAT IS AI LABS ================= */}
       <section
         ref={(el) => (sectionsRef.current[0] = el)}
-        className="py-24 px-6 max-w-6xl mx-auto"
+        className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-6xl mx-auto"
       >
-        <h2 className="text-5xl font-bold text-center mb-10 text-[#2a3990]">
-          What is Paves AI Labs? 
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-10 text-[#2a3990]">
+          What is Paves AI Labs?
         </h2>
 
-        <p className="text-gray-700 text-center max-w-3xl mx-auto text-lg leading-relaxed">
+        <p className="text-gray-700 text-center max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
           Paves AI Labs is the innovation hub of Paves Technologies dedicated to
           pioneering advancements in Artificial Intelligence. We focus on
           developing cutting-edge AI solutions that enhance digital ecosystems,
@@ -88,19 +88,19 @@ export default function PavesAILabs() {
       {/* ================= KEY FOCUS AREAS ================= */}
       <section
         ref={(el) => (sectionsRef.current[1] = el)}
-        className="bg-[#f8f9ff] py-24 px-6"
+        className="bg-[#f8f9ff] py-12 sm:py-16 md:py-24 px-4 sm:px-6"
       >
-        <h2 className="text-5xl font-bold text-center mb-10 text-[#2a3990]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-10 text-[#2a3990]">
           Our Key Focus Areas
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-7xl mx-auto">
           {[
             {
               title: "Applied AI for Businesses",
               desc:
                 "Building intelligent systems that optimize workflows, automate tasks, and power decision-making across critical enterprise functions.",
-              img: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500https://pavestechnologies.com/wp-content/uploads/2024/07/applied-ai.jpg",
+              img: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
             },
             {
               title: "Data-Driven Intelligence",
@@ -120,7 +120,7 @@ export default function PavesAILabs() {
               whileHover={{ scale: 1.03 }}
               className="overflow-hidden rounded-2xl bg-white border shadow-lg"
             >
-              <img src={card.img} className="h-56 w-full object-cover" />
+              <img src={card.img} alt={card.title} className="h-40 sm:h-48 md:h-56 w-full object-cover" />
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-[#2a3990]">
                   {card.title}
@@ -135,13 +135,13 @@ export default function PavesAILabs() {
       {/* ================= INNOVATION INITIATIVES ================= */}
       <section
         ref={(el) => (sectionsRef.current[2] = el)}
-        className="py-24 px-6 max-w-7xl mx-auto"
+        className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 max-w-7xl mx-auto"
       >
-        <h2 className="text-4xl font-bold text-center mb-12 text-[#2a3990]">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-[#2a3990]">
           Innovation Initiatives
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           <div className="bg-white p-8 border rounded-2xl shadow">
             <h3 className="text-2xl font-bold text-[#2a3990]">
               AI-Enhanced Productivity

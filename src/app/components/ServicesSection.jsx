@@ -82,20 +82,15 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="
-        relative 
-        h-[200vh]               /* Increased scroll height */
-        w-full 
-        bg-fixed bg-cover bg-center
-      "
+      className="relative h-[200vh] w-full bg-fixed bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/services_bg.jpg')" }}
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden">
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 md:px-12 lg:px-16
-          flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 py-20 lg:py-0">
+          flex flex-col lg:flex-row gap-6 lg:gap-12 xl:gap-16 py-6 sm:py-10 lg:py-0">
 
           {/* LEFT TEXT */}
-          <div className="text-white flex flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl">
+          <div className="text-white flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl hidden lg:flex">
             <p className="text-blue-200 tracking-wide mb-2 sm:mb-3 text-sm sm:text-base md:text-lg">
               Our Core Services
             </p>
@@ -112,7 +107,7 @@ export default function ServicesSection() {
           {/* RIGHT — SCROLLING CARDS */}
           <motion.div
             style={{ y: cardsY }}
-            className="space-y-4 sm:space-y-6 md:space-y-8 pt-8 sm:pt-12 md:pt-16 lg:pt-20 w-full lg:w-[480px] xl:w-[520px]"
+            className="space-y-4 sm:space-y-6 pt-4 sm:pt-8 lg:pt-20 w-full lg:w-[480px] xl:w-[520px]"
           >
             {services.map((service, index) => (
               <Link
