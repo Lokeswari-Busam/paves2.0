@@ -309,7 +309,7 @@ export function Navigation() {
     },
     { title: "Paves AI Labs", href: "/paves-ai-labs" },
     { title: "Insights", href: "/insights" },
-    { title: "Careers", href: "/careers" },
+    { title: "Careers", href: "http://localhost:3001/" },
   ];
 
   return (
