@@ -3,16 +3,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
   const [stage, setStage] = useState("initial");
   const [particles, setParticles] = useState([]);
 
-  // ✅ Generate particles ONLY on client (fix hydration)
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-
     const generated = Array.from({ length: 15 }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -20,11 +19,9 @@ export default function HeroSection() {
       duration: Math.random() * 3 + 2,
       delay: Math.random() * 2,
     }));
-
     setParticles(generated);
   }, []);
 
-  // ✅ Stage animation timing
   useEffect(() => {
     const timers = [
       setTimeout(() => setStage("collapse"), 1000),
@@ -58,21 +55,14 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* 🚀 Floating Particles (FIXED + SMOOTH) */}
+      {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particles.map((p, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-blue-400 rounded-full"
-            initial={{
-              x: p.x,
-              y: p.y,
-              opacity: 0,
-            }}
-            animate={{
-              y: [p.y, p.y + p.drift],
-              opacity: [0, 0.6, 0],
-            }}
+            initial={{ x: p.x, y: p.y, opacity: 0 }}
+            animate={{ y: [p.y, p.y + p.drift], opacity: [0, 0.6, 0] }}
             transition={{
               duration: p.duration,
               repeat: Infinity,
@@ -87,6 +77,7 @@ export default function HeroSection() {
       <div className="relative z-10 px-4 sm:px-6 md:px-12 lg:px-16 w-full">
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
+
             {/* INITIAL */}
             {stage === "initial" && (
               <motion.div
@@ -126,7 +117,6 @@ export default function HeroSection() {
                 >
                   P
                 </motion.h1>
-
                 <motion.h1
                   className="text-7xl md:text-9xl font-bold -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
                   animate={{
@@ -155,7 +145,6 @@ export default function HeroSection() {
                 >
                   Paving the Bridge Between
                 </motion.h1>
-
                 <motion.h1
                   className="text-3xl sm:text-5xl md:text-6xl font-bold"
                   initial={{ opacity: 0, x: -30 }}
@@ -165,8 +154,6 @@ export default function HeroSection() {
                   <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                     Tech & Trust
                   </span>
-
-                  {/* Animated underline */}
                   <motion.span
                     className="block h-1 bg-blue-500 mt-1"
                     initial={{ scaleX: 0 }}
@@ -177,6 +164,7 @@ export default function HeroSection() {
                 </motion.h1>
               </motion.div>
             )}
+
           </AnimatePresence>
 
           {/* Tagline */}
@@ -190,9 +178,7 @@ export default function HeroSection() {
             className="mt-6 text-lg text-gray-200 max-w-2xl"
           >
             Transforming ideas into{" "}
-            <span className="text-blue-300 font-semibold">
-              scalable solutions
-            </span>{" "}
+            <span className="text-blue-300 font-semibold">scalable solutions</span>{" "}
             with cutting-edge AI and cloud technologies
           </motion.p>
 
@@ -203,22 +189,23 @@ export default function HeroSection() {
             transition={{ delay: 0.7 }}
             className="flex gap-4 mt-6"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 bg-blue-600 rounded-full flex items-center gap-2 shadow-lg"
-            >
-              Explore Services
-              <ArrowRight size={16} />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="px-6 py-3 border border-white rounded-full"
-            >
-              Discover More
-            </motion.button>
+            <Link href="/what-we-do/services">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative flex items-center gap-2 px-6 py-3 overflow-hidden rounded-full text-white font-semibold text-sm shadow-lg"
+                style={{ background: "#2563eb" }}
+              >
+                <span className="relative z-10">Explore Services</span>
+                <ArrowRight size={16} className="relative z-10" />
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
+                  style={{ background: "rgba(255,255,255,0.1)" }}
+                />
+              </motion.button>
+            </Link>
           </motion.div>
+
         </div>
       </div>
 

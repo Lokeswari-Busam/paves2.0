@@ -81,7 +81,7 @@ export default function JoinUs() {
           </p>
 
           <Link
-            href="/careers"
+            href="http://localhost:3001/"
             className="
               inline-block
               px-6 py-2.5
