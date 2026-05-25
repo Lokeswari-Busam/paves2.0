@@ -43,6 +43,9 @@ export default function HeroSection() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/65 to-blue-900/50" />
 
+      {/* Radial Blue Highlight */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_50%,rgba(59,130,246,0.18),transparent_60%)]" />
+
       {/* Grid Overlay */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -87,13 +90,11 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block">
                     Paves
                   </span>
-                </h1>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mt-2">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block mt-2">
                     Technologies
                   </span>
                 </h1>
@@ -137,6 +138,16 @@ export default function HeroSection() {
             {/* EXPAND */}
             {stage === "expand" && (
               <motion.div key="expand" className="text-left">
+                {/* Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-5 inline-block border border-blue-400 text-blue-300 px-4 py-1.5 text-[11px] tracking-widest uppercase font-semibold"
+                >
+                  AI &amp; Cloud · Financial Technology
+                </motion.div>
+
                 <motion.h1
                   className="text-3xl sm:text-5xl md:text-6xl font-bold mb-3"
                   initial={{ opacity: 0, x: -30 }}
@@ -187,7 +198,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: stage === "expand" ? 1 : 0 }}
             transition={{ delay: 0.7 }}
-            className="flex gap-4 mt-6"
+            className="flex flex-wrap gap-4 mt-6"
           >
             <Link href="/what-we-do/services">
               <motion.button

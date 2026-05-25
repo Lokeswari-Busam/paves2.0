@@ -40,92 +40,71 @@ export default function WhyPavesSection() {
       return;
     }
     setActiveCard(index);
-
     clearTimeout(timer);
-    const newTimer = setTimeout(() => {
-      setActiveCard(null);
-    }, 3000);
+    const newTimer = setTimeout(() => setActiveCard(null), 3000);
     setTimer(newTimer);
   };
 
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 relative bg-[#E3F4FF] overflow-hidden">
-      {/* Background Shapes */}
-      <svg
-        className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1440 800"
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient id="shape-grad" x1="10%" y1="10%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#a1204c" />
-            <stop offset="100%" stopColor="#501128" />
-          </linearGradient>
-        </defs>
+    <section className="w-full py-16 sm:py-20 md:py-24 relative bg-[#f0f5ff] overflow-hidden">
 
-        <rect width="1440" height="800" fill="url(#shape-grad)" opacity="0" />
-
-        <circle cx="1200" cy="180" r="260" fill="#8b2c5f" opacity="0.04" />
-        <circle cx="300" cy="650" r="220" fill="#7a234f" opacity="0.05" />
-        <circle cx="700" cy="400" r="180" fill="#9c2f65" opacity="0.04" />
-        <circle cx="100" cy="200" r="150" fill="#b04178" opacity="0.05" />
-        <circle cx="1300" cy="600" r="200" fill="#a53c70" opacity="0.05" />
-
-        <polygon points="400,0 500,300 600,0" fill="#b34a7a" opacity="0.05" />
-        <polygon
-          points="1000,500 1100,800 1200,500"
-          fill="#c2528b"
-          opacity="0.05"
-        />
-        <polygon points="600,600 700,800 800,600" fill="#d76ea1" opacity="0.06" />
-      </svg>
+      {/* Grid Background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(42,57,144,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(42,57,144,0.07) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-        {/* Section Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+
+        {/* Badge + Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-center text-[#2a3990]"
+          className="text-center mb-14 sm:mb-16"
         >
-          Why <span className="text-primary">Paves</span>
-        </motion.h2>
+          <div className="inline-block px-6 py-2 border-2 border-[#2a3990] text-[#2a3990] uppercase tracking-widest text-[11px] font-bold mb-5">
+            Why Choose Us
+          </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="text-base sm:text-lg md:text-xl text-center mt-3 sm:mt-4 text-[#2a3990] max-w-3xl mx-auto px-4"
-        >
-          Explore our values and solutions that drive innovation and impact.
-        </motion.p>
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="w-3 h-3 rounded-sm bg-[#2a3990] rotate-45 flex-shrink-0" />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#2a3990]">
+              Why <span className="text-blue-600">Paves</span>
+            </h2>
+            <div className="w-3 h-3 rounded-sm bg-[#2a3990] rotate-45 flex-shrink-0" />
+          </div>
 
-        {/* Cards Wrapper */}
-        <div
-          className="
-          mt-10 sm:mt-12 md:mt-16 lg:mt-20
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          lg:grid-cols-4 
-          gap-8 sm:gap-6 md:gap-8
-          place-items-center
-        "
-        >
+          <div className="h-0.5 w-16 bg-blue-500 rounded-full mx-auto mt-3 mb-4" />
+
+          <p className="text-base sm:text-lg text-[#2a3990]/75 max-w-2xl mx-auto">
+            Explore our values and solutions that drive innovation and impact.
+          </p>
+        </motion.div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 md:gap-8 place-items-center">
           {items.map((item, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center w-full max-w-sm sm:max-w-none"
+              className="relative flex flex-col items-center w-full max-w-sm sm:max-w-none"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
+              {/* Large faded index number */}
+              <div className="absolute -top-5 right-0 select-none pointer-events-none text-[5rem] font-extrabold text-[#2a3990] opacity-[0.06] leading-none">
+                {String(index + 1).padStart(2, "0")}
+              </div>
+
               {/* Card Heading */}
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#2a3990] mb-3 sm:mb-4 text-center px-2">
+              <h3 className="text-base sm:text-lg font-bold text-[#2a3990] mb-3 text-center px-2 relative z-10">
                 {item.heading}
               </h3>
 
@@ -137,6 +116,9 @@ export default function WhyPavesSection() {
                 flipped={activeCard === index}
                 onClick={() => handleCardClick(index)}
               />
+
+              {/* Accent underline */}
+              <div className="mt-3 h-0.5 w-10 bg-blue-500 rounded-full opacity-70" />
             </motion.div>
           ))}
         </div>
@@ -145,11 +127,10 @@ export default function WhyPavesSection() {
   );
 }
 
-// Flip Card Component
 function FlipCard({ image, title, desc, flipped, onClick }) {
   return (
     <div
-      className="w-full max-w-[280px] sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 perspective cursor-pointer"
+      className="w-full max-w-[240px] xs:max-w-[260px] h-[240px] xs:h-[260px] sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-64 lg:h-64 xl:w-72 xl:h-72 cursor-pointer"
       style={{ perspective: "1000px" }}
       onClick={onClick}
     >
@@ -161,7 +142,7 @@ function FlipCard({ image, title, desc, flipped, onClick }) {
       >
         {/* Front */}
         <div
-          className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white"
+          className="absolute inset-0 rounded-xl overflow-hidden shadow-md border border-[#2a3990]/15 hover:shadow-xl hover:ring-2 hover:ring-[#2a3990]/30 transition-all duration-300 bg-white"
           style={{ backfaceVisibility: "hidden" }}
         >
           <div className="relative w-full h-full">
@@ -177,15 +158,16 @@ function FlipCard({ image, title, desc, flipped, onClick }) {
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-xl sm:rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-[#2a3990] to-[#1e2870] p-4 sm:p-5 md:p-6 flex flex-col items-center justify-center text-center"
+          className="absolute inset-0 rounded-xl overflow-hidden shadow-md border border-[#2a3990] bg-gradient-to-br from-[#2a3990] to-[#1e2870] p-5 flex flex-col items-center justify-center text-center"
           style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
         >
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-tight">
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2 leading-tight">
             {title}
           </h3>
-          <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
             {desc}
           </p>
+          <div className="mt-4 h-0.5 w-10 bg-blue-300 rounded-full opacity-70" />
         </div>
       </motion.div>
     </div>

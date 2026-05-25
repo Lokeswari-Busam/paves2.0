@@ -35,7 +35,7 @@ export default function InsightsPage() {
 
       {/* Hero */}
       <section
-        className="relative h-[70vh] flex items-center justify-center text-center px-6"
+        className="relative h-[60vh] sm:h-[65vh] md:h-[70vh] flex items-center justify-center text-center px-4 sm:px-6"
         style={{
           backgroundImage: "url('https://myvistage.com/hub/wp-content/uploads/sites/4/2024/12/Inspirational-leadership-featured-image.jpg')",
           backgroundSize: "cover",
@@ -49,8 +49,8 @@ export default function InsightsPage() {
           transition={{ duration: 1 }}
           className="relative z-10 max-w-3xl text-white"
         >
-          <h1 className="text-5xl md:text-6xl font-bold">Insights & Thought Leadership</h1>
-          <p className="mt-6 text-lg md:text-xl text-gray-300">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Insights & Thought Leadership</h1>
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-300">
             We stand at the forefront of change, delivering insights, strategies, and solutions that help businesses thrive in an AI-first era.  
           </p>
         </motion.div>
@@ -59,9 +59,9 @@ export default function InsightsPage() {
       {/* Content Intro */}
       <section
         ref={(el) => (sectionsRef.current[0] = el)}
-        className="py-20 px-6 max-w-6xl mx-auto"
+        className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 max-w-6xl mx-auto"
       >
-        <h2 className="text-5xl font-bold text-center mb-10 text-[#2a3990]">Why Our Insights Matter</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-6 sm:mb-10 text-[#2a3990]">Why Our Insights Matter</h2>
         <p className="text-gray-700 leading-relaxed text-lg">
           At Paves Technologies, our Thought Leadership hub brings together deep expertise in AI, cloud, fintech and enterprise transformation.  
           We share pioneering research, executive perspectives, and forward-looking commentary to empower decision makers and technologists.  
@@ -71,11 +71,11 @@ export default function InsightsPage() {
       {/* Latest Articles Grid */}
       <section
         ref={(el) => (sectionsRef.current[1] = el)}
-        className="pb-24 px-6 max-w-7xl mx-auto"
+        className="pb-12 sm:pb-20 md:pb-24 px-4 sm:px-6 max-w-7xl mx-auto"
       >
-        <h2 className="text-4xl font-bold text-center mb-10 text-[#2a3990]">Latest Articles</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-10 text-[#2a3990]">Latest Articles</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           {/* Replace the following sample items with real articles fetched or static placeholders */}
           {[
             {
@@ -104,7 +104,7 @@ export default function InsightsPage() {
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <img src={item.img} className="h-48 w-full object-cover group-hover:scale-105 transition-transform" />
+              <img src={item.img} alt={item.title} className="h-48 w-full object-cover group-hover:scale-105 transition-transform" />
               <div className="p-6">
                 <h3 className="text-xl font-bold text-[#2a3990] mb-2">{item.title}</h3>
                 <p className="text-gray-600">{item.snippet}</p>
