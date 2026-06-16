@@ -105,7 +105,7 @@ export default function HeroSection() {
             {stage === "collapse" && (
               <motion.div key="collapse" className="text-left">
                 <motion.h1
-                  className="text-7xl md:text-9xl font-bold bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
+                  className="text-5xl sm:text-7xl md:text-9xl font-bold bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
                   animate={{
                     scale: 1.1,
                     textShadow: [
@@ -119,7 +119,7 @@ export default function HeroSection() {
                   P
                 </motion.h1>
                 <motion.h1
-                  className="text-7xl md:text-9xl font-bold -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
+                  className="text-5xl sm:text-7xl md:text-9xl font-bold -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
                   animate={{
                     scale: 1.1,
                     textShadow: [

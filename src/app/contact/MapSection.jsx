@@ -9,7 +9,7 @@ const LeafletMap = dynamic(() => import("./RealMap"), {
 
 export default function MapSection({ offices }) {
   return (
-    <section className="max-w-7xl mx-auto mt-16 h-[500px] rounded-xl border border-border overflow-hidden">
+    <section className="max-w-7xl mx-auto mt-10 sm:mt-14 md:mt-16 h-[260px] sm:h-[380px] md:h-[500px] rounded-xl border border-border overflow-hidden">
       <LeafletMap offices={offices} />
     </section>
   );

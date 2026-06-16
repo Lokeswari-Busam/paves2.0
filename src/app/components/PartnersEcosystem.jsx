@@ -10,12 +10,12 @@ function FlipCard({ title, desc, shapes, flipped, onClick }) {
   return (
     <div
       className="
-        w-[220px] h-[220px]
-        xs:w-[240px] xs:h-[240px]
+        w-[200px] h-[200px]
+        xs:w-[220px] xs:h-[220px]
         sm:w-[280px] sm:h-[280px]
         md:w-[340px] md:h-[340px]
         lg:w-[380px] lg:h-[380px]
-        perspective cursor-pointer
+        perspective cursor-pointer flex-shrink-0
       "
       style={{ perspective: "1200px" }}
       onClick={onClick}
@@ -35,8 +35,8 @@ function FlipCard({ title, desc, shapes, flipped, onClick }) {
             {shapes}
           </svg>
 
-          <div className="absolute inset-0 flex items-center justify-center p-6 text-center z-20">
-            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
+          <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 text-center z-20">
+            <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
               {title}
             </h3>
           </div>
@@ -51,11 +51,11 @@ function FlipCard({ title, desc, shapes, flipped, onClick }) {
             {shapes}
           </svg>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 text-center z-20">
+            <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3">
               {title}
             </h3>
-            <p className="text-white opacity-90 text-sm sm:text-base leading-relaxed">
+            <p className="text-white opacity-90 text-xs sm:text-sm md:text-base leading-relaxed">
               {desc}
             </p>
           </div>
@@ -65,8 +65,31 @@ function FlipCard({ title, desc, shapes, flipped, onClick }) {
   );
 }
 
+// Shared heading content used in both mobile and desktop
+function SectionHeading({ className = "" }) {
+  return (
+    <div className={`text-white text-center ${className}`}>
+      <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4">
+        Our Partnership Promise
+      </div>
+      <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 flex-wrap">
+        <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
+        <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-snug px-2">
+          Your Vision, Our Commitment &ndash; A Partnership Built for the Future
+        </h1>
+        <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
+      </div>
+      <div className="h-0.5 w-14 bg-blue-400 rounded-full mx-auto mb-4 opacity-70" />
+      <p className="text-sm sm:text-base opacity-90 max-w-2xl mx-auto">
+        At Paves Technologies, we create long-term strategic partnerships
+        to ensure our solutions deliver sustainable long-term value.
+      </p>
+    </div>
+  );
+}
+
 // ------------------------
-// Main Services Section
+// Main Partnership Section
 // ------------------------
 export default function ServicesSection() {
   const sectionRef = useRef(null);
@@ -106,31 +129,15 @@ export default function ServicesSection() {
       const opacity = 0.05 + Math.random() * 0.15;
 
       return Math.random() > 0.5 ? (
-        <circle
-          key={i}
-          cx={x}
-          cy={y}
-          r={size / 2}
-          fill="#4e5d94"
-          opacity={opacity}
-        />
+        <circle key={i} cx={x} cy={y} r={size / 2} fill="#4e5d94" opacity={opacity} />
       ) : (
-        <rect
-          key={i}
-          x={x}
-          y={y}
-          width={size}
-          height={size}
-          fill="#4e5d94"
-          opacity={opacity}
-        />
+        <rect key={i} x={x} y={y} width={size} height={size} fill="#4e5d94" opacity={opacity} />
       );
     });
 
     setShapes(generatedShapes);
   }, []);
 
-  // -------- Flip Logic --------
   const [activeIndex, setActiveIndex] = useState(null);
   const timerRef = useRef(null);
 
@@ -140,58 +147,26 @@ export default function ServicesSection() {
       clearTimeout(timerRef.current);
       return;
     }
-
     setActiveIndex(i);
     clearTimeout(timerRef.current);
-
-    timerRef.current = setTimeout(() => {
-      setActiveIndex(null);
-    }, 4000);
+    timerRef.current = setTimeout(() => setActiveIndex(null), 4000);
   };
-  // ----------------------------
 
   return (
     <section
       ref={sectionRef}
-      className="
-        relative
-        h-[300vh] sm:h-[280vh] md:h-[260vh] lg:h-[250vh]
-        w-full
-        bg-fixed bg-cover bg-center
-      "
+      className="relative w-full bg-fixed bg-cover bg-center"
       style={{
         backgroundImage:
           "url('/assets/future-visions-business-technology-concept.jpg')",
       }}
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden px-3 sm:px-6 md:px-10">
-
-        {/* HEADING */}
-        <div className="absolute inset-0 flex items-center justify-center text-white text-center max-w-4xl mx-auto px-4">
-          <div>
-            <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4">
-              Our Partnership Promise
-            </div>
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
-              <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-snug">
-                Your Vision, Our Commitment &ndash; A Partnership Built for the Future
-              </h1>
-              <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
-            </div>
-            <div className="h-0.5 w-14 bg-blue-400 rounded-full mx-auto mb-4 opacity-70" />
-            <p className="text-sm sm:text-base md:text-lg opacity-90 max-w-2xl mx-auto">
-              At Paves Technologies, we create long-term strategic partnerships
-              to ensure our solutions deliver sustainable long-term value.
-            </p>
-          </div>
+      {/* ===== MOBILE LAYOUT (< md): flat, scrollable ===== */}
+      <div className="md:hidden bg-black/55 py-14 px-4">
+        <div className="max-w-lg mx-auto mb-10">
+          <SectionHeading />
         </div>
-
-        {/* DESKTOP HORIZONTAL */}
-        <motion.div
-          style={{ x: cardsX }}
-          className="hidden md:flex gap-28 lg:gap-36 pt-20"
-        >
+        <div className="flex flex-col items-center gap-8">
           {services.map((service, i) => (
             <FlipCard
               key={i}
@@ -202,20 +177,35 @@ export default function ServicesSection() {
               onClick={() => handleCardClick(i)}
             />
           ))}
-        </motion.div>
+        </div>
+      </div>
 
-        {/* MOBILE VERTICAL */}
-        <div className="flex flex-col md:hidden gap-6 mt-16 w-full items-center">
-          {services.map((service, i) => (
-            <FlipCard
-              key={i}
-              title={service.title}
-              desc={service.desc}
-              shapes={shapes}
-              flipped={activeIndex === i}
-              onClick={() => handleCardClick(i)}
-            />
-          ))}
+      {/* ===== DESKTOP LAYOUT (md+): sticky horizontal scroll ===== */}
+      <div className="hidden md:block relative h-[260vh] lg:h-[250vh]">
+        <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden px-6 md:px-10">
+          {/* Heading sits behind the scrolling cards */}
+          <div className="absolute inset-0 flex items-center justify-center px-4">
+            <div className="max-w-4xl w-full">
+              <SectionHeading />
+            </div>
+          </div>
+
+          {/* Horizontally scrolling cards */}
+          <motion.div
+            style={{ x: cardsX }}
+            className="flex gap-20 lg:gap-28 xl:gap-36 pt-20"
+          >
+            {services.map((service, i) => (
+              <FlipCard
+                key={i}
+                title={service.title}
+                desc={service.desc}
+                shapes={shapes}
+                flipped={activeIndex === i}
+                onClick={() => handleCardClick(i)}
+              />
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

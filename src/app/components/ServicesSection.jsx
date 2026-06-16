@@ -87,9 +87,20 @@ export default function ServicesSection() {
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden">
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 md:px-12 lg:px-16
-          flex flex-col lg:flex-row gap-6 lg:gap-12 xl:gap-16 py-6 sm:py-10 lg:py-0">
+          flex flex-col lg:flex-row gap-4 lg:gap-12 xl:gap-16 py-6 sm:py-10 lg:py-0">
 
-          {/* LEFT TEXT */}
+          {/* Mobile/tablet heading — hidden on lg+ where the sidebar shows */}
+          <div className="lg:hidden text-white text-center flex-shrink-0 pt-2">
+            <div className="inline-block px-4 py-1 border border-blue-300 text-blue-200 uppercase tracking-widest text-[9px] font-bold mb-2">
+              Our Core Services
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold leading-tight">
+              Empowering Businesses Through Technology
+            </h2>
+            <div className="h-0.5 w-10 bg-blue-400 rounded-full mx-auto mt-2 opacity-70" />
+          </div>
+
+          {/* LEFT TEXT — desktop sidebar */}
           <div className="text-white flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl hidden lg:flex">
             <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4 self-start">
               Our Core Services
