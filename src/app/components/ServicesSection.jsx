@@ -14,7 +14,7 @@ export default function ServicesSection() {
   });
 
   // Increase scroll travel so ALL cards appear
-  const cardsY = useTransform(scrollYProgress, [0, 1.05], ["0%", "-650%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-650%"]);
 
   const services = [
     {
@@ -51,7 +51,7 @@ export default function ServicesSection() {
       title: "Enterprise Automation",
       desc: "We automate repetitive workflows using AI, bots, and workflow orchestration tools.",
       image: "/assets/enterprise automation.jpg",
-      link: "/what-we-do/services/enterprise-automation",
+      link: "what-we-do/services/enterprise-automation",
     },
     {
       title: "Legacy Support & Modernization",

@@ -132,7 +132,7 @@ export function Navigation() {
     },
     { title: "Paves AI Labs", href: "/paves-ai-labs" },
     { title: "Insights", href: "/insights" },
-    { title: "Careers", href: "http://localhost:3001/" },
+    { title: "Careers", href: process.env.NEXT_PUBLIC_CAREERS_URL || "/careers" },
   ];
 
   const isActive = (href) => pathname === href || (href !== "/" && pathname?.startsWith(href));

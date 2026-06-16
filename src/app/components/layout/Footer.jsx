@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 
 export default function Footer() {
-  const careersUrl = process.env.NEXT_PUBLIC_CAREERS_URL || "http://localhost:3001";
+  const careersUrl = process.env.NEXT_PUBLIC_CAREERS_URL || "https://careers.pavestechnologies.com";
 
   return (
     <>
