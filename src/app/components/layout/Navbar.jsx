@@ -132,7 +132,7 @@ export function Navigation() {
     },
     { title: "Paves AI Labs", href: "/paves-ai-labs" },
     { title: "Insights", href: "/insights" },
-    { title: "Careers", href: process.env.NEXT_PUBLIC_CAREERS_URL || "/careers" },
+    { title: "Careers", href: process.env.NEXT_PUBLIC_CAREERS_URL || "https://careers.pavestechnologies.com", external: true },
   ];
 
   const isActive = (href) => pathname === href || (href !== "/" && pathname?.startsWith(href));
@@ -163,7 +163,7 @@ export function Navigation() {
                     transition={{ type: "spring", stiffness: 400, damping: 20 }}
                     className="relative flex items-center gap-1 px-2.5 xl:px-3 py-2 text-[10px] xl:text-[11px] font-bold tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-200"
                     style={{ color: active ? "#2a3990" : "#374151" }}
-                    onClick={() => link.href && (window.location.href = link.href)}
+                    onClick={() => link.href && (link.external ? window.open(link.href, "_blank", "noopener,noreferrer") : (window.location.href = link.href))}
                   >
                     <span className="relative group-hover:text-[#2a3990] transition-colors duration-200">
                       {link.title}
@@ -285,13 +285,25 @@ export function Navigation() {
                   className="border-b border-gray-100 last:border-b-0"
                 >
                   <div className="flex items-center justify-between">
-                    <Link
-                      href={link.href || "#"}
-                      className="flex-1 py-3 text-sm font-bold tracking-widest uppercase text-gray-800 hover:text-[#2a3990] transition-colors"
-                      onClick={() => { if (!link.submenu) setIsMobileMenuOpen(false); }}
-                    >
-                      {link.title}
-                    </Link>
+                    {link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 text-sm font-bold tracking-widest uppercase text-gray-800 hover:text-[#2a3990] transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.title}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href || "#"}
+                        className="flex-1 py-3 text-sm font-bold tracking-widest uppercase text-gray-800 hover:text-[#2a3990] transition-colors"
+                        onClick={() => { if (!link.submenu) setIsMobileMenuOpen(false); }}
+                      >
+                        {link.title}
+                      </Link>
+                    )}
                     {link.submenu && (
                       <button onClick={() => toggleMobileMenu(link.title)} className="p-3 text-gray-500 hover:text-[#2a3990] transition-colors">
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileOpenMenus[link.title] ? "rotate-180" : ""}`} />

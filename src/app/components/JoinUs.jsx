@@ -75,13 +75,15 @@ export default function JoinUs() {
               Be part of a culture that values innovation, growth, creativity, and meaningful impact.
             </p>
 
-            <Link
-              href="/careers"
+            <a
+              href={process.env.NEXT_PUBLIC_CAREERS_URL || "https://careers.pavestechnologies.com"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
               style={{ background: "#000080" }}
             >
               Join Us
-            </Link>
+            </a>
           </div>
 
           {/* Right: Process Steps */}
