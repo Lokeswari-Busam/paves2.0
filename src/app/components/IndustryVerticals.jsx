@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function InfoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -91,10 +92,13 @@ export default function InfoCarousel() {
           transition={{ duration: 0.6 }}
           className="w-full lg:w-1/2 h-[220px] sm:h-[300px] md:h-[360px] lg:h-[470px] relative flex items-center justify-center lg:justify-end lg:pr-10 mb-8 lg:mb-0"
         >
-          <img
+          <Image
             src={items[currentIndex].image}
             alt={items[currentIndex].title}
+            width={700}
+            height={470}
             className="w-full h-full object-cover rounded-xl shadow-xl"
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </motion.div>
 

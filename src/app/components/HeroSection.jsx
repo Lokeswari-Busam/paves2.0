@@ -37,7 +37,6 @@ export default function HeroSection() {
         backgroundImage: "url('/assets/hero-background.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
       {/* Gradient Overlay */}

@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 const STEPS = [
@@ -44,10 +45,12 @@ export default function JoinUs() {
           style={{ x: imageX }}
           className="absolute inset-0 w-full h-full rounded-xl overflow-hidden"
         >
-          <img
+          <Image
             src="/assets/professional-businesswoman-holding-plan.jpg"
             alt="Team"
-            className="w-full h-full object-cover rounded-xl shadow-xl"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 60vw"
           />
         </motion.div>
 
