@@ -225,6 +225,9 @@ export default function Footer() {
             <Link href="/legal" className="hover:text-white transition-colors duration-200">
               Legal
             </Link>
+            <Link href="/lca-notices" className="hover:text-white transition-colors duration-200">
+              LCA Notices
+            </Link>
           </div>
         </div>
 

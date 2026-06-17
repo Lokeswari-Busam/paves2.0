@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
 import { useState, useEffect, useRef } from "react";
@@ -314,6 +315,27 @@ const handleSubmit = async (e) => {
 
       {/* MAP BELOW */}
       <MapSection offices={offices} />
+
+      {/* LCA NOTICES */}
+      <div className="max-w-7xl mx-auto mt-12 sm:mt-16 pt-8 border-t border-border">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-card border border-border rounded-xl p-6 shadow-sm">
+          <div>
+            <h3 className="text-lg font-semibold mb-1">LCA Notices</h3>
+            <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
+              Pursuant to 20 CFR § 655.734, Paves Technologies Inc. publishes notices of H-1B
+              Labor Condition Application (LCA) filings with the U.S. Department of Labor. View
+              all current and past LCA postings including job titles, wage rates, and work
+              locations.
+            </p>
+          </div>
+          <Link
+            href="/lca-notices"
+            className="flex-shrink-0 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            View our Postings →
+          </Link>
+        </div>
+      </div>
 
     </div>
   );
