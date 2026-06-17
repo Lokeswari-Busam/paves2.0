@@ -9,7 +9,8 @@
       "Read(//c/Users/niharika/AppData/Local/Temp\" 2>/dev/**)",
       "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\niharika\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-niharika-Downloads-Paves-Paves-2-0-Website\\\\4b659906-4341-4e24-b583-fec0b44866c3\\\\tasks\\\\bu6f1w4vz.output' -Wait | Select-String -Pattern 'chromium|error|success|done|installed|failed' -AllMatches\")",
       "Bash(ls -la \"C:\\\\Users\\\\niharika\\\\Downloads\\\\Paves\\\\Paves_2.0_Website\\\\\" | findstr /E \"robots.txt sitemap\" )",
-      "Read(//c/Users/niharika/Downloads/Paves/Paves_2.0_Website\" | findstr /**)"
+      "Read(//c/Users/niharika/Downloads/Paves/Paves_2.0_Website\" | findstr /**)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
