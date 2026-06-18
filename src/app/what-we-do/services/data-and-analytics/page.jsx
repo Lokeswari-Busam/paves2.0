@@ -1,6 +1,11 @@
-"use client";
 import { Subtitles } from "lucide-react";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Data & Analytics",
+  description: "Transforming raw data into real business intelligence through analytics, data engineering, and insights-driven decision frameworks.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/data-and-analytics" },
+};
 
 export default function DataAndAnalyticsPage() {
   return (

@@ -1,6 +1,11 @@
-"use client";
 import Image from "next/image";
 import { ShieldCheck, Users, RefreshCw, Target } from "lucide-react";
+
+export const metadata = {
+  title: "Product Management & Engineering",
+  description: "Turning great ideas into scalable digital products with user-centered design, agile engineering, and continuous innovation.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/product-management" },
+};
 
 export default function ProductManagementPage() {
   return (

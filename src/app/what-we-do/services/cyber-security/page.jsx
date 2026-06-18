@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Cyber Security",
+  description: "Protecting digital ecosystems with continuous monitoring, advanced threat intelligence, and enterprise-grade security frameworks.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/cyber-security" },
+};
 
 export default function CybersecurityRedesign() {
   return (

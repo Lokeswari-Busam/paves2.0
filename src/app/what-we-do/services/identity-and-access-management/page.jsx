@@ -1,5 +1,11 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Identity & Access Management",
+  description: "Simplifying and securing access with IAM platforms designed for scalability, compliance, and seamless authentication experience.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/identity-and-access-management" },
+};
+
 export default function IAMPage() {
   return (
     <div className="w-full">

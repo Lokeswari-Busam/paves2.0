@@ -1,7 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import ShapeDivider from "@/app/components/ShapeDivider";
+
+export const metadata = {
+  title: "Artificial Intelligence",
+  description: "Building intelligent systems with machine learning, NLP, and computer vision to automate processes and deliver predictive insights for financial services.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/artificial-intelligence" },
+};
 
 export default function ArtificialIntelligence() {
   return (

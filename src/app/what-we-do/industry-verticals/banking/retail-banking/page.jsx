@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Retail Banking",
+  description: "Delivering digital-first retail banking experiences with intelligent automation and secure infrastructure.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/retail-banking" },
+};
 
 export default function RetailBankingPage() {
   return (

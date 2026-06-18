@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Next Gen Technologies",
+  description: "Exploring and implementing cutting-edge technologies such as blockchain, IoT, and quantum computing to future-proof enterprises.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/next-gen-technologies" },
+};
 
 export default function NextGenTechnologies() {
   return (

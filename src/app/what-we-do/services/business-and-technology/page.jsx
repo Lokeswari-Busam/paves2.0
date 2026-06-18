@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Business & Technology Advisory",
+  description: "Aligning business goals with intelligent technology strategies to accelerate digital transformation and enterprise innovation.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/business-and-technology" },
+};
 
 export default function BusinessAndTechnologyPage() {
   return (

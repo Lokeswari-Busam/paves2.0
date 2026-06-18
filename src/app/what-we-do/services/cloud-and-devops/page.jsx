@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Cloud Engineering & DevOps",
+  description: "Designing and scaling cloud-native platforms with automated CI/CD workflows, resilient infrastructure, and optimized performance.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/cloud-and-devops" },
+};
 
 export default function CloudAndDevopsPage() {
   return (
