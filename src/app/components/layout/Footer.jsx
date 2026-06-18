@@ -210,7 +210,7 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM BAR */}
-        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-8 sm:mt-10 border-t border-gray-800 pt-4 sm:pt-5 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 text-xs sm:text-sm text-gray-500">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 mt-8 sm:mt-10 border-t border-gray-800 pt-4 sm:pt-5 flex flex-col sm:flex-row justify-between items-center sm:items-start gap-3 sm:gap-0 text-xs sm:text-sm text-gray-400">
           <p className="text-center sm:text-left">
             © 2025 Paves Technologies. All Rights Reserved.
           </p>

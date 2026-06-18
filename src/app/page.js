@@ -13,13 +13,16 @@ export const metadata = {
   },
 };
 
+import dynamic from "next/dynamic";
 import HeroSection from "./components/HeroSection";
 import StatsRow from "./components/StatsRow";
-import WhyPaves from "./components/WhyPaves";
-import ServicesSection from "./components/ServicesSection";
-import IndustryVerticals from "./components/IndustryVerticals";
-import PartnersEcosystem from "./components/PartnersEcosystem";
-import JoinUs from "./components/JoinUs";
+
+// Below-fold components — deferred until after hero renders
+const WhyPaves = dynamic(() => import("./components/WhyPaves"));
+const ServicesSection = dynamic(() => import("./components/ServicesSection"));
+const IndustryVerticals = dynamic(() => import("./components/IndustryVerticals"));
+const PartnersEcosystem = dynamic(() => import("./components/PartnersEcosystem"));
+const JoinUs = dynamic(() => import("./components/JoinUs"));
 
 export default function Home() {
   return (

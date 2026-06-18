@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
@@ -12,59 +11,51 @@ export function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+  const [activeSubSubmenu, setActiveSubSubmenu] = useState(null);
   const [mobileOpenMenus, setMobileOpenMenus] = useState({});
   const [mobileOpenSubmenus, setMobileOpenSubmenus] = useState({});
   const [mobileOpenSubSubmenus, setMobileOpenSubSubmenus] = useState({});
-
-  const dropdownRefs = useRef({});
-  const submenuRefs = useRef({});
-  const subSubmenuRefs = useRef({});
   const hideTimeout = useRef(null);
+  const submenuHideTimeout = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const showDropdown = (ref) => {
-    if (!ref) return;
-    gsap.killTweensOf(ref);
-    gsap.fromTo(ref, { opacity: 0, y: 10, display: "none" }, {
-      opacity: 1, y: 0, display: "block", duration: 0.3, ease: "power3.out",
-      onStart: () => (ref.style.display = "block"),
-    });
-    const items = ref.querySelectorAll(".submenu-item");
-    gsap.fromTo(items, { opacity: 0, y: -12 }, { opacity: 1, y: 0, stagger: 0.05, delay: 0.04, duration: 0.25, ease: "power2.out" });
-  };
-
-  const hideDropdown = (ref) => {
-    if (!ref) return;
-    gsap.killTweensOf(ref);
-    gsap.to(ref, { opacity: 0, y: 5, duration: 0.2, ease: "power2.inOut", onComplete: () => (ref.style.display = "none") });
-  };
-
   const handleMouseEnter = (menu) => {
-    if (hideTimeout.current) clearTimeout(hideTimeout.current);
-    Object.entries(dropdownRefs.current).forEach(([key, ref]) => {
-      if (key !== menu && ref) gsap.to(ref, { opacity: 0, y: 5, duration: 0.15, onComplete: () => (ref.style.display = "none") });
-    });
+    clearTimeout(hideTimeout.current);
     setActiveDropdown(menu);
-    showDropdown(dropdownRefs.current[menu]);
   };
 
   const handleMouseLeave = (menu) => {
     hideTimeout.current = setTimeout(() => {
-      hideDropdown(dropdownRefs.current[menu]);
-      if (activeDropdown === menu) setActiveDropdown(null);
-    }, 200);
+      if (activeDropdown === menu) {
+        setActiveDropdown(null);
+        setActiveSubmenu(null);
+        setActiveSubSubmenu(null);
+      }
+    }, 150);
   };
 
-  const handleSubmenuEnter = (key) => showDropdown(submenuRefs.current[key]);
-  const handleSubmenuLeave = (key) => hideDropdown(submenuRefs.current[key]);
-  const handleSubSubmenuEnter = (key) => showDropdown(subSubmenuRefs.current[key]);
-  const handleSubSubmenuLeave = (key) => hideDropdown(subSubmenuRefs.current[key]);
+  const handleSubmenuEnter = (key) => {
+    clearTimeout(submenuHideTimeout.current);
+    setActiveSubmenu(key);
+  };
+
+  const handleSubmenuLeave = (key) => {
+    submenuHideTimeout.current = setTimeout(() => {
+      if (activeSubmenu === key) {
+        setActiveSubmenu(null);
+        setActiveSubSubmenu(null);
+      }
+    }, 150);
+  };
+
+  const handleSubSubmenuEnter = (key) => setActiveSubSubmenu(key);
+  const handleSubSubmenuLeave = () => setActiveSubSubmenu(null);
 
   const toggleMobileMenu = (key) => setMobileOpenMenus((p) => ({ ...p, [key]: !p[key] }));
   const toggleMobileSubmenu = (key) => setMobileOpenSubmenus((p) => ({ ...p, [key]: !p[key] }));
@@ -144,87 +135,105 @@ export function Navigation() {
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image src="/assets/logo.png" alt="Paves Technologies" width={130} height={40} className="h-9 w-auto" />
+            <Image src="/assets/logo.png" alt="Paves Technologies" width={130} height={40} className="h-9 w-auto" priority />
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
                 <div
                   key={link.title}
-                  className="relative group"
+                  className="relative"
                   onMouseEnter={() => link.submenu && handleMouseEnter(link.title)}
                   onMouseLeave={() => link.submenu && handleMouseLeave(link.title)}
                 >
-                  <motion.button
-                    whileHover={{ y: -1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                    className="relative flex items-center gap-1 px-2.5 xl:px-3 py-2 text-[10px] xl:text-[11px] font-bold tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-200"
+                  <button
+                    className="relative flex items-center gap-1 px-2.5 xl:px-3 py-2 text-[10px] xl:text-[11px] font-bold tracking-[0.14em] uppercase whitespace-nowrap transition-colors duration-200 group hover:-translate-y-px"
                     style={{ color: active ? "#2a3990" : "#374151" }}
-                    onClick={() => link.href && (link.external ? window.open(link.href, "_blank", "noopener,noreferrer") : (window.location.href = link.href))}
+                    onClick={() => {
+                      if (link.external) window.open(link.href, "_blank", "noopener,noreferrer");
+                      else if (link.href) window.location.href = link.href;
+                    }}
+                    aria-haspopup={link.submenu ? "true" : undefined}
+                    aria-expanded={link.submenu ? activeDropdown === link.title : undefined}
                   >
                     <span className="relative group-hover:text-[#2a3990] transition-colors duration-200">
                       {link.title}
                     </span>
                     {link.submenu && <ChevronDown className="w-3 h-3 group-hover:text-[#2a3990] transition-colors duration-200" />}
-
-                    {/* Sliding underline */}
                     <span
                       className="absolute bottom-0 left-1/2 h-0.5 bg-[#2a3990] rounded-full transition-all duration-300 group-hover:w-full group-hover:left-0"
                       style={{ width: active ? "100%" : "0%", left: active ? "0%" : "50%" }}
                     />
-                  </motion.button>
+                  </button>
 
-                  {/* Level 1 Dropdown */}
+                  {/* Level 1 Dropdown — CSS transition, no GSAP */}
                   {link.submenu && (
                     <div
-                      ref={(el) => (dropdownRefs.current[link.title] = el)}
-                      className="absolute top-full left-0 bg-white border border-gray-100 shadow-xl rounded-lg p-2.5 w-64 space-y-0.5 z-50 hidden"
+                      className={`absolute top-full left-0 bg-white border border-gray-100 shadow-xl rounded-lg p-2.5 w-64 space-y-0.5 z-50
+                        transition-all duration-200 ease-out
+                        ${activeDropdown === link.title
+                          ? "opacity-100 visible translate-y-0"
+                          : "opacity-0 invisible -translate-y-2 pointer-events-none"
+                        }`}
                     >
                       {link.submenu.map((sub) => (
                         <div
                           key={sub.title}
-                          className="relative submenu-item"
-                          onMouseEnter={() => handleSubmenuEnter(sub.title)}
-                          onMouseLeave={() => handleSubmenuLeave(sub.title)}
-                          onClick={(e) => { e.stopPropagation(); if (sub.href) window.location.href = sub.href; }}
+                          className="relative"
+                          onMouseEnter={() => sub.subitems && handleSubmenuEnter(sub.title)}
+                          onMouseLeave={() => sub.subitems && handleSubmenuLeave(sub.title)}
                         >
-                          <div className="flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2a3990] rounded-md transition-colors duration-150 cursor-pointer">
+                          <Link
+                            href={sub.href || "#"}
+                            className="flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2a3990] rounded-md transition-colors duration-150"
+                          >
                             {sub.title}
                             {sub.subitems && <ChevronRight className="w-3.5 h-3.5 text-gray-400" />}
-                          </div>
+                          </Link>
 
+                          {/* Level 2 Submenu */}
                           {sub.subitems && (
                             <div
-                              ref={(el) => (submenuRefs.current[sub.title] = el)}
-                              className="absolute top-0 left-full bg-white border border-gray-100 shadow-lg rounded-lg p-2.5 w-72 ml-px space-y-0.5 z-50 hidden"
+                              className={`absolute top-0 left-full bg-white border border-gray-100 shadow-lg rounded-lg p-2.5 w-72 ml-px space-y-0.5 z-50
+                                transition-all duration-200 ease-out
+                                ${activeSubmenu === sub.title
+                                  ? "opacity-100 visible translate-x-0"
+                                  : "opacity-0 invisible -translate-x-2 pointer-events-none"
+                                }`}
                             >
                               {sub.subitems.map((item) => (
                                 <div
                                   key={item.title}
-                                  className="relative submenu-item"
-                                  onMouseEnter={() => handleSubSubmenuEnter(item.title)}
-                                  onMouseLeave={() => handleSubSubmenuLeave(item.title)}
-                                  onClick={(e) => { e.stopPropagation(); if (item.href) window.location.href = item.href; }}
+                                  className="relative"
+                                  onMouseEnter={() => item.subitems && handleSubSubmenuEnter(item.title)}
+                                  onMouseLeave={() => item.subitems && handleSubSubmenuLeave(item.title)}
                                 >
-                                  <div className="flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2a3990] rounded-md transition-colors duration-150 cursor-pointer">
+                                  <Link
+                                    href={item.href || "#"}
+                                    className="flex items-center justify-between px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2a3990] rounded-md transition-colors duration-150"
+                                  >
                                     {item.title}
                                     {item.subitems && <ChevronRight className="w-3.5 h-3.5 text-gray-400" />}
-                                  </div>
+                                  </Link>
 
+                                  {/* Level 3 Sub-submenu */}
                                   {item.subitems && (
                                     <div
-                                      ref={(el) => (subSubmenuRefs.current[item.title] = el)}
-                                      className="absolute top-0 left-full bg-white border border-gray-100 shadow-md rounded-lg p-2.5 w-60 ml-px space-y-0.5 z-50 hidden"
+                                      className={`absolute top-0 left-full bg-white border border-gray-100 shadow-md rounded-lg p-2.5 w-60 ml-px space-y-0.5 z-50
+                                        transition-all duration-200 ease-out
+                                        ${activeSubSubmenu === item.title
+                                          ? "opacity-100 visible translate-x-0"
+                                          : "opacity-0 invisible -translate-x-2 pointer-events-none"
+                                        }`}
                                     >
                                       {item.subitems.map((child) => (
                                         <Link
                                           key={child.title}
                                           href={child.href}
                                           className="block px-3 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-[#2a3990] rounded-md transition-colors duration-150"
-                                          onClick={(e) => e.stopPropagation()}
                                         >
                                           {child.title}
                                         </Link>
@@ -252,16 +261,15 @@ export function Navigation() {
             >
               Contact Us
             </Link>
-
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 text-gray-800 hover:text-[#2a3990] transition-colors"
-              aria-label="Toggle menu"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -305,7 +313,11 @@ export function Navigation() {
                       </Link>
                     )}
                     {link.submenu && (
-                      <button onClick={() => toggleMobileMenu(link.title)} className="p-3 text-gray-500 hover:text-[#2a3990] transition-colors">
+                      <button
+                        onClick={() => toggleMobileMenu(link.title)}
+                        className="p-3 text-gray-500 hover:text-[#2a3990] transition-colors"
+                        aria-label={`Toggle ${link.title} submenu`}
+                      >
                         <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileOpenMenus[link.title] ? "rotate-180" : ""}`} />
                       </button>
                     )}
@@ -324,12 +336,15 @@ export function Navigation() {
                               {sub.title}
                             </Link>
                             {sub.subitems && (
-                              <button onClick={() => toggleMobileSubmenu(sub.title)} className="p-2 text-gray-400 hover:text-[#2a3990] transition-colors">
+                              <button
+                                onClick={() => toggleMobileSubmenu(sub.title)}
+                                className="p-2 text-gray-400 hover:text-[#2a3990] transition-colors"
+                                aria-label={`Toggle ${sub.title}`}
+                              >
                                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${mobileOpenSubmenus[sub.title] ? "rotate-180" : ""}`} />
                               </button>
                             )}
                           </div>
-
                           {sub.subitems && mobileOpenSubmenus[sub.title] && (
                             <div className="pl-3 pb-1 space-y-0.5">
                               {sub.subitems.map((item) => (
@@ -343,12 +358,15 @@ export function Navigation() {
                                       {item.title}
                                     </Link>
                                     {item.subitems && (
-                                      <button onClick={() => toggleMobileSubSubmenu(item.title)} className="p-2 text-gray-400 hover:text-[#2a3990] transition-colors">
+                                      <button
+                                        onClick={() => toggleMobileSubSubmenu(item.title)}
+                                        className="p-2 text-gray-400 hover:text-[#2a3990] transition-colors"
+                                        aria-label={`Toggle ${item.title}`}
+                                      >
                                         <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${mobileOpenSubSubmenus[item.title] ? "rotate-180" : ""}`} />
                                       </button>
                                     )}
                                   </div>
-
                                   {item.subitems && mobileOpenSubSubmenus[item.title] && (
                                     <div className="pl-3 pb-1 space-y-0.5">
                                       {item.subitems.map((child) => (

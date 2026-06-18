@@ -25,7 +25,7 @@ export default function StatsRow() {
               <div className="text-3xl sm:text-4xl font-bold text-blue-300 mb-2">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm text-blue-100/80 text-center font-medium tracking-wide">
+              <div className="text-xs sm:text-sm text-blue-100 text-center font-medium tracking-wide">
                 {stat.label}
               </div>
               <div className="mt-3 h-0.5 w-8 bg-blue-400 rounded-full opacity-60" />

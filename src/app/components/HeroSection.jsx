@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection() {
   const [stage, setStage] = useState("initial");
@@ -12,7 +13,7 @@ export default function HeroSection() {
   useEffect(() => {
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const generated = Array.from({ length: 15 }).map(() => ({
+    const generated = Array.from({ length: 6 }).map(() => ({
       x: Math.random() * width,
       y: Math.random() * height,
       drift: Math.random() * -200 - 100,
@@ -24,21 +25,23 @@ export default function HeroSection() {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStage("collapse"), 1000),
-      setTimeout(() => setStage("expand"), 1500),
+      setTimeout(() => setStage("collapse"), 400),
+      setTimeout(() => setStage("expand"), 700),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
   return (
-    <section
-      className="relative flex items-center justify-center min-h-screen text-white overflow-hidden pt-20 md:pt-0"
-      style={{
-        backgroundImage: "url('/assets/hero-background.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <section className="relative flex items-center justify-center min-h-screen text-white overflow-hidden pt-20 md:pt-0">
+      <Image
+        src="/assets/hero-background.png"
+        alt=""
+        fill
+        priority
+        quality={75}
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/75 via-black/65 to-blue-900/50" />
 
@@ -80,7 +83,7 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
 
-            {/* INITIAL */}
+            {/* INITIAL — decorative only, aria-hidden */}
             {stage === "initial" && (
               <motion.div
                 key="initial"
@@ -88,22 +91,23 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                aria-hidden="true"
               >
-                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
+                <div className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight">
                   <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block">
                     Paves
                   </span>
                   <span className="bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-transparent block mt-2">
                     Technologies
                   </span>
-                </h1>
+                </div>
               </motion.div>
             )}
 
-            {/* COLLAPSE */}
+            {/* COLLAPSE — decorative only, aria-hidden */}
             {stage === "collapse" && (
-              <motion.div key="collapse" className="text-left">
-                <motion.h1
+              <motion.div key="collapse" className="text-left" aria-hidden="true">
+                <motion.div
                   className="text-5xl sm:text-7xl md:text-9xl font-bold bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
                   animate={{
                     scale: 1.1,
@@ -116,8 +120,8 @@ export default function HeroSection() {
                   transition={{ duration: 0.5 }}
                 >
                   P
-                </motion.h1>
-                <motion.h1
+                </motion.div>
+                <motion.div
                   className="text-5xl sm:text-7xl md:text-9xl font-bold -mt-2 bg-gradient-to-r from-blue-400 via-blue-200 to-white bg-clip-text text-transparent"
                   animate={{
                     scale: 1.1,
@@ -130,7 +134,7 @@ export default function HeroSection() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
                   T
-                </motion.h1>
+                </motion.div>
               </motion.div>
             )}
 

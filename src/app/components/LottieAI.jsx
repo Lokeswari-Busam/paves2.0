@@ -10,10 +10,10 @@ export default function LottieAI() {
     fetch("/animations/ai-3d.json")
       .then((res) => res.json())
       .then((data) => setAnimationData(data))
-      .catch((err) => console.error("Lottie Load Error:", err));
+      .catch(() => {});
   }, []);
 
-  if (!animationData) return null;
+  if (!animationData) return <div className="w-full h-full" aria-hidden="true" />;
 
   return (
     <Lottie
