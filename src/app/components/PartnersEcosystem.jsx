@@ -1,98 +1,181 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
-// ------------------------
-// Flip Card Component
-// ------------------------
-function FlipCard({ title, desc, shapes, flipped, onClick }) {
+const PARTNERSHIPS = [
+  {
+    title: "Your Success Is Our Success",
+    desc: "We believe that true partnership begins with shared success. Our mission is to fully align with your vision, challenges, and long-term goals so we can co-create solutions that deliver measurable, sustainable impact.",
+  },
+  {
+    title: "Seeing Through Your Lens",
+    desc: "Every business is unique, and so are the challenges and opportunities it encounters. We immerse ourselves in your world to understand your priorities and create meaningful solutions.",
+  },
+  {
+    title: "Building Trust Through Transparency",
+    desc: "Trust is the foundation of every long-lasting relationship. We communicate openly, share progress proactively, and keep transparency at the core of everything we do.",
+  },
+];
+
+function PartnerCard({ title, desc, flipped, onClick }) {
   return (
     <div
-      className="
-        w-[200px] h-[200px]
-        xs:w-[220px] xs:h-[220px]
-        sm:w-[280px] sm:h-[280px]
-        md:w-[340px] md:h-[340px]
-        lg:w-[380px] lg:h-[380px]
-        perspective cursor-pointer flex-shrink-0
-      "
+      className="w-[260px] h-[300px] sm:w-[300px] sm:h-[340px] md:w-[340px] md:h-[380px] lg:w-[360px] lg:h-[400px] cursor-pointer flex-shrink-0"
       style={{ perspective: "1200px" }}
       onClick={onClick}
     >
       <motion.div
-        className="relative w-full h-full rounded-3xl"
+        className="relative w-full h-full"
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.9, ease: "easeInOut" }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* FRONT */}
+        {/* ── Front ── */}
         <div
-          className="absolute inset-0 rounded-3xl bg-[#040435] overflow-hidden shadow-xl"
-          style={{ backfaceVisibility: "hidden" }}
+          className="absolute inset-0 rounded-2xl overflow-hidden flex flex-col justify-between p-7"
+          style={{
+            backfaceVisibility: "hidden",
+            background: "rgba(15,21,53,0.92)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            backdropFilter: "blur(12px)",
+          }}
         >
-          <svg className="absolute inset-0 w-full h-full opacity-40">
-            {shapes}
-          </svg>
+          {/* Large open-quote mark */}
+          <div
+            className="text-7xl font-bold leading-none select-none"
+            style={{
+              background: "linear-gradient(135deg, #d23369, #9b4fc7)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              lineHeight: 0.8,
+            }}
+          >
+            &ldquo;
+          </div>
 
-          <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-6 text-center z-20">
-            <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
+          <div>
+            <h3
+              className="font-bold text-lg sm:text-xl leading-snug mb-4"
+              style={{ color: "#F0F2FA" }}
+            >
               {title}
             </h3>
+            <div
+              className="h-px w-10 rounded-full"
+              style={{ background: "linear-gradient(90deg, #d23369, #3d5fdb)" }}
+            />
           </div>
+
+          {/* Flip hint */}
+          <motion.div
+            className="absolute bottom-5 right-5 w-7 h-7 rounded-full flex items-center justify-center text-xs text-white font-bold"
+            style={{ background: "rgba(210,51,105,0.7)" }}
+            animate={{
+              boxShadow: [
+                "0 0 0px rgba(210,51,105,0)",
+                "0 0 12px rgba(210,51,105,0.7)",
+                "0 0 0px rgba(210,51,105,0)",
+              ],
+            }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            ↻
+          </motion.div>
+
+          {/* Subtle radial glow inside card */}
+          <div
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 60% at 20% 80%, rgba(210,51,105,0.07) 0%, transparent 70%)",
+            }}
+          />
         </div>
 
-        {/* BACK */}
+        {/* ── Back ── */}
         <div
-          className="absolute inset-0 rounded-3xl bg-[#040435] overflow-hidden shadow-xl"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          className="absolute inset-0 rounded-2xl overflow-hidden flex flex-col justify-center p-7"
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            background:
+              "linear-gradient(145deg, #d23369 0%, #9b4fc7 50%, #212d74 100%)",
+          }}
         >
-          <svg className="absolute inset-0 w-full h-full opacity-40">
-            {shapes}
-          </svg>
-
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 sm:p-6 text-center z-20">
-            <h3 className="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 sm:mb-3">
-              {title}
-            </h3>
-            <p className="text-white opacity-90 text-xs sm:text-sm md:text-base leading-relaxed">
-              {desc}
-            </p>
-          </div>
+          <h3 className="font-bold text-base sm:text-lg mb-4 text-white leading-snug">
+            {title}
+          </h3>
+          <p className="text-white/90 text-sm leading-relaxed">{desc}</p>
+          <div
+            className="mt-5 h-px w-10 rounded-full"
+            style={{ background: "rgba(255,255,255,0.3)" }}
+          />
         </div>
       </motion.div>
     </div>
   );
 }
 
-// Shared heading content used in both mobile and desktop
-function SectionHeading({ className = "" }) {
+function SectionHeading() {
   return (
-    <div className={`text-white text-center ${className}`}>
-      <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4">
+    <div className="text-white text-center">
+      <span
+        className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-5"
+        style={{
+          borderColor: "rgba(210,51,105,0.35)",
+          color: "#f9a8c9",
+          background: "rgba(210,51,105,0.07)",
+        }}
+      >
         Our Partnership Promise
-      </div>
-      <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 flex-wrap">
-        <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
-        <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-snug px-2">
-          Your Vision, Our Commitment &ndash; A Partnership Built for the Future
-        </h1>
-        <div className="w-2.5 h-2.5 rounded-sm bg-blue-400 rotate-45 flex-shrink-0" />
-      </div>
-      <div className="h-0.5 w-14 bg-blue-400 rounded-full mx-auto mb-4 opacity-70" />
-      <p className="text-sm sm:text-base opacity-90 max-w-2xl mx-auto">
-        At Paves Technologies, we create long-term strategic partnerships
-        to ensure our solutions deliver sustainable long-term value.
+      </span>
+
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug mb-4 px-2">
+        <span style={{ color: "#F0F2FA" }}>
+          Your Vision, Our Commitment &ndash; A{" "}
+        </span>
+        <span
+          style={{
+            background:
+              "linear-gradient(130deg, #d23369 0%, #9b4fc7 50%, #3d5fdb 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Partnership Built for the Future
+        </span>
+      </h2>
+
+      <motion.div
+        className="h-0.5 w-16 mx-auto mb-5 rounded-full"
+        style={{
+          background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+          transformOrigin: "left",
+        }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.7 }}
+      />
+
+      <p
+        className="text-sm sm:text-base max-w-2xl mx-auto"
+        style={{ color: "rgba(240,242,250,0.6)" }}
+      >
+        At Paves Technologies, we create long-term strategic partnerships to
+        ensure our solutions deliver sustainable long-term value.
       </p>
     </div>
   );
 }
 
-// ------------------------
-// Main Partnership Section
-// ------------------------
-export default function ServicesSection() {
+export default function PartnersEcosystem() {
   const sectionRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const timerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -100,46 +183,7 @@ export default function ServicesSection() {
   });
 
   const cardsX = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
-
-  const services = [
-    {
-      title: "Your Success Is Our Success",
-      desc:
-        "We believe that true partnership begins with shared success. Our mission is to fully align with your vision, challenges, and long-term goals so we can co-create solutions that deliver measurable, sustainable impact.",
-    },
-    {
-      title: "Seeing Through Your Lens",
-      desc:
-        "Every business is unique, and so are the challenges and opportunities it encounters. We immerse ourselves in your world to understand your priorities and create meaningful solutions.",
-    },
-    {
-      title: "Building Trust Through Transparency",
-      desc:
-        "Trust is the foundation of every long-lasting relationship. We communicate openly, share progress proactively, and keep transparency at the core of everything we do.",
-    },
-  ];
-
-  const [shapes, setShapes] = useState([]);
-
-  useEffect(() => {
-    const generatedShapes = Array.from({ length: 16 }, (_, i) => {
-      const x = Math.random() * 400;
-      const y = Math.random() * 300;
-      const size = 40 + Math.random() * 50;
-      const opacity = 0.05 + Math.random() * 0.15;
-
-      return Math.random() > 0.5 ? (
-        <circle key={i} cx={x} cy={y} r={size / 2} fill="#4e5d94" opacity={opacity} />
-      ) : (
-        <rect key={i} x={x} y={y} width={size} height={size} fill="#4e5d94" opacity={opacity} />
-      );
-    });
-
-    setShapes(generatedShapes);
-  }, []);
-
-  const [activeIndex, setActiveIndex] = useState(null);
-  const timerRef = useRef(null);
+  const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   const handleCardClick = (i) => {
     if (activeIndex === i) {
@@ -161,18 +205,28 @@ export default function ServicesSection() {
           "url('/assets/future-visions-business-technology-concept.jpg')",
       }}
     >
-      {/* ===== MOBILE LAYOUT (< md): flat, scrollable ===== */}
-      <div className="md:hidden bg-black/55 py-14 px-4">
-        <div className="max-w-lg mx-auto mb-10">
+      {/* ── Mobile layout ── */}
+      <div className="md:hidden py-16 px-4" style={{ background: "rgba(11,15,39,0.9)" }}>
+        {/* Grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px)
+            `,
+            backgroundSize: "55px 55px",
+          }}
+        />
+        <div className="max-w-lg mx-auto mb-12 relative z-10">
           <SectionHeading />
         </div>
-        <div className="flex flex-col items-center gap-8">
-          {services.map((service, i) => (
-            <FlipCard
-              key={i}
-              title={service.title}
-              desc={service.desc}
-              shapes={shapes}
+        <div className="flex flex-col items-center gap-8 relative z-10">
+          {PARTNERSHIPS.map((p, i) => (
+            <PartnerCard
+              key={p.title}
+              title={p.title}
+              desc={p.desc}
               flipped={activeIndex === i}
               onClick={() => handleCardClick(i)}
             />
@@ -180,11 +234,35 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {/* ===== DESKTOP LAYOUT (md+): sticky horizontal scroll ===== */}
+      {/* ── Desktop layout: sticky + horizontal scroll ── */}
       <div className="hidden md:block relative h-[260vh] lg:h-[250vh]">
-        <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden px-6 md:px-10">
-          {/* Heading sits behind the scrolling cards */}
-          <div className="absolute inset-0 flex items-center justify-center px-4">
+        <div
+          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6 md:px-10"
+          style={{ background: "rgba(11,15,39,0.88)" }}
+        >
+          {/* Grid overlay */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px)
+              `,
+              backgroundSize: "55px 55px",
+            }}
+          />
+
+          {/* Radial glow */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(210,51,105,0.06) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Heading behind cards */}
+          <div className="absolute inset-0 flex items-center justify-center px-4 z-0">
             <div className="max-w-4xl w-full">
               <SectionHeading />
             </div>
@@ -193,18 +271,32 @@ export default function ServicesSection() {
           {/* Horizontally scrolling cards */}
           <motion.div
             style={{ x: cardsX }}
-            className="flex gap-20 lg:gap-28 xl:gap-36 pt-20"
+            className="flex gap-8 lg:gap-12 xl:gap-16 pt-16 relative z-10"
           >
-            {services.map((service, i) => (
-              <FlipCard
-                key={i}
-                title={service.title}
-                desc={service.desc}
-                shapes={shapes}
+            {PARTNERSHIPS.map((p, i) => (
+              <PartnerCard
+                key={p.title}
+                title={p.title}
+                desc={p.desc}
                 flipped={activeIndex === i}
                 onClick={() => handleCardClick(i)}
               />
             ))}
+          </motion.div>
+
+          {/* Scroll hint — fades as user starts scrolling */}
+          <motion.div
+            style={{ opacity: scrollHintOpacity }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+          >
+            <p
+              className="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2 select-none"
+              style={{ color: "rgba(240,242,250,0.38)" }}
+            >
+              <span>←</span>
+              <span>Scroll to explore</span>
+              <span>→</span>
+            </p>
           </motion.div>
         </div>
       </div>

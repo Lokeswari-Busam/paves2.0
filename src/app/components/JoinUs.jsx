@@ -3,11 +3,10 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const STEPS = [
-  { step: 1, title: "Apply", description: "Submit your profile and area of expertise" },
-  { step: 2, title: "Connect", description: "Meet our team and explore opportunities" },
+  { step: 1, title: "Apply",    description: "Submit your profile and area of expertise" },
+  { step: 2, title: "Connect",  description: "Meet our team and explore opportunities" },
   { step: 3, title: "Innovate", description: "Join a culture that builds what's next" },
 ];
 
@@ -19,31 +18,44 @@ export default function JoinUs() {
     offset: ["start end", "end start"],
   });
 
-  const imageX = useTransform(scrollYProgress, [0, 1], ["0%", "55%"]);
+  const imageX      = useTransform(scrollYProgress, [0, 1],   ["0%", "55%"]);
   const textOpacity = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
-  const textY = useTransform(scrollYProgress, [0.2, 0.6], [60, 0]);
+  const textY       = useTransform(scrollYProgress, [0.2, 0.6], [50, 0]);
 
   return (
-    <section className="relative w-full bg-[#2a3990] text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 overflow-hidden">
-
-      {/* Grid Background */}
+    <section
+      className="relative w-full text-white py-16 sm:py-20 md:py-24 px-4 sm:px-6 overflow-hidden"
+      style={{ background: "#0b0f27" }}
+    >
+      {/* Grid texture */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-20"
+        className="pointer-events-none absolute inset-0"
         style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,.024) 1px, transparent 1px)
+          `,
+          backgroundSize: "55px 55px",
+        }}
+      />
+
+      {/* Radial glow — rose, bottom-left */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 60% at 20% 80%, rgba(210,51,105,0.1) 0%, transparent 70%)",
         }}
       />
 
       <div
         ref={wrapperRef}
-        className="relative max-w-6xl mx-auto min-h-[320px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[560px] flex items-center"
+        className="relative max-w-6xl mx-auto min-h-[340px] sm:min-h-[420px] md:min-h-[520px] lg:min-h-[560px] flex items-center"
       >
-        {/* IMAGE – scrolls right */}
+        {/* ── Parallax image ── */}
         <motion.div
           style={{ x: imageX }}
-          className="absolute inset-0 w-full h-full rounded-xl overflow-hidden"
+          className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden"
         >
           <Image
             src="/assets/professional-businesswoman-holding-plan.jpg"
@@ -52,72 +64,171 @@ export default function JoinUs() {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 60vw"
           />
+          {/* Dark overlay so text stays readable */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(11,15,39,0.92) 0%, rgba(11,15,39,0.6) 55%, rgba(11,15,39,0.2) 100%)",
+            }}
+          />
         </motion.div>
 
-        {/* CONTENT OVERLAY */}
+        {/* ── Content overlay ── */}
         <motion.div
           style={{ opacity: textOpacity, y: textY }}
-          className="relative z-20 w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-16"
+          className="relative z-20 w-full flex flex-col lg:flex-row items-start gap-10 lg:gap-20"
         >
           {/* Left: Heading + CTA */}
-          <div className="max-w-xs sm:max-w-sm md:max-w-md px-3 sm:px-0">
-            <div className="inline-block px-5 py-1.5 border border-blue-300 text-blue-200 uppercase tracking-widest text-[10px] font-bold mb-4">
+          <div className="max-w-xs sm:max-w-sm md:max-w-md">
+            <span
+              className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-5"
+              style={{
+                borderColor: "rgba(210,51,105,0.35)",
+                color: "#f9a8c9",
+                background: "rgba(210,51,105,0.07)",
+              }}
+            >
               Join Our Team
-            </div>
+            </span>
 
-            <div className="flex items-start gap-2 mb-3">
-              <div className="w-3 h-3 rounded-sm bg-blue-300 rotate-45 flex-shrink-0 mt-2" />
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                Build the Future With Us
-              </h1>
-            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
+              <span style={{ color: "#F0F2FA" }}>Build the </span>
+              <span
+                style={{
+                  background:
+                    "linear-gradient(130deg, #d23369 0%, #9b4fc7 50%, #3d5fdb 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Future
+              </span>
+              <span style={{ color: "#F0F2FA" }}> With Us</span>
+            </h1>
 
-            <div className="h-0.5 w-12 bg-blue-300 rounded-full mb-4 opacity-70" />
+            <motion.div
+              className="h-0.5 w-14 rounded-full mb-5"
+              style={{
+                background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+                transformOrigin: "left",
+              }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            />
 
-            <p className="text-blue-100 text-sm sm:text-base md:text-lg mb-6">
-              Be part of a culture that values innovation, growth, creativity, and meaningful impact.
+            <p
+              className="text-sm sm:text-base md:text-lg mb-7 leading-relaxed"
+              style={{ color: "rgba(240,242,250,0.65)" }}
+            >
+              Be part of a culture that values innovation, growth, creativity,
+              and meaningful impact.
             </p>
 
-            <a
-              href={process.env.NEXT_PUBLIC_CAREERS_URL || "https://careers.pavestechnologies.com"}
+            <motion.a
+              href={
+                process.env.NEXT_PUBLIC_CAREERS_URL ||
+                "https://careers.pavestechnologies.com"
+              }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 rounded-full text-white font-medium hover:shadow-lg transition-all duration-300"
-              style={{ background: "#000080" }}
+              whileHover={{
+                scale: 1.04,
+                boxShadow: "0 0 40px rgba(210,51,105,0.4)",
+              }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm text-white"
+              style={{
+                background:
+                  "linear-gradient(135deg, #d23369 0%, #9b4fc7 100%)",
+              }}
             >
-              Join Us
-            </a>
+              Join Us <span>→</span>
+            </motion.a>
           </div>
 
-          {/* Right: Process Steps */}
-          <div className="hidden md:block pt-2">
-            <h3 className="text-sm font-bold text-blue-200 uppercase tracking-widest mb-6">
+          {/* Right: Process steps */}
+          <div className="hidden md:block pt-1">
+            <p
+              className="font-mono text-[11px] tracking-[0.16em] uppercase mb-6"
+              style={{ color: "rgba(240,242,250,0.38)" }}
+            >
               How It Works
-            </h3>
-            <div className="space-y-5">
+            </p>
+
+            <div className="space-y-0">
               {STEPS.map((s, i) => (
-                <div key={s.step} className="flex items-start gap-5">
+                <motion.div
+                  key={s.title}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.6,
+                    delay: i * 0.15,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="flex items-start gap-4"
+                >
                   {/* Step indicator + connector */}
                   <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-blue-300 text-[#2a3990] font-bold flex items-center justify-center text-sm flex-shrink-0">
+                    <div
+                      className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #d23369, #9b4fc7)",
+                        color: "#fff",
+                      }}
+                    >
                       {s.step}
                     </div>
                     {i < STEPS.length - 1 && (
                       <div
-                        className="w-px bg-gradient-to-b from-blue-300 to-transparent mt-1"
-                        style={{ height: "2.5rem" }}
+                        className="w-px mt-1"
+                        style={{
+                          height: "2.2rem",
+                          background:
+                            "linear-gradient(to bottom, rgba(210,51,105,0.5), transparent)",
+                        }}
                       />
                     )}
                   </div>
 
-                  {/* Step content */}
-                  <div className="flex-1 pb-1">
-                    <div className="px-4 py-3 rounded-md border border-white/20 bg-white/10">
-                      <h4 className="font-semibold text-white text-sm mb-0.5">{s.title}</h4>
-                      <p className="text-xs text-blue-100/80">{s.description}</p>
-                    </div>
+                  {/* Step text */}
+                  <div className="pb-6">
+                    <motion.div
+                      className="border rounded-lg px-4 py-3"
+                      style={{
+                        borderColor: "rgba(255,255,255,0.1)",
+                        background: "rgba(255,255,255,0.05)",
+                        backdropFilter: "blur(8px)",
+                      }}
+                      whileHover={{
+                        scale: 1.02,
+                        background: "rgba(255,255,255,0.08)",
+                        borderColor: "rgba(210,51,105,0.25)",
+                        boxShadow: "0 0 20px rgba(210,51,105,0.1)",
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <h4
+                        className="font-semibold text-sm mb-0.5"
+                        style={{ color: "#F0F2FA" }}
+                      >
+                        {s.title}
+                      </h4>
+                      <p
+                        className="text-xs leading-relaxed"
+                        style={{ color: "rgba(240,242,250,0.55)" }}
+                      >
+                        {s.description}
+                      </p>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

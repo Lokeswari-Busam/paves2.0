@@ -258,14 +258,23 @@ export default function HeroSection() {
             </motion.p>
 
             {/* CTA */}
-            <motion.div variants={itemVariants} className="mt-9">
+            <motion.div variants={itemVariants} className="mt-9 relative inline-block">
+              {/* Pulsing attention ring */}
+              <motion.div
+                className="absolute -inset-1 rounded-full pointer-events-none"
+                style={{
+                  background: "linear-gradient(135deg, #d23369, #9b4fc7)",
+                }}
+                animate={{ opacity: [0, 0.35, 0], scale: [1, 1.14, 1] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              />
               <Link href="/what-we-do/services">
                 <motion.button
                   whileHover={{
-                    scale: 1.04,
-                    boxShadow: "0 0 42px rgba(210,51,105,0.42)",
+                    scale: 1.05,
+                    boxShadow: "0 0 48px rgba(210,51,105,0.55)",
                   }}
-                  whileTap={{ scale: 0.96 }}
+                  whileTap={{ scale: 0.95 }}
                   className="group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-semibold text-sm text-white overflow-hidden"
                   style={{
                     background:
@@ -279,7 +288,7 @@ export default function HeroSection() {
                   />
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
-                    style={{ background: "rgba(255,255,255,0.1)" }}
+                    style={{ background: "rgba(255,255,255,0.12)" }}
                   />
                 </motion.button>
               </Link>
@@ -383,7 +392,7 @@ export default function HeroSection() {
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2.1, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-1.5 cursor-default select-none"
-          style={{ color: "rgba(240,242,250,0.32)" }}
+          style={{ color: "rgba(240,242,250,0.52)" }}
         >
           <span className="font-mono text-[10px] tracking-[0.18em] uppercase">
             Scroll to explore
