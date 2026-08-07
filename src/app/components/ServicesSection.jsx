@@ -76,7 +76,7 @@ export default function ServicesSection() {
     offset: ["start start", "end end"],
   });
 
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-650%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-73%"]);
 
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -87,7 +87,7 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[200vh] w-full bg-fixed bg-cover bg-center"
+      className="relative h-[300vh] w-full bg-fixed bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/services_bg.jpg')" }}
     >
       <div
@@ -213,7 +213,7 @@ export default function ServicesSection() {
           {/* ── RIGHT: Scrolling cards ── */}
           <motion.div
             style={{ y: cardsY }}
-            className="space-y-4 sm:space-y-5 pt-4 sm:pt-8 lg:pt-20 w-full lg:w-[460px] xl:w-[500px] flex-shrink-0"
+            className="space-y-4 sm:space-y-5 pt-4 sm:pt-8 lg:pt-20 w-full lg:w-[460px] xl:w-[500px] flex-shrink-0 lg:self-start"
           >
             {SERVICES.map((service, index) => (
               <Link key={service.title} href={`/${service.link}`} className="block">

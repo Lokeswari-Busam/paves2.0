@@ -129,8 +129,7 @@ const handleSubmit = async (e) => {
 
     // ✅ Removed dead `verifyRes` block — backend handles CAPTCHA verification
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
-    const res = await fetch(`${apiUrl}/api/contact/submit`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, captchaToken: token }),
