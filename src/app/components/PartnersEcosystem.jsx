@@ -21,96 +21,200 @@ const PARTNERSHIPS = [
 function PartnerCard({ title, desc, flipped, onClick }) {
   return (
     <div
-      className="w-[260px] h-[300px] sm:w-[300px] sm:h-[340px] md:w-[340px] md:h-[380px] lg:w-[360px] lg:h-[400px] cursor-pointer flex-shrink-0"
+      className="
+        w-[310px] h-[150px]
+        sm:w-[340px] sm:h-[155px]
+        md:w-[370px] md:h-[165px]
+        lg:w-[390px] lg:h-[170px]
+        cursor-pointer
+        flex-shrink-0
+      "
       style={{ perspective: "1200px" }}
       onClick={onClick}
     >
       <motion.div
         className="relative w-full h-full"
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        style={{ transformStyle: "preserve-3d" }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        style={{
+          transformStyle: "preserve-3d",
+        }}
       >
-        {/* ── Front ── */}
+        {/* =====================================================
+            FRONT
+        ====================================================== */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden flex flex-col justify-between p-7"
+          className="
+            absolute inset-0
+            rounded-xl
+            overflow-hidden
+            flex items-center
+            px-6 sm:px-7
+          "
           style={{
             backfaceVisibility: "hidden",
-            background: "rgba(15,21,53,0.92)",
-            border: "1px solid rgba(255,255,255,0.07)",
-            backdropFilter: "blur(12px)",
+            background: "rgba(15, 21, 53, 0.28)",
+            border: "1px solid rgba(255, 255, 255, 0.14)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.14)",
           }}
         >
-          {/* Large open-quote mark */}
+          {/* Quote mark */}
           <div
-            className="text-7xl font-bold leading-none select-none"
+            className="
+              absolute
+              top-4
+              left-5
+              text-5xl
+              font-bold
+              leading-none
+              select-none
+            "
             style={{
-              background: "linear-gradient(135deg, #d23369, #9b4fc7)",
+              background:
+                "linear-gradient(135deg, #d23369, #9b4fc7)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              lineHeight: 0.8,
             }}
           >
             &ldquo;
           </div>
 
-          <div>
+          {/* Card content */}
+          <div className="w-full mt-5">
             <h3
-              className="font-bold text-lg sm:text-xl leading-snug mb-4"
-              style={{ color: "#F0F2FA" }}
+              className="
+                font-bold
+                text-base
+                sm:text-lg
+                md:text-lg
+                leading-tight
+                whitespace-nowrap
+              "
+              style={{
+                color: "#F0F2FA",
+              }}
             >
               {title}
             </h3>
+
+            {/* Accent line */}
             <div
-              className="h-px w-10 rounded-full"
-              style={{ background: "linear-gradient(90deg, #d23369, #3d5fdb)" }}
+              className="h-px w-10 mt-3 rounded-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, #d23369, #3d5fdb)",
+              }}
             />
           </div>
 
-          {/* Flip hint */}
+          {/* Flip button */}
           <motion.div
-            className="absolute bottom-5 right-5 w-7 h-7 rounded-full flex items-center justify-center text-xs text-white font-bold"
-            style={{ background: "rgba(210,51,105,0.7)" }}
+            className="
+              absolute
+              bottom-4
+              right-4
+              w-7
+              h-7
+              rounded-full
+              flex
+              items-center
+              justify-center
+              text-xs
+              text-white
+              font-bold
+            "
+            style={{
+              background: "rgba(210, 51, 105, 0.72)",
+            }}
             animate={{
               boxShadow: [
                 "0 0 0px rgba(210,51,105,0)",
-                "0 0 12px rgba(210,51,105,0.7)",
+                "0 0 12px rgba(210,51,105,0.65)",
                 "0 0 0px rgba(210,51,105,0)",
               ],
             }}
-            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
           >
             ↻
           </motion.div>
 
-          {/* Subtle radial glow inside card */}
+          {/* Subtle glow */}
           <div
-            className="pointer-events-none absolute inset-0 rounded-2xl"
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              rounded-xl
+            "
             style={{
               background:
-                "radial-gradient(ellipse 80% 60% at 20% 80%, rgba(210,51,105,0.07) 0%, transparent 70%)",
+                "radial-gradient(ellipse 80% 80% at 20% 80%, rgba(210,51,105,0.07) 0%, transparent 70%)",
             }}
           />
         </div>
 
-        {/* ── Back ── */}
+        {/* =====================================================
+            BACK
+        ====================================================== */}
         <div
-          className="absolute inset-0 rounded-2xl overflow-hidden flex flex-col justify-center p-7"
+          className="
+            absolute inset-0
+            rounded-xl
+            overflow-hidden
+            flex flex-col
+            justify-center
+            px-6 sm:px-7
+          "
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
             background:
-              "linear-gradient(145deg, #d23369 0%, #9b4fc7 50%, #212d74 100%)",
+              "linear-gradient(145deg, rgba(210,51,105,0.48), rgba(155,79,199,0.45), rgba(33,45,116,0.52))",
+            border: "1px solid rgba(255,255,255,0.16)",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.16)",
           }}
         >
-          <h3 className="font-bold text-base sm:text-lg mb-4 text-white leading-snug">
+          <h3
+            className="
+              font-bold
+              text-sm
+              sm:text-base
+              mb-2
+              text-white
+              leading-tight
+            "
+          >
             {title}
           </h3>
-          <p className="text-white/90 text-sm leading-relaxed">{desc}</p>
+
+          <p
+            className="
+              text-white/90
+              text-xs
+              sm:text-sm
+              leading-relaxed
+            "
+          >
+            {desc}
+          </p>
+
           <div
-            className="mt-5 h-px w-10 rounded-full"
-            style={{ background: "rgba(255,255,255,0.3)" }}
+            className="mt-3 h-px w-10 rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.35)",
+            }}
           />
         </div>
       </motion.div>
@@ -121,8 +225,22 @@ function PartnerCard({ title, desc, flipped, onClick }) {
 function SectionHeading() {
   return (
     <div className="text-white text-center">
+      {/* Label */}
       <span
-        className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-5"
+        className="
+          inline-flex
+          items-center
+          gap-2
+          border
+          px-4
+          py-1.5
+          font-mono
+          text-[10px]
+          tracking-[0.2em]
+          uppercase
+          font-medium
+          mb-5
+        "
         style={{
           borderColor: "rgba(210,51,105,0.35)",
           color: "#f9a8c9",
@@ -132,10 +250,22 @@ function SectionHeading() {
         Our Partnership Promise
       </span>
 
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-snug mb-4 px-2">
+      {/* Main heading */}
+      <h2
+        className="
+          text-3xl
+          sm:text-4xl
+          md:text-5xl
+          font-bold
+          leading-snug
+          mb-4
+          px-2
+        "
+      >
         <span style={{ color: "#F0F2FA" }}>
           Your Vision, Our Commitment &ndash; A{" "}
         </span>
+
         <span
           style={{
             background:
@@ -149,21 +279,34 @@ function SectionHeading() {
         </span>
       </h2>
 
+      {/* Accent line */}
       <motion.div
         className="h-0.5 w-16 mx-auto mb-5 rounded-full"
         style={{
-          background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+          background:
+            "linear-gradient(90deg, #d23369, #3d5fdb)",
           transformOrigin: "left",
         }}
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: 0.3, duration: 0.7 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.7,
+        }}
       />
 
+      {/* Description */}
       <p
-        className="text-sm sm:text-base max-w-2xl mx-auto"
-        style={{ color: "rgba(240,242,250,0.6)" }}
+        className="
+          text-sm
+          sm:text-base
+          max-w-2xl
+          mx-auto
+        "
+        style={{
+          color: "rgba(240,242,250,0.6)",
+        }}
       >
         At Paves Technologies, we create long-term strategic partnerships to
         ensure our solutions deliver sustainable long-term value.
@@ -177,39 +320,81 @@ export default function PartnersEcosystem() {
   const [activeIndex, setActiveIndex] = useState(null);
   const timerRef = useRef(null);
 
+  /* ============================================================
+     SCROLL TRANSITION
+  ============================================================ */
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  const cardsX = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
-  const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  /*
+    Keep the same horizontal transition.
+    Cards move from right to left while scrolling.
+  */
+  const cardsX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["40%", "-40%"]
+  );
 
-  const handleCardClick = (i) => {
-    if (activeIndex === i) {
+  const scrollHintOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.15],
+    [1, 0]
+  );
+
+  /* ============================================================
+     CARD FLIP
+  ============================================================ */
+
+  const handleCardClick = (index) => {
+    if (activeIndex === index) {
       setActiveIndex(null);
       clearTimeout(timerRef.current);
       return;
     }
-    setActiveIndex(i);
+
+    setActiveIndex(index);
+
     clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => setActiveIndex(null), 4000);
+
+    timerRef.current = setTimeout(() => {
+      setActiveIndex(null);
+    }, 4000);
   };
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-fixed bg-cover bg-center"
+      className="relative w-full bg-cover bg-center"
       style={{
         backgroundImage:
           "url('/assets/future-visions-business-technology-concept.jpg')",
       }}
     >
-      {/* ── Mobile layout ── */}
-      <div className="md:hidden py-16 px-4" style={{ background: "rgba(11,15,39,0.9)" }}>
-        {/* Grid overlay */}
+      {/* ==========================================================
+          MOBILE
+      =========================================================== */}
+      <div
+        className="
+          md:hidden
+          py-16
+          px-4
+          relative
+        "
+        style={{
+          background: "rgba(11,15,39,0.72)",
+        }}
+      >
+        {/* Grid */}
         <div
-          className="pointer-events-none absolute inset-0"
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+          "
           style={{
             backgroundImage: `
               linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
@@ -218,10 +403,31 @@ export default function PartnersEcosystem() {
             backgroundSize: "55px 55px",
           }}
         />
-        <div className="max-w-lg mx-auto mb-12 relative z-10">
+
+        {/* Content */}
+        <div
+          className="
+            max-w-lg
+            mx-auto
+            mb-14
+            relative
+            z-10
+          "
+        >
           <SectionHeading />
         </div>
-        <div className="flex flex-col items-center gap-8 relative z-10">
+
+        {/* Cards */}
+        <div
+          className="
+            flex
+            flex-col
+            items-center
+            gap-5
+            relative
+            z-10
+          "
+        >
           {PARTNERSHIPS.map((p, i) => (
             <PartnerCard
               key={p.title}
@@ -234,15 +440,41 @@ export default function PartnersEcosystem() {
         </div>
       </div>
 
-      {/* ── Desktop layout: sticky + horizontal scroll ── */}
-      <div className="hidden md:block relative h-[260vh] lg:h-[250vh]">
+      {/* ==========================================================
+          DESKTOP
+      =========================================================== */}
+      <div
+        className="
+          hidden
+          md:block
+          relative
+          h-[260vh]
+          lg:h-[250vh]
+        "
+      >
         <div
-          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden px-6 md:px-10"
-          style={{ background: "rgba(11,15,39,0.88)" }}
+          className="
+            sticky
+            top-0
+            h-screen
+            w-full
+            overflow-hidden
+            px-6
+            md:px-10
+          "
+          style={{
+            background: "rgba(11,15,39,0.72)",
+          }}
         >
-          {/* Grid overlay */}
+          {/* ======================================================
+              GRID BACKGROUND
+          ======================================================= */}
           <div
-            className="pointer-events-none absolute inset-0"
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+            "
             style={{
               backgroundImage: `
                 linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
@@ -252,26 +484,80 @@ export default function PartnersEcosystem() {
             }}
           />
 
-          {/* Radial glow */}
+          {/* ======================================================
+              CENTRE GLOW
+          ======================================================= */}
           <div
-            className="pointer-events-none absolute inset-0"
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+            "
             style={{
               background:
                 "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(210,51,105,0.06) 0%, transparent 70%)",
             }}
           />
 
-          {/* Heading behind cards */}
-          <div className="absolute inset-0 flex items-center justify-center px-4 z-0">
-            <div className="max-w-4xl w-full">
+          {/* ======================================================
+              CONTENT
+              
+              Kept toward the upper portion of the section.
+          ======================================================= */}
+          <div
+            className="
+              absolute
+              top-[8%]
+              left-0
+              right-0
+              flex
+              justify-center
+              px-4
+              z-0
+            "
+          >
+            <div
+              className="
+                max-w-4xl
+                w-full
+              "
+            >
               <SectionHeading />
             </div>
           </div>
 
-          {/* Horizontally scrolling cards */}
+          {/* ======================================================
+              CARDS
+
+              Positioned BELOW the complete content.
+              This is the main change.
+
+              Previously:
+                  top-[56%]
+
+              Now:
+                  top-[68%]
+
+              This gives a clear visual separation between:
+                  Heading
+                  Description
+                  Cards
+                  Next section
+          ======================================================= */}
           <motion.div
-            style={{ x: cardsX }}
-            className="flex gap-8 lg:gap-12 xl:gap-16 pt-16 relative z-10"
+            style={{
+              x: cardsX,
+            }}
+            className="
+              absolute
+              top-[68%]
+              left-0
+              flex
+              gap-5
+              lg:gap-7
+              items-center
+              z-10
+            "
           >
             {PARTNERSHIPS.map((p, i) => (
               <PartnerCard
@@ -284,14 +570,36 @@ export default function PartnersEcosystem() {
             ))}
           </motion.div>
 
-          {/* Scroll hint — fades as user starts scrolling */}
+          {/* ======================================================
+              SCROLL HINT
+          ======================================================= */}
           <motion.div
-            style={{ opacity: scrollHintOpacity }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none"
+            style={{
+              opacity: scrollHintOpacity,
+            }}
+            className="
+              absolute
+              bottom-8
+              left-1/2
+              -translate-x-1/2
+              z-20
+              pointer-events-none
+            "
           >
             <p
-              className="font-mono text-[11px] tracking-[0.18em] uppercase flex items-center gap-2 select-none"
-              style={{ color: "rgba(240,242,250,0.38)" }}
+              className="
+                font-mono
+                text-[11px]
+                tracking-[0.18em]
+                uppercase
+                flex
+                items-center
+                gap-2
+                select-none
+              "
+              style={{
+                color: "rgba(240,242,250,0.38)",
+              }}
             >
               <span>←</span>
               <span>Scroll to explore</span>

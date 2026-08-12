@@ -15,7 +15,6 @@ export const metadata = {
 
 import dynamic from "next/dynamic";
 import HeroSection from "./components/HeroSection";
-import StatsRow from "./components/StatsRow";
 
 // Below-fold components — deferred until after hero renders
 const WhyPaves = dynamic(() => import("./components/WhyPaves"));
@@ -28,7 +27,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <StatsRow />
       <WhyPaves />
       <ServicesSection />
       <IndustryVerticals />

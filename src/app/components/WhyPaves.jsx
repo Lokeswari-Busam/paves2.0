@@ -131,7 +131,7 @@ export default function WhyPavesSection() {
 
   return (
     <section
-      className="w-full py-20 sm:py-24 md:py-28 relative overflow-hidden"
+      className="w-full pt-8 pb-8 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12 relative overflow-hidden"
       style={{ background: "#F4F7FF" }}
     >
       {/* Grid texture */}
