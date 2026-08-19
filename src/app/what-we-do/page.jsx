@@ -22,6 +22,14 @@ export default function WhatWeDo() {
       img: "/assets/services.jpeg",
       link: "/what-we-do/services",
     },
+    {
+      title: "Enterprise Platforms & Integrations",
+      desc: `We implement, extend, and connect the enterprise platforms that run your business — ERP, CRM, workflow and service management, and the integration middleware that ties them together.
+      Most organizations don't lack platforms; they lack platforms that talk to each other. Our teams unify finance, customer, and operational data so processes flow end to end and every system works from the same source of truth.
+      From SAP and Salesforce to ServiceNow and MuleSoft, we build secure, compliance-ready integration layers that scale with your business.`,
+      img: "/assets/workers-having-meeting-together-network-graphic.jpg",
+      link: "/what-we-do/enterprise-platforms-and-integrations",
+    },
   ];
 
   const fadeUp = {

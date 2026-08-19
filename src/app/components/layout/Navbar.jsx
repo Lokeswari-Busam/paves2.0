@@ -111,6 +111,16 @@ export function Navigation() {
             { title: "Next Gen Technologies", href: "/what-we-do/services/next-gen-technologies" },
           ],
         },
+        // Top-level What We Do section — a peer of Industry Verticals and Services.
+        {
+          title: "Enterprise Platforms & Integrations", href: "/what-we-do/enterprise-platforms-and-integrations",
+          subitems: [
+            { title: "ERP Platforms", href: "/what-we-do/enterprise-platforms-and-integrations/erp-platforms" },
+            { title: "CRM Platforms", href: "/what-we-do/enterprise-platforms-and-integrations/crm-platforms" },
+            { title: "Workflow & Service Management", href: "/what-we-do/enterprise-platforms-and-integrations/workflow-and-service-management" },
+            { title: "Integration & Middleware", href: "/what-we-do/enterprise-platforms-and-integrations/integration-and-middleware" },
+          ],
+        },
       ],
     },
     {

@@ -6,6 +6,11 @@ export default function sitemap() {
   const staticRoutes = [
     { url: BASE_URL, priority: 1.0, changeFrequency: "weekly" },
     { url: `${BASE_URL}/what-we-do`, priority: 0.9, changeFrequency: "weekly" },
+    { url: `${BASE_URL}/what-we-do/enterprise-platforms-and-integrations`, priority: 0.8, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/what-we-do/enterprise-platforms-and-integrations/erp-platforms`, priority: 0.7, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/what-we-do/enterprise-platforms-and-integrations/crm-platforms`, priority: 0.7, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/what-we-do/enterprise-platforms-and-integrations/workflow-and-service-management`, priority: 0.7, changeFrequency: "monthly" },
+    { url: `${BASE_URL}/what-we-do/enterprise-platforms-and-integrations/integration-and-middleware`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/what-we-do/industry-verticals`, priority: 0.8, changeFrequency: "monthly" },
     { url: `${BASE_URL}/what-we-do/industry-verticals/payments`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${BASE_URL}/what-we-do/industry-verticals/payments/card-issuers`, priority: 0.6, changeFrequency: "monthly" },

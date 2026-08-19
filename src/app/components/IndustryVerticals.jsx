@@ -27,19 +27,19 @@ const ITEMS = [
     title: "Governance Risk & Compliance",
     description:
       "Governance Risk & Compliance (GRC) refers to frameworks and solutions that help organizations meet regulatory requirements, manage risks, and ensure ethical practices.",
-    image: "/assets/grc.jpg",
+    image: "/assets/risk-compliance.png",
   },
   {
     title: "Insurance",
     description:
       "Insurance services provide financial protection against various risks such as accidents, health issues, property loss, and business liability.",
-    image: "/assets/insurence.jpg",
+    image: "/assets/insurance.png",
   },
   {
     title: "Capital Markets",
     description:
       "Capital Markets consist of platforms and products that enable investment, trading, and the allocation of equity and debt.",
-    image: "/assets/capital market.jpg",
+    image: "/assets/CapMarkets.png",
   },
 ];
 
