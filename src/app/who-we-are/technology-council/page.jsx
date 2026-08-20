@@ -26,9 +26,9 @@ function TechCouncilHeader() {
     >
       {/* Left side */}
       <div className="relative z-10 md:w-1/2 flex flex-col justify-center px-6 md:px-16 py-16 bg-gradient-to-r from-indigo-100 to-indigo-50">
-        <h2 className="text-5xl md:text-5xl font-semibold text-[#2a3990] leading-snug mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#2a3990] leading-snug mb-4">
           Technology Council
-        </h2>
+        </h1>
         <Breadcrumb
         items={[
           { label: "Paves Technologies", href: "/" },
@@ -40,7 +40,7 @@ function TechCouncilHeader() {
       {/* Right side Image */}
       <div className="relative md:w-1/2 h-[500px] md:h-auto">
         <Image
-          src="/assets/html-css-collage-concept-with-person.jpg"
+          src="/assets/who-we-are/html-css-collage-concept-with-person.jpg"
           alt="About Paves Technologies"
           fill
           className="object-cover object-center"

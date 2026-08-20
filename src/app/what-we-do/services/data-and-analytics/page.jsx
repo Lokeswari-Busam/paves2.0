@@ -1,12 +1,15 @@
-"use client";
 import { Subtitles } from "lucide-react";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Data & Analytics",
+  description: "Transforming raw data into real business intelligence through analytics, data engineering, and insights-driven decision frameworks.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/data-and-analytics" },
+};
 
 export default function DataAndAnalyticsPage() {
   return (
     <div className="min-h-screen bg-white text-gray-800">
-     
-
       {/* ===== MAIN CONTENT ===== */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 py-16">
         {/* Intro Section */}
@@ -24,11 +27,11 @@ export default function DataAndAnalyticsPage() {
         </p>
 
         {/* ===== THREE CARDS ===== */}
-        <div className="grid md:grid-cols-3 gap-10 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mb-20 px-4 sm:px-6">
           {[
             {
               title: "Data Science:",
-              Subtitle:" Turning Data into Intelligence",
+              Subtitle: " Turning Data into Intelligence",
               points: [
                 "Predictive Analytics",
                 "AI and Machine Learning Models",
@@ -38,8 +41,8 @@ export default function DataAndAnalyticsPage() {
               image: "/images/data-science.jpg",
             },
             {
-              title: "Data Engineering: ",
-              Subtitle :"Building Scalable Data Foundations",     
+              title: "Data Engineering:",
+              Subtitle: " Building Scalable Data Foundations",
               points: [
                 "Data Pipeline Automation",
                 "Cloud-Based Data Architecture",
@@ -49,8 +52,8 @@ export default function DataAndAnalyticsPage() {
               image: "/images/data-engineering.jpg",
             },
             {
-              title: "Data Visualization & Analytics: ",
-              Subtitle :"From Insights to Impact",   
+              title: "Data Visualization & Analytics:",
+              Subtitle: " From Insights to Impact",
               points: [
                 "Interactive Dashboards",
                 "Custom Reporting Solutions",
@@ -62,19 +65,36 @@ export default function DataAndAnalyticsPage() {
           ].map((card, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition p-6 flex flex-col"
+              className="
+        bg-white
+        border border-gray-200
+        rounded-2xl
+        shadow-md hover:shadow-xl
+        transition
+        p-5 sm:p-6
+        flex flex-col
+        w-full
+      "
             >
-              <Image
-                src={card.image}
-                alt={card.title}
-                width={400}
-                height={250}
-                className="rounded-xl mb-6 object-cover"
-              />
-              <h3 className="text-xl font-bold text-pink-700 mb-4">
-                {card.title} {card.Subtitle}
+              {/* Responsive image */}
+              <div className="relative w-full aspect-[16/10] mb-6">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="rounded-xl object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
+
+              <h3 className="text-lg sm:text-xl font-bold text-pink-700 mb-4">
+                {card.title}
+                <span className="block text-gray-800 font-semibold">
+                  {card.Subtitle}
+                </span>
               </h3>
-              <ul className="list-disc pl-5 space-y-2 text-gray-700">
+
+              <ul className="list-disc pl-5 space-y-2 text-gray-700 text-sm sm:text-base">
                 {card.points.map((point, i) => (
                   <li key={i}>{point}</li>
                 ))}
@@ -89,25 +109,24 @@ export default function DataAndAnalyticsPage() {
             Why Paves Technologies?
           </h2>
 
-     
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {[
-            "Uncover new opportunities.",
-            "Optimize operations.",
-            "Enhance customer experiences.",
-            "Make data-driven decisions with confidence.",
-        ].map((point, index) => (
-            <li
-            key={index}
-            className="bg-blue-50 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl px-8 py-6 flex items-center border border-blue-100"
-            >
-            <span className="text-pink-700 text-3xl font-bold mr-4 flex-shrink-0 w-6 text-center">›</span>
-            <p className="text-lg text-gray-800 font-medium">{point}</p>
-            </li>
-        ))}
-        </ul>
-
-
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              "Uncover new opportunities.",
+              "Optimize operations.",
+              "Enhance customer experiences.",
+              "Make data-driven decisions with confidence.",
+            ].map((point, index) => (
+              <li
+                key={index}
+                className="bg-blue-50 shadow-md hover:shadow-lg transition-shadow duration-300 rounded-2xl px-8 py-6 flex items-center border border-blue-100"
+              >
+                <span className="text-pink-700 text-3xl font-bold mr-4 flex-shrink-0 w-6 text-center">
+                  ›
+                </span>
+                <p className="text-lg text-gray-800 font-medium">{point}</p>
+              </li>
+            ))}
+          </ul>
 
           <p className="text-center text-lg text-indigo-900 max-w-3xl mx-auto mt-12 font-bold">
             With a deep focus on scalability, accuracy, and user experience, we

@@ -1,5 +1,11 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Identity & Access Management",
+  description: "Simplifying and securing access with IAM platforms designed for scalability, compliance, and seamless authentication experience.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/identity-and-access-management" },
+};
+
 export default function IAMPage() {
   return (
     <div className="w-full">
@@ -39,7 +45,7 @@ export default function IAMPage() {
   {/* RIGHT BLOCK WITH IMAGE */}
   <div className="p-0 md:p-0">
     <Image
-      src="/assets/iam-hero.png"
+      src="/assets/what-we-do/services/iam-hero.png"
       alt="IAM Security"
       width={400}
       height={600}

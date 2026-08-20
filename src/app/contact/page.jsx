@@ -1,9 +1,11 @@
 "use client";
 
-import { useState , useEffect } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
+import { useState, useEffect, useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Dynamically import (Leaflet cannot run on server)
 const MapContainer = dynamic(
@@ -24,6 +26,8 @@ const Popup = dynamic(
 );
 
 export default function ContactPage() {
+
+  const recaptchaRef = useRef(null);
 
   const [icon, setIcon] = useState(null);
   // Offices Data
@@ -80,7 +84,7 @@ export default function ContactPage() {
     email: "",
     phone: "",
     jobTitle: "",
-    subject: "",
+    subject: "New Project",
     message: "",
   });
 
@@ -108,26 +112,33 @@ export default function ContactPage() {
   if (!icon) return null; // avoid hydration issues
 
   // Submit Form → Backend API
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setStatus(null);
 
   try {
-    const res = await fetch("http://localhost:8080/api/contact/submit", {
+    // Replace the captcha check block in handleSubmit:
+    const token = recaptchaRef.current.getValue();
+
+    if (!token) {
+      setStatus("captcha");      // was "Please verify CAPTCHA" — now matches the JSX key
+      setLoading(false);
+      return;
+    }
+
+    // ✅ Removed dead `verifyRes` block — backend handles CAPTCHA verification
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contact/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, captchaToken: token }),
     });
 
     if (!res.ok) throw new Error("API Error");
 
     setStatus("success");
-
-    // Auto-hide success message after 3 seconds
-    setTimeout(() => {
-      setStatus(null);
-    }, 3000);
+    setTimeout(() => setStatus(null), 3000);
 
     setForm({
       firstName: "",
@@ -139,26 +150,24 @@ export default function ContactPage() {
       message: "",
     });
 
+    recaptchaRef.current.reset();
+
   } catch (err) {
     setStatus("error");
-
-    // Auto-hide error message after 3 seconds
-    setTimeout(() => {
-      setStatus(null);
-    }, 3000);
+    setTimeout(() => setStatus(null), 3000);
   } finally {
     setLoading(false);
   }
 };
   return (
-    <div className="min-h-screen bg-background text-foreground px-6 py-16">
+    <div className="min-h-screen bg-background text-foreground px-4 sm:px-6 py-8 sm:py-12 md:py-16">
       {/* HEADING */}
-      <h1 className="text-center text-4xl font-bold mb-12">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12">
         Re(<span className="text-primary">AI</span>)magine your world with us
       </h1>
 
       {/* 2-COLUMN GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
 
         {/* LEFT OFFICE CARDS */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -188,69 +197,98 @@ export default function ContactPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 name="firstName"
+                id="firstName"
+                aria-label="First Name"
                 value={form.firstName}
                 onChange={handleChange}
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="First Name*"
                 required
+                autoComplete="given-name"
               />
               <input
                 name="lastName"
+                id="lastName"
+                aria-label="Last Name"
                 value={form.lastName}
                 onChange={handleChange}
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Last Name*"
                 required
+                autoComplete="family-name"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 name="email"
+                id="email"
+                aria-label="Email Address"
                 value={form.email}
                 onChange={handleChange}
                 type="email"
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Email*"
                 required
+                autoComplete="email"
               />
               <input
                 name="phone"
+                id="phone"
+                aria-label="Phone Number"
                 value={form.phone}
                 onChange={handleChange}
+                type="tel"
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Phone*"
                 required
+                autoComplete="tel"
               />
             </div>
 
             <input
               name="jobTitle"
+              id="jobTitle"
+              aria-label="Job Title"
               value={form.jobTitle}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg"
               placeholder="Job Title*"
               required
+              autoComplete="organization-title"
             />
 
             <select
               name="subject"
+              id="subject"
+              aria-label="Subject"
               value={form.subject}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg"
             >
-              <option>New Project</option>
-              <option>Partnership</option>
-              <option>Career</option>
+              <option value="New Project">New Project</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Career">Career</option>
             </select>
 
             <textarea
               name="message"
+              id="message"
+              aria-label="Message"
               value={form.message}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg h-32"
               placeholder="How can we help?"
             />
+
+            <div className="flex justify-center mt-2 overflow-x-hidden">
+              <div className="scale-[0.85] xs:scale-90 sm:scale-100 origin-center">
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  ref={recaptchaRef}
+                />
+              </div>
+            </div>
 
             {/* BUTTON */}
             <button
@@ -260,12 +298,15 @@ export default function ContactPage() {
               {loading ? "Sending..." : "SEND MESSAGE"}
             </button>
 
-            {/* STATUS MESSAGES */}
+            {/* STATUS MESSAGES — find this block and replace it */}
+            {status === "captcha" && (
+              <p className="text-yellow-500 mt-2">Please complete the CAPTCHA first.</p>
+            )}
             {status === "success" && (
               <p className="text-green-500 mt-2">Message sent successfully!</p>
             )}
             {status === "error" && (
-              <p className="text-red-500 mt-2">Something went wrong.</p>
+              <p className="text-red-500 mt-2">Something went wrong. Please try again.</p>
             )}
           </form>
         </section>
@@ -273,6 +314,27 @@ export default function ContactPage() {
 
       {/* MAP BELOW */}
       <MapSection offices={offices} />
+
+      {/* LCA NOTICES */}
+      <div className="max-w-7xl mx-auto mt-12 sm:mt-16 pt-8 border-t border-border">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-card border border-border rounded-xl p-6 shadow-sm">
+          <div>
+            <h3 className="text-lg font-semibold mb-1">LCA Notices</h3>
+            <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
+              Pursuant to 20 CFR § 655.734, Paves Technologies Inc. publishes notices of H-1B
+              Labor Condition Application (LCA) filings with the U.S. Department of Labor. View
+              all current and past LCA postings including job titles, wage rates, and work
+              locations.
+            </p>
+          </div>
+          <Link
+            href="/lca-notices"
+            className="flex-shrink-0 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            View our Postings →
+          </Link>
+        </div>
+      </div>
 
     </div>
   );

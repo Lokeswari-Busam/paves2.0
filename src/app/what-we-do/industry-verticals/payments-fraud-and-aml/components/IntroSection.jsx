@@ -49,7 +49,7 @@ export default function IntroSection() {
         {/* RIGHT ILLUSTRATION */}
         <div className="flex items-center justify-center">
           <Image
-            src="/assets/aml-Illustration.png" 
+            src="/assets/what-we-do/industry-verticals/aml-illustration.png" 
             alt="AML Illustration"
             width={420}
             height={320}

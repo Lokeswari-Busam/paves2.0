@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Digital Banking",
+  description: "Empowering banks with mobile-first experiences, API-driven platforms, and secure digital journeys.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/digital-banking" },
+};
 
 export default function DigitalBankingPage() {
   return (
@@ -41,7 +45,7 @@ export default function DigitalBankingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/digital-banking.png"
+              src="/assets/what-we-do/industry-verticals/digital-banking.png"
               alt="Digital Banking"
               width={900}
               height={600}

@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Next Gen Technologies",
+  description: "Exploring and implementing cutting-edge technologies such as blockchain, IoT, and quantum computing to future-proof enterprises.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/next-gen-technologies" },
+};
 
 export default function NextGenTechnologies() {
   return (
@@ -47,7 +52,7 @@ export default function NextGenTechnologies() {
             {/* -------- 1 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   01
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -65,7 +70,7 @@ export default function NextGenTechnologies() {
             {/* -------- 2 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   02
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -83,7 +88,7 @@ export default function NextGenTechnologies() {
             {/* -------- 3 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   03
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -101,7 +106,7 @@ export default function NextGenTechnologies() {
             {/* -------- 4 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   04
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -119,7 +124,7 @@ export default function NextGenTechnologies() {
             {/* -------- 5 -------- */}
             <div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold">
+                <div className="min-w-10 w-10 h-10 rounded-full bg-[#0F1E63] text-white flex items-center justify-center font-bold ">
                   05
                 </div>
                 <h3 className="text-xl font-bold text-[#0F1E63]">
@@ -172,7 +177,7 @@ export default function NextGenTechnologies() {
         <div className="grid md:grid-cols-3 gap-8">
           
           <Image
-            src="/assets/next-gen-blockchain.jpg"
+            src="/assets/what-we-do/services/next-gen-blockchain.jpg"
             width={500}
             height={350}
             alt="Blockchain"
@@ -180,7 +185,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/next-gen-5g.jpg"
+            src="/assets/what-we-do/services/next-gen-5g.jpg"
             width={500}
             height={350}
             alt="5G Illustration"
@@ -188,7 +193,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/next-gen-metaverse.jpg"
+            src="/assets/what-we-do/services/next-gen-metaverse.jpg"
             width={500}
             height={350}
             alt="Metaverse"

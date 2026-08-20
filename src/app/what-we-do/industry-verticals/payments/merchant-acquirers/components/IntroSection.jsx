@@ -34,7 +34,7 @@ export default function IntroSection() {
         {/* RIGHT: illustration (no bg) */}
         <div className="w-full flex items-center justify-center">
           <Image
-            src="/assets/merchant-illustration.png"
+            src="/assets/what-we-do/industry-verticals/merchant-illustration.png"
             alt="Merchant Acquiring Illustration"
             width={900}
             height={560}

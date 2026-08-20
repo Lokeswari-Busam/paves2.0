@@ -11,7 +11,7 @@ export default function WhatWeDo() {
       desc: `We partner with organizations across payments, banking, insurance, and capital markets to modernize legacy systems and accelerate growth. 
       Our domain experts and engineers collaborate to build secure, compliant, and scalable solutions that help businesses stay ahead in fast-changing markets. 
       Whether it’s streamlining core systems, improving data visibility, or enabling digital payments — we bring innovation that matters.`,
-      img: "/assets/industry-verticals.jpeg",
+      img: "/assets/what-we-do/industry-verticals.jpeg",
       link: "/what-we-do/industry-verticals",
     },
     {
@@ -19,8 +19,16 @@ export default function WhatWeDo() {
       desc: `Our service offerings cover the complete technology spectrum — from cloud transformation, data analytics, and AI integration to intelligent automation and cybersecurity. 
       We build future-ready solutions that not only solve current challenges but also set the foundation for innovation and growth. 
       With deep technical expertise and a delivery mindset, we enable clients to scale faster, respond smarter, and operate securely in the digital era.`,
-      img: "/assets/services.jpeg",
+      img: "/assets/what-we-do/services.jpeg",
       link: "/what-we-do/services",
+    },
+    {
+      title: "Enterprise Platforms & Integrations",
+      desc: `We implement, extend, and connect the enterprise platforms that run your business — ERP, CRM, workflow and service management, and the integration middleware that ties them together.
+      Most organizations don't lack platforms; they lack platforms that talk to each other. Our teams unify finance, customer, and operational data so processes flow end to end and every system works from the same source of truth.
+      From SAP and Salesforce to ServiceNow and MuleSoft, we build secure, compliance-ready integration layers that scale with your business.`,
+      img: "/assets/what-we-do/workers-having-meeting-together-network-graphic.jpg",
+      link: "/what-we-do/enterprise-platforms-and-integrations",
     },
   ];
 
@@ -48,9 +56,9 @@ export default function WhatWeDo() {
     <div className="min-h-screen bg-linear-to-b from-white via-gray-50 to-gray-100">
       
       {/* HERO SECTION */}
-      <section className="relative h-[75vh] flex items-center justify-center text-center overflow-hidden">
+        <section className="relative h-[55vh] sm:h-[65vh] md:h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/assets/what_we_do_hero.jpeg"
+          src="/assets/shared/what_we_do_hero.jpeg"
           alt="What We Do"
           fill
           className="object-cover scale-105"
@@ -66,7 +74,7 @@ export default function WhatWeDo() {
           className="relative z-10 max-w-4xl px-6 text-white"
         >
           <motion.h1
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -75,7 +83,7 @@ export default function WhatWeDo() {
           </motion.h1>
 
           <motion.p
-            className="text-md md:text-lg text-gray-300"
+            className="text-sm sm:text-md md:text-lg text-gray-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -87,7 +95,7 @@ export default function WhatWeDo() {
       </section>
 
       {/* MAIN CONTENT SECTIONS */}
-      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 space-y-28">
+        <section className="py-10 sm:py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-10 sm:space-y-16 md:space-y-24">
         {sections.map((section, idx) => (
           <motion.div
             key={idx}
@@ -96,14 +104,14 @@ export default function WhatWeDo() {
             viewport={{ once: true }}
             variants={idx % 2 === 0 ? slideLeft : slideRight}
             transition={{ duration: 0.8 }}
-            className={`flex flex-col md:flex-row items-center gap-12 ${
+className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 ${
               idx % 2 !== 0 ? "md:flex-row-reverse" : ""
             }`}
           >
             {/* IMAGE — CLICKABLE */}
             <Link
               href={section.link}
-              className="relative w-full md:w-1/2 h-[400px] rounded-3xl overflow-hidden shadow-xl group block"
+              className="relative w-full md:w-1/2 h-[220px] sm:h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-xl group block"
             >
               <motion.div
                 variants={zoomIn}
@@ -133,7 +141,7 @@ export default function WhatWeDo() {
                 {section.title}
               </h2>
 
-              <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+              <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed whitespace-pre-line">
                 {section.desc}
               </p>
 
@@ -142,11 +150,11 @@ export default function WhatWeDo() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative px-8 py-2.5 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 shadow-md"
+className="relative w-full sm:w-auto px-6 sm:px-8 py-2.5 rounded-full text-white font-semibold overflow-hidden transition-all duration-300 shadow-md"
                   style={{ background: "#2a3990" }}
                 >
                   <span className="relative z-10">Know More</span>
-                  <span className="absolute inset-0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <span className="absolute inset0 bg-linear-to-r from-[#000080] via-indigo-700 to-[#000080] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </motion.button>
               </Link>
             </motion.div>

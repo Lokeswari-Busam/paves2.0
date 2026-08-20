@@ -1,9 +1,72 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+
+const SERVICES = [
+  {
+    title: "Business & Technology Advisory Consulting",
+    desc: "We help organizations align business goals with advanced technology strategies to drive operational excellence.",
+    image: "/assets/home/business and technology advisory.jpeg",
+    link: "what-we-do/services/business-and-technology",
+  },
+  {
+    title: "Artificial Intelligence",
+    desc: "We build AI systems that automate workflows, enhance predictions, and accelerate decision-making.",
+    image: "/assets/home/artificial intelligence.webp",
+    link: "what-we-do/services/artificial-intelligence",
+  },
+  {
+    title: "Cloud Engineering And DevOps",
+    desc: "We architect scalable cloud systems with automated CI/CD pipelines for faster deployments.",
+    image: "/assets/home/cloud engineering and devops.jpeg",
+    link: "what-we-do/services/cloud-and-devops",
+  },
+  {
+    title: "Data And Analytics",
+    desc: "We deliver analytics platforms, dashboards, and predictive modeling to power data-driven decisions.",
+    image: "/assets/home/data analytics.jpg",
+    link: "what-we-do/services/data-and-analytics",
+  },
+  {
+    title: "Product Management & Engineering",
+    desc: "We build scalable digital products focused on usability, engineering excellence, and innovation.",
+    image: "/assets/home/product management and engineering.jpg",
+    link: "what-we-do/services/product-management",
+  },
+  {
+    title: "Enterprise Automation",
+    desc: "We automate repetitive workflows using AI, bots, and workflow orchestration tools.",
+    image: "/assets/home/enterprise automation.jpg",
+    link: "what-we-do/services/enterprise-automation",
+  },
+  {
+    title: "Legacy Support & Modernization",
+    desc: "We modernize legacy apps, refactor systems, and migrate workloads to modern platforms.",
+    image: "/assets/home/legacy support and modernisation.png",
+    link: "what-we-do/services/legacy-support",
+  },
+  {
+    title: "Cyber Security",
+    desc: "We implement secure architectures, access control, and threat detection systems.",
+    image: "/assets/home/cyber security.jpg",
+    link: "what-we-do/services/cyber-security",
+  },
+  {
+    title: "Identity And Access Management",
+    desc: "We deploy SSO, MFA, and RBAC to secure identity access across applications.",
+    image: "/assets/home/Identity-and-Access-Management.jpg",
+    link: "what-we-do/services/identity-and-access-management",
+  },
+  {
+    title: "Next Gen Technologies",
+    desc: "We build solutions using IoT, Blockchain, AR/VR, and intelligent edge systems.",
+    image: "/assets/home/next gen technologies.webp",
+    link: "what-we-do/services/next-gen-technologies",
+  },
+];
 
 export default function ServicesSection() {
   const sectionRef = useRef(null);
@@ -13,163 +76,210 @@ export default function ServicesSection() {
     offset: ["start start", "end end"],
   });
 
-  // Increase scroll travel so ALL cards appear
-  const cardsY = useTransform(scrollYProgress, [0, 1.05], ["0%", "-650%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-73%"]);
 
-  const services = [
-    {
-      title: "Business & Technology Advisory Consulting",
-      desc: "We help organizations align business goals with advanced technology strategies to drive operational excellence.",
-      image: "/assets/business and technology advisory.jpeg",
-      link: "what-we-do/services/business-and-technology",
-    },
-    {
-      title: "Artificial Intelligence",
-      desc: "We build AI systems that automate workflows, enhance predictions, and accelerate decision-making.",
-      image: "/assets/artificial intelligence.webp",
-      link: "what-we-do/services/artificial-intelligence",
-    },
-    {
-      title: "Cloud Engineering And DevOps",
-      desc: "We architect scalable cloud systems with automated CI/CD pipelines for faster deployments.",
-      image: "/assets/cloud engineering and devops.jpeg",
-      link: "what-we-do/services/cloud-and-devops",
-    },
-    {
-      title: "Data And Analytics",
-      desc: "We deliver analytics platforms, dashboards, and predictive modeling to power data-driven decisions.",
-      image: "/assets/data analytics.jpg",
-      link: "what-we-do/services/data-and-analytics",
-    },
-    {
-      title: "Product Management & Engineering",
-      desc: "We build scalable digital products focused on usability, engineering excellence, and innovation.",
-      image: "/assets/product management and engineering.jpg",
-      link: "what-we-do/services/product-management",
-    },
-    {
-      title: "Enterprise Automation",
-      desc: "We automate repetitive workflows using AI, bots, and workflow orchestration tools.",
-      image: "/assets/enterprise automation.jpg",
-      link: "/what-we-do/services/enterprise-automation",
-    },
-    {
-      title: "Legacy Support & Modernization",
-      desc: "We modernize legacy apps, refactor systems, and migrate workloads to modern platforms.",
-      image: "/assets/legacy support and modernisation.png",
-      link: "what-we-do/services/legacy-support",
-    },
-    {
-      title: "Cyber Security",
-      desc: "We implement secure architectures, access control, and threat detection systems.",
-      image: "/assets/cyber security.jpg",
-      link: "what-we-do/services/cyber-security",
-    },
-    {
-      title: "Identity And Access Management",
-      desc: "We deploy SSO, MFA, and RBAC to secure identity access across applications.",
-      image: "/assets/Identity-and-Access-Management.jpg",
-      link: "what-we-do/services/identity-and-access-management",
-    },
-    {
-      title: "Next Gen Technologies",
-      desc: "We build solutions using IoT, Blockchain, AR/VR, and intelligent edge systems.",
-      image: "/assets/next gen technologies.webp",
-      link: "what-we-do/services/next-gen-technologies",
-    },
-  ];
+  const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const idx = Math.min(SERVICES.length - 1, Math.floor(latest * SERVICES.length));
+    setCurrentServiceIndex(idx);
+  });
 
   return (
     <section
       ref={sectionRef}
-      className="
-        relative 
-        h-[200vh]               /* Increased scroll height */
-        w-full 
-        bg-fixed bg-cover bg-center
-      "
-      style={{ backgroundImage: "url('/assets/services_bg.jpg')" }}
+      className="relative h-[300vh] w-full bg-fixed bg-cover bg-center"
+      style={{ backgroundImage: "url('/assets/home/services_bg.jpg')" }}
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40">
-        <div className="max-w-7xl mx-auto h-full px-6 md:px-12 
-          flex md:flex-row flex-col gap-18">
+      <div
+        className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"
+        style={{ background: "rgba(11,15,39,0.9)" }}
+      >
+        {/* Grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px)
+            `,
+            backgroundSize: "55px 55px",
+          }}
+        />
 
-          {/* LEFT TEXT */}
-          <div className="text-white flex flex-col justify-center max-w-lg">
-            <p className="text-blue-200 tracking-wide mb-3 text-lg">
+        <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col lg:flex-row gap-4 lg:gap-12 xl:gap-16 py-6 sm:py-10 lg:py-0 relative z-10">
+
+          {/* Mobile heading */}
+          <div className="lg:hidden text-white text-center flex-shrink-0 pt-6">
+            <span
+              className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-3"
+              style={{
+                borderColor: "rgba(210,51,105,0.35)",
+                color: "#f9a8c9",
+                background: "rgba(210,51,105,0.07)",
+              }}
+            >
               Our Core Services
-            </p>
-
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-              Empowering Businesses Through Technology & Innovation
-            </h1>
-
-            <p className="text-blue-100 text-lg max-w-md">
-              Discover our powerful range of services designed to accelerate digital transformation and enable future-ready businesses.
-            </p>
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold" style={{ color: "#F0F2FA" }}>
+              Empowering Businesses Through Technology
+            </h2>
           </div>
 
-          {/* RIGHT — SCROLLING CARDS */}
-          <motion.div
-  style={{ y: cardsY }}
-  className="space-y-8 pt-20 w-full md:w-[480px]"
->
-  {services.map((service, index) => (
-    <Link
-      key={index}
-      href={`/${service.link}`}
-      className="block"   // makes whole card clickable
-    >
-      <div className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform">
-        <div className="w-full h-48 md:h-56 overflow-hidden mb-4">
-          <Image
-            src={service.image}
-            width={800}
-            height={580}
-            className="w-full h-full object-cover"
-            alt={service.title}
-          />
-        </div>
+          {/* ── LEFT: Desktop sidebar ── */}
+          <div className="hidden lg:flex flex-col justify-center max-w-full lg:max-w-lg xl:max-w-xl text-white">
+            <span
+              className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-6 self-start"
+              style={{
+                borderColor: "rgba(210,51,105,0.35)",
+                color: "#f9a8c9",
+                background: "rgba(210,51,105,0.07)",
+              }}
+            >
+              Our Core Services
+            </span>
 
-        <div className="px-6 pb-6">
-          <h3 className="text-xl font-semibold text-blue-900 mb-2">
-            {service.title}
-          </h3>
-          <p className="text-gray-700 text-sm">{service.desc}</p>
-        </div>
-      </div>
-    </Link>
-  ))}
-</motion.div>
-          {/* <motion.div
-            style={{ y: cardsY }}
-            className="space-y-8 pt-20 w-full md:w-[480px]"
-          >
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white/90 backdrop-blur-md rounded-xl shadow-xl overflow-hidden"
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+              <span style={{ color: "#F0F2FA" }}>
+                Empowering Businesses Through{" "}
+              </span>
+              <span
+                style={{
+                  background:
+                    "linear-gradient(130deg, #d23369 0%, #9b4fc7 50%, #3d5fdb 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
               >
-                <div className="w-full h-48 md:h-56 overflow-hidden mb-4">
-                  <Image
-                    src={service.image}
-                    width={800}
-                    height={580}
-                    className="w-full h-full object-cover"
-                    alt={service.title}
-                  />
-                </div>
+                Technology &amp; Innovation
+              </span>
+            </h1>
 
-                <div className="px-6 pb-6">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-700 text-sm">{service.desc}</p>
-                </div>
+            <motion.div
+              className="h-0.5 w-14 rounded-full mb-5"
+              style={{
+                background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+                transformOrigin: "left",
+              }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            />
+
+            <p
+              className="text-sm sm:text-base md:text-lg max-w-md"
+              style={{ color: "rgba(240,242,250,0.58)" }}
+            >
+              Discover our powerful range of services designed to accelerate
+              digital transformation and enable future-ready businesses.
+            </p>
+
+            {/* Live service counter */}
+            <div className="mt-8 pt-6 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+              <div
+                className="font-mono text-[10px] tracking-[0.16em] uppercase mb-3"
+                style={{ color: "rgba(240,242,250,0.3)" }}
+              >
+                Currently showing
               </div>
-            ))}
-          </motion.div> */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentServiceIndex}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span
+                      className="font-mono text-sm font-bold"
+                      style={{ color: "#d23369" }}
+                    >
+                      {String(currentServiceIndex + 1).padStart(2, "0")} / {String(SERVICES.length).padStart(2, "0")}
+                    </span>
+                    <span
+                      className="text-sm leading-snug"
+                      style={{ color: "rgba(240,242,250,0.65)" }}
+                    >
+                      {SERVICES[currentServiceIndex].title}
+                    </span>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
 
+          {/* ── RIGHT: Scrolling cards ── */}
+          <motion.div
+            style={{ y: cardsY }}
+            className="space-y-4 sm:space-y-5 pt-4 sm:pt-8 lg:pt-20 w-full lg:w-[460px] xl:w-[500px] flex-shrink-0 lg:self-start"
+          >
+            {SERVICES.map((service, index) => (
+              <Link key={service.title} href={`/${service.link}`} className="block">
+                <motion.div
+                  className="group overflow-hidden rounded-xl border transition-colors duration-300"
+                  style={{
+                    background: "rgba(11,15,39,0.92)",
+                    borderColor: "rgba(255,255,255,0.07)",
+                    backdropFilter: "blur(12px)",
+                  }}
+                  whileHover={{
+                    y: -4,
+                    borderColor: "rgba(210,51,105,0.28)",
+                    boxShadow: "0 0 32px rgba(210,51,105,0.14)",
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {/* Image */}
+                  <div className="w-full h-40 sm:h-44 overflow-hidden relative">
+                    <Image
+                      src={service.image}
+                      width={800}
+                      height={580}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      alt={service.title}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 500px"
+                    />
+                    {/* Service number badge */}
+                    <div
+                      className="absolute top-3 left-3 font-mono text-[11px] tracking-[0.12em] px-2 py-0.5 rounded"
+                      style={{
+                        background: "rgba(11,15,39,0.75)",
+                        color: "#d23369",
+                        backdropFilter: "blur(8px)",
+                        border: "1px solid rgba(210,51,105,0.25)",
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <div className="px-5 pb-5 pt-4">
+                    <h3
+                      className="font-semibold text-base sm:text-lg leading-tight mb-1.5"
+                      style={{ color: "#F0F2FA" }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p
+                      className="text-xs sm:text-sm leading-relaxed mb-3"
+                      style={{ color: "rgba(240,242,250,0.5)" }}
+                    >
+                      {service.desc}
+                    </p>
+                    <span
+                      className="inline-flex items-center gap-1 font-mono text-[11px] tracking-wide group-hover:gap-2 transition-all duration-200"
+                      style={{ color: "#d23369" }}
+                    >
+                      Learn more <span>→</span>
+                    </span>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

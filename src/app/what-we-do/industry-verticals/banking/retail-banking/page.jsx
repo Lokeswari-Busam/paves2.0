@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Retail Banking",
+  description: "Delivering digital-first retail banking experiences with intelligent automation and secure infrastructure.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/retail-banking" },
+};
 
 export default function RetailBankingPage() {
   return (
@@ -43,7 +47,7 @@ export default function RetailBankingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/retail-banking.png"
+              src="/assets/what-we-do/industry-verticals/retail-banking.png"
               alt="Retail Banking"
               width={900}
               height={560}

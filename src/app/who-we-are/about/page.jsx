@@ -23,19 +23,19 @@ export default function AboutPage() {
       {/* SECTION 1: ABOUT HEADER */}
       {/* ---------------------------------------------------- */}
 
-      <section className="relative flex flex-col md:flex-row w-full overflow-hidden bg-gray-50 min-h-[70vh]">
+      <section className="relative flex flex-col md:flex-row w-full overflow-hidden bg-gray-50 sm:min-h-[60vh] md:min-h-[70vh]">
 
         {/* LEFT SIDE */}
         <motion.div
-          className="relative z-10 md:w-1/2 flex flex-col justify-center px-6 md:px-16 py-16 bg-gradient-to-r from-indigo-100 to-indigo-50"
+          className="relative z-10 md:w-1/2 flex flex-col justify-center px-6 md:px-16 py-10 sm:py-14 md:py-16 bg-gradient-to-r from-indigo-100 to-indigo-50"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-6xl md:text-6xl font-semibold text-[#2a3990] leading-snug mb-4">
-            ABOUT
-          </h2>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold text-[#2a3990] leading-snug mb-4">
+            About Paves Technologies
+          </h1>
 
           <Breadcrumb
           items={[
@@ -54,7 +54,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
         >
           <Image
-            src="/assets/modern-equipped-computer-lab.jpg"
+            src="/assets/who-we-are/modern-equipped-computer-lab.jpg"
             alt="About Paves Technologies"
             fill
             className="object-cover object-center"
@@ -67,7 +67,7 @@ export default function AboutPage() {
       {/* SECTION 2: FOCUS AREAS */}
       {/* ---------------------------------------------------- */}
 
-      <section className="bg-[#2a3990] relative py-20 px-6 md:px-16 flex flex-col md:flex-row items-start gap-12">
+      <section className="bg-[#2a3990] relative py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-16 flex flex-col md:flex-row items-start gap-8 sm:gap-10 md:gap-12">
 
         {/* LEFT CONTENT */}
         <motion.div
@@ -130,19 +130,19 @@ export default function AboutPage() {
       {/* SECTION 3: VALUES */}
       {/* ---------------------------------------------------- */}
 
-      <section className="bg-gradient-to-r from-indigo-50 via-indigo-100 to-purple-50 relative py-28 px-10 md:px-16 text-center">
+      <section className="bg-gradient-to-r from-indigo-50 via-indigo-100 to-purple-50 relative py-14 sm:py-20 md:py-28 px-4 sm:px-6 md:px-10 lg:px-16 text-center">
 
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-5xl font-semibold mb-12 text-[#2a3990]"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold mb-8 sm:mb-12 text-[#2a3990]"
         >
           Our Core Values
         </motion.h2>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-10">
           {[
             { Icon: Search, title: "Trust & Integrity", desc: "Built on ethics and transparency." },
             { Icon: Target, title: "Customer Success", desc: "Success for clients and employees alike." },

@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function InfoCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,101 +47,277 @@ export default function InfoCarousel() {
   ];
 
 
-  const handlePrev = () => {
-    setCurrentIndex(currentIndex === 0 ? items.length - 1 : currentIndex - 1);
+  const handlePrev = () =>
+    setCurrentIndex((i) => (i === 0 ? ITEMS.length - 1 : i - 1));
+  const handleNext = () =>
+    setCurrentIndex((i) => (i === ITEMS.length - 1 ? 0 : i + 1));
+
+  const [isHovered, setIsHovered] = useState(false);
+  const touchStartX = useRef(null);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const id = setInterval(() => {
+      setCurrentIndex((i) => (i + 1) % ITEMS.length);
+    }, 4500);
+    return () => clearInterval(id);
+  }, [isHovered]);
+
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "ArrowLeft") setCurrentIndex((i) => (i === 0 ? ITEMS.length - 1 : i - 1));
+      if (e.key === "ArrowRight") setCurrentIndex((i) => (i + 1) % ITEMS.length);
+    };
+    globalThis.addEventListener("keydown", handleKey);
+    return () => globalThis.removeEventListener("keydown", handleKey);
+  }, []);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const handleNext = () => {
-    setCurrentIndex(currentIndex === items.length - 1 ? 0 : currentIndex + 1);
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(delta) > 50) {
+      if (delta < 0) handleNext();
+      else handlePrev();
+    }
+    touchStartX.current = null;
   };
 
   return (
-    <section className="relative w-full py-28 bg-blue-50 min-h-[600px] flex flex-col items-center overflow-hidden">
+    <section
+      className="w-full py-20 sm:py-24 lg:py-28 relative overflow-hidden"
+      style={{ background: "#F4F7FF" }}
+    >
+      {/* Grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(42,57,144,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(42,57,144,0.05) 1px, transparent 1px)",
+          backgroundSize: "50px 50px",
+        }}
+      />
 
-      {/* ==== SVG Background (Light Blue Abstract) ==== */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-20"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
+      {/* Ghost slide number — decorative */}
+      <div
+        className="pointer-events-none select-none absolute right-0 top-1/2 -translate-y-1/2 font-bold leading-none"
+        style={{ fontSize: "22vw", color: "#212d74", opacity: 0.04 }}
       >
-        <circle cx="20%" cy="30%" r="250" fill="#d7e3ff" />
-        <circle cx="80%" cy="60%" r="300" fill="#bccaff" />
-        <circle cx="50%" cy="90%" r="200" fill="#e4e9ff" />
-      </svg>
+        {String(currentIndex + 1).padStart(2, "0")}
+      </div>
 
-      {/* Section Heading */}
-      <h2 className="text-5xl font-bold text-[#2a338b] text-center mb-16 z-10">
-        Industry Verticals
-      </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
 
-      <div className="w-full max-w-6xl flex items-center justify-center z-10">
-        
-        {/* Left Image */}
+        {/* ── Section header ── */}
         <motion.div
-          key={currentIndex + "-img"}
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-1/2 h-[470px] relative flex items-center justify-end pr-10"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-14 sm:mb-16"
         >
-          <img
-            src={items[currentIndex].image}
-            alt={items[currentIndex].title}
-            className="w-full h-full object-cover rounded-xl shadow-xl"
+          <span
+            className="inline-flex items-center gap-2 border px-4 py-1.5 font-mono text-[10px] tracking-[0.2em] uppercase font-medium mb-5"
+            style={{
+              borderColor: "rgba(42,57,144,0.28)",
+              color: "#212d74",
+              background: "rgba(42,57,144,0.05)",
+            }}
+          >
+            Markets We Serve
+          </span>
+
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+            <span style={{ color: "#212d74" }}>Industry </span>
+            <span
+              style={{
+                background:
+                  "linear-gradient(130deg, #d23369 0%, #9b4fc7 50%, #3d5fdb 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Verticals
+            </span>
+          </h2>
+
+          <motion.div
+            className="h-0.5 w-16 mx-auto mt-4 rounded-full"
+            style={{
+              background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+              transformOrigin: "left",
+            }}
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.7 }}
           />
         </motion.div>
 
-        {/* Spacer */}
-        <div className="w-4" />
-
-        {/* Right Text */}
-        <motion.div
-          key={currentIndex + "-text"}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="w-1/2 h-[470px] px-12 flex flex-col justify-center text-[#2a338b]"
+        {/* ── Carousel ── */}
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div
+          className="flex flex-col lg:flex-row items-center gap-8 lg:gap-14"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          <h3 className="text-4xl font-bold mb-6">
-            {items[currentIndex].title}
-          </h3>
 
-          <p className="text-lg leading-relaxed mb-8">
-            {items[currentIndex].description}
-          </p>
+          {/* Image column */}
+          <div className="w-full lg:w-[55%] relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`img-${currentIndex}`}
+                initial={{ opacity: 0, x: -40, scale: 0.97 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 40, scale: 0.97 }}
+                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full rounded-2xl overflow-hidden shadow-2xl"
+                style={{ aspectRatio: "4/3" }}
+              >
+                <Image
+                  src={ITEMS[currentIndex].image}
+                  alt={ITEMS[currentIndex].title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                />
+                {/* Rose accent corner */}
+                <div
+                  className="absolute top-0 left-0 w-24 h-1"
+                  style={{ background: "linear-gradient(90deg, #d23369, transparent)" }}
+                />
+                <div
+                  className="absolute top-0 left-0 w-1 h-24"
+                  style={{ background: "linear-gradient(180deg, #d23369, transparent)" }}
+                />
+              </motion.div>
+            </AnimatePresence>
 
-          <button className="font-semibold text-[#2a338b] hover:text-[#2a338b]/80 inline-flex items-center hover:underline transition">
-            Read more <span className="ml-2 text-xl">➔</span>
-          </button>
-        </motion.div>
+            {/* Progress bar */}
+            <div
+              className="mt-4 h-0.5 w-full rounded-full overflow-hidden"
+              style={{ background: "rgba(42,57,144,0.12)" }}
+            >
+              <motion.div
+                className="h-full rounded-full"
+                style={{
+                  background: "linear-gradient(90deg, #d23369, #3d5fdb)",
+                  width: `${((currentIndex + 1) / ITEMS.length) * 100}%`,
+                }}
+                transition={{ duration: 0.45, ease: "easeInOut" }}
+              />
+            </div>
+          </div>
 
+          {/* Text column */}
+          <div className="w-full lg:w-[45%]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`text-${currentIndex}`}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* Slide counter */}
+                <div
+                  className="font-mono text-[11px] tracking-[0.18em] uppercase mb-3"
+                  style={{ color: "rgba(33,45,116,0.4)" }}
+                >
+                  {String(currentIndex + 1).padStart(2, "0")} / {String(ITEMS.length).padStart(2, "0")}
+                </div>
+
+                <h3
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
+                  style={{ color: "#212d74" }}
+                >
+                  {ITEMS[currentIndex].title}
+                </h3>
+
+                <div
+                  className="h-0.5 w-12 rounded-full mb-5"
+                  style={{ background: "linear-gradient(90deg, #d23369, #3d5fdb)" }}
+                />
+
+                <p
+                  className="text-base sm:text-lg leading-relaxed mb-8"
+                  style={{ color: "rgba(33,45,116,0.7)" }}
+                >
+                  {ITEMS[currentIndex].description}
+                </p>
+
+                <button
+                  className="inline-flex items-center gap-2 font-semibold text-sm transition-all duration-200 hover:gap-3"
+                  style={{ color: "#d23369" }}
+                >
+                  Read more <span className="text-base">→</span>
+                </button>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* ── Navigation ── */}
+            <div className="flex items-center gap-4 mt-10">
+              {/* Prev */}
+              <motion.button
+                aria-label="Previous"
+                onClick={handlePrev}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
+                className="w-11 h-11 rounded-full border-2 flex items-center justify-center transition-colors duration-200"
+                style={{
+                  borderColor: "rgba(33,45,116,0.25)",
+                  color: "#212d74",
+                  background: "rgba(33,45,116,0.04)",
+                }}
+              >
+                ←
+              </motion.button>
+
+              {/* Dots */}
+              <div className="flex items-center gap-2">
+                {ITEMS.map((item, i) => (
+                  <button
+                    key={item.title}
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => setCurrentIndex(i)}
+                    className="rounded-full transition-all duration-300"
+                    style={{
+                      width: i === currentIndex ? "24px" : "6px",
+                      height: "6px",
+                      background:
+                        i === currentIndex
+                          ? "linear-gradient(90deg, #d23369, #3d5fdb)"
+                          : "rgba(33,45,116,0.25)",
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Next */}
+              <motion.button
+                aria-label="Next"
+                onClick={handleNext}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
+                className="w-11 h-11 rounded-full border-2 flex items-center justify-center transition-colors duration-200"
+                style={{
+                  borderColor: "rgba(33,45,116,0.25)",
+                  color: "#212d74",
+                  background: "rgba(33,45,116,0.04)",
+                }}
+              >
+                →
+              </motion.button>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* Bottom Controls */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 z-20">
-        <button
-          aria-label="Previous"
-          onClick={handlePrev}
-          className="w-12 h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
-        >
-          <span className="text-2xl text-white">&#8592;</span>
-        </button>
-
-        <span className="text-[#2a338b] text-xl font-bold">
-          {currentIndex + 1}/{items.length}
-        </span>
-
-        <button
-          aria-label="Next"
-          onClick={handleNext}
-          className="w-12 h-12 rounded bg-[#2a338b] hover:bg-gray-700 flex items-center justify-center"
-        >
-          <span className="text-2xl text-white">&#8594;</span>
-        </button>
-      </div>
-
     </section>
   );
 }
-
-

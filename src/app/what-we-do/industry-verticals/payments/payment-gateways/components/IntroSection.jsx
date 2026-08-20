@@ -35,7 +35,7 @@ export default function IntroSection() {
         {/* RIGHT IMAGE */}
         <div className="w-full flex items-center justify-center">
           <Image
-            src="/assets/payment-gateways.png"
+            src="/assets/what-we-do/industry-verticals/payment-gateways.png"
             alt="Payment Gateway Illustration"
             width={900}
             height={560}

@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Consumer Lending",
+  description: "Simplifying loan journeys with automated decisioning, secure processing, and real-time analytics.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/consumer-lending" },
+};
 
 export default function ConsumerLendingPage() {
   return (
@@ -44,7 +48,7 @@ export default function ConsumerLendingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/consumer-lending.png"    /* put your image here */
+              src="/assets/what-we-do/industry-verticals/consumer-lending.png"    /* put your image here */
               alt="Consumer Lending"
               width={900}
               height={600}

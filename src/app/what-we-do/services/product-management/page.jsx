@@ -1,6 +1,11 @@
-"use client";
 import Image from "next/image";
 import { ShieldCheck, Users, RefreshCw, Target } from "lucide-react";
+
+export const metadata = {
+  title: "Product Management & Engineering",
+  description: "Turning great ideas into scalable digital products with user-centered design, agile engineering, and continuous innovation.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/product-management" },
+};
 
 export default function ProductManagementPage() {
   return (
@@ -93,7 +98,7 @@ export default function ProductManagementPage() {
           {/* Right Column - Full Image */}
           <div className="flex-1 relative h-[500px] md:h-auto">
             <Image
-              src="/assets/solar-panel-manufacturing-plant-researcher-taking-notes-tablet.jpg"
+              src="/assets/what-we-do/services/solar-panel-manufacturing-plant-researcher-taking-notes-tablet.jpg"
               alt="Fintech Product Management"
               fill
               className="object-cover"

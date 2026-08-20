@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Cloud Engineering & DevOps",
+  description: "Designing and scaling cloud-native platforms with automated CI/CD workflows, resilient infrastructure, and optimized performance.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/cloud-and-devops" },
+};
 
 export default function CloudAndDevopsPage() {
   return (
@@ -32,7 +37,7 @@ export default function CloudAndDevopsPage() {
             "Cloud Cost Optimization & AI-Powered Monitoring",
           ].map((item, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <div className="flex items-center justify-center w-8 h-8 bg-primary text-white font-semibold rounded-full shadow">
+              <div className="flex items-center justify-center min-w-8 w-8 h-8 bg-primary text-white font-semibold rounded-full shadow">
                 {`0${index + 1}`}
               </div>
               <p className="text-lg text-gray-800 leading-relaxed">{item}</p>
@@ -71,7 +76,7 @@ export default function CloudAndDevopsPage() {
           {/* RIGHT SIDE — IMAGE */}
           <div className="flex justify-center">
             <Image
-              src="/assets/3d-rendering-biorobots-concept.jpg"
+              src="/assets/what-we-do/services/3d-rendering-biorobots-concept.jpg"
               alt="Why Choose Paves Technologies"
               width={500}
               height={400}

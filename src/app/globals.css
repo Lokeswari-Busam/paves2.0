@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --breakpoint-xs: 475px;
+}
+
 
 
 @custom-variant dark (&:is(.dark *));
@@ -90,6 +94,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 

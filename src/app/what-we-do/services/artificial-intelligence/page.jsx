@@ -1,7 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import ShapeDivider from "@/app/components/ShapeDivider";
+
+export const metadata = {
+  title: "Artificial Intelligence",
+  description: "Building intelligent systems with machine learning, NLP, and computer vision to automate processes and deliver predictive insights for financial services.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/artificial-intelligence" },
+};
 
 export default function ArtificialIntelligence() {
   return (
@@ -111,7 +115,7 @@ export default function ArtificialIntelligence() {
             </div>
             <div className="relative w-64 h-40 md:w-80 md:h-52">
               <Image
-                src="/assets/close-up-man-robotic-process-automation-concept.jpg"
+                src="/assets/what-we-do/services/close-up-man-robotic-process-automation-concept.jpg"
                 alt="AI Concept 2"
                 fill
                 className="object-cover  shadow-md"
@@ -119,7 +123,7 @@ export default function ArtificialIntelligence() {
             </div>
             <div className="relative w-64 h-40 md:w-80 md:h-52">
               <Image
-                src="/assets/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg"
+                src="/assets/shared/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg"
                 alt="AI Concept 3"
                 fill
                 className="object-cover  shadow-md"
