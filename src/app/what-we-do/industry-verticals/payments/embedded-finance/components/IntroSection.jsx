@@ -41,7 +41,7 @@ export default function IntroSection() {
         {/* RIGHT IMAGE */}
         <div className="w-full flex items-center justify-center">
           <Image
-            src="/assets/embedded-finance-illustration.png"
+            src="/assets/what-we-do/industry-verticals/embedded-finance-illustration.png"
             alt="Embedded Finance Illustration"
             width={900}
             height={560}

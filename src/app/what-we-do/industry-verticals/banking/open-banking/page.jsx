@@ -48,7 +48,7 @@ export default function OpenBankingPage() {
           {/* RIGHT IMAGE / ILLUSTRATION */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/open-banking.png"  // << your illustration goes here
+              src="/assets/what-we-do/industry-verticals/open-banking.png"  // << your illustration goes here
               alt="Open Banking"
               width={900}
               height={600}

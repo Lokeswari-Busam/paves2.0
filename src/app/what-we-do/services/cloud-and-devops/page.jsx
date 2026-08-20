@@ -76,7 +76,7 @@ export default function CloudAndDevopsPage() {
           {/* RIGHT SIDE — IMAGE */}
           <div className="flex justify-center">
             <Image
-              src="/assets/3d-rendering-biorobots-concept.jpg"
+              src="/assets/what-we-do/services/3d-rendering-biorobots-concept.jpg"
               alt="Why Choose Paves Technologies"
               width={500}
               height={400}

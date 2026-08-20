@@ -47,7 +47,7 @@ export default function RetailBankingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/retail-banking.png"
+              src="/assets/what-we-do/industry-verticals/retail-banking.png"
               alt="Retail Banking"
               width={900}
               height={560}

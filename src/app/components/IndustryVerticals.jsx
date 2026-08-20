@@ -9,37 +9,37 @@ const ITEMS = [
     title: "Payments",
     description:
       "Payment services comprise a variety of solutions that facilitate secure and efficient financial transactions. The aim is to provide fast, reliable, and scalable options for both individuals and businesses.",
-    image: "/assets/payments.jpg",
+    image: "/assets/home/payments.jpg",
   },
   {
     title: "Banking",
     description:
       "Banking encompasses a broad spectrum of financial services including personal and business accounts, loans, deposit services, fund transfers, and e-banking.",
-    image: "/assets/banking.png",
+    image: "/assets/shared/banking.png",
   },
   {
     title: "Payments Fraud & AML",
     description:
       "Payments Fraud & Anti-Money Laundering (AML) services implement rigorous mechanisms to detect and prevent financial crime.",
-    image: "/assets/pay-fraud.jpg",
+    image: "/assets/home/pay-fraud.jpg",
   },
   {
     title: "Governance Risk & Compliance",
     description:
       "Governance Risk & Compliance (GRC) refers to frameworks and solutions that help organizations meet regulatory requirements, manage risks, and ensure ethical practices.",
-    image: "/assets/risk-compliance.png",
+    image: "/assets/shared/risk-compliance.png",
   },
   {
     title: "Insurance",
     description:
       "Insurance services provide financial protection against various risks such as accidents, health issues, property loss, and business liability.",
-    image: "/assets/insurance.png",
+    image: "/assets/shared/insurance.png",
   },
   {
     title: "Capital Markets",
     description:
       "Capital Markets consist of platforms and products that enable investment, trading, and the allocation of equity and debt.",
-    image: "/assets/CapMarkets.png",
+    image: "/assets/shared/CapMarkets.png",
   },
 ];
 

@@ -11,7 +11,7 @@ export default function WhatWeDo() {
       desc: `We partner with organizations across payments, banking, insurance, and capital markets to modernize legacy systems and accelerate growth. 
       Our domain experts and engineers collaborate to build secure, compliant, and scalable solutions that help businesses stay ahead in fast-changing markets. 
       Whether it’s streamlining core systems, improving data visibility, or enabling digital payments — we bring innovation that matters.`,
-      img: "/assets/industry-verticals.jpeg",
+      img: "/assets/what-we-do/industry-verticals.jpeg",
       link: "/what-we-do/industry-verticals",
     },
     {
@@ -19,7 +19,7 @@ export default function WhatWeDo() {
       desc: `Our service offerings cover the complete technology spectrum — from cloud transformation, data analytics, and AI integration to intelligent automation and cybersecurity. 
       We build future-ready solutions that not only solve current challenges but also set the foundation for innovation and growth. 
       With deep technical expertise and a delivery mindset, we enable clients to scale faster, respond smarter, and operate securely in the digital era.`,
-      img: "/assets/services.jpeg",
+      img: "/assets/what-we-do/services.jpeg",
       link: "/what-we-do/services",
     },
     {
@@ -27,7 +27,7 @@ export default function WhatWeDo() {
       desc: `We implement, extend, and connect the enterprise platforms that run your business — ERP, CRM, workflow and service management, and the integration middleware that ties them together.
       Most organizations don't lack platforms; they lack platforms that talk to each other. Our teams unify finance, customer, and operational data so processes flow end to end and every system works from the same source of truth.
       From SAP and Salesforce to ServiceNow and MuleSoft, we build secure, compliance-ready integration layers that scale with your business.`,
-      img: "/assets/workers-having-meeting-together-network-graphic.jpg",
+      img: "/assets/what-we-do/workers-having-meeting-together-network-graphic.jpg",
       link: "/what-we-do/enterprise-platforms-and-integrations",
     },
   ];
@@ -58,7 +58,7 @@ export default function WhatWeDo() {
       {/* HERO SECTION */}
         <section className="relative h-[55vh] sm:h-[65vh] md:h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/assets/what_we_do_hero.jpeg"
+          src="/assets/shared/what_we_do_hero.jpeg"
           alt="What We Do"
           fill
           className="object-cover scale-105"

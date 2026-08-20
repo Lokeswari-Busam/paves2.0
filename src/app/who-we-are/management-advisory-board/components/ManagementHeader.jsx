@@ -60,7 +60,7 @@ export default function AboutHeader() {
         viewport={{ once: true }}
       >
         <Image
-          src="/assets/business-data-analysis-strategy-marketing-graph-concept.jpg"
+          src="/assets/who-we-are/business-data-analysis-strategy-marketing-graph-concept.jpg"
           alt="Management and Advisory Board"
           fill
           className="object-cover object-center"

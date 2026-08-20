@@ -54,7 +54,7 @@ export default function AboutPage() {
           viewport={{ once: true }}
         >
           <Image
-            src="/assets/modern-equipped-computer-lab.jpg"
+            src="/assets/who-we-are/modern-equipped-computer-lab.jpg"
             alt="About Paves Technologies"
             fill
             className="object-cover object-center"

@@ -8,7 +8,7 @@ const heroSectionData = {
     title: "Payments",
     description:
       "Empowering global money movement with secure, fast, and scalable payment solutions for modern businesses.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },
@@ -21,7 +21,7 @@ const heroSectionData = {
     title: "Banking",
     description:
       "Building next-generation banking platforms for retail, corporate, digital, and open banking ecosystems.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },
@@ -34,7 +34,7 @@ const heroSectionData = {
     title: "Payments Fraud & AML",
     description:
       "AI-driven fraud detection and AML frameworks that safeguard financial institutions in real time.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },
@@ -47,7 +47,7 @@ const heroSectionData = {
     title: "Governance, Risk & Compliance",
     description:
       "Ensuring trust, security, and regulatory adherence through robust governance and risk frameworks.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },
@@ -60,7 +60,7 @@ const heroSectionData = {
     title: "Insurance",
     description:
       "Transforming underwriting, claims, and policy management with automation and intelligence.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },
@@ -73,7 +73,7 @@ const heroSectionData = {
     title: "Capital Markets",
     description:
       "Modernizing trading, investment, and market data infrastructure for transparency and performance.",
-    image: "/assets/what_we_do_hero.jpeg",
+    image: "/assets/shared/what_we_do_hero.jpeg",
     breadcrumb: [
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },

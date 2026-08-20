@@ -45,7 +45,7 @@ export default function IAMPage() {
   {/* RIGHT BLOCK WITH IMAGE */}
   <div className="p-0 md:p-0">
     <Image
-      src="/assets/iam-hero.png"
+      src="/assets/what-we-do/services/iam-hero.png"
       alt="IAM Security"
       width={400}
       height={600}

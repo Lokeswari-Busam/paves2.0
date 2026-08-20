@@ -45,7 +45,7 @@ export default function DigitalBankingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/digital-banking.png"
+              src="/assets/what-we-do/industry-verticals/digital-banking.png"
               alt="Digital Banking"
               width={900}
               height={600}

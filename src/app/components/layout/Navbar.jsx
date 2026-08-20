@@ -145,7 +145,7 @@ export function Navigation() {
 
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image src="/assets/logo.png" alt="Paves Technologies" width={130} height={40} className="h-9 w-auto" priority />
+            <Image src="/assets/home/logo.png" alt="Paves Technologies" width={130} height={40} className="h-9 w-auto" priority />
           </Link>
 
           {/* Desktop Nav */}

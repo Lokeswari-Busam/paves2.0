@@ -40,7 +40,7 @@ export default function IntroSection() {
         {/* RIGHT IMAGE */}
         <div className="w-full flex items-center justify-center">
           <Image
-            src="/assets/ecommerce-illustration.png"
+            src="/assets/what-we-do/industry-verticals/ecommerce-illustration.png"
             alt="E-Commerce Illustration"
             width={900}
             height={560}

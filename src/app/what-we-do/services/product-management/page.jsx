@@ -98,7 +98,7 @@ export default function ProductManagementPage() {
           {/* Right Column - Full Image */}
           <div className="flex-1 relative h-[500px] md:h-auto">
             <Image
-              src="/assets/solar-panel-manufacturing-plant-researcher-taking-notes-tablet.jpg"
+              src="/assets/what-we-do/services/solar-panel-manufacturing-plant-researcher-taking-notes-tablet.jpg"
               alt="Fintech Product Management"
               fill
               className="object-cover"

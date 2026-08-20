@@ -48,7 +48,7 @@ export default function ConsumerLendingPage() {
           {/* RIGHT IMAGE */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/consumer-lending.png"    /* put your image here */
+              src="/assets/what-we-do/industry-verticals/consumer-lending.png"    /* put your image here */
               alt="Consumer Lending"
               width={900}
               height={600}

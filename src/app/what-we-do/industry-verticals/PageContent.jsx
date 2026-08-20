@@ -72,7 +72,7 @@ export default function IndustryVerticals() {
       <Hero
         title="Industry Verticals"
         description="Our deep domain expertise spans the global financial ecosystem."
-        image="/assets/what_we_do_hero.jpeg"
+        image="/assets/shared/what_we_do_hero.jpeg"
         breadcrumb={[
           { label: "Paves Technologies", href: "/" },
           { label: "What We Do", href: "/what-we-do" },
@@ -135,7 +135,7 @@ export default function IndustryVerticals() {
           >
             <div className="relative w-full max-w-[260px] sm:max-w-[300px] md:max-w-[350px]">
               <Image
-                src="/assets/robo.png"
+                src="/assets/what-we-do/industry-verticals/robo.png"
                 alt="AI Illustration"
                 width={350}
                 height={280}

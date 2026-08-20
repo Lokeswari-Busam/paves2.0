@@ -89,7 +89,7 @@ export default function ServicesPage() {
   <Hero
     title="Services"
     description="We deliver technology solutions that help organizations innovate, scale, and stay future-ready."
-    image="/assets/what_we_do_hero.jpeg"
+    image="/assets/shared/what_we_do_hero.jpeg"
     breadcrumb={[
       { label: "Paves Technologies", href: "/" },
       { label: "What We Do", href: "/what-we-do" },

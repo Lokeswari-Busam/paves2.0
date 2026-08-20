@@ -65,7 +65,7 @@ export default function HeroSection() {
     >
       {/* ── Background image at very low opacity ── */}
       <Image
-        src="/assets/hero-background.png"
+        src="/assets/home/hero-background.png"
         alt=""
         fill
         priority
@@ -323,7 +323,7 @@ export default function HeroSection() {
               style={{ width: "400px", height: "460px" }}
             >
               <Image
-                src="/assets/cybernetic-being-interacting-with-digital-interface.jpg"
+                src="/assets/home/cybernetic-being-interacting-with-digital-interface.jpg"
                 alt="Futuristic AI Technology — Paves Technologies"
                 fill
                 priority

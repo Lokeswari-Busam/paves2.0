@@ -88,7 +88,7 @@ export default function Footer() {
           <div className="xs:col-span-2 sm:col-span-3 lg:col-span-1">
             <Link href="/">
               <Image
-                src="/assets/logo.png"
+                src="/assets/home/logo.png"
                 width={130}
                 height={55}
                 alt="Paves Technologies"

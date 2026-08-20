@@ -17,7 +17,7 @@ const heroSectionData = Object.fromEntries(
     {
       title,
       description: tagline,
-      image: "/assets/what_we_do_hero.jpeg",
+      image: "/assets/shared/what_we_do_hero.jpeg",
       breadcrumb: [
         { label: "Paves Technologies", href: "/" },
         { label: "What We Do", href: "/what-we-do" },

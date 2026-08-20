@@ -39,7 +39,7 @@ export default function EnterprisePlatformsContent() {
       <Hero
         title="Enterprise Platforms & Integrations"
         description="Connecting enterprise platforms, applications, and data to create seamless, scalable business ecosystems."
-        image="/assets/what_we_do_hero.jpeg"
+        image="/assets/shared/what_we_do_hero.jpeg"
         breadcrumb={[
           { label: "Paves Technologies", href: "/" },
           { label: "What We Do", href: "/what-we-do" },

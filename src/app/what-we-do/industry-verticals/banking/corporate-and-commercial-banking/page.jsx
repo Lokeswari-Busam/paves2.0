@@ -40,7 +40,7 @@ export default function Page() {
           {/* RIGHT IMAGE */}
           <div className="flex justify-center">
             <Image
-              src="/assets/corporate-commercial-banking.png"
+              src="/assets/what-we-do/industry-verticals/corporate-commercial-banking.png"
               alt="Corporate & Commercial Banking"
               width={700}
               height={500}

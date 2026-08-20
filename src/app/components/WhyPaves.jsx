@@ -8,25 +8,25 @@ const ITEMS = [
     heading: "Always Ahead of the Curve",
     title: "Innovating Financial Services",
     desc: "Our AI-first solutions are revolutionizing the financial services landscape, empowering institutions to operate faster, smarter, and more efficiently.",
-    image: "/assets/man-walks-through-tunnel-with-light-ceiling.jpg",
+    image: "/assets/home/man-walks-through-tunnel-with-light-ceiling.jpg",
   },
   {
     heading: "A Culture Built to Innovate",
     title: "Trusted Innovation",
     desc: "The financial world thrives on trust and innovation. At Paves Technologies, we've built a culture that embraces both, ensuring that every solution.",
-    image: "/assets/creative-designers-team-working-project.jpg",
+    image: "/assets/home/creative-designers-team-working-project.jpg",
   },
   {
     heading: "Transformative Solutions",
     title: "Impactful Results",
     desc: "Whether it's enabling instant payments, embedding financial services into everyday ecosystems, or creating AI-driven capital market strategies.",
-    image: "/assets/people-office-analyzing-checking-finance-graphs.jpg",
+    image: "/assets/home/people-office-analyzing-checking-finance-graphs.jpg",
   },
   {
     heading: "Human-Driven Intelligence",
     title: "Meaningful Impact",
     desc: "At the heart of AI-driven innovation is human intelligence. Paves Technologies believes in AI that augments human decision-making.",
-    image: "/assets/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg",
+    image: "/assets/shared/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg",
   },
 ];
 
