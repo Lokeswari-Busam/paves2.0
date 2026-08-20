@@ -11,7 +11,7 @@ export default function InfoCarousel() {
       title: "Payments",
       description:
         "Payment services comprise a variety of solutions that facilitate secure and efficient financial transactions. The aim is to provide fast, reliable, and scalable options for both individuals and businesses.",
-      image: "/assets/payments.jpg",
+      image: "/assets/istockpay.jpg",
     },
     {
       title: "Banking",
