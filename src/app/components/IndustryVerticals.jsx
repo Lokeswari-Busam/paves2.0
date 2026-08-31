@@ -43,6 +43,8 @@ const ITEMS = [
   },
 ];
 
+export default function IndustryVerticals() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () =>
     setCurrentIndex((i) => (i === 0 ? ITEMS.length - 1 : i - 1));
