@@ -371,7 +371,7 @@ export default function PartnersEcosystem() {
       className="relative w-full bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('/assets/home/future-visions-business-technology-concept.jpg')",
+          "url('/assets/home/partners/future-visions-technology.png')",
       }}
     >
       {/* ==========================================================

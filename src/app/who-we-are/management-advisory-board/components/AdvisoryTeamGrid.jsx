@@ -7,13 +7,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const members = [
   { name: "Sambi R Eada", title: "Founder and CEO", region: "Management", image: "/assets/who-we-are/CEO-removebg-preview.png" },
 
-  { name: "Oliver Chang", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/oliver chang.png" },
-  { name: "Vikram Ramani", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/vikram ramani.png" },
-  { name: "Satyavan Panda", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/satyavan panda.png" },
-  { name: "Uday Shetgeri", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/uday shetgeri.png" },
-  { name: "Puneet Chandra", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/puneet chandra.png" },
+  { name: "Oliver Chang", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/oliver-chang.png" },
+  { name: "Vikram Ramani", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/vikram-ramani.png" },
+  { name: "Satyavan Panda", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/satyavan-panda.png" },
+  { name: "Uday Shetgeri", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/uday-shetgeri.png" },
+  { name: "Puneet Chandra", title: "Advisory Board", region: "Americas", image: "/assets/who-we-are/puneet-chandra.png" },
 
-  { name: "Kamal Kant", title: "Advisory Board", region: "Middle East & Africa", image: "/assets/who-we-are/kamal kant.png" },
+  { name: "Kamal Kant", title: "Advisory Board", region: "Middle East & Africa", image: "/assets/who-we-are/kamal-kant.png" },
 ];
 
 // Group by region

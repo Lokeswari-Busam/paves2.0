@@ -123,7 +123,7 @@ export default function ArtificialIntelligence() {
             </div>
             <div className="relative w-64 h-40 md:w-80 md:h-52">
               <Image
-                src="/assets/shared/qualified-technicians-brainstorm-ways-use-ai-cognitive-computing-extract-usable-information-from-complex-data-team-specialists-implement-artificial-intelligence-process-massive-datasets.jpg"
+                src="/assets/home/why-paves/ai-cognitive-computing.png"
                 alt="AI Concept 3"
                 fill
                 className="object-cover  shadow-md"

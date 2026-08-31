@@ -9,61 +9,61 @@ const SERVICES = [
   {
     title: "Business & Technology Advisory Consulting",
     desc: "We help organizations align business goals with advanced technology strategies to drive operational excellence.",
-    image: "/assets/home/business and technology advisory.jpeg",
+    image: "/assets/home/services/business-and-technology-advisory.png",
     link: "what-we-do/services/business-and-technology",
   },
   {
     title: "Artificial Intelligence",
     desc: "We build AI systems that automate workflows, enhance predictions, and accelerate decision-making.",
-    image: "/assets/home/artificial intelligence.webp",
+    image: "/assets/home/services/artificial-intelligence.png",
     link: "what-we-do/services/artificial-intelligence",
   },
   {
     title: "Cloud Engineering And DevOps",
     desc: "We architect scalable cloud systems with automated CI/CD pipelines for faster deployments.",
-    image: "/assets/home/cloud engineering and devops.jpeg",
+    image: "/assets/home/services/cloud-engineering-and-devops.png",
     link: "what-we-do/services/cloud-and-devops",
   },
   {
     title: "Data And Analytics",
     desc: "We deliver analytics platforms, dashboards, and predictive modeling to power data-driven decisions.",
-    image: "/assets/home/data analytics.jpg",
+    image: "/assets/home/services/data-analytics.png",
     link: "what-we-do/services/data-and-analytics",
   },
   {
     title: "Product Management & Engineering",
     desc: "We build scalable digital products focused on usability, engineering excellence, and innovation.",
-    image: "/assets/home/product management and engineering.jpg",
+    image: "/assets/home/services/product-management-and-engineering.png",
     link: "what-we-do/services/product-management",
   },
   {
     title: "Enterprise Automation",
     desc: "We automate repetitive workflows using AI, bots, and workflow orchestration tools.",
-    image: "/assets/home/enterprise automation.jpg",
+    image: "/assets/home/services/enterprise-automation.png",
     link: "what-we-do/services/enterprise-automation",
   },
   {
     title: "Legacy Support & Modernization",
     desc: "We modernize legacy apps, refactor systems, and migrate workloads to modern platforms.",
-    image: "/assets/home/legacy support and modernisation.png",
+    image: "/assets/home/services/legacy-support-and-modernisation.png",
     link: "what-we-do/services/legacy-support",
   },
   {
     title: "Cyber Security",
     desc: "We implement secure architectures, access control, and threat detection systems.",
-    image: "/assets/home/cyber security.jpg",
+    image: "/assets/home/services/cyber-security.png",
     link: "what-we-do/services/cyber-security",
   },
   {
     title: "Identity And Access Management",
     desc: "We deploy SSO, MFA, and RBAC to secure identity access across applications.",
-    image: "/assets/home/Identity-and-Access-Management.jpg",
+    image: "/assets/home/services/identity-and-access-management.png",
     link: "what-we-do/services/identity-and-access-management",
   },
   {
     title: "Next Gen Technologies",
     desc: "We build solutions using IoT, Blockchain, AR/VR, and intelligent edge systems.",
-    image: "/assets/home/next gen technologies.webp",
+    image: "/assets/home/services/next-gen-technologies.png",
     link: "what-we-do/services/next-gen-technologies",
   },
 ];
@@ -88,7 +88,7 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       className="relative h-[300vh] w-full bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: "url('/assets/home/services_bg.jpg')" }}
+      style={{ backgroundImage: "url('/assets/home/services/services-bg.png')" }}
     >
       <div
         className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden"

@@ -45,7 +45,7 @@ export const metadata = {
       "Delivering AI-driven solutions across financial services, payments, banking, cloud modernization, and digital engineering.",
     images: [
       {
-        url: "/assets/home/logo.png",
+        url: "/assets/home/brand/logo.png",
         width: 1200,
         height: 630,
         alt: "Paves Technologies",
@@ -57,7 +57,7 @@ export const metadata = {
     title: "Paves Technologies | AI-Driven Financial Technology Solutions",
     description:
       "Delivering AI-driven solutions across financial services, payments, banking, cloud modernization, and digital engineering.",
-    images: ["/assets/home/logo.png"],
+    images: ["/assets/home/brand/logo.png"],
     creator: "@PavesTech",
   },
   robots: {
@@ -78,7 +78,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Paves Technologies",
   url: "https://www.pavestechnologies.com",
-  logo: "https://www.pavestechnologies.com/assets/home/logo.png",
+  logo: "https://www.pavestechnologies.com/assets/home/brand/logo.png",
   description:
     "Paves Technologies delivers AI-driven solutions across financial services, payments, banking, cloud modernization, and next-generation digital engineering.",
   sameAs: [

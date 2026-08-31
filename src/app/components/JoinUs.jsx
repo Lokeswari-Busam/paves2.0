@@ -58,7 +58,7 @@ export default function JoinUs() {
           className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden"
         >
           <Image
-            src="/assets/home/professional-businesswoman-holding-plan.jpg"
+            src="/assets/home/join-us/businesswoman-holding-plan.png"
             alt="Team"
             fill
             className="object-cover"
