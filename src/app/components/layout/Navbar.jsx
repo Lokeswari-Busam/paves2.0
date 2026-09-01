@@ -309,7 +309,7 @@ export function Navigation() {
     },
     { title: "Paves AI Labs", href: "/paves-ai-labs" },
     { title: "Insights", href: "/insights" },
-    { title: "Careers", href: "/careers" },
+    { title: "Careers", href: process.env.CAREERS_URL || "/careers" , target: "_blank"},
   ];
 
   return (
@@ -471,6 +471,7 @@ export function Navigation() {
                   {link.href && !link.submenu ? (
                     <Link
                       href={link.href}
+                      target={link.target?link.target:"blank"}
                       className="flex-1 py-3 text-base font-medium text-gray-900 hover:text-[#000080] transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

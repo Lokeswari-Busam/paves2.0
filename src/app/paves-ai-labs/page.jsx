@@ -39,7 +39,7 @@ export default function PavesAILabs() {
         className="relative h-[85vh] flex items-center justify-center text-center"
         style={{
           backgroundImage:
-            "url('https://assets.everspringpartners.com/dims4/default/4370b69/2147483647/strip/true/crop/1027x360+0+0/resize/1600x560!/format/webp/quality/90/?url=http%3A%2F%2Feverspring-brightspot.s3.us-east-1.amazonaws.com%2Fdf%2Fee%2F106592af4d508f76b29662e456db%2Fadvanced-ai.jpg')",
+            "url('assets/livesAtPaves1.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -100,19 +100,19 @@ export default function PavesAILabs() {
               title: "Applied AI for Businesses",
               desc:
                 "Building intelligent systems that optimize workflows, automate tasks, and power decision-making across critical enterprise functions.",
-              img: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500https://pavestechnologies.com/wp-content/uploads/2024/07/applied-ai.jpg",
+              img: "assets/focus_area1.png",
             },
             {
               title: "Data-Driven Intelligence",
               desc:
                 "Leveraging enterprise data to power predictive analytics, pattern recognition, and actionable insights.",
-              img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf_ZcLPZXa28L5j-TNaogNI7IqMZSmnjlInOTrxksa7WOzm43g-hIkolMo6S80QohbX3o&usqp=CAU",
+              img: "assets/focus_area2.png",
             },
             {
               title: "Next-Gen AI Engineering",
               desc:
                 "Developing custom LLMs, RAG pipelines, and domain-focused AI models aligned with industry requirements.",
-              img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1DAkbM1UwkNN1cBrh9Aax0P0Mt_n6PV8MJZt-DQ66RqNVYCDpvfXJoZcKHnhTJN3S50A&usqp=CAU",
+              img: "assets/focus_area3.png",
             },
           ].map((card, idx) => (
             <motion.div
