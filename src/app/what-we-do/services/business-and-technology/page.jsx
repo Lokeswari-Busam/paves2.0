@@ -19,9 +19,10 @@ export default function BusinessAndTechnologyPage() {
           {/* LEFT SECTION — FULL IMAGE */}
           <div className="md:w-1/2 h-[595px] relative">
             <Image
-              src="/assets/shared/business-team-meeting-modern-office-with-city-view.jpg"
+              src="/assets/shared/team-meeting-office.jpg"
               alt="Business Advisory"
               fill
+          sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center w-full h-full"
               priority
             />

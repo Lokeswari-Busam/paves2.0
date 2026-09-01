@@ -28,7 +28,7 @@ export default function WhyBoardMatters() {
       bg: "from-pink-50 to-rose-100",
       arrowColor: "text-pink-700",
       textColor: "text-rose-900",
-      image: "/assets/who-we-are/business-corporate-technology-people-graphic-concept.jpg",
+      image: "/assets/who-we-are/corporate-technology.jpg",
     },
     {
       title: "Why Customers Trust Our Advisory Board",
@@ -94,6 +94,7 @@ export default function WhyBoardMatters() {
                   src={section.image}
                   alt={section.title}
                   fill
+          sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                   priority
                 />

@@ -57,6 +57,7 @@ export default function AboutPage() {
             src="/assets/who-we-are/modern-equipped-computer-lab.jpg"
             alt="About Paves Technologies"
             fill
+          sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover object-center"
           />
         </motion.div>

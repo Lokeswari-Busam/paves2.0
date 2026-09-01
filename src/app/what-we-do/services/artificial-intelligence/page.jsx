@@ -110,14 +110,16 @@ export default function ArtificialIntelligence() {
                 src="/assets/futuristic-scene-with-high-tech-robot-used-construction-industry.jpg"
                 alt="AI Concept 1"
                 fill
+          sizes="(max-width: 768px) 256px, 320px"
                 className="object-cover  shadow-md"
               />
             </div>
             <div className="relative w-64 h-40 md:w-80 md:h-52">
               <Image
-                src="/assets/what-we-do/services/close-up-man-robotic-process-automation-concept.jpg"
+                src="/assets/what-we-do/services/robotic-process-automation.png"
                 alt="AI Concept 2"
                 fill
+          sizes="(max-width: 768px) 256px, 320px"
                 className="object-cover  shadow-md"
               />
             </div>
@@ -126,6 +128,7 @@ export default function ArtificialIntelligence() {
                 src="/assets/home/why-paves/ai-cognitive-computing.png"
                 alt="AI Concept 3"
                 fill
+          sizes="(max-width: 768px) 256px, 320px"
                 className="object-cover  shadow-md"
               />
             </div>

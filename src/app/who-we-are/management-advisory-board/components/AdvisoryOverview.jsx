@@ -47,6 +47,7 @@ export default function AdvisoryOverview() {
             src="/assets/who-we-are/advisory-overview.jpg"
             alt="Advisory Board"
             fill
+          sizes="(max-width: 640px) 100vw, 512px"
             loading="lazy"
             className="object-cover"
           />

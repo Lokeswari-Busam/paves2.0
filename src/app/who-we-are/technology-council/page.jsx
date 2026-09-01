@@ -40,9 +40,10 @@ function TechCouncilHeader() {
       {/* Right side Image */}
       <div className="relative md:w-1/2 h-[500px] md:h-auto">
         <Image
-          src="/assets/who-we-are/html-css-collage-concept-with-person.jpg"
+          src="/assets/who-we-are/development-collage.jpg"
           alt="About Paves Technologies"
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover object-center"
         />
       </div>

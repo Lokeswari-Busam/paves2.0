@@ -176,6 +176,7 @@ function MemberCard({ name, title, image }) {
           src={image || "/assets/default-user.png"}
           alt={name}
           fill
+          sizes="(max-width: 640px) 50vw, 220px"
           className="object-cover rounded-full"
         />
       </div>

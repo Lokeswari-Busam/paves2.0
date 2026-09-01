@@ -15,7 +15,7 @@ export default function WhoWeArePage() {
   const Hero = () => (
     <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-center overflow-hidden">
       <Image
-        src="/assets/shared/business-team-meeting-modern-office-with-city-view.jpg"
+        src="/assets/shared/team-meeting-office.jpg"
         alt="Who We Are"
         fill
         priority

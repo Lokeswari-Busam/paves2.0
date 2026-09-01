@@ -27,7 +27,7 @@ export default function WhatWeDo() {
       desc: `We implement, extend, and connect the enterprise platforms that run your business — ERP, CRM, workflow and service management, and the integration middleware that ties them together.
       Most organizations don't lack platforms; they lack platforms that talk to each other. Our teams unify finance, customer, and operational data so processes flow end to end and every system works from the same source of truth.
       From SAP and Salesforce to ServiceNow and MuleSoft, we build secure, compliance-ready integration layers that scale with your business.`,
-      img: "/assets/what-we-do/workers-having-meeting-together-network-graphic.jpg",
+      img: "/assets/what-we-do/enterprise-platforms.png",
       link: "/what-we-do/enterprise-platforms-and-integrations",
     },
   ];
@@ -61,6 +61,7 @@ export default function WhatWeDo() {
           src="/assets/shared/what_we_do_hero.jpeg"
           alt="What We Do"
           fill
+          sizes="100vw"
           className="object-cover scale-105"
           priority
         />
@@ -122,6 +123,7 @@ className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 ${
                   src={section.img}
                   alt={section.title}
                   fill
+          sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />

@@ -60,9 +60,10 @@ export default function AboutHeader() {
         viewport={{ once: true }}
       >
         <Image
-          src="/assets/who-we-are/business-data-analysis-strategy-marketing-graph-concept.jpg"
+          src="/assets/who-we-are/data-analysis-strategy.jpg"
           alt="Management and Advisory Board"
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover object-center"
         />
       </motion.div>
