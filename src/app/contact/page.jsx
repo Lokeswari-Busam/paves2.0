@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
 import { useState, useEffect, useRef } from "react";
@@ -159,14 +160,14 @@ const handleSubmit = async (e) => {
   }
 };
   return (
-    <div className="min-h-screen bg-background text-foreground px-6 py-16">
+    <div className="min-h-screen bg-background text-foreground px-4 sm:px-6 py-8 sm:py-12 md:py-16">
       {/* HEADING */}
-      <h1 className="text-center text-4xl font-bold mb-12">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-12">
         Re(<span className="text-primary">AI</span>)magine your world with us
       </h1>
 
       {/* 2-COLUMN GRID */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
 
         {/* LEFT OFFICE CARDS */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -196,53 +197,71 @@ const handleSubmit = async (e) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 name="firstName"
+                id="firstName"
+                aria-label="First Name"
                 value={form.firstName}
                 onChange={handleChange}
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="First Name*"
                 required
+                autoComplete="given-name"
               />
               <input
                 name="lastName"
+                id="lastName"
+                aria-label="Last Name"
                 value={form.lastName}
                 onChange={handleChange}
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Last Name*"
                 required
+                autoComplete="family-name"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
                 name="email"
+                id="email"
+                aria-label="Email Address"
                 value={form.email}
                 onChange={handleChange}
                 type="email"
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Email*"
                 required
+                autoComplete="email"
               />
               <input
                 name="phone"
+                id="phone"
+                aria-label="Phone Number"
                 value={form.phone}
                 onChange={handleChange}
+                type="tel"
                 className="bg-input border border-border p-3 rounded-lg"
                 placeholder="Phone*"
                 required
+                autoComplete="tel"
               />
             </div>
 
             <input
               name="jobTitle"
+              id="jobTitle"
+              aria-label="Job Title"
               value={form.jobTitle}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg"
               placeholder="Job Title*"
               required
+              autoComplete="organization-title"
             />
 
             <select
               name="subject"
+              id="subject"
+              aria-label="Subject"
               value={form.subject}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg"
@@ -254,17 +273,21 @@ const handleSubmit = async (e) => {
 
             <textarea
               name="message"
+              id="message"
+              aria-label="Message"
               value={form.message}
               onChange={handleChange}
               className="bg-input border border-border p-3 rounded-lg h-32"
               placeholder="How can we help?"
             />
 
-            <div className="flex justify-center mt-2">
-              <ReCAPTCHA
-                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                ref={recaptchaRef}
-              />
+            <div className="flex justify-center mt-2 overflow-x-hidden">
+              <div className="scale-[0.85] xs:scale-90 sm:scale-100 origin-center">
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  ref={recaptchaRef}
+                />
+              </div>
             </div>
 
             {/* BUTTON */}
@@ -291,6 +314,27 @@ const handleSubmit = async (e) => {
 
       {/* MAP BELOW */}
       <MapSection offices={offices} />
+
+      {/* LCA NOTICES */}
+      <div className="max-w-7xl mx-auto mt-12 sm:mt-16 pt-8 border-t border-border">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-card border border-border rounded-xl p-6 shadow-sm">
+          <div>
+            <h3 className="text-lg font-semibold mb-1">LCA Notices</h3>
+            <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
+              Pursuant to 20 CFR § 655.734, Paves Technologies Inc. publishes notices of H-1B
+              Labor Condition Application (LCA) filings with the U.S. Department of Labor. View
+              all current and past LCA postings including job titles, wage rates, and work
+              locations.
+            </p>
+          </div>
+          <Link
+            href="/lca-notices"
+            className="flex-shrink-0 inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            View our Postings →
+          </Link>
+        </div>
+      </div>
 
     </div>
   );

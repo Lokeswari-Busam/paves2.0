@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Cyber Security",
+  description: "Protecting digital ecosystems with continuous monitoring, advanced threat intelligence, and enterprise-grade security frameworks.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/cyber-security" },
+};
 
 export default function CybersecurityRedesign() {
   return (
@@ -31,7 +36,7 @@ export default function CybersecurityRedesign() {
         </div>
 
         <Image
-          src="/assets/cyber-ai-threat.png"
+          src="/assets/what-we-do/services/cyber-ai-threat.png"
           width={450}
           height={450}
           alt="Cyber Threat Illustration"
@@ -43,7 +48,7 @@ export default function CybersecurityRedesign() {
       <section className="py-5 px-6 md:px-20 bg-[#0F1E63] grid md:grid-cols-2 gap-16 items-center text-white">
 
         <Image
-          src="/assets/cyber-zero-trust.png"
+          src="/assets/what-we-do/services/cyber-zero-trust.png"
           width={650}
           height={450}
           alt="Zero Trust Illustration"
@@ -92,7 +97,7 @@ export default function CybersecurityRedesign() {
         </div>
 
         <Image
-          src="/assets/risk-compliance.png"
+          src="/assets/home/industry-verticals/risk-compliance.png"
           width={650}
           height={450}
           alt="Risk & Compliance Illustration"
@@ -104,7 +109,7 @@ export default function CybersecurityRedesign() {
       <section className="py-20 px-6 md:px-20 bg-[#0F1E63] grid md:grid-cols-2 gap-16 items-center text-white">
 
         <Image
-          src="/assets/cyber-mssp.png"
+          src="/assets/what-we-do/services/cyber-mssp.png"
           width={650}
           height={450}
           alt="MSSP Illustration"

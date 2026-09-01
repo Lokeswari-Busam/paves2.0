@@ -18,9 +18,9 @@ export default function AboutHeader() {
       >
 
         {/* Heading */}
-        <h2 className="text-5xl md:text-5xl font-semibold text-[#2a3990] leading-snug mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#2a3990] leading-snug mb-4">
           Management & Advisory Board
-        </h2>
+        </h1>
 
         {/* ⭐ Breadcrumb (Same Design as Hero Component) */}
         <div className="mt-2 flex items-center gap-2 flex-wrap text-xs md:text-sm font-semibold">
@@ -60,9 +60,10 @@ export default function AboutHeader() {
         viewport={{ once: true }}
       >
         <Image
-          src="/assets/business-data-analysis-strategy-marketing-graph-concept.jpg"
+          src="/assets/who-we-are/data-analysis-strategy.jpg"
           alt="Management and Advisory Board"
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover object-center"
         />
       </motion.div>

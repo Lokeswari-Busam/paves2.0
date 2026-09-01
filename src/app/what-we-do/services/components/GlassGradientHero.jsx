@@ -16,6 +16,7 @@ export default function GlassGradientHero({ title, description, breadcrumb = [],
       <Image
         src={image}
         fill
+          sizes="100vw"
         alt="hero-bg"
         className="object-cover opacity-20"
       />

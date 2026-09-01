@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Cloud Engineering & DevOps",
+  description: "Designing and scaling cloud-native platforms with automated CI/CD workflows, resilient infrastructure, and optimized performance.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/cloud-and-devops" },
+};
 
 export default function CloudAndDevopsPage() {
   return (
@@ -71,7 +76,7 @@ export default function CloudAndDevopsPage() {
           {/* RIGHT SIDE — IMAGE */}
           <div className="flex justify-center">
             <Image
-              src="/assets/3d-rendering-biorobots-concept.jpg"
+              src="/assets/what-we-do/services/3d-rendering-biorobots-concept.png"
               alt="Why Choose Paves Technologies"
               width={500}
               height={400}

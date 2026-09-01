@@ -40,7 +40,7 @@ export default function IntroSection() {
         {/* RIGHT IMAGE */}
         <div className="w-full">
           <Image
-            src="/assets/card-issuers.png" 
+            src="/assets/what-we-do/industry-verticals/card-issuers.png" 
             alt="Card Issuer"
             width={900}
             height={600}

@@ -16,7 +16,7 @@ export default function WhyBoardMatters() {
       bg: "from-indigo-50 to-indigo-100",
       arrowColor: "text-pink-700",
       textColor: "text-indigo-900",
-      image: "/assets/business-people-meeting.jpg",
+      image: "/assets/who-we-are/business-people-meeting.jpg",
     },
     {
       title: "How Our Advisory Board Impacts Paves Technologies",
@@ -28,7 +28,7 @@ export default function WhyBoardMatters() {
       bg: "from-pink-50 to-rose-100",
       arrowColor: "text-pink-700",
       textColor: "text-rose-900",
-      image: "/assets/business-corporate-technology-people-graphic-concept.jpg",
+      image: "/assets/who-we-are/corporate-technology.jpg",
     },
     {
       title: "Why Customers Trust Our Advisory Board",
@@ -40,7 +40,7 @@ export default function WhyBoardMatters() {
       bg: "from-indigo-50 to-indigo-100",
       arrowColor: "text-pink-700",
       textColor: "text-indigo-900",
-      image: "/assets/silhouettes-busy-employees-office.jpg",
+      image: "/assets/who-we-are/silhouettes-busy-employees-office.jpg",
     },
   ];
 
@@ -94,6 +94,7 @@ export default function WhyBoardMatters() {
                   src={section.image}
                   alt={section.title}
                   fill
+          sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                   priority
                 />

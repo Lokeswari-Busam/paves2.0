@@ -11,7 +11,7 @@ export default function WhatWeDo() {
       desc: `We partner with organizations across payments, banking, insurance, and capital markets to modernize legacy systems and accelerate growth. 
       Our domain experts and engineers collaborate to build secure, compliant, and scalable solutions that help businesses stay ahead in fast-changing markets. 
       Whether it’s streamlining core systems, improving data visibility, or enabling digital payments — we bring innovation that matters.`,
-      img: "/assets/industry-verticals.jpeg",
+      img: "/assets/what-we-do/industry-verticals.jpeg",
       link: "/what-we-do/industry-verticals",
     },
     {
@@ -19,8 +19,16 @@ export default function WhatWeDo() {
       desc: `Our service offerings cover the complete technology spectrum — from cloud transformation, data analytics, and AI integration to intelligent automation and cybersecurity. 
       We build future-ready solutions that not only solve current challenges but also set the foundation for innovation and growth. 
       With deep technical expertise and a delivery mindset, we enable clients to scale faster, respond smarter, and operate securely in the digital era.`,
-      img: "/assets/services.jpeg",
+      img: "/assets/what-we-do/services.jpeg",
       link: "/what-we-do/services",
+    },
+    {
+      title: "Enterprise Platforms & Integrations",
+      desc: `We implement, extend, and connect the enterprise platforms that run your business — ERP, CRM, workflow and service management, and the integration middleware that ties them together.
+      Most organizations don't lack platforms; they lack platforms that talk to each other. Our teams unify finance, customer, and operational data so processes flow end to end and every system works from the same source of truth.
+      From SAP and Salesforce to ServiceNow and MuleSoft, we build secure, compliance-ready integration layers that scale with your business.`,
+      img: "/assets/what-we-do/enterprise-platforms.png",
+      link: "/what-we-do/enterprise-platforms-and-integrations",
     },
   ];
 
@@ -50,9 +58,10 @@ export default function WhatWeDo() {
       {/* HERO SECTION */}
         <section className="relative h-[55vh] sm:h-[65vh] md:h-[75vh] flex items-center justify-center text-center overflow-hidden">
         <Image
-          src="/assets/what_we_do_hero.jpeg"
+          src="/assets/shared/what_we_do_hero.jpeg"
           alt="What We Do"
           fill
+          sizes="100vw"
           className="object-cover scale-105"
           priority
         />
@@ -87,7 +96,7 @@ export default function WhatWeDo() {
       </section>
 
       {/* MAIN CONTENT SECTIONS */}
-        <section className="py-12 sm:py-16 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-16 sm:space-y-20 md:space-y-28">
+        <section className="py-10 sm:py-14 md:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-10 sm:space-y-16 md:space-y-24">
         {sections.map((section, idx) => (
           <motion.div
             key={idx}
@@ -114,6 +123,7 @@ className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-12 ${
                   src={section.img}
                   alt={section.title}
                   fill
+          sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-60 group-hover:opacity-30 transition-all duration-500" />

@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Business & Technology Advisory",
+  description: "Aligning business goals with intelligent technology strategies to accelerate digital transformation and enterprise innovation.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/business-and-technology" },
+};
 
 export default function BusinessAndTechnologyPage() {
   return (
@@ -14,9 +19,10 @@ export default function BusinessAndTechnologyPage() {
           {/* LEFT SECTION — FULL IMAGE */}
           <div className="md:w-1/2 h-[595px] relative">
             <Image
-              src="/assets/business-team-meeting-modern-office-with-city-view.jpg"
+              src="/assets/shared/team-meeting-office.jpg"
               alt="Business Advisory"
               fill
+          sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center w-full h-full"
               priority
             />

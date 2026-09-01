@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Corporate & Commercial Banking",
+  description: "Transforming corporate banking through automation, financial intelligence, and seamless digital operations.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/corporate-and-commercial-banking" },
+};
 
 export default function Page() {
   return (
@@ -36,7 +40,7 @@ export default function Page() {
           {/* RIGHT IMAGE */}
           <div className="flex justify-center">
             <Image
-              src="/assets/corporate-commercial-banking.png"
+              src="/assets/what-we-do/industry-verticals/corporate-commercial-banking.png"
               alt="Corporate & Commercial Banking"
               width={700}
               height={500}

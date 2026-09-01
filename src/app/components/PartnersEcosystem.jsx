@@ -1,213 +1,611 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 
-// ------------------------
-// Flip Card Component
-// ------------------------
-function FlipCard({ title, desc, shapes, flipped, onClick }) {
+const PARTNERSHIPS = [
+  {
+    title: "Your Success Is Our Success",
+    desc: "We believe that true partnership begins with shared success. Our mission is to fully align with your vision, challenges, and long-term goals so we can co-create solutions that deliver measurable, sustainable impact.",
+  },
+  {
+    title: "Seeing Through Your Lens",
+    desc: "Every business is unique, and so are the challenges and opportunities it encounters. We immerse ourselves in your world to understand your priorities and create meaningful solutions.",
+  },
+  {
+    title: "Building Trust Through Transparency",
+    desc: "Trust is the foundation of every long-lasting relationship. We communicate openly, share progress proactively, and keep transparency at the core of everything we do.",
+  },
+];
+
+function PartnerCard({ title, desc, flipped, onClick }) {
   return (
     <div
       className="
-        w-[260px] h-[260px]
-        sm:w-[300px] sm:h-[300px]
-        md:w-[360px] md:h-[360px]
-        lg:w-[380px] lg:h-[380px]
-        perspective cursor-pointer
+        w-[310px] h-[150px]
+        sm:w-[340px] sm:h-[155px]
+        md:w-[370px] md:h-[165px]
+        lg:w-[390px] lg:h-[170px]
+        cursor-pointer
+        flex-shrink-0
       "
       style={{ perspective: "1200px" }}
       onClick={onClick}
     >
       <motion.div
-        className="relative w-full h-full rounded-3xl"
+        className="relative w-full h-full"
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.9, ease: "easeInOut" }}
-        style={{ transformStyle: "preserve-3d" }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        style={{
+          transformStyle: "preserve-3d",
+        }}
       >
-        {/* FRONT */}
+        {/* =====================================================
+            FRONT
+        ====================================================== */}
         <div
-          className="absolute inset-0 rounded-3xl bg-[#040435] overflow-hidden shadow-xl"
-          style={{ backfaceVisibility: "hidden" }}
+          className="
+            absolute inset-0
+            rounded-xl
+            overflow-hidden
+            flex items-center
+            px-6 sm:px-7
+          "
+          style={{
+            backfaceVisibility: "hidden",
+            background: "rgba(15, 21, 53, 0.28)",
+            border: "1px solid rgba(255, 255, 255, 0.14)",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.14)",
+          }}
         >
-          <svg className="absolute inset-0 w-full h-full opacity-40">
-            {shapes}
-          </svg>
+          {/* Quote mark */}
+          <div
+            className="
+              absolute
+              top-4
+              left-5
+              text-5xl
+              font-bold
+              leading-none
+              select-none
+            "
+            style={{
+              background:
+                "linear-gradient(135deg, #d23369, #9b4fc7)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            &ldquo;
+          </div>
 
-          <div className="absolute inset-0 flex items-center justify-center p-6 text-center z-20">
-            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
+          {/* Card content */}
+          <div className="w-full mt-5">
+            <h3
+              className="
+                font-bold
+                text-base
+                sm:text-lg
+                md:text-lg
+                leading-tight
+                whitespace-nowrap
+              "
+              style={{
+                color: "#F0F2FA",
+              }}
+            >
               {title}
             </h3>
+
+            {/* Accent line */}
+            <div
+              className="h-px w-10 mt-3 rounded-full"
+              style={{
+                background:
+                  "linear-gradient(90deg, #d23369, #3d5fdb)",
+              }}
+            />
           </div>
+
+          {/* Flip button */}
+          <motion.div
+            className="
+              absolute
+              bottom-4
+              right-4
+              w-7
+              h-7
+              rounded-full
+              flex
+              items-center
+              justify-center
+              text-xs
+              text-white
+              font-bold
+            "
+            style={{
+              background: "rgba(210, 51, 105, 0.72)",
+            }}
+            animate={{
+              boxShadow: [
+                "0 0 0px rgba(210,51,105,0)",
+                "0 0 12px rgba(210,51,105,0.65)",
+                "0 0 0px rgba(210,51,105,0)",
+              ],
+            }}
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            ↻
+          </motion.div>
+
+          {/* Subtle glow */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              rounded-xl
+            "
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 80% at 20% 80%, rgba(210,51,105,0.07) 0%, transparent 70%)",
+            }}
+          />
         </div>
 
-        {/* BACK */}
+        {/* =====================================================
+            BACK
+        ====================================================== */}
         <div
-          className="absolute inset-0 rounded-3xl bg-[#040435] overflow-hidden shadow-xl"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          className="
+            absolute inset-0
+            rounded-xl
+            overflow-hidden
+            flex flex-col
+            justify-center
+            px-6 sm:px-7
+          "
+          style={{
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            background:
+              "linear-gradient(145deg, rgba(210,51,105,0.48), rgba(155,79,199,0.45), rgba(33,45,116,0.52))",
+            border: "1px solid rgba(255,255,255,0.16)",
+            backdropFilter: "blur(5px)",
+            WebkitBackdropFilter: "blur(5px)",
+            boxShadow: "0 8px 30px rgba(0, 0, 0, 0.16)",
+          }}
         >
-          <svg className="absolute inset-0 w-full h-full opacity-40">
-            {shapes}
-          </svg>
+          <h3
+            className="
+              font-bold
+              text-sm
+              sm:text-base
+              mb-2
+              text-white
+              leading-tight
+            "
+          >
+            {title}
+          </h3>
 
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-20">
-            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3">
-              {title}
-            </h3>
-            <p className="text-white opacity-90 text-sm sm:text-base leading-relaxed">
-              {desc}
-            </p>
-          </div>
+          <p
+            className="
+              text-white/90
+              text-xs
+              sm:text-sm
+              leading-relaxed
+            "
+          >
+            {desc}
+          </p>
+
+          <div
+            className="mt-3 h-px w-10 rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.35)",
+            }}
+          />
         </div>
       </motion.div>
     </div>
   );
 }
 
-// ------------------------
-// Main Services Section
-// ------------------------
-export default function ServicesSection() {
+function SectionHeading() {
+  return (
+    <div className="text-white text-center">
+      {/* Label */}
+      <span
+        className="
+          inline-flex
+          items-center
+          gap-2
+          border
+          px-4
+          py-1.5
+          font-mono
+          text-[10px]
+          tracking-[0.2em]
+          uppercase
+          font-medium
+          mb-5
+        "
+        style={{
+          borderColor: "rgba(210,51,105,0.35)",
+          color: "#f9a8c9",
+          background: "rgba(210,51,105,0.07)",
+        }}
+      >
+        Our Partnership Promise
+      </span>
+
+      {/* Main heading */}
+      <h2
+        className="
+          text-3xl
+          sm:text-4xl
+          md:text-5xl
+          font-bold
+          leading-snug
+          mb-4
+          px-2
+        "
+      >
+        <span style={{ color: "#F0F2FA" }}>
+          Your Vision, Our Commitment &ndash; A{" "}
+        </span>
+
+        <span
+          style={{
+            background:
+              "linear-gradient(130deg, #d23369 0%, #9b4fc7 50%, #3d5fdb 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          Partnership Built for the Future
+        </span>
+      </h2>
+
+      {/* Accent line */}
+      <motion.div
+        className="h-0.5 w-16 mx-auto mb-5 rounded-full"
+        style={{
+          background:
+            "linear-gradient(90deg, #d23369, #3d5fdb)",
+          transformOrigin: "left",
+        }}
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          delay: 0.3,
+          duration: 0.7,
+        }}
+      />
+
+      {/* Description */}
+      <p
+        className="
+          text-sm
+          sm:text-base
+          max-w-2xl
+          mx-auto
+        "
+        style={{
+          color: "rgba(240,242,250,0.6)",
+        }}
+      >
+        At Paves Technologies, we create long-term strategic partnerships to
+        ensure our solutions deliver sustainable long-term value.
+      </p>
+    </div>
+  );
+}
+
+export default function PartnersEcosystem() {
   const sectionRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const timerRef = useRef(null);
+
+  /* ============================================================
+     SCROLL TRANSITION
+  ============================================================ */
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  const cardsX = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
+  /*
+    Keep the same horizontal transition.
+    Cards move from right to left while scrolling.
+  */
+  const cardsX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["40%", "-40%"]
+  );
 
-  const services = [
-    {
-      title: "Your Success Is Our Success",
-      desc:
-        "We believe that true partnership begins with shared success. Our mission is to fully align with your vision, challenges, and long-term goals so we can co-create solutions that deliver measurable, sustainable impact.",
-    },
-    {
-      title: "Seeing Through Your Lens",
-      desc:
-        "Every business is unique, and so are the challenges and opportunities it encounters. We immerse ourselves in your world to understand your priorities and create meaningful solutions.",
-    },
-    {
-      title: "Building Trust Through Transparency",
-      desc:
-        "Trust is the foundation of every long-lasting relationship. We communicate openly, share progress proactively, and keep transparency at the core of everything we do.",
-    },
-  ];
+  const scrollHintOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.15],
+    [1, 0]
+  );
 
-  const [shapes, setShapes] = useState([]);
+  /* ============================================================
+     CARD FLIP
+  ============================================================ */
 
-  useEffect(() => {
-    const generatedShapes = Array.from({ length: 16 }, (_, i) => {
-      const x = Math.random() * 400;
-      const y = Math.random() * 300;
-      const size = 40 + Math.random() * 50;
-      const opacity = 0.05 + Math.random() * 0.15;
-
-      return Math.random() > 0.5 ? (
-        <circle
-          key={i}
-          cx={x}
-          cy={y}
-          r={size / 2}
-          fill="#4e5d94"
-          opacity={opacity}
-        />
-      ) : (
-        <rect
-          key={i}
-          x={x}
-          y={y}
-          width={size}
-          height={size}
-          fill="#4e5d94"
-          opacity={opacity}
-        />
-      );
-    });
-
-    setShapes(generatedShapes);
-  }, []);
-
-  // -------- Flip Logic --------
-  const [activeIndex, setActiveIndex] = useState(null);
-  const timerRef = useRef(null);
-
-  const handleCardClick = (i) => {
-    if (activeIndex === i) {
+  const handleCardClick = (index) => {
+    if (activeIndex === index) {
       setActiveIndex(null);
       clearTimeout(timerRef.current);
       return;
     }
 
-    setActiveIndex(i);
+    setActiveIndex(index);
+
     clearTimeout(timerRef.current);
 
     timerRef.current = setTimeout(() => {
       setActiveIndex(null);
     }, 4000);
   };
-  // ----------------------------
 
   return (
     <section
       ref={sectionRef}
-      className="
-        relative
-        h-[220vh] sm:h-[240vh] md:h-[250vh]
-        w-full
-        bg-fixed bg-cover bg-center
-      "
+      className="relative w-full bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('/assets/future-visions-business-technology-concept.jpg')",
+          "url('/assets/home/partners/future-visions-technology.png')",
       }}
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center bg-black/40 overflow-hidden px-4 md:px-10">
+      {/* ==========================================================
+          MOBILE
+      =========================================================== */}
+      <div
+        className="
+          md:hidden
+          py-16
+          px-4
+          relative
+        "
+        style={{
+          background: "rgba(11,15,39,0.72)",
+        }}
+      >
+        {/* Grid */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+          "
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px)
+            `,
+            backgroundSize: "55px 55px",
+          }}
+        />
 
-        {/* HEADING */}
-        <div className="absolute inset-0 flex items-center justify-center text-white text-center max-w-4xl mx-auto px-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 leading-snug">
-              Your Vision, Our Commitment –
-              <br /> A Partnership Built for the Future
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg opacity-90">
-              At Paves Technologies, we create long-term strategic partnerships
-              to ensure our solutions deliver sustainable long-term value.
-            </p>
-          </div>
+        {/* Content */}
+        <div
+          className="
+            max-w-lg
+            mx-auto
+            mb-14
+            relative
+            z-10
+          "
+        >
+          <SectionHeading />
         </div>
 
-        {/* DESKTOP HORIZONTAL */}
-        <motion.div
-          style={{ x: cardsX }}
-          className="hidden md:flex gap-28 lg:gap-36 pt-20"
+        {/* Cards */}
+        <div
+          className="
+            flex
+            flex-col
+            items-center
+            gap-5
+            relative
+            z-10
+          "
         >
-          {services.map((service, i) => (
-            <FlipCard
-              key={i}
-              title={service.title}
-              desc={service.desc}
-              shapes={shapes}
+          {PARTNERSHIPS.map((p, i) => (
+            <PartnerCard
+              key={p.title}
+              title={p.title}
+              desc={p.desc}
               flipped={activeIndex === i}
               onClick={() => handleCardClick(i)}
             />
           ))}
-        </motion.div>
+        </div>
+      </div>
 
-        {/* MOBILE VERTICAL */}
-        <div className="flex flex-col md:hidden gap-6 mt-16 w-full items-center">
-          {services.map((service, i) => (
-            <FlipCard
-              key={i}
-              title={service.title}
-              desc={service.desc}
-              shapes={shapes}
-              flipped={activeIndex === i}
-              onClick={() => handleCardClick(i)}
-            />
-          ))}
+      {/* ==========================================================
+          DESKTOP
+      =========================================================== */}
+      <div
+        className="
+          hidden
+          md:block
+          relative
+          h-[260vh]
+          lg:h-[250vh]
+        "
+      >
+        <div
+          className="
+            sticky
+            top-0
+            h-screen
+            w-full
+            overflow-hidden
+            px-6
+            md:px-10
+          "
+          style={{
+            background: "rgba(11,15,39,0.72)",
+          }}
+        >
+          {/* ======================================================
+              GRID BACKGROUND
+          ======================================================= */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+            "
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px)
+              `,
+              backgroundSize: "55px 55px",
+            }}
+          />
+
+          {/* ======================================================
+              CENTRE GLOW
+          ======================================================= */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+            "
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 70% at 50% 50%, rgba(210,51,105,0.06) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* ======================================================
+              CONTENT
+              
+              Kept toward the upper portion of the section.
+          ======================================================= */}
+          <div
+            className="
+              absolute
+              top-[8%]
+              left-0
+              right-0
+              flex
+              justify-center
+              px-4
+              z-0
+            "
+          >
+            <div
+              className="
+                max-w-4xl
+                w-full
+              "
+            >
+              <SectionHeading />
+            </div>
+          </div>
+
+          {/* ======================================================
+              CARDS
+
+              Positioned BELOW the complete content.
+              This is the main change.
+
+              Previously:
+                  top-[56%]
+
+              Now:
+                  top-[68%]
+
+              This gives a clear visual separation between:
+                  Heading
+                  Description
+                  Cards
+                  Next section
+          ======================================================= */}
+          <motion.div
+            style={{
+              x: cardsX,
+            }}
+            className="
+              absolute
+              top-[68%]
+              left-0
+              flex
+              gap-5
+              lg:gap-7
+              items-center
+              z-10
+            "
+          >
+            {PARTNERSHIPS.map((p, i) => (
+              <PartnerCard
+                key={p.title}
+                title={p.title}
+                desc={p.desc}
+                flipped={activeIndex === i}
+                onClick={() => handleCardClick(i)}
+              />
+            ))}
+          </motion.div>
+
+          {/* ======================================================
+              SCROLL HINT
+          ======================================================= */}
+          <motion.div
+            style={{
+              opacity: scrollHintOpacity,
+            }}
+            className="
+              absolute
+              bottom-8
+              left-1/2
+              -translate-x-1/2
+              z-20
+              pointer-events-none
+            "
+          >
+            <p
+              className="
+                font-mono
+                text-[11px]
+                tracking-[0.18em]
+                uppercase
+                flex
+                items-center
+                gap-2
+                select-none
+              "
+              style={{
+                color: "rgba(240,242,250,0.38)",
+              }}
+            >
+              <span>←</span>
+              <span>Scroll to explore</span>
+              <span>→</span>
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

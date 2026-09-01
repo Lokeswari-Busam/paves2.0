@@ -1,5 +1,10 @@
-"use client";
 import Image from "next/image";
+
+export const metadata = {
+  title: "Next Gen Technologies",
+  description: "Exploring and implementing cutting-edge technologies such as blockchain, IoT, and quantum computing to future-proof enterprises.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/services/next-gen-technologies" },
+};
 
 export default function NextGenTechnologies() {
   return (
@@ -172,7 +177,7 @@ export default function NextGenTechnologies() {
         <div className="grid md:grid-cols-3 gap-8">
           
           <Image
-            src="/assets/next-gen-blockchain.jpg"
+            src="/assets/what-we-do/services/next-gen-blockchain.png"
             width={500}
             height={350}
             alt="Blockchain"
@@ -180,7 +185,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/next-gen-5g.jpg"
+            src="/assets/what-we-do/services/next-gen-5G.png"
             width={500}
             height={350}
             alt="5G Illustration"
@@ -188,7 +193,7 @@ export default function NextGenTechnologies() {
           />
 
           <Image
-            src="/assets/next-gen-metaverse.jpg"
+            src="/assets/what-we-do/services/next-gen-metaverse.png"
             width={500}
             height={350}
             alt="Metaverse"

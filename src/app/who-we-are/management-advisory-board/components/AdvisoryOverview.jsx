@@ -44,9 +44,10 @@ export default function AdvisoryOverview() {
         {/* Image */}
         <div className="relative w-full max-w-md sm:max-w-lg h-[320px] sm:h-[420px] shadow-2xl">
           <Image
-            src="/assets/advisory-overview.jpg"
+            src="/assets/who-we-are/advisory-overview.jpg"
             alt="Advisory Board"
             fill
+          sizes="(max-width: 640px) 100vw, 512px"
             loading="lazy"
             className="object-cover"
           />

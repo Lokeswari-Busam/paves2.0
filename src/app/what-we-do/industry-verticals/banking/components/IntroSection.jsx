@@ -62,7 +62,7 @@ export default function IntroSection() {
 
        <div className="flex items-center justify-center">
   <Image
-    src="/assets/Banking-Illutration.png"   // <-- change to your image file
+    src="/assets/what-we-do/industry-verticals/Banking-Illutration.png"   // <-- change to your image file
     alt="Banking Illustration"
     width={420}
     height={320}

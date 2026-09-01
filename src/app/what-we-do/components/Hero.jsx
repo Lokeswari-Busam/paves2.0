@@ -100,6 +100,7 @@ export default function Hero({ title, breadcrumb = [], image, description }) {
           src={image}
           alt={title}
           fill
+          sizes="100vw"
           className="object-cover"
           priority
         />
@@ -122,6 +123,7 @@ export default function Hero({ title, breadcrumb = [], image, description }) {
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
           priority
         />

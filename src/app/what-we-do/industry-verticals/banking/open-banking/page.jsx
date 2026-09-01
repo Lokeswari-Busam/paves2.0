@@ -1,6 +1,10 @@
-"use client";
-
 import Image from "next/image";
+
+export const metadata = {
+  title: "Open Banking",
+  description: "Unlocking financial innovation through secure, compliant, and modern open banking API platforms.",
+  alternates: { canonical: "https://www.pavestechnologies.com/what-we-do/industry-verticals/banking/open-banking" },
+};
 
 export default function OpenBankingPage() {
   return (
@@ -44,7 +48,7 @@ export default function OpenBankingPage() {
           {/* RIGHT IMAGE / ILLUSTRATION */}
           <div className="w-full flex items-center justify-center">
             <Image
-              src="/assets/open-banking.png"  // << your illustration goes here
+              src="/assets/what-we-do/industry-verticals/open-banking.png"  // << your illustration goes here
               alt="Open Banking"
               width={900}
               height={600}
