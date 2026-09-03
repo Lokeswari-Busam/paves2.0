@@ -170,3 +170,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* reCAPTCHA v3 badge.
+   v3 floats a badge in the bottom-right of every page that loads it. Google's
+   terms permit hiding it provided the attribution appears in the user flow
+   instead — the contact form renders that notice above its submit button. The
+   two must stay together: remove the notice and this rule becomes a violation. */
+.grecaptcha-badge {
+  visibility: hidden;
+}

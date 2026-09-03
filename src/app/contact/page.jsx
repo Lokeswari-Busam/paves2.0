@@ -4,8 +4,12 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import "leaflet/dist/leaflet.css";
 import MapSection from "./MapSection";
-import { useState, useEffect, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useState, useEffect } from "react";
+import {
+  CAPTCHA_ACTIONS,
+  executeRecaptcha,
+  preloadRecaptcha,
+} from "@/lib/recaptcha";
 
 // Dynamically import (Leaflet cannot run on server)
 const MapContainer = dynamic(
@@ -27,7 +31,10 @@ const Popup = dynamic(
 
 export default function ContactPage() {
 
-  const recaptchaRef = useRef(null);
+  // Warm the v3 script so the first submit is not also waiting on a fetch.
+  useEffect(() => {
+    preloadRecaptcha();
+  }, []);
 
   const [icon, setIcon] = useState(null);
   // Offices Data
@@ -118,11 +125,11 @@ const handleSubmit = async (e) => {
   setStatus(null);
 
   try {
-    // Replace the captcha check block in handleSubmit:
-    const token = recaptchaRef.current.getValue();
+    // Minted at submit time: a v3 token expires two minutes after issue.
+    const token = await executeRecaptcha(CAPTCHA_ACTIONS.CONTACT);
 
     if (!token) {
-      setStatus("captcha");      // was "Please verify CAPTCHA" — now matches the JSX key
+      setStatus("captcha");
       setLoading(false);
       return;
     }
@@ -150,7 +157,6 @@ const handleSubmit = async (e) => {
       message: "",
     });
 
-    recaptchaRef.current.reset();
 
   } catch (err) {
     setStatus("error");
@@ -281,14 +287,29 @@ const handleSubmit = async (e) => {
               placeholder="How can we help?"
             />
 
-            <div className="flex justify-center mt-2 overflow-x-hidden">
-              <div className="scale-[0.85] xs:scale-90 sm:scale-100 origin-center">
-                <ReCAPTCHA
-                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                  ref={recaptchaRef}
-                />
-              </div>
-            </div>
+            {/* reCAPTCHA v3 is invisible. Google's terms allow hiding the
+                floating badge only if this attribution appears in the flow. */}
+            <p className="text-xs text-muted-foreground text-center">
+              Protected by reCAPTCHA. Google&apos;s{" "}
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-80"
+              >
+                Privacy Policy
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://policies.google.com/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-80"
+              >
+                Terms of Service
+              </a>{" "}
+              apply.
+            </p>
 
             {/* BUTTON */}
             <button
