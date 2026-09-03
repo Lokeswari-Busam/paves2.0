@@ -37,7 +37,7 @@ export default function InsightsPage() {
       <section
         className="relative h-[60vh] sm:h-[65vh] md:h-[70vh] flex items-center justify-center text-center px-4 sm:px-6"
         style={{
-          backgroundImage: "url('https://myvistage.com/hub/wp-content/uploads/sites/4/2024/12/Inspirational-leadership-featured-image.jpg')",
+          backgroundImage: "url('/assets/home/insights/Inspirational-leadership-featured-image.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -81,19 +81,19 @@ export default function InsightsPage() {
             {
               title: "AI-Powered Banking: The Next Frontier",
               snippet: "Explore how banking is being transformed by machine learning, automation and real-time data intelligence.",
-              img: "https://i0.wp.com/swisscognitive.ch/wp-content/uploads/2021/07/ai-in-banking-and-insurance-use-cases.jpeg?w=1440&ssl=1",
+              img: "/assets/home/insights/ai-in-banking-and-insurance-use-cases.png",
               link: "/insights/ai-powered-banking",
             },
             {
               title: "Embedding Trust in Next-Gen Payment Systems",
               snippet: "Why building trust in payments infrastructure is critical as digital ecosystems expand globally.",
-              img: "https://hbr.org/resources/images/article_assets/2024/08/Forrester-HBR_AI-Trust-Image-1-1024x576.png",
+              img: "/assets/home/insights/Forrester-HBR_AI-Trust-Image.png",
               link: "/insights/embed-trust-payments",
             },
             {
               title: "Generative AI for Enterprise Services",
               snippet: "How generative models are being used to automate enterprise workflows and deliver customer-centric experiences.",
-              img: "https://www.mindinventory.com/blog/wp-content/uploads/2025/03/the-role-of-ai-in-enterprise.webp",
+              img: "/assets/home/insights/the-role-of-ai-in-enterprise.png",
               link: "/insights/gen-ai-enterprise",
             },
           ].map((item, idx) => (
